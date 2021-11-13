@@ -14,11 +14,13 @@ export interface IAuth {
 
 export interface IGlobalState {
   loading: boolean;
+  collapsed: boolean;
   auth: IAuth[];
 }
 
 const initialState: IGlobalState = {
   loading: true,
+  collapsed: true,
   auth: [],
 };
 
@@ -33,10 +35,17 @@ export const fetchAuth = createAsyncThunk(`${namespace}/leahAuth`, async () => {
 });
 
 // 创建带有命名空间的reducer
-const counterSlice = createSlice({
+const globalSlice = createSlice({
   name: namespace,
   initialState,
-  reducers: {},
+  reducers: {
+    toggleMenu: (state) => {
+      return {
+        ...state,
+        collapsed: !state.collapsed,
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAuth.pending, (state) => {
@@ -53,4 +62,5 @@ const counterSlice = createSlice({
 });
 
 export const selectGlobal = (state: RootState) => state.global;
-export default counterSlice.reducer;
+export const { toggleMenu } = globalSlice.actions;
+export default globalSlice.reducer;
