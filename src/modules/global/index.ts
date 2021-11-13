@@ -20,7 +20,7 @@ export interface IGlobalState {
 
 const initialState: IGlobalState = {
   loading: true,
-  collapsed: true,
+  collapsed: false,
   auth: [],
 };
 
