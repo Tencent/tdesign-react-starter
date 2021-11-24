@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { project } from 'configs';
-import { checkAuth } from 'utils';
 import { RootState } from '../store';
 
 const namespace = 'global';
@@ -25,13 +23,7 @@ const initialState: IGlobalState = {
 };
 
 export const fetchAuth = createAsyncThunk(`${namespace}/leahAuth`, async () => {
-  let auth = [];
-  if (project.leahAuth) {
-    auth = (await checkAuth()) || [];
-  }
-  return {
-    auth,
-  };
+  return [];
 });
 
 // 创建带有命名空间的reducer
@@ -53,7 +45,6 @@ const globalSlice = createSlice({
       })
       .addCase(fetchAuth.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.auth = payload.auth;
       })
       .addCase(fetchAuth.rejected, (state) => {
         state.loading = false;
