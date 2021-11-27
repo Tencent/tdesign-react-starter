@@ -22,28 +22,24 @@ const initialState: IGlobalState = {
   auth: [],
 };
 
-export const fetchAuth = createAsyncThunk(`${namespace}/leahAuth`, async () => {
-  return [];
-});
+export const fetchAuth = createAsyncThunk(`${namespace}/leahAuth`, async () => []);
 
 // 创建带有命名空间的reducer
 const globalSlice = createSlice({
   name: namespace,
   initialState,
   reducers: {
-    toggleMenu: (state) => {
-      return {
-        ...state,
-        collapsed: !state.collapsed,
-      };
-    },
+    toggleMenu: (state) => ({
+      ...state,
+      collapsed: !state.collapsed,
+    }),
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAuth.pending, (state) => {
         state.loading = true;
       })
-      .addCase(fetchAuth.fulfilled, (state, { payload }) => {
+      .addCase(fetchAuth.fulfilled, (state) => {
         state.loading = false;
       })
       .addCase(fetchAuth.rejected, (state) => {

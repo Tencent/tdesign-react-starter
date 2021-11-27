@@ -10,6 +10,7 @@ import ComplexForm from 'pages/ComplexForm';
 import CustomTable from 'pages/CustomTable';
 import ComplexTable from 'pages/ComplexTable';
 import BaseList from 'pages/BaseList';
+import CardList from 'pages/CardList';
 import Editor from 'pages/Editor';
 
 interface IRouteItem {
@@ -67,5 +68,9 @@ export const routes: IRouteItem[] = [
   {
     path: '/base-list',
     Component: BaseList,
+  },
+  {
+    path: '/card-list',
+    Component: CardList,
   },
 ];
