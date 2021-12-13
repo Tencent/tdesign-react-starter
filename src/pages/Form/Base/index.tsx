@@ -1,5 +1,3 @@
 import React, { memo } from 'react';
 
-export default memo(() => {
-  return <div>hello</div>;
-});
+export default memo(() => <div>hello</div>);
