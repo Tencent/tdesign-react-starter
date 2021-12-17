@@ -3,19 +3,16 @@ import cx from 'classnames';
 import { getPrefixCls } from 'utils';
 import './index.less';
 
-export interface Styles {
-  [key: string]: string | number;
-}
-
 export interface CardProps {
   title?: ReactNode;
   extra?: ReactNode;
   actions?: React.ReactNode[];
+  children?: React.ReactNode;
   className?: string;
   prefixCls?: string;
   borded?: boolean;
   style?: React.CSSProperties;
-  bodyStyle: React.CSSProperties;
+  bodyStyle?: React.CSSProperties;
   headStyle?: React.CSSProperties;
 }
 
@@ -52,7 +49,6 @@ const Card: React.FC<CardProps> = (props) => {
 };
 
 Card.defaultProps = {
-  style: { width: 300 },
   borded: true,
 };
 
