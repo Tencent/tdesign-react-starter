@@ -40,9 +40,7 @@ export default memo(() => {
           </Row>
         </Col>
         <Col>
-          <Addon append={<SearchIcon />}>
-            <Input placeholder='请输入你需要搜索的型号' />
-          </Addon>
+          <Input suffixIcon={<SearchIcon />} placeholder='请输入你需要搜索的型号' />
         </Col>
       </Row>
 
@@ -136,6 +134,7 @@ export default memo(() => {
           },
         ]}
         rowKey='index'
+        selectedRowKeys={[0, 1]}
         tableLayout='auto'
         verticalAlign='top'
         hover
