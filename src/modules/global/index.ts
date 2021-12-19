@@ -7,12 +7,14 @@ export interface IGlobalState {
   loading: boolean;
   collapsed: boolean;
   setting: boolean;
+  version: string;
 }
 
 const initialState: IGlobalState = {
   loading: true,
   collapsed: window.innerWidth < 1000, // 宽度小于1000 菜单闭合
   setting: false,
+  version: '0.0.1',
 };
 
 // 创建带有命名空间的reducer

@@ -42,7 +42,7 @@ export default memo(() => {
   const location = useLocation();
   const globalState = useAppSelector(selectGlobal);
   const [active, setActive] = useState<MenuValue>(location.pathname); // todo
-  const version = '0.0.1';
+  const { version } = globalState;
   const bottomText = globalState.collapsed ? version : `TDesign Starter ${version}`;
 
   return (

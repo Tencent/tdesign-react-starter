@@ -19,7 +19,7 @@ for (let i = 0; i < total; i++) {
 }
 
 export default memo(() => {
-  const [selectedRowKeys, setSelectedRowKeys] = useState<(string | number)[]>([]);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<(string | number)[]>([0, 1]);
   function onSelectChange(value: (string | number)[]) {
     setSelectedRowKeys(value);
   }
@@ -134,7 +134,7 @@ export default memo(() => {
           },
         ]}
         rowKey='index'
-        selectedRowKeys={[0, 1]}
+        selectedRowKeys={selectedRowKeys}
         tableLayout='auto'
         verticalAlign='top'
         hover
