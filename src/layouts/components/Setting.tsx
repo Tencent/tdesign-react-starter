@@ -3,7 +3,7 @@ import { Row, Col, Switch, Radio } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import {
   selectGlobal,
-  toggleFixedSidebar,
+  toggleFixedHeader,
   toggleShowHeader,
   toggleShowBreadcrumbs,
   toggleShowFooter,
@@ -45,12 +45,6 @@ export default memo(() => {
         <Radio value='gz'>布局3</Radio>
       </Radio.Group>
 
-      <Row justify='space-between'>
-        <Col>固定 Sidebar</Col>
-        <Col>
-          <Switch size='large' value={globalState.fixedSidebar} onChange={() => dispatch(toggleFixedSidebar())} />
-        </Col>
-      </Row>
       <div className={Style.settingTitle}>元素开关</div>
       <Row justify='space-between'>
         <Col>
@@ -58,6 +52,14 @@ export default memo(() => {
         </Col>
         <Col>
           <Switch size='large' value={globalState.showHeader} onChange={() => dispatch(toggleShowHeader())} />
+        </Col>
+      </Row>
+      <Row justify='space-between'>
+        <Col>
+          <div className={Style.settingSubTitle}>固定 Header</div>
+        </Col>
+        <Col>
+          <Switch size='large' value={globalState.fixedHeader} onChange={() => dispatch(toggleFixedHeader())} />
         </Col>
       </Row>
       <Row justify='space-between'>

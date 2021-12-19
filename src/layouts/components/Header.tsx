@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import classnames from 'classnames';
 import { Layout, Button, Row, Col, Input } from 'tdesign-react';
 import {
   ViewListIcon,
@@ -11,8 +12,8 @@ import {
   SearchIcon,
   SettingIcon,
 } from '@tencent/tdesign-icons-react';
-import { useAppDispatch } from 'modules/store';
-import { toggleMenu, toggleSetting } from 'modules/global';
+import { useAppDispatch, useAppSelector } from 'modules/store';
+import { selectGlobal, toggleMenu, toggleSetting } from 'modules/global';
 
 import Style from './Header.module.less';
 
@@ -20,8 +21,12 @@ const { Header } = Layout;
 
 export default memo(() => {
   const dispatch = useAppDispatch();
+  const globalState = useAppSelector(selectGlobal);
+  if (!globalState.showHeader) {
+    return null;
+  }
   return (
-    <Header className={Style.headerBox}>
+    <Header className={classnames(Style.headerPanel, { [Style.headerFixed]: globalState.fixedHeader })}>
       <Row justify='space-between'>
         <Col>
           <Row gutter={16} align='middle'>

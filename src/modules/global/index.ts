@@ -11,7 +11,7 @@ export interface IGlobalState {
 
   color: string;
   theme: 'light' | 'dark';
-  fixedSidebar: boolean;
+  fixedHeader: boolean;
   showHeader: boolean;
   showBreadcrumbs: boolean;
   showFooter: boolean;
@@ -25,7 +25,7 @@ const initialState: IGlobalState = {
 
   theme: 'light',
   color: 'rgb(0, 82, 217)',
-  fixedSidebar: true,
+  fixedHeader: false,
   showHeader: true,
   showBreadcrumbs: false,
   showFooter: true,
@@ -43,8 +43,8 @@ const globalSlice = createSlice({
       state.setting = !state.setting;
     },
 
-    toggleFixedSidebar: (state) => {
-      state.fixedSidebar = !state.fixedSidebar;
+    toggleFixedHeader: (state) => {
+      state.fixedHeader = !state.fixedHeader;
     },
     toggleShowHeader: (state) => {
       state.showHeader = !state.showHeader;
@@ -75,7 +75,7 @@ export const selectGlobal = (state: RootState) => state.global;
 export const {
   toggleMenu,
   toggleSetting,
-  toggleFixedSidebar,
+  toggleFixedHeader,
   toggleShowHeader,
   toggleShowBreadcrumbs,
   toggleShowFooter,
