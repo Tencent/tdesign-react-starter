@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import classnames from 'classnames';
-import { Layout, Button, Row, Col, Input } from 'tdesign-react';
+import { Layout, Button, Row, Col, Input, Popup } from 'tdesign-react';
 import {
   ViewListIcon,
   InternetIcon,
@@ -53,15 +53,21 @@ export default memo(() => {
           <Button shape='square' size='large' variant='text'>
             <LogoGithubIcon />
           </Button>
-          <Button shape='square' size='large' variant='text'>
-            <HelpCircleIcon />
-          </Button>
-          <Button shape='square' size='large' variant='text'>
-            <UserCircleIcon />
-          </Button>
-          <Button shape='square' size='large' variant='text' onClick={() => dispatch(toggleSetting())}>
-            <SettingIcon />
-          </Button>
+          <Popup content='帮助文档' placement='bottom' showArrow destroyOnClose>
+            <Button shape='square' size='large' variant='text'>
+              <HelpCircleIcon />
+            </Button>
+          </Popup>
+          <Popup content='个人中心' placement='bottom' showArrow destroyOnClose>
+            <Button shape='square' size='large' variant='text'>
+              <UserCircleIcon />
+            </Button>
+          </Popup>
+          <Popup content='页面设置' placement='bottom' showArrow destroyOnClose>
+            <Button shape='square' size='large' variant='text' onClick={() => dispatch(toggleSetting())}>
+              <SettingIcon />
+            </Button>
+          </Popup>
         </Col>
       </Row>
     </Header>
