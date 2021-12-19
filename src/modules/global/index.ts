@@ -3,6 +3,8 @@ import { RootState } from '../store';
 
 const namespace = 'global';
 
+export type TTheme = 'light' | 'dark';
+
 export interface IGlobalState {
   loading: boolean;
   collapsed: boolean;
@@ -10,7 +12,8 @@ export interface IGlobalState {
   version: string;
 
   color: string;
-  theme: 'light' | 'dark';
+  theme: TTheme;
+  layout: 'layout1' | 'layout2' | 'layout3';
   fixedHeader: boolean;
   showHeader: boolean;
   showBreadcrumbs: boolean;
@@ -24,6 +27,7 @@ const initialState: IGlobalState = {
   version: '0.0.1',
 
   theme: 'light',
+  layout: 'layout1',
   color: 'rgb(0, 82, 217)',
   fixedHeader: false,
   showHeader: true,
@@ -67,6 +71,11 @@ const globalSlice = createSlice({
         document.documentElement.style.setProperty(`--td-brand-color-8`, action?.payload);
       }
     },
+    switchLayout: (state, action) => {
+      if (action?.payload) {
+        state.layout = action?.payload;
+      }
+    },
   },
   extraReducers: () => {},
 });
@@ -81,5 +90,6 @@ export const {
   toggleShowFooter,
   switchTheme,
   switchColor,
+  switchLayout,
 } = globalSlice.actions;
 export default globalSlice.reducer;

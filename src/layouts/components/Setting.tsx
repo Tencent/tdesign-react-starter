@@ -9,6 +9,7 @@ import {
   toggleShowFooter,
   switchTheme,
   switchColor,
+  switchLayout,
 } from 'modules/global';
 
 import Style from './Setting.module.less';
@@ -39,10 +40,10 @@ export default memo(() => {
       </Radio.Group>
 
       <div className={Style.settingTitle}>导航布局</div>
-      <Radio.Group size='small'>
-        <Radio value='bj'>布局1</Radio>
-        <Radio value='sh'>布局2</Radio>
-        <Radio value='gz'>布局3</Radio>
+      <Radio.Group size='small' value={globalState.layout} onChange={(value) => dispatch(switchLayout(value))}>
+        <Radio value='layout1'>layout1</Radio>
+        <Radio value='layout2'>layout2</Radio>
+        <Radio value='layout3'>layout3</Radio>
       </Radio.Group>
 
       <div className={Style.settingTitle}>元素开关</div>
