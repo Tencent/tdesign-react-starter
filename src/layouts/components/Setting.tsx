@@ -27,22 +27,22 @@ export default memo(() => {
       </div>
 
       <div className={Style.settingTitle}>主题色</div>
-      <Radio.Group size='small' onChange={(value) => dispatch(switchColor(value))}>
-        <Radio value='rgb(0, 82, 217)'>1</Radio>
-        <Radio value='rgb(131, 78, 194)'>2</Radio>
-        <Radio value='rgb(5, 148, 250)'>3</Radio>
-        <Radio value='rgb(0, 168, 112)'>4</Radio>
-        <Radio value='rgb(235, 177, 5)'>5</Radio>
-        <Radio value='rgb(237, 123, 47)'>6</Radio>
-        <Radio value='rgb(227, 77, 89)'>7</Radio>
-        <Radio value='rgb(237, 73, 180)'>8</Radio>
+      <Radio.Group size='small' value={globalState.color} onChange={(value) => dispatch(switchColor(value))}>
+        <Radio.Button value='rgb(0, 82, 217)'>1</Radio.Button>
+        <Radio.Button value='rgb(131, 78, 194)'>2</Radio.Button>
+        <Radio.Button value='rgb(5, 148, 250)'>3</Radio.Button>
+        <Radio.Button value='rgb(0, 168, 112)'>4</Radio.Button>
+        <Radio.Button value='rgb(235, 177, 5)'>5</Radio.Button>
+        <Radio.Button value='rgb(237, 123, 47)'>6</Radio.Button>
+        <Radio.Button value='rgb(227, 77, 89)'>7</Radio.Button>
+        <Radio.Button value='rgb(237, 73, 180)'>8</Radio.Button>
       </Radio.Group>
 
       <div className={Style.settingTitle}>导航布局</div>
       <Radio.Group size='small'>
-        <Radio value='bj'>北京</Radio>
-        <Radio value='sh'>上海</Radio>
-        <Radio value='gz'>广州</Radio>
+        <Radio value='bj'>布局1</Radio>
+        <Radio value='sh'>布局2</Radio>
+        <Radio value='gz'>布局3</Radio>
       </Radio.Group>
 
       <Row justify='space-between'>
