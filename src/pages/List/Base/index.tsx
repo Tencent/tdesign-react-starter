@@ -1,5 +1,5 @@
 import React, { useState, memo } from 'react';
-import { Table, Tag, Row, Col, Button, Addon, Input } from '@tencent/tdesign-react';
+import { Table, Tag, Row, Col, Button, Input } from '@tencent/tdesign-react';
 import { ChevronUpCircleIcon, SearchIcon } from '@tencent/tdesign-icons-react';
 import PageBox from 'components/PageBox';
 import style from './index.module.less';
