@@ -20,7 +20,6 @@ const { Header } = Layout;
 
 export default memo(() => {
   const dispatch = useAppDispatch();
-  // document.documentElement.setAttribute('theme-mode', 'dark');
   return (
     <Header className={Style.headerBox}>
       <Row justify='space-between'>
