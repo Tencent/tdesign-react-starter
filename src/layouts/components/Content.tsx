@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Layout } from 'tdesign-react';
-import { routes } from 'configs';
+import { routes } from 'configs/routes';
 import UnAuthorized from 'pages/Error/403';
 import NotFound from 'pages/Error/404';
 import ErrorPage from 'pages/Error/500';
