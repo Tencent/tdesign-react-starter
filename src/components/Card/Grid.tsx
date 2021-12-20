@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { getPrefixCls } from 'utils';
+import { getPrefixCls } from 'utils/utils';
 
 export interface GridProps {
   prefixCls?: string;
