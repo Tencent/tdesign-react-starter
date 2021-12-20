@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Table, Tag, Row, Col, Button, Addon, Input } from '@tencent/tdesign-react';
+import React, { useState, memo } from 'react';
+import { Table, Tag, Row, Col, Button, Input } from '@tencent/tdesign-react';
 import { ChevronUpCircleIcon, SearchIcon } from '@tencent/tdesign-icons-react';
 import PageBox from 'components/PageBox';
-import styles from './index.module.less';
+import style from './index.module.less';
 
 const data: any = [];
 const total = 50;
@@ -17,51 +17,54 @@ for (let i = 0; i < total; i++) {
     money: '120,000',
   });
 }
-export default function TableBasic() {
-  const [selectedRowKeys, setSelectedRowKeys] = useState<(string | number)[]>([]);
+
+export default memo(() => {
+  const [selectedRowKeys, setSelectedRowKeys] = useState<(string | number)[]>([0, 1]);
   function onSelectChange(value: (string | number)[]) {
     setSelectedRowKeys(value);
   }
   return (
     <PageBox>
-      <Row justify='space-between'>
+      <Row justify='space-between' className={style.toolBar}>
         <Col>
-          <Row gutter={16} className={styles.toolBar}>
+          <Row gutter={8} align='middle'>
             <Col>
               <Button>新建合同</Button>
             </Col>
             <Col>
               <Button theme='default'>导出合同</Button>
             </Col>
-            <Col>已添加 {selectedRowKeys?.length || 0} 项</Col>
+            <Col>
+              <div>已选 {selectedRowKeys?.length || 0} 项</div>
+            </Col>
           </Row>
         </Col>
         <Col>
-          <Addon append={<SearchIcon />}>
-            <Input placeholder='请输入你需要搜索的型号' />
-          </Addon>
+          <Input suffixIcon={<SearchIcon />} placeholder='请输入你需要搜索的型号' />
         </Col>
       </Row>
+
       <Table
         data={data}
         columns={[
           {
             colKey: 'row-select',
+            fixed: 'left',
             type: 'multiple',
             width: 50,
           },
           {
             align: 'left',
-            width: 100,
-            minWidth: 100,
+            width: 300,
+            minWidth: 300,
             ellipsis: true,
             colKey: 'name',
             title: '合同名称',
           },
           {
             align: 'left',
-            width: 100,
-            minWidth: 100,
+            width: 200,
+            minWidth: 200,
             ellipsis: true,
             colKey: 'status',
             title: '合同状态',
@@ -71,16 +74,16 @@ export default function TableBasic() {
           },
           {
             align: 'left',
-            width: 100,
-            minWidth: 100,
+            width: 200,
+            minWidth: 200,
             ellipsis: true,
             colKey: 'code',
             title: '合同编号',
           },
           {
             align: 'left',
-            width: 100,
-            minWidth: 100,
+            width: 200,
+            minWidth: 200,
             ellipsis: true,
             colKey: 'type',
             title: '合同付款类型',
@@ -95,16 +98,16 @@ export default function TableBasic() {
           },
           {
             align: 'left',
-            width: 100,
-            minWidth: 100,
+            width: 200,
+            minWidth: 200,
             ellipsis: true,
             colKey: 'department',
             title: '申请部门',
           },
           {
             align: 'left',
-            width: 100,
-            minWidth: 100,
+            width: 200,
+            minWidth: 200,
             ellipsis: true,
             colKey: 'money',
             title: '合同金额（元）',
@@ -112,8 +115,8 @@ export default function TableBasic() {
           {
             align: 'left',
             fixed: 'right',
-            width: 100,
-            minWidth: 100,
+            width: 200,
+            minWidth: 200,
             colKey: 'op',
             title: '操作',
             cell() {
@@ -131,6 +134,7 @@ export default function TableBasic() {
           },
         ]}
         rowKey='index'
+        selectedRowKeys={selectedRowKeys}
         tableLayout='auto'
         verticalAlign='top'
         hover
@@ -155,4 +159,4 @@ export default function TableBasic() {
       />
     </PageBox>
   );
-}
+});
