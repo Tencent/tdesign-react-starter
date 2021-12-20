@@ -32,18 +32,19 @@
   }
 
   &-head {
-    display: flex;
-    align-items: center;
     min-height: 48px;
     margin-bottom: -1px;
     padding: 0 24px;
-    color: #000000d9;
-    font-weight: 500;
-    font-size: 16px;
     background: 0 0;
     border-bottom: 1px solid #f0f0f0;
     border-radius: 2px 2px 0 0;
     .clearfix();
+
+    &-wrapper {
+      display: flex;
+      align-items: center;
+      .clearfix();
+    }
 
     &-title {
       display: inline-block;
@@ -52,6 +53,9 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      color: #000000d9;
+      font-weight: 500;
+      font-size: 20px;
     }
 
     &-extra {
@@ -66,6 +70,7 @@
 
   &-body {
     padding: 24px;
+    .clearfix();
   }
 
   &-actions {
@@ -82,6 +87,24 @@
       margin: 12px 0;
       color: #00000073;
       text-align: center;
+    }
+  }
+
+  &-grid {
+    float: left;
+    width: 33.33%;
+    padding: 24px;
+    border: 0;
+    border-radius: 0;
+    box-shadow: 1px 0 #f0f0f0, 0 1px #f0f0f0, 1px 1px #f0f0f0, 1px 0 #f0f0f0 inset, 0 1px #f0f0f0 inset;
+    transition: all .3s;
+
+    &-hoverable {
+      &:hover {
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 1px 2px -2px #00000029, 0 3px 6px #0000001f, 0 5px 12px 4px #00000017;
+      }
     }
   }
 }

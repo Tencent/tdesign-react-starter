@@ -1,13 +1,21 @@
-import React, { memo, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import cx from 'classnames';
+import { Tabs } from '@tencent/tdesign-react';
+import { TabsProps, TabPanelProps } from '@tencent/tdesign-react/es/tabs';
 import { getPrefixCls } from 'utils';
+import Grid from './Grid';
 import './index.less';
+
+const { TabPanel } = Tabs;
 
 export interface CardProps {
   title?: ReactNode;
   extra?: ReactNode;
   actions?: React.ReactNode[];
   children?: React.ReactNode;
+  tabProps?: TabsProps;
+  tabList?: TabPanelProps[];
+  onTapChange?: TabsProps['onChange'];
   className?: string;
   prefixCls?: string;
   borded?: boolean;
@@ -16,20 +24,48 @@ export interface CardProps {
   headStyle?: React.CSSProperties;
 }
 
-const Card: React.FC<CardProps> = (props) => {
-  const { title, extra, actions, className, prefixCls, borded, style, headStyle, bodyStyle } = props;
+export interface CardInterface extends React.FC<CardProps> {
+  Grid: typeof Grid;
+}
+
+const Card: CardInterface = (props: CardProps) => {
+  const {
+    title,
+    extra,
+    actions,
+    tabList,
+    tabProps,
+    onTapChange,
+    className,
+    prefixCls,
+    borded,
+    style,
+    headStyle,
+    bodyStyle,
+  } = props;
 
   const cls = getPrefixCls('card', prefixCls);
   const borderCls = `${cls}-borderd`;
 
-  const hasHead = Boolean(title || extra);
+  const tabs = tabList?.length ? (
+    <Tabs {...(tabProps || {})} onChange={onTapChange}>
+      {tabList?.map((tab) => (
+        <TabPanel key={tab.value} {...tab}></TabPanel>
+      ))}
+    </Tabs>
+  ) : null;
+
+  const hasHead = Boolean(title || extra || tabs);
 
   return (
     <div style={style} className={cx(cls, className, { [borderCls]: borded })}>
       {hasHead && (
         <div className={cx(`${cls}-head`)} style={headStyle}>
-          {title && <div className={cx(`${cls}-head-title`)}>{title}</div>}
-          {extra && <div className={cx(`${cls}-head-extra`)}>{extra}</div>}
+          <div className={cx(`${cls}-head-wrapper`)}>
+            {title && <div className={cx(`${cls}-head-title`)}>{title}</div>}
+            {extra && <div className={cx(`${cls}-head-extra`)}>{extra}</div>}
+          </div>
+          {tabs}
         </div>
       )}
       <div className={cx(`${cls}-body`)} style={bodyStyle}>
@@ -52,4 +88,6 @@ Card.defaultProps = {
   borded: true,
 };
 
-export default memo(Card);
+Card.Grid = Grid;
+
+export default Card;
