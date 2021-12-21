@@ -24,7 +24,10 @@ const Trend = ({ numValue = '' }: { numValue: string }) => (
     </div>
     <div className={Style.trendSide}></div>
     <div className={Style.trendBottom}>
-      <div></div>
+      <div className={Style.bottomBar}>
+        自从上周以来
+        <span className={Style.barChange}></span>
+      </div>
     </div>
   </div>
 );
