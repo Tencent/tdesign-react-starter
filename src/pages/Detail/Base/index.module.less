@@ -1,0 +1,33 @@
+@Wrap: infoBox;
+
+.@{Wrap} {
+  column-count: 2;
+  &Item {
+    padding: 12px 0;
+    display: flex;
+    color: var(--td-text-color-primary);
+    h1 {
+      font-weight: 400;
+      font-size: 14px;
+      color: var(--td-text-color-secondary);
+      text-align: left;
+      line-height: 22px;
+      margin: 0;
+    }
+    span {
+      margin-left: 24px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .@{Wrap} {
+    &Item {
+      h1 {
+        width: 200px;
+      }
+    }
+  }
+}
