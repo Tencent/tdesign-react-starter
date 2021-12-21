@@ -10,3 +10,35 @@
   background-color: var(--td-bg-color-container);
   border-radius: 3px;
 }
+
+.trendBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+
+  .trendTop {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    > span {
+      display: inline-block;
+      color: var(--td-text-color-primary);
+      font-size: 36px;
+      line-height: 44px;
+    }
+  }
+  
+  .trendSider {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+  }
+  
+  .trendBottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
