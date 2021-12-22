@@ -18,6 +18,26 @@
       margin-left: 24px;
       font-size: 14px;
       line-height: 1.5;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    i {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--td-success-color-5);
+      margin-right: 5px;
+    }
+    .inProgress {
+      color: var(--td-success-color-5);
+    }
+    .pdf {
+      color: var(--td-brand-color);
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
