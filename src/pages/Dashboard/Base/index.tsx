@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Row, Col } from '@tencent/tdesign-react';
 
-import Card from 'components/Card';
+import Card from './components/Card';
 
 import Style from './index.module.less';
 
