@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import classnames from 'classnames';
 import { Steps } from 'tdesign-react';
+import { generateIdArray } from 'utils/utils';
 import PageBox from 'components/PageBox';
 import CardBox from 'components/CardBox';
 import Style from './index.module.less';
@@ -9,11 +10,12 @@ const { StepItem } = Steps;
 
 // Mock Data of 基本信息
 interface InfoItem {
+  id: number;
   name: string;
   value: string;
   type?: string;
 }
-const dataInfo: InfoItem[] = [
+const dataInfo: InfoItem[] = generateIdArray([
   { name: '合同名称', value: '总部办公用品采购项目' },
   { name: '合同状态', value: '履行中', type: 'status' },
   { name: '合同编号', value: 'BH00010' },
@@ -28,26 +30,27 @@ const dataInfo: InfoItem[] = [
   { name: '合同附件', value: '总部办公用品采购项目合同.pdf', type: 'link' },
   { name: '备注', value: '--' },
   { name: '创建时间', value: '2020-12-22 10:00:00' },
-];
+]);
 
 // Mock Data of 变更记录
 interface StepItem {
+  id: number;
   name: string;
   detail?: string;
 }
-const dataStep: StepItem[] = [
+const dataStep: StepItem[] = generateIdArray([
   { name: '上传合同附件', detail: '这里是提示文字' },
   { name: '修改合同金额', detail: '这里是提示文字' },
   { name: '新建合同', detail: '2020-12-01 15:00:00 管理员-李川操作' },
-];
+]);
 const setpCurrent = 1;
 
 export default memo(() => (
   <PageBox withColor={false} withPadding={false}>
     <CardBox titleName='基本信息' withMarginTop={false}>
       <div className={classnames(Style.infoBox)}>
-        {dataInfo.map((item, index: number) => (
-          <div key={index} className={classnames(Style.infoBoxItem)}>
+        {dataInfo.map((item) => (
+          <div key={item.id} className={classnames(Style.infoBoxItem)}>
             <h1>{item.name}</h1>
             <span
               className={classnames({
@@ -65,12 +68,11 @@ export default memo(() => (
     <CardBox titleName='变更记录'>
       <div>
         <Steps layout='vertical' theme='dot' current={setpCurrent}>
-          {dataStep.map((item, index: number) => (
-            <StepItem key={index} title={item.name} content={item.detail} />
+          {dataStep.map((item) => (
+            <StepItem key={item.id} title={item.name} content={item.detail} />
           ))}
         </Steps>
       </div>
     </CardBox>
   </PageBox>
 ));
-<i></i>;
