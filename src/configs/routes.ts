@@ -12,6 +12,7 @@ import DetailBase from 'pages/Detail/Base';
 import DetailAdvanced from 'pages/Detail/Advanced';
 import DetailDeploy from 'pages/Detail/Deploy';
 import DetailSecondary from 'pages/Detail/Secondary';
+import User from 'pages/User';
 
 interface IRouteItem {
   key?: string;
@@ -74,5 +75,9 @@ export const routes: IRouteItem[] = [
   {
     path: '/detail/secondary',
     Component: DetailSecondary,
+  },
+  {
+    path: '/user/index',
+    Component: User,
   },
 ];
