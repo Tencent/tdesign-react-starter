@@ -1,23 +1,21 @@
 import React, { memo } from 'react';
-import { Row, Col } from '@tencent/tdesign-react';
+import { Row, Col, DatePicker } from '@tencent/tdesign-react';
+import { Tvision2Area } from '@tencent/react-tvision2';
+import dayjs from 'dayjs';
+import _ from 'lodash';
 
-import Card from './components/Card';
+import Board from 'pages/Dashboard/components/Board';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { PANE_LIST } from './constant';
 
 import Style from './index.module.less';
 
 const gutter = [16, 16];
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const data: any = {
-  summary: {
-    revenue: '¥ 28,425.00',
-    refund: '¥ 768.00',
-    users: 1126,
-    orders: 527,
-  },
-};
+_.range(5, 10);
 
-const Trend = ({ numValue = '' }: { numValue: string }) => (
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const Trend = ({ numValue = '' }: { numValue: string | number }) => (
   <div className={Style.trendBox}>
     <div className={Style.trendTop}>
       <span>{numValue}</span>
@@ -32,55 +30,90 @@ const Trend = ({ numValue = '' }: { numValue: string }) => (
   </div>
 );
 
-export default memo(() => (
-  <div className={Style.viewDashboard}>
+const DefaultDatePicker = (
+  <DatePicker
+    style={{ width: 240 }}
+    mode='date'
+    range
+    placeholder="['开始时间', '结束时间']"
+    defaultValue={[dayjs().subtract(6, 'day'), dayjs()]}
+    onChange={(value: Array<string>) => console.log(' value = ', value)}
+  />
+);
+
+const TopPanel = () => (
+  <Row gutter={gutter}>
+    <Col span={3}>
+      <Board subtitle='总收入' dark={true}>
+        <Trend numValue={data.summary.revenue.total} />
+      </Board>
+    </Col>
+    <Col span={3}>
+      <Board subtitle='总退款'>
+        <Trend numValue={data.summary.refund.total} />
+      </Board>
+    </Col>
+    <Col span={3}>
+      <Board subtitle='活跃用户（个）'>
+        <Trend numValue={data.summary.users} />
+      </Board>
+    </Col>
+    <Col span={3}>
+      <Board subtitle='产生订单（个）'>
+        <Trend numValue={data.summary.orders} />
+      </Board>
+    </Col>
+  </Row>
+);
+
+const MiddleChart = () => (
+  <Row gutter={gutter} className={Style.rowContainer}>
+    <Col span={9}>
+      <Board title='统计数据' description='(万元)' operation={DefaultDatePicker}>
+        <Tvision2Area
+          style={{ height: 280 }}
+          option={{
+            dataset: lineData,
+            injectOption: (option) => ({ ...option, color: ['#0052D9', '#BCC4D0'] }),
+          }}
+        />
+      </Board>
+    </Col>
+    <Col span={3}>
+      <Board title='销售渠道' description='2021-12'></Board>
+    </Col>
+  </Row>
+);
+
+const RankList = () => (
+  <Row gutter={gutter} className={Style.rowContainer}>
+    <Col span={6}>
+      <Board title='销售订单排名'></Board>
+    </Col>
+    <Col span={6}>
+      <Board title='采购订单排名'></Board>
+    </Col>
+  </Row>
+);
+
+const Overview = (): React.ReactElement => (
+  <div className={Style.overviewPanel}>
     <Row gutter={gutter}>
-      <Col span={3}>
-        <Card subtitle='总收入' isDark={true}>
-          <Trend numValue={data.summary.revenue} />
-        </Card>
-      </Col>
-      <Col span={3}>
-        <Card subtitle='总退款'>
-          <Trend numValue={data.summary.refund} />
-        </Card>
-      </Col>
-      <Col span={3}>
-        <Card subtitle='活跃用户（个）'>
-          <Trend numValue={data.summary.users} />
-        </Card>
-      </Col>
-      <Col span={3}>
-        <Card subtitle='产生订单（个）'>
-          <Trend numValue={data.summary.orders} />
-        </Card>
-      </Col>
-    </Row>
-    <Row gutter={gutter} className={Style.rowContainer}>
       <Col span={9}>
-        <Card title='统计数据' description='(万元)2021-12'></Card>
+        <Board title='出入库概览' description='(件)'></Board>
       </Col>
       <Col span={3}>
-        <Card title='销售渠道' description='2021-12'></Card>
+        <Board></Board>
       </Col>
     </Row>
-    <Row gutter={gutter} className={Style.rowContainer}>
-      <Col span={6}>
-        <Card title='销售订单排名'></Card>
-      </Col>
-      <Col span={6}>
-        <Card title='采购订单排名'></Card>
-      </Col>
-    </Row>
-    <div className={Style.overviewPanel}>
-      <Row gutter={gutter}>
-        <Col span={9}>
-          <Card title='出入库概览' description='(件)'></Card>
-        </Col>
-        <Col span={3}>
-          <Card></Card>
-        </Col>
-      </Row>
-    </div>
+  </div>
+);
+
+export default memo(() => (
+  <div className={Style.dashboardPanel}>
+    <TopPanel />
+    <MiddleChart />
+    <RankList />
+    <Overview />
   </div>
 ));
