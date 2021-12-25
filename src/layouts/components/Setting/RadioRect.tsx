@@ -4,6 +4,7 @@ import Style from './RadioRect.module.less';
 interface IOption {
   value: number | string;
   image: JSX.Element | string;
+  name?: string;
 }
 
 interface IProps {
@@ -24,13 +25,15 @@ export default memo((props: IProps) => {
     <div className={Style.radioRectPanel}>
       {props.options.map((item, index) => {
         return (
-          <div
-            className={Style.rectItem}
-            key={index}
-            onClick={() => handleClick(item)}
-            style={{ borderColor: selectValue === item.value ? 'var(--td-brand-color)' : '#e3e6eb' }}
-          >
-            {item.image}
+          <div key={index}>
+            <div
+              className={Style.rectItem}
+              onClick={() => handleClick(item)}
+              style={{ borderColor: selectValue === item.value ? 'var(--td-brand-color)' : '#e3e6eb' }}
+            >
+              {item.image}
+            </div>
+            <div className={Style.rectText}>{item.name}</div>
           </div>
         );
       })}

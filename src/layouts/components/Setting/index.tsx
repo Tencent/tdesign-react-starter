@@ -20,14 +20,17 @@ const themeList = [
   {
     value: 'light',
     image: Light,
+    name: '明亮',
   },
   {
     value: 'dark',
     image: Dark,
+    name: '黑暗',
   },
   {
     value: 'system',
     image: System,
+    name: '跟随系统',
   },
 ];
 
@@ -36,7 +39,7 @@ export default memo(() => {
   const globalState = useAppSelector(selectGlobal);
 
   return (
-    <div className={Style.settingPanel}>
+    <div>
       <div className={Style.settingTitle}>主题模式</div>
       <div>
         <RadioRect
