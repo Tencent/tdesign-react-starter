@@ -40,8 +40,12 @@ const globalSlice = createSlice({
   name: namespace,
   initialState,
   reducers: {
-    toggleMenu: (state) => {
-      state.collapsed = !state.collapsed;
+    toggleMenu: (state, action) => {
+      if (action.payload === null) {
+        state.collapsed = !state.collapsed;
+      } else {
+        state.collapsed = !!action.payload;
+      }
     },
     toggleSetting: (state) => {
       state.setting = !state.setting;
