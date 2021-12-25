@@ -1,14 +1,6 @@
 import React, { memo } from 'react';
-import { Button, Popup } from 'tdesign-react';
-import {
-  InternetIcon,
-  LogoGithubIcon,
-  MailIcon,
-  HelpCircleIcon,
-  UserCircleIcon,
-  ViewModuleIcon,
-  SettingIcon,
-} from '@tencent/tdesign-icons-react';
+import { Button, Popup, Badge } from 'tdesign-react';
+import { LogoGithubIcon, MailIcon, HelpCircleIcon, UserCircleIcon, SettingIcon } from 'tdesign-icons-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { selectGlobal, toggleSetting } from 'modules/global';
 
@@ -18,22 +10,29 @@ export default memo(() => {
   if (!globalState.showHeader) {
     return null;
   }
+
+  const gotoWiki = () => {
+    window.open('https://tdesign.tencent.com/react/components/overview');
+  };
+
+  const gotoGitHub = () => {
+    window.open('https://github.com/Tencent');
+  };
+
   return (
     <>
       <Button shape='square' size='large' variant='text'>
-        <MailIcon />
+        <Badge count={6} style={{ zIndex: 1 }}>
+          <MailIcon />
+        </Badge>
       </Button>
-      <Button shape='square' size='large' variant='text'>
-        <InternetIcon />
-      </Button>
-      <Button shape='square' size='large' variant='text'>
-        <ViewModuleIcon />
-      </Button>
-      <Button shape='square' size='large' variant='text'>
-        <LogoGithubIcon />
-      </Button>
+      <Popup content='代码仓库' placement='bottom' showArrow destroyOnClose>
+        <Button shape='square' size='large' variant='text' onClick={gotoGitHub}>
+          <LogoGithubIcon />
+        </Button>
+      </Popup>
       <Popup content='帮助文档' placement='bottom' showArrow destroyOnClose>
-        <Button shape='square' size='large' variant='text'>
+        <Button shape='square' size='large' variant='text' onClick={gotoWiki}>
           <HelpCircleIcon />
         </Button>
       </Popup>

@@ -18,6 +18,7 @@ interface IRouteItem {
   key?: string;
   path: string;
   exact?: boolean;
+  isHome?: boolean;
   Component: React.FC<BrowserRouterProps>;
 }
 
@@ -31,6 +32,7 @@ export const routes: IRouteItem[] = [
   {
     path: '/dashboard/base',
     Component: DashboardBase,
+    isHome: true,
   },
   {
     path: '/dashboard/detail',
