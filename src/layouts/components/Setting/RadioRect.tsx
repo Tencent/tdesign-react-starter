@@ -1,4 +1,5 @@
 import React, { memo, useState } from 'react';
+import classname from 'classnames';
 import Style from './RadioRect.module.less';
 
 interface IOption {
@@ -24,16 +25,20 @@ export default memo((props: IProps) => {
   return (
     <div className={Style.radioRectPanel}>
       {props.options.map((item, index) => {
+        let ImageItem = item.image;
+        if (typeof item.image === 'string') {
+          ImageItem = <div className={Style.rectImg} style={{ backgroundImage: `url(${item.image})` }}></div>;
+        }
+
         return (
           <div key={index}>
             <div
-              className={Style.rectItem}
+              className={classname(Style.rectItem, { [Style.rectItemSelected]: selectValue === item.value })}
               onClick={() => handleClick(item)}
-              style={{ borderColor: selectValue === item.value ? 'var(--td-brand-color)' : '#e3e6eb' }}
             >
-              {item.image}
+              {ImageItem}
             </div>
-            <div className={Style.rectText}>{item.name}</div>
+            {item.name && <div className={Style.rectText}>{item.name}</div>}
           </div>
         );
       })}

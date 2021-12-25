@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Row, Col, Switch, Radio } from 'tdesign-react';
+import { Row, Col, Switch } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import {
   selectGlobal,
@@ -14,6 +14,7 @@ import {
 import RadioColor from './RadioColor';
 import RadioRect from './RadioRect';
 import { Dark, Light, System } from './Icons';
+
 import Style from './index.module.less';
 
 const themeList = [
@@ -34,6 +35,21 @@ const themeList = [
   },
 ];
 
+const layoutList = [
+  {
+    value: 'layout1',
+    image: 'https://tdesign.gtimg.com/starter/setting/side.png',
+  },
+  {
+    value: 'layout2',
+    image: 'https://tdesign.gtimg.com/starter/setting/top.png',
+  },
+  {
+    value: 'layout3',
+    image: 'https://tdesign.gtimg.com/starter/setting/mix.png',
+  },
+];
+
 export default memo(() => {
   const dispatch = useAppDispatch();
   const globalState = useAppSelector(selectGlobal);
@@ -50,14 +66,14 @@ export default memo(() => {
       </div>
 
       <div className={Style.settingTitle}>主题色</div>
-      <RadioColor defaultValue={globalState.color} onChange={(value) => dispatch(switchColor(value))}></RadioColor>
+      <RadioColor defaultValue={globalState.color} onChange={(value) => dispatch(switchColor(value))} />
 
       <div className={Style.settingTitle}>导航布局</div>
-      <Radio.Group size='small' value={globalState.layout} onChange={(value) => dispatch(switchLayout(value))}>
-        <Radio value='layout1'>layout1</Radio>
-        <Radio value='layout2'>layout2</Radio>
-        <Radio value='layout3'>layout3</Radio>
-      </Radio.Group>
+      <RadioRect
+        defaultValue={globalState.layout}
+        onChange={(value) => dispatch(switchLayout(value))}
+        options={layoutList}
+      />
 
       <div className={Style.settingTitle}>元素开关</div>
       <Row justify='space-between'>
@@ -68,6 +84,7 @@ export default memo(() => {
           <Switch size='large' value={globalState.showHeader} onChange={() => dispatch(toggleShowHeader())} />
         </Col>
       </Row>
+
       <Row justify='space-between'>
         <Col>
           <div className={Style.settingSubTitle}>固定 Header</div>
@@ -76,6 +93,7 @@ export default memo(() => {
           <Switch size='large' value={globalState.fixedHeader} onChange={() => dispatch(toggleFixedHeader())} />
         </Col>
       </Row>
+
       <Row justify='space-between'>
         <Col>
           <div className={Style.settingSubTitle}>显示 Breadcrumbs</div>
@@ -84,6 +102,7 @@ export default memo(() => {
           <Switch size='large' value={globalState.showBreadcrumbs} onChange={() => dispatch(toggleShowBreadcrumbs())} />
         </Col>
       </Row>
+
       <Row justify='space-between'>
         <Col>
           <div className={Style.settingSubTitle}>显示 Footer</div>
