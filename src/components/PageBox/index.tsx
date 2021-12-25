@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from '@tencent/tdesign-react';
+import { Layout } from 'tdesign-react';
 import classnames from 'classnames';
 import Style from './index.module.less';
 

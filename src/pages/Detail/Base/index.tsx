@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
-import classnames from 'classnames';
 import { Steps } from 'tdesign-react';
+import classnames from 'classnames';
 import { generateIdArray } from 'utils/utils';
 import PageBox from 'components/PageBox';
 import CardBox from 'components/CardBox';
@@ -33,21 +33,21 @@ const dataInfo: InfoItem[] = generateIdArray([
 ]);
 
 // Mock Data of 变更记录
-interface StepItem {
+interface IStepItem {
   id: number;
   name: string;
   detail?: string;
 }
-const dataStep: StepItem[] = generateIdArray([
+const dataStep: IStepItem[] = generateIdArray([
   { name: '上传合同附件', detail: '这里是提示文字' },
   { name: '修改合同金额', detail: '这里是提示文字' },
   { name: '新建合同', detail: '2020-12-01 15:00:00 管理员-李川操作' },
 ]);
-const setpCurrent = 1;
+const stepCurrent = 1;
 
 export default memo(() => (
   <PageBox withColor={false} withPadding={false}>
-    <CardBox titleName='基本信息' withMarginTop={false}>
+    <CardBox title='基本信息'>
       <div className={classnames(Style.infoBox)}>
         {dataInfo.map((item) => (
           <div key={item.id} className={classnames(Style.infoBoxItem)}>
@@ -65,9 +65,9 @@ export default memo(() => (
         ))}
       </div>
     </CardBox>
-    <CardBox titleName='变更记录'>
+    <CardBox title='变更记录' className={Style.logBox}>
       <div>
-        <Steps layout='vertical' theme='dot' current={setpCurrent}>
+        <Steps layout='vertical' theme='dot' current={stepCurrent}>
           {dataStep.map((item) => (
             <StepItem key={item.id} title={item.name} content={item.detail} />
           ))}
