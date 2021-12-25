@@ -1,11 +1,14 @@
 import React, { memo } from 'react';
-import { Button, Popup, Badge, Dropdown } from 'tdesign-react';
-import { LogoGithubIcon, MailIcon, HelpCircleIcon, UserCircleIcon, SettingIcon } from 'tdesign-icons-react';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Button, Popup, Badge, Dropdown, Row, Col } from 'tdesign-react';
+import { Icon, LogoGithubIcon, MailIcon, HelpCircleIcon, SettingIcon } from 'tdesign-icons-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { selectGlobal, toggleSetting } from 'modules/global';
 
 export default memo(() => {
   const dispatch = useAppDispatch();
+  const history = useHistory();
+
   const globalState = useAppSelector(selectGlobal);
   if (!globalState.showHeader) {
     return null;
@@ -32,43 +35,52 @@ export default memo(() => {
 
   const clickHandler = (data: any) => {
     // MessagePlugin.success(`选中【${data.value}】`);
-    console.log(data);
+    if (data.value === 1) {
+      history.push('/user/index');
+    }
   };
 
   return (
-    <>
-      <Button shape='square' size='large' variant='text'>
-        <Badge count={6} style={{ zIndex: 1 }}>
-          <MailIcon />
-        </Badge>
-      </Button>
-      <Button shape='square' size='large' variant='text' onClick={gotoGitHub}>
-        <Popup content='代码仓库' placement='bottom' showArrow destroyOnClose>
-          <LogoGithubIcon />
-        </Popup>
-      </Button>
-      <Button shape='square' size='large' variant='text' onClick={gotoWiki}>
-        <Popup content='帮助文档' placement='bottom' showArrow destroyOnClose>
-          <HelpCircleIcon />
-        </Popup>
-      </Button>
-      <Dropdown
-        options={options}
-        trigger={'click'}
-        onClick={clickHandler}
-        popupProps={{ overlayStyle: { padding: 4 } }}
-      >
+    <Row align='middle' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <Col>
         <Button shape='square' size='large' variant='text'>
-          <Popup content='个人中心' placement='bottom' showArrow>
-            <UserCircleIcon />
+          <Badge count={6} style={{ zIndex: 1 }}>
+            <MailIcon />
+          </Badge>
+        </Button>
+      </Col>
+      <Col>
+        <Button shape='square' size='large' variant='text' onClick={gotoGitHub}>
+          <Popup content='代码仓库' placement='bottom' showArrow destroyOnClose>
+            <LogoGithubIcon />
           </Popup>
         </Button>
-      </Dropdown>
-      <Button shape='square' size='large' variant='text' onClick={() => dispatch(toggleSetting())}>
-        <Popup content='页面设置' placement='bottom' showArrow destroyOnClose>
-          <SettingIcon />
-        </Popup>
-      </Button>
-    </>
+      </Col>
+      <Col>
+        <Button shape='square' size='large' variant='text' onClick={gotoWiki}>
+          <Popup content='帮助文档' placement='bottom' showArrow destroyOnClose>
+            <HelpCircleIcon />
+          </Popup>
+        </Button>
+      </Col>
+      <Col>
+        <Dropdown options={options} trigger={'click'} onClick={clickHandler}>
+          <Button variant='text'>
+            <span style={{ display: 'inline-flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Icon name='user-circle' size='20' />
+              <span style={{ display: 'inline-block', margin: '0 5px' }}>Tencent</span>
+              <Icon name='chevron-down' size='20' />
+            </span>
+          </Button>
+        </Dropdown>
+      </Col>
+      <Col>
+        <Button shape='square' size='large' variant='text' onClick={() => dispatch(toggleSetting())}>
+          <Popup content='页面设置' placement='bottom' showArrow destroyOnClose>
+            <SettingIcon />
+          </Popup>
+        </Button>
+      </Col>
+    </Row>
   );
 });
