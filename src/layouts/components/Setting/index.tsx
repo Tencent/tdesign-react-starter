@@ -12,23 +12,42 @@ import {
   switchLayout,
 } from 'modules/global';
 import RadioColor from './RadioColor';
+import RadioRect from './RadioRect';
+import { Dark, Light, System } from './Icons';
 import Style from './index.module.less';
+
+const themeList = [
+  {
+    value: 'light',
+    image: Light,
+  },
+  {
+    value: 'dark',
+    image: Dark,
+  },
+  {
+    value: 'system',
+    image: System,
+  },
+];
 
 export default memo(() => {
   const dispatch = useAppDispatch();
   const globalState = useAppSelector(selectGlobal);
+
   return (
     <div className={Style.settingPanel}>
       <div className={Style.settingTitle}>主题模式</div>
       <div>
-        <Radio.Group size='small' value={globalState.theme} onChange={(value) => dispatch(switchTheme(value))}>
-          <Radio value='light'>明亮</Radio>
-          <Radio value='dark'>黑暗</Radio>
-        </Radio.Group>
+        <RadioRect
+          defaultValue={globalState.theme}
+          onChange={(value) => dispatch(switchTheme(value))}
+          options={themeList}
+        />
       </div>
 
       <div className={Style.settingTitle}>主题色</div>
-      <RadioColor value={globalState.color} onChange={(value) => dispatch(switchColor(value))}></RadioColor>
+      <RadioColor defaultValue={globalState.color} onChange={(value) => dispatch(switchColor(value))}></RadioColor>
 
       <div className={Style.settingTitle}>导航布局</div>
       <Radio.Group size='small' value={globalState.layout} onChange={(value) => dispatch(switchLayout(value))}>
