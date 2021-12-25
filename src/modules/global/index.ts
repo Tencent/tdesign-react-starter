@@ -28,7 +28,7 @@ const initialState: IGlobalState = {
 
   theme: 'light',
   layout: 'layout1',
-  color: 'rgb(0, 82, 217)',
+  color: '#0152D9',
   fixedHeader: false,
   showHeader: true,
   showBreadcrumbs: false,
