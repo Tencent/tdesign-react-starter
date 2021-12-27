@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { memo, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Menu } from 'tdesign-react';
 import { MenuValue } from '@tencent/tdesign-react/es/_type/components/menu';
@@ -63,7 +63,6 @@ interface IMenuProps {
 export default memo((props: IMenuProps) => {
   const location = useLocation();
   const globalState = useAppSelector(selectGlobal);
-  const [active, setActive] = useState<MenuValue>(location.pathname); // todo
 
   const { version } = globalState;
   const bottomText = globalState.collapsed ? version : `TDesign Starter ${version}`;
@@ -73,11 +72,11 @@ export default memo((props: IMenuProps) => {
     <Menu
       width='232px'
       style={{ flexShrink: 0, height: '100%' }}
-      value={active}
+      value={location.pathname}
       theme={props.theme}
       // expanded={['level1']}
       collapsed={globalState.collapsed}
-      onChange={(v) => setActive(v)}
+      // onChange={(v) => setActive(v)}
       operations={props.showOperation ? <div className={Style.menuTip}>{bottomText}</div> : undefined}
       logo={props.showLogo ? Logo : undefined}
     >

@@ -26,7 +26,7 @@ export default memo((props: IHeaderProps) => {
     HeaderLeft = (
       <Row gutter={16} align='middle'>
         <Col>
-          <Button shape='square' size='large' variant='text' onClick={() => dispatch(toggleMenu())}>
+          <Button shape='square' size='large' variant='text' onClick={() => dispatch(toggleMenu(null))}>
             <ViewListIcon />
           </Button>
         </Col>

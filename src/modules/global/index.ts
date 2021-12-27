@@ -28,7 +28,7 @@ const initialState: IGlobalState = {
 
   theme: 'light',
   layout: 'layout1',
-  color: 'rgb(0, 82, 217)',
+  color: '#0152D9',
   fixedHeader: false,
   showHeader: true,
   showBreadcrumbs: false,
@@ -40,8 +40,12 @@ const globalSlice = createSlice({
   name: namespace,
   initialState,
   reducers: {
-    toggleMenu: (state) => {
-      state.collapsed = !state.collapsed;
+    toggleMenu: (state, action) => {
+      if (action.payload === null) {
+        state.collapsed = !state.collapsed;
+      } else {
+        state.collapsed = !!action.payload;
+      }
     },
     toggleSetting: (state) => {
       state.setting = !state.setting;
