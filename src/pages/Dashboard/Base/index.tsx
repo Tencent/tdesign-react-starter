@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { Row, Col, DatePicker } from '@tencent/tdesign-react';
 import { Tvision2Area } from '@tencent/react-tvision2';
 import dayjs from 'dayjs';
@@ -31,14 +31,14 @@ const Trend = ({ numValue = '' }: { numValue: string | number }) => (
   </div>
 );
 
-const DefaultDatePicker = (
+const DefaultDatePicker = (onChange: (value: Array<string>) => void) => (
   <DatePicker
     style={{ width: 240 }}
     mode='date'
     range
     placeholder="['开始时间', '结束时间']"
     defaultValue={[dayjs().subtract(6, 'day'), dayjs()]}
-    onChange={(value: Array<string>) => console.log(' value = ', value)}
+    onChange={(value: Array<string>) => onChange(value)}
   />
 );
 
@@ -55,11 +55,16 @@ const TopPanel = () => (
 );
 
 const MiddleChart = () => {
-  const customOptions = getLineChartOptions();
+  const options = getLineChartOptions();
+  const [customOptions, setCustomOptions] = useState(options);
+  const onTimeChange = (value: Array<string>) => {
+    const options = getLineChartOptions(value);
+    setCustomOptions(options);
+  };
   return (
     <Row gutter={gutter} className={Style.rowContainer}>
       <Col span={9}>
-        <Board title='统计数据' description='(万元)' operation={DefaultDatePicker}>
+        <Board title='统计数据' description='(万元)' operation={DefaultDatePicker(onTimeChange)}>
           <Tvision2Area
             style={{ height: 280 }}
             option={{

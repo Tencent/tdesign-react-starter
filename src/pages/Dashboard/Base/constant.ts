@@ -199,3 +199,87 @@ export const BUY_COLUMNS: BaseTableProps['columns'] = [
     width: 76,
   },
 ];
+
+const ONE_WEEK_LIST: Array<string> = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+
+const CHART_LIST_COLOR = ['#0052D9', '#BCC4D0', '#7D46BD', '#0594FA', '#ED7B2F'];
+
+const AXIS_SETTING = {
+  xAxis: {
+    type: 'category',
+    show: false,
+    data: ONE_WEEK_LIST,
+  },
+  yAxis: {
+    show: false,
+    type: 'value',
+  },
+  grid: {
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+};
+
+export const MICRO_CHART_OPTIONS_LINE = {
+  ...AXIS_SETTING,
+  color: ['#fff'],
+  series: [
+    {
+      data: [150, 230, 224, 218, 135, 147, 260],
+      type: 'line',
+      showSymbol: true,
+      symbol: 'circle',
+      symbolSize: 0,
+      markPoint: {
+        data: [
+          { type: 'max', name: '最大值' },
+          { type: 'min', name: '最小值' },
+        ],
+      },
+      itemStyle: {
+        normal: {
+          lineStyle: {
+            width: 2,
+          },
+        },
+      },
+    },
+  ],
+};
+
+export const MICRO_CHART_OPTIONS_BAR = {
+  ...AXIS_SETTING,
+  color: CHART_LIST_COLOR,
+  series: [
+    {
+      data: [
+        100,
+        130,
+        184,
+        218,
+        {
+          value: 135,
+          itemStyle: {
+            color: CHART_LIST_COLOR[1],
+          },
+        },
+        {
+          value: 118,
+          itemStyle: {
+            color: CHART_LIST_COLOR[1],
+          },
+        },
+        {
+          value: 60,
+          itemStyle: {
+            color: CHART_LIST_COLOR[1],
+          },
+        },
+      ],
+      type: 'bar',
+      barWidth: 9,
+    },
+  ],
+};

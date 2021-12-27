@@ -1,6 +1,8 @@
 import dayjs from 'dayjs';
 import type { EChartOption } from 'echarts';
 
+import { CHART_LIST_COLOR } from './constant';
+
 const getRandomArray = (num = 100): number => {
   let resultNum = Number((Math.random() * num).toFixed(0));
 
@@ -42,7 +44,7 @@ const getLineChartDataSet = (dateTime: Array<string> = []): ChartValue[][] => {
 const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
   const [timeArray, inArray, outArray] = getLineChartDataSet(dateTime);
   return {
-    color: ['#0052D9', '#BCC4D0', '#7D46BD', '#0594FA', '#ED7B2F'],
+    color: CHART_LIST_COLOR,
     tooltip: {
       trigger: 'item',
     },
