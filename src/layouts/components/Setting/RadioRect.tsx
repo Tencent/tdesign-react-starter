@@ -10,7 +10,7 @@ interface IOption {
 
 interface IProps {
   defaultValue?: number | string;
-  onChange?: (value: number | string) => void;
+  onChange: (value: number | string) => void;
   options: IOption[];
 }
 
@@ -19,7 +19,7 @@ export default memo((props: IProps) => {
 
   const handleClick = (option: IOption) => {
     setSelectValue(option.value);
-    props.onChange?.(option.value);
+    props?.onChange(option.value);
   };
 
   return (
