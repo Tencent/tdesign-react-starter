@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Button, Popup, Badge, Dropdown, Row, Col } from 'tdesign-react';
 import { Icon, LogoGithubIcon, MailIcon, HelpCircleIcon, SettingIcon } from 'tdesign-icons-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
