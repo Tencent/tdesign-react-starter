@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from '@tencent/tdesign-react';
+import { Layout } from 'tdesign-react';
 import classnames from 'classnames';
 import Style from './index.module.less';
 
@@ -7,10 +7,17 @@ const { Content } = Layout;
 
 interface IProps extends React.HTMLAttributes<HTMLElement> {
   withColor?: boolean;
+  withPadding?: boolean;
 }
 
-const PageBox = ({ children, withColor = true, ...others }: IProps) => (
-  <Content className={classnames(Style.pageBox, { [Style.pageBoxWithColor]: withColor })} {...others}>
+const PageBox = ({ children, withColor = true, withPadding = true, ...others }: IProps) => (
+  <Content
+    className={classnames(Style.pageBox, {
+      [Style.pageBoxWithColor]: withColor,
+      [Style.pageBoxWithPadding]: withPadding,
+    })}
+    {...others}
+  >
     {children}
   </Content>
 );
