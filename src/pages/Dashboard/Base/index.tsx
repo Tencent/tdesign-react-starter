@@ -43,26 +43,13 @@ const DefaultDatePicker = (
 
 const TopPanel = () => (
   <Row gutter={gutter}>
-    <Col span={3}>
-      <Board subtitle='总收入' dark={true}>
-        <Trend numValue={data.summary.revenue.total} />
-      </Board>
-    </Col>
-    <Col span={3}>
-      <Board subtitle='总退款'>
-        <Trend numValue={data.summary.refund.total} />
-      </Board>
-    </Col>
-    <Col span={3}>
-      <Board subtitle='活跃用户（个）'>
-        <Trend numValue={data.summary.users} />
-      </Board>
-    </Col>
-    <Col span={3}>
-      <Board subtitle='产生订单（个）'>
-        <Trend numValue={data.summary.orders} />
-      </Board>
-    </Col>
+    {PANE_LIST.map((item) => (
+      <Col key={item.title} span={3}>
+        <Board subtitle={item.title} dark={true}>
+          <Trend numValue={item.number} />
+        </Board>
+      </Col>
+    ))}
   </Row>
 );
 

@@ -160,7 +160,7 @@ export const SALE_COLUMNS: BaseTableProps['columns'] = [
   },
 ];
 
-export const BUY_COLUMNS: TdBaseTableProps['columns'] = [
+export const BUY_COLUMNS: BaseTableProps['columns'] = [
   {
     align: 'center',
     colKey: 'index',
