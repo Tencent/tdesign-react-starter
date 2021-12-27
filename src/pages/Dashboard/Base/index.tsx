@@ -7,6 +7,7 @@ import _ from 'lodash';
 import Board from 'pages/Dashboard/components/Board';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { PANE_LIST } from './constant';
+import { getLineChartOptions } from './chart';
 
 import Style from './index.module.less';
 
@@ -53,24 +54,27 @@ const TopPanel = () => (
   </Row>
 );
 
-const MiddleChart = () => (
-  <Row gutter={gutter} className={Style.rowContainer}>
-    <Col span={9}>
-      <Board title='统计数据' description='(万元)' operation={DefaultDatePicker}>
-        <Tvision2Area
-          style={{ height: 280 }}
-          option={{
-            dataset: lineData,
-            injectOption: (option) => ({ ...option, color: ['#0052D9', '#BCC4D0'] }),
-          }}
-        />
-      </Board>
-    </Col>
-    <Col span={3}>
-      <Board title='销售渠道' description='2021-12'></Board>
-    </Col>
-  </Row>
-);
+const MiddleChart = () => {
+  const customOptions = getLineChartOptions();
+  return (
+    <Row gutter={gutter} className={Style.rowContainer}>
+      <Col span={9}>
+        <Board title='统计数据' description='(万元)' operation={DefaultDatePicker}>
+          <Tvision2Area
+            style={{ height: 280 }}
+            option={{
+              dataset: [[]],
+              injectOption: (option) => ({ ...option, ...customOptions }),
+            }}
+          />
+        </Board>
+      </Col>
+      <Col span={3}>
+        <Board title='销售渠道' description='2021-12'></Board>
+      </Col>
+    </Row>
+  );
+};
 
 const RankList = () => (
   <Row gutter={gutter} className={Style.rowContainer}>
@@ -96,11 +100,13 @@ const Overview = (): React.ReactElement => (
   </div>
 );
 
-export default memo(() => (
+const DashBoard = () => (
   <div className={Style.dashboardPanel}>
     <TopPanel />
     <MiddleChart />
     <RankList />
     <Overview />
   </div>
-));
+);
+
+export default memo(DashBoard);
