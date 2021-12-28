@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 import PageBox from 'components/PageBox';
-import { Addon, Button, Col, Input, Row } from '@tencent/tdesign-react';
+import { Addon, Button, Col, Input, Row } from 'tdesign-react';
 import styles from '../Base/index.module.less';
-import { SearchIcon } from '@tencent/tdesign-icons-react';
+import { SearchIcon } from 'tdesign-icons-react';
 
 export default memo(() => (
   <PageBox withColor={false}>

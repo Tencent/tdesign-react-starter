@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import classnames from 'classnames';
 import { Layout, Button, Row, Col, Input } from 'tdesign-react';
-import { ViewListIcon, SearchIcon } from '@tencent/tdesign-icons-react';
+import { ViewListIcon, SearchIcon } from 'tdesign-icons-react';
 import { useAppDispatch } from 'modules/store';
 import { toggleMenu, TTheme } from 'modules/global';
 import HeaderIcon from './HeaderIcon';
