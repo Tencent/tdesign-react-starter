@@ -1,4 +1,4 @@
-@card-prefix-cls: ~'tdesign-card';
+@card-prefix-cls: ~'td-card';
 
 .clearfix() {
   &::before {
@@ -24,11 +24,11 @@
   list-style: none;
   font-feature-settings: "tnum";
   position: relative;
-  background: #fff;
+  background: var(--td-bg-color-container);
   border-radius: 2px;
 
   &.@{card-prefix-cls}-borderd {
-    border: 1px solid #f0f0f0;
+    border: 1px solid var(--td-border-level-2-color);
   }
 
   &-head {
@@ -36,7 +36,7 @@
     margin-bottom: -1px;
     padding: 0 24px;
     background: 0 0;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--td-bg-color-secondarycontainer);
     border-radius: 2px 2px 0 0;
     .clearfix();
 
@@ -53,7 +53,7 @@
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      color: #000000d9;
+      color: var(--td-text-color-primary);;
       font-weight: 500;
       font-size: 20px;
     }
@@ -62,7 +62,7 @@
       float: right;
       margin-left: auto;
       padding: 16px 0;
-      color: #000000d9;
+      color: var(--td-text-color-primary);
       font-weight: 400;
       font-size: 14px;
     }
@@ -70,6 +70,7 @@
 
   &-body {
     padding: 24px;
+    color: var(--td-text-color-primary);
     .clearfix();
   }
 
@@ -77,15 +78,15 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    background: #fff;
-    border-top: 1px solid #f0f0f0;
+    background: var(--td-bg-color-container);
+    border-top: 1px solid var(--td-border-level-2-color);
 
     .clearfix();
 
     & > li {
       float: left;
       margin: 12px 0;
-      color: #00000073;
+      color: var(--td-text-color-primary);
       text-align: center;
     }
   }
@@ -96,7 +97,7 @@
     padding: 24px;
     border: 0;
     border-radius: 0;
-    box-shadow: 1px 0 #f0f0f0, 0 1px #f0f0f0, 1px 1px #f0f0f0, 1px 0 #f0f0f0 inset, 0 1px #f0f0f0 inset;
+    box-shadow: 1px 0 var(--td-border-level-2-color), 0 1px var(--td-border-level-2-color), 1px 1px var(--td-border-level-2-color), 1px 0 var(--td-border-level-2-color) inset, 0 1px var(--td-border-level-2-color) inset;
     transition: all .3s;
 
     &-hoverable {
@@ -105,6 +106,58 @@
         z-index: 1;
         box-shadow: 0 1px 2px -2px #00000029, 0 3px 6px #0000001f, 0 5px 12px 4px #00000017;
       }
+    }
+
+    &-0 {
+      display: none;
+    }
+
+    &-1 {
+      width: 8.3333333%;
+    }
+
+    &-2 {
+      width: 16.66666667%;
+    }
+
+    &-3 {
+      width: 25%;
+    }
+
+    &-4 {
+      width: 33.33333333%;
+    }
+
+    &-5 {
+      width: 41.66666667%;
+    }
+
+    &-6 {
+      width: 50%;
+    }
+
+    &-7 {
+      width: 58.33333333%;
+    }
+
+    &-8 {
+      width: 66.66666667%;
+    }
+
+    &-9 {
+      width: 75%;
+    }
+
+    &-10 {
+      width: 83.33333333%;
+    }
+
+    &-11 {
+      width: 91.66666667%;
+    }
+
+    &-12 {
+      width: 100%;
     }
   }
 }

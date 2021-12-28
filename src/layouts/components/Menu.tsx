@@ -1,7 +1,6 @@
 import React, { memo, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Menu } from 'tdesign-react';
-import { MenuValue } from '@tencent/tdesign-react/es/_type/components/menu';
+import { Menu, MenuValue } from 'tdesign-react';
 import { menu, IMenuItem } from 'configs/menu';
 import { useAppSelector } from 'modules/store';
 import { selectGlobal } from 'modules/global';

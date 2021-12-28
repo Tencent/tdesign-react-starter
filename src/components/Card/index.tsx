@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import cx from 'classnames';
-import { Tabs } from '@tencent/tdesign-react';
-import { TabsProps, TabPanelProps } from '@tencent/tdesign-react/es/tabs';
+import { Tabs } from 'tdesign-react';
+import { TabsProps, TabPanelProps } from 'tdesign-react/es/tabs';
 import { getPrefixCls } from 'utils/utils';
 import Grid from './Grid';
 import './index.less';
