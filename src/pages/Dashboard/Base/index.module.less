@@ -24,7 +24,7 @@
     > span {
       display: inline-block;
       color: var(--td-text-color-primary);
-      font-size: 30px;
+      font-size: 31px;
       line-height: 44px;
     }
   }
@@ -48,9 +48,36 @@
       color: var(--td-text-color-placeholder);
     }
   }
+
+  .paneLineChart {
+    width: 103px;
+    height: 56px;
+    margin-top: 22px;
+    overflow: hidden;
+  }
+  .paneColumnChart {
+    width: 103px;
+    height: 36px;
+    margin-top: 24px;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .iconWrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: var(--td-brand-color-1);
+    border-radius: 50%;
+  }
+  .svgIcon {
+    font-size: 24px;
+    color: var(--td-brand-color);
+  }
 }
 
-.paneBoxDark {
+.paneBox_dark {
   .paneTop > span {
     color: var(--td-text-color-anti);
   }
@@ -58,4 +85,11 @@
     color: var(--td-text-color-anti);
     opacity: .6;
   }
+  .paneBottom {
+    color: var(--td-text-color-anti);
+  }
+}
+
+.rightMore {
+  cursor: pointer;  
 }

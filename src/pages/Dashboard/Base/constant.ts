@@ -1,4 +1,5 @@
-import type { BaseTableProps } from '@tencent/tdesign-react/es/table';
+import type { TdPrimaryTableProps } from '@tencent/tdesign-react/es/table';
+import type { EChartOption } from 'echarts';
 
 export interface DashboardPanel {
   title: string;
@@ -120,19 +121,25 @@ export const BUY_TREND_LIST: Array<TrendItem> = [
   },
 ];
 
-export const SALE_COLUMNS: BaseTableProps['columns'] = [
+export const SALE_COLUMNS: TdPrimaryTableProps['columns'] = [
   {
     align: 'center',
     colKey: 'index',
     title: '排名',
-    width: 64,
+    width: 80,
+    fixed: 'left',
+    render(context) {
+      const { type, rowIndex } = context;
+      if (type === 'title') return '排名';
+      return rowIndex + 1;
+    },
   },
   {
     align: 'left',
     ellipsis: true,
     colKey: 'productName',
     title: '客户名称',
-    width: 276,
+    minWidth: 200,
   },
   {
     align: 'center',
@@ -149,7 +156,8 @@ export const SALE_COLUMNS: BaseTableProps['columns'] = [
   {
     align: 'center',
     colKey: 'date',
-    width: 132,
+    width: 140,
+    fixed: 'right',
     title: '合同签订日期',
   },
   {
@@ -160,7 +168,7 @@ export const SALE_COLUMNS: BaseTableProps['columns'] = [
   },
 ];
 
-export const BUY_COLUMNS: BaseTableProps['columns'] = [
+export const BUY_COLUMNS: TdPrimaryTableProps['columns'] = [
   {
     align: 'center',
     colKey: 'index',
@@ -204,7 +212,7 @@ const ONE_WEEK_LIST: Array<string> = ['周一', '周二', '周三', '周四', '�
 
 export const CHART_LIST_COLOR = ['#0052D9', '#BCC4D0', '#7D46BD', '#0594FA', '#ED7B2F'];
 
-const AXIS_SETTING = {
+export const MICRO_CHART_OPTIONS_LINE: EChartOption = {
   xAxis: {
     type: 'category',
     show: false,
@@ -219,38 +227,39 @@ const AXIS_SETTING = {
     left: 0,
     right: 0,
     bottom: 0,
+    tooltip: {
+      show: false,
+    },
   },
-};
-
-export const MICRO_CHART_OPTIONS_LINE = {
-  ...AXIS_SETTING,
   color: ['#fff'],
   series: [
     {
       data: [150, 230, 224, 218, 135, 147, 260],
       type: 'line',
-      showSymbol: true,
-      symbol: 'circle',
-      symbolSize: 0,
-      markPoint: {
-        data: [
-          { type: 'max', name: '最大值' },
-          { type: 'min', name: '最小值' },
-        ],
-      },
-      itemStyle: {
-        normal: {
-          lineStyle: {
-            width: 2,
-          },
-        },
-      },
+      showSymbol: false,
     },
   ],
 };
 
-export const MICRO_CHART_OPTIONS_BAR = {
-  ...AXIS_SETTING,
+export const MICRO_CHART_OPTIONS_BAR: EChartOption = {
+  xAxis: {
+    type: 'category',
+    show: false,
+    data: ONE_WEEK_LIST,
+  },
+  yAxis: {
+    show: false,
+    type: 'value',
+  },
+  grid: {
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    tooltip: {
+      show: false,
+    },
+  },
   color: CHART_LIST_COLOR,
   series: [
     {

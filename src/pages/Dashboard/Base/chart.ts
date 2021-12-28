@@ -123,4 +123,78 @@ const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
   };
 };
 
-export { getLineChartOptions };
+const getPieChartOptions = (radius = 42): EChartOption => ({
+  color: CHART_LIST_COLOR,
+  tooltip: {
+    trigger: 'item',
+  },
+  grid: {
+    top: '0',
+    right: '0',
+  },
+  legend: {
+    itemWidth: 12,
+    itemHeight: 4,
+    textStyle: {
+      fontSize: 12,
+      color: 'rgba(0, 0, 0, 0.6)',
+    },
+    left: 'center',
+    bottom: '0',
+    orient: 'horizontal', // legend 横向布局。
+  },
+  series: [
+    {
+      name: '销售渠道',
+      type: 'pie',
+      radius: ['48%', '60%'],
+      avoidLabelOverlap: false,
+      label: {
+        show: true,
+        position: 'center',
+        formatter: ['{value|{d}%}', '{name|{b}渠道占比}'].join('\n'),
+        rich: {
+          value: {
+            color: '#303133',
+            fontSize: 28,
+            fontWeight: 'normal',
+            lineHeight: 46,
+          },
+          name: {
+            color: '#909399',
+            fontSize: 12,
+            lineHeight: 14,
+          },
+        },
+      },
+      emphasis: {
+        label: {
+          show: true,
+          formatter: ['{value|{d}%}', '{name|{b}渠道占比}'].join('\n'),
+          rich: {
+            value: {
+              color: '#303133',
+              fontSize: 28,
+              fontWeight: 'normal',
+              lineHeight: 46,
+            },
+            name: {
+              color: '#909399',
+              fontSize: 12,
+              lineHeight: 14,
+            },
+          },
+        },
+      },
+      labelLine: {
+        show: false,
+      },
+      data: [
+        { value: 1048, name: '线上' },
+        { value: radius * 7, name: '门店' },
+      ],
+    },
+  ],
+});
+
+export { getLineChartOptions, getPieChartOptions };
