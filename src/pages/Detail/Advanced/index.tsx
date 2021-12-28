@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
-import { Steps, Row, Col, Progress } from 'tdesign-react';
+import { Steps, Row, Col, Progress, Table, Button, Tag } from 'tdesign-react';
+import { ChevronUpCircleIcon, ChevronRightIcon, AddIcon, CartIcon } from '@tencent/tdesign-icons-react';
 import classnames from 'classnames';
 import { generateIdArray } from 'utils/utils';
 import PageBox from 'components/PageBox';
@@ -46,6 +47,21 @@ const dataStep: IStepItem[] = generateIdArray([
 ]);
 const stepCurrent = 2;
 
+// Mock Data of 产品采购明细
+const dataBuyList: any = [];
+const total = 50;
+for (let i = 0; i < total; i++) {
+  dataBuyList.push({
+    index: i,
+    name: '公有',
+    status: '已完成',
+    code: 'BH0001',
+    type: '收款',
+    department: '财务部',
+    money: '120,000',
+  });
+}
+
 export default memo(() => (
   <PageBox withColor={false} withPadding={false}>
     <CardBox title='基本信息'>
@@ -81,9 +97,7 @@ export default memo(() => (
           <Col span={4}>
             <div className={classnames(Style.productAdd)}>
               <div className={classnames(Style.productSub)}>
-                <svg className={classnames(Style.productSubIcon, 't-icon', 't-icon-add', 't-size-m')}>
-                  <use href='#t-icon-add'></use>
-                </svg>
+                <AddIcon className={classnames(Style.productSubIcon)} />
                 <span>新增产品</span>
               </div>
             </div>
@@ -92,29 +106,25 @@ export default memo(() => (
             <div className={classnames(Style.operaterBox, Style.operaterGap)}>
               <div className={classnames(Style.operaterContent)}>
                 <div className={classnames(Style.Title)}>
-                  <svg className={classnames(Style.Icon, 't-icon', 't-icon-cart', 't-size-m')}>
-                    <use href='#t-icon-cart'></use>
-                  </svg>
+                  <CartIcon className={classnames(Style.Icon)} />
                   <h1>MacBook Pro 2021</h1>
                   <div className={classnames(Style.Tags)}>
-                    <span className={classnames(Style.Tag, 't-tag', 't-tag--success', 't-size-s', 't-tag--dark')}>
+                    <Tag className={classnames(Style.Tag)} theme='success' variant='dark' size='small'>
                       13.3 英寸
-                    </span>
-                    <span className={classnames(Style.Tag, 't-tag', 't-tag--default', 't-size-s', 't-tag--dark')}>
+                    </Tag>
+                    <Tag className={classnames(Style.Tag)} variant='dark' size='small'>
                       Apple M1
-                    </span>
-                    <span className={classnames(Style.Tag, 't-tag', 't-tag--default', 't-size-s', 't-tag--dark')}>
+                    </Tag>
+                    <Tag className={classnames(Style.Tag)} variant='dark' size='small'>
                       RAM 16GB
-                    </span>
+                    </Tag>
                   </div>
                 </div>
                 <div className={classnames(Style.Item)}>
                   <span className={classnames(Style.Info)}>
                     最高可选配 16GB 内存 · 最高可选配 2TB 存储设备 电池续航最长达 18 小时
                   </span>
-                  <svg className={classnames(Style.Icon, 't-icon', 't-icon-chevron-right', 't-size-s')}>
-                    <use href='#t-icon-chevron-right'></use>
-                  </svg>
+                  <ChevronRightIcon className={classnames(Style.Icon)} />
                 </div>
                 <div className={classnames(Style.Footer)}>
                   <span className={classnames(Style.Percentage)}>1420 / 1500（台）</span>
@@ -129,27 +139,23 @@ export default memo(() => (
             <div className={classnames(Style.operaterBox, Style.operaterGap)}>
               <div className={classnames(Style.operaterContent)}>
                 <div className={classnames(Style.Title)}>
-                  <svg className={classnames(Style.Icon, 't-icon', 't-icon-cart', 't-size-m')}>
-                    <use href='#t-icon-cart'></use>
-                  </svg>
+                  <CartIcon className={classnames(Style.Icon)} />
                   <h1>Surface Laptop Go</h1>
                   <div className={classnames(Style.Tags)}>
-                    <span className={classnames(Style.Tag, 't-tag', 't-tag--success', 't-size-s', 't-tag--dark')}>
+                    <Tag className={classnames(Style.Tag)} theme='success' variant='dark' size='small'>
                       12.4 英寸
-                    </span>
-                    <span className={classnames(Style.Tag, 't-tag', 't-tag--default', 't-size-s', 't-tag--dark')}>
+                    </Tag>
+                    <Tag className={classnames(Style.Tag)} variant='dark' size='small'>
                       Core i7
-                    </span>
-                    <span className={classnames(Style.Tag, 't-tag', 't-tag--default', 't-size-s', 't-tag--dark')}>
+                    </Tag>
+                    <Tag className={classnames(Style.Tag)} variant='dark' size='small'>
                       RAM 16GB
-                    </span>
+                    </Tag>
                   </div>
                 </div>
                 <div className={classnames(Style.Item)}>
                   <span className={classnames(Style.Info)}>常规使用 Surface，续航时间最长可达13小时 随时伴您工作</span>
-                  <svg className={classnames(Style.Icon, 't-icon', 't-icon-chevron-right', 't-size-s')}>
-                    <use href='#t-icon-chevron-right'></use>
-                  </svg>
+                  <ChevronRightIcon className={classnames(Style.Icon)} />
                 </div>
                 <div className={classnames(Style.Footer)}>
                   <span className={classnames(Style.Percentage)}>120 / 2000（台）</span>
@@ -164,7 +170,113 @@ export default memo(() => (
       </div>
     </CardBox>
     <CardBox title='产品采购明细' className={Style.logBox}>
-      <div></div>
+      <div>
+        <Table
+          data={dataBuyList}
+          columns={[
+            {
+              align: 'left',
+              width: 300,
+              minWidth: 300,
+              ellipsis: true,
+              colKey: 'name',
+              title: '合同名称',
+            },
+            {
+              align: 'left',
+              width: 200,
+              minWidth: 200,
+              ellipsis: true,
+              colKey: 'status',
+              title: '合同状态',
+              cell({ row }) {
+                return <Tag theme='primary'>{row.status}</Tag>;
+              },
+            },
+            {
+              align: 'left',
+              width: 200,
+              minWidth: 200,
+              ellipsis: true,
+              colKey: 'code',
+              title: '合同编号',
+            },
+            {
+              align: 'left',
+              width: 200,
+              minWidth: 200,
+              ellipsis: true,
+              colKey: 'type',
+              title: '合同付款类型',
+              cell({ row }) {
+                return (
+                  <>
+                    {row.money}
+                    <ChevronUpCircleIcon style={{ color: 'red' }} />
+                  </>
+                );
+              },
+            },
+            {
+              align: 'left',
+              width: 200,
+              minWidth: 200,
+              ellipsis: true,
+              colKey: 'department',
+              title: '申请部门',
+            },
+            {
+              align: 'left',
+              width: 200,
+              minWidth: 200,
+              ellipsis: true,
+              colKey: 'money',
+              title: '合同金额（元）',
+            },
+            {
+              align: 'left',
+              fixed: 'right',
+              width: 200,
+              minWidth: 200,
+              colKey: 'op',
+              title: '操作',
+              cell() {
+                return (
+                  <>
+                    <Button theme='primary' variant='text'>
+                      详情
+                    </Button>
+                    <Button theme='primary' variant='text'>
+                      删除
+                    </Button>
+                  </>
+                );
+              },
+            },
+          ]}
+          rowKey='index'
+          tableLayout='auto'
+          verticalAlign='top'
+          hover
+          pagination={{
+            pageSize: 10,
+            total,
+            current: 1,
+            showJumper: true,
+            onChange(pageInfo) {
+              console.log(pageInfo, 'onChange pageInfo');
+            },
+            onCurrentChange(current, pageInfo) {
+              console.log(current, 'onCurrentChange current');
+              console.log(pageInfo, 'onCurrentChange pageInfo');
+            },
+            onPageSizeChange(size, pageInfo) {
+              console.log(size, 'onPageSizeChange size');
+              console.log(pageInfo, 'onPageSizeChange pageInfo');
+            },
+          }}
+        />
+      </div>
     </CardBox>
   </PageBox>
 ));
