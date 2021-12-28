@@ -2,30 +2,33 @@ import React, { memo, useState } from 'react';
 import { Row, Col, DatePicker } from '@tencent/tdesign-react';
 import { Tvision2Area } from '@tencent/react-tvision2';
 import dayjs from 'dayjs';
-import _ from 'lodash';
+import classnames from 'classnames';
+
+import { PANE_LIST } from './constant';
+import type { DashboardPanel } from './constant';
+import { getLineChartOptions } from './chart';
 
 import Board from 'pages/Dashboard/components/Board';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { PANE_LIST } from './constant';
-import { getLineChartOptions } from './chart';
+import Trend from '../components/Trend';
 
 import Style from './index.module.less';
 
 const gutter = [16, 16];
 
-_.range(5, 10);
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const Trend = ({ numValue = '' }: { numValue: string | number }) => (
-  <div className={Style.trendBox}>
-    <div className={Style.trendTop}>
-      <span>{numValue}</span>
+const PaneBox = ({ value, dark = false, index = 0 }: { value: DashboardPanel; dark: boolean; index: number }) => (
+  <div className={classnames(Style.paneBox, { [Style.paneBoxDark]: dark })}>
+    <div className={Style.paneTop}>
+      <span>{value.number}</span>
     </div>
-    <div className={Style.trendSide}></div>
-    <div className={Style.trendBottom}>
+    <div className={Style.paneSide}></div>
+    <div className={Style.paneBottom}>
       <div className={Style.bottomBar}>
         自从上周以来
-        <span className={Style.barChange}></span>
+        <Trend
+          type={value.upTrend ? 'up' : 'down'}
+          isReverseColor={index === 0}
+          description={value.upTrend || value.downTrend || ''}
+        />
       </div>
     </div>
   </div>
@@ -44,10 +47,10 @@ const DefaultDatePicker = (onChange: (value: Array<string>) => void) => (
 
 const TopPanel = () => (
   <Row gutter={gutter}>
-    {PANE_LIST.map((item) => (
+    {PANE_LIST.map((item, index) => (
       <Col key={item.title} span={3}>
-        <Board subtitle={item.title} dark={true}>
-          <Trend numValue={item.number} />
+        <Board subtitle={item.title} dark={index === 0}>
+          <PaneBox value={item} dark={index === 0} index={index} />
         </Board>
       </Col>
     ))}

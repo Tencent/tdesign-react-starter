@@ -11,31 +11,31 @@
   border-radius: 3px;
 }
 
-.trendBox {
+.paneBox {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
 
-  .trendTop {
+  .paneTop {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     > span {
       display: inline-block;
       color: var(--td-text-color-primary);
-      font-size: 36px;
+      font-size: 30px;
       line-height: 44px;
     }
   }
   
-  .trendSide {
+  .paneSide {
     position: absolute;
     top: 32px;
     right: 32px;
   }
   
-  .trendBottom {
+  .paneBottom {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -47,5 +47,15 @@
       line-height: 22px;
       color: var(--td-text-color-placeholder);
     }
+  }
+}
+
+.paneBoxDark {
+  .paneTop > span {
+    color: var(--td-text-color-anti);
+  }
+  .paneBottom .bottomBar {
+    color: var(--td-text-color-anti);
+    opacity: .6;
   }
 }
