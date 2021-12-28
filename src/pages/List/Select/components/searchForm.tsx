@@ -1,20 +1,19 @@
 import React, { useRef } from 'react';
-import { Row, Col, Form, Input, Button, Message } from 'tdesign-react';
+import { Row, Col, Form, Input, Button, MessagePlugin } from 'tdesign-react';
 const { FormItem } = Form;
 
 const SearchForm: React.FC = () => {
   const formRef = useRef();
-
   const onSubmit = (e: any) => {
     if (e.validateResult === true) {
-      Message.info('提交成功');
+      MessagePlugin.info('提交成功');
     }
-    console.log(formRef?.current.getAllFieldsValue());
+    // console.log(formRef.current.getAllFieldsValue());
   };
 
-  const onReset = (e) => {
+  const onReset = (e: any) => {
     console.log(e);
-    Message.info('重置成功');
+    MessagePlugin.info('重置成功');
   };
 
   return (

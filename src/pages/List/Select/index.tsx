@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Table, Tag, Button } from 'tdesign-react';
-import { ChevronUpCircleIcon } from '@tencent/tdesign-icons-react';
+// import { ChevronUpCircleIcon } from '@tencent/tdesign-icons-react';
 import './index.less';
 import SearchForm from './components/searchForm';
 
@@ -70,12 +70,7 @@ const selectTable: React.FC = () => {
             colKey: 'type',
             title: '合同付款类型',
             cell({ row }) {
-              return (
-                <>
-                  {row.money}
-                  <ChevronUpCircleIcon style={{ color: 'red' }} />
-                </>
-              );
+              return <>{row.money}</>;
             },
           },
           {

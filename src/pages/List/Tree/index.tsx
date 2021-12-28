@@ -1,6 +1,5 @@
 import React from 'react';
 import { Input, Tree } from 'tdesign-react';
-import { SearchIcon } from '@tencent/tdesign-icons-react';
 import './index.less';
 import SelectTable from '../Select/index';
 
@@ -95,7 +94,7 @@ const TreeTable: React.FC = () => (
   <div className='table-tree-container'>
     <div className='list-tree-wrapper'>
       <div className='list-tree-operator'>
-        <Input prefixIcon={<SearchIcon />} placeholder='请输入关键词' />
+        <Input placeholder='请输入关键词' />
         <Tree data={items} activable hover transition />
       </div>
       <div className='list-tree-content'>
