@@ -62,7 +62,7 @@ const SearchForm: React.FC<SearchFormProps> = (props) => {
             </Row>
           </Col>
           <Col span={2}>
-            <Button theme='primary' type='submit' style={{ marginLeft: '30px' }}>
+            <Button theme='primary' type='submit' style={{ margin: '0px 20px' }}>
               查询
             </Button>
             <Button type='reset' variant='base' theme='default'>

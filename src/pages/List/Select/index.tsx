@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Table } from 'tdesign-react';
-import './index.less';
+import { Table, Tag } from 'tdesign-react';
 import SearchForm from './components/searchForm';
 import Mock from 'mockjs';
+import './index.less';
 
 let data: any = [];
 const total = 100;
@@ -28,6 +28,10 @@ const selectTable: React.FC = () => {
     setSelectedRowKeys(value);
   }
 
+  function rehandleClickOp(record: any) {
+    console.log(record);
+  }
+
   return (
     <div className='list-common-table'>
       <SearchForm
@@ -47,7 +51,47 @@ const selectTable: React.FC = () => {
             ellipsis: true,
             colKey: 'name',
           },
-          { title: '合同状态', colKey: 'status', width: 200 },
+          {
+            title: '合同状态',
+            colKey: 'status',
+            width: 200,
+            cell({ row }) {
+              switch (row?.status) {
+                case 0:
+                  return (
+                    <Tag theme='danger' variant='light'>
+                      审核失败
+                    </Tag>
+                  );
+                case 1:
+                  return (
+                    <Tag theme='warning' variant='light'>
+                      待审核
+                    </Tag>
+                  );
+                case 2:
+                  return (
+                    <Tag theme='warning' variant='light'>
+                      待履行
+                    </Tag>
+                  );
+                case 3:
+                  return (
+                    <Tag theme='success' variant='light'>
+                      审核成功
+                    </Tag>
+                  );
+                case 4:
+                  return (
+                    <Tag theme='success' variant='light'>
+                      已完成
+                    </Tag>
+                  );
+                default:
+                  return <div></div>;
+              }
+            },
+          },
           {
             title: '合同编号',
             width: 200,
@@ -59,12 +103,34 @@ const selectTable: React.FC = () => {
             width: 200,
             ellipsis: true,
             colKey: 'contractType',
+            cell({ row }) {
+              switch (row?.contractType) {
+                case 0:
+                  return <p>审核失败</p>;
+                case 1:
+                  return <p>待审核</p>;
+                case 2:
+                  return <p>待履行</p>;
+                default:
+                  return <div></div>;
+              }
+            },
           },
           {
             title: '合同收付类型',
             width: 200,
             ellipsis: true,
             colKey: 'paymentType',
+            cell({ row }) {
+              switch (row?.paymentType) {
+                case 0:
+                  return <p>收款</p>;
+                case 1:
+                  return <p>付款</p>;
+                default:
+                  return <div></div>;
+              }
+            },
           },
           {
             title: '合同金额 (元)',
@@ -78,12 +144,33 @@ const selectTable: React.FC = () => {
             width: 200,
             colKey: 'op',
             title: '操作',
+            cell(record) {
+              return (
+                <>
+                  <a
+                    className='list-common-table-btn'
+                    onClick={() => {
+                      rehandleClickOp(record);
+                    }}
+                  >
+                    管理
+                  </a>
+                  <a
+                    className='list-common-table-btn'
+                    onClick={() => {
+                      rehandleClickOp(record);
+                    }}
+                  >
+                    删除
+                  </a>
+                </>
+              );
+            },
           },
         ]}
         rowKey='index'
         selectedRowKeys={selectedRowKeys}
         tableLayout='auto'
-        verticalAlign='top'
         hover
         onSelectChange={onSelectChange}
         pagination={{
