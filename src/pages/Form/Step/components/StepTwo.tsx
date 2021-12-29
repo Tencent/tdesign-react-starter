@@ -3,11 +3,16 @@ import { Button, Form, Input } from 'tdesign-react';
 
 const { FormItem } = Form;
 
-export default memo(() => {
+export default memo((props: any) => {
   const [current, setCurrent] = React.useState(0);
+  const { steps = [] } = props;
 
   const next = () => {
     setCurrent(current + 1);
+  };
+
+  const prev = () => {
+    setCurrent(current - 1);
   };
 
   return (
@@ -44,13 +49,19 @@ export default memo(() => {
         <Input placeholder='请输入通知手机' />
       </FormItem>
 
-      <div className='steps-action' style={{ marginTop: '20px' }}>
-        <FormItem>
+      <FormItem>
+        {current < steps.length - 1 && (
           <Button type='submit' onClick={() => next()}>
             下一步
           </Button>
-        </FormItem>
-      </div>
+        )}
+
+        {current > 0 && (
+          <Button style={{ margin: '0 8px' }} onClick={() => prev()}>
+            上一步
+          </Button>
+        )}
+      </FormItem>
     </Form>
   );
 });
