@@ -22,7 +22,7 @@ const { Option } = Select;
 
 export default memo(() => {
   const [labelAlign] = useState('top' as any);
-  // const [layout] = useState('inline');
+
   const onSubmit = (e: any) => {
     if (e.validateResult === true) {
       MessagePlugin.info('提交成功');

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import PageBox from 'components/PageBox';
-import { Steps, Alert, Button, MessagePlugin, Form, Select } from 'tdesign-react';
+import { Steps, Alert, Button, MessagePlugin, Form, Select, Input, Textarea } from 'tdesign-react';
 import Style from './index.module.less';
 
 const { StepItem: Step } = Steps;
@@ -83,18 +83,99 @@ export default memo(() => {
             <FormItem label='开票金额' name='name'>
               <div>--</div>
             </FormItem>
+
+            <FormItem
+              label='发票抬头'
+              name='invoice'
+              rules={[{ required: true, message: '请输入发票抬头', type: 'error' }]}
+            >
+              <Input placeholder='请输入发票抬头' />
+            </FormItem>
+
+            <FormItem
+              label='纳税人识别号'
+              name='taxpayerId'
+              rules={[{ required: true, message: '请输入纳税人识别号', type: 'error' }]}
+            >
+              <Input placeholder='请输入纳税人识别号' />
+            </FormItem>
+
+            <FormItem label='单位地址' name='address'>
+              <Input placeholder='请输入单位地址' />
+            </FormItem>
+
+            <FormItem label='开户行' name='bank'>
+              <Input placeholder='请输入开户行' />
+            </FormItem>
+
+            <FormItem label='银行账号' name='bankCount'>
+              <Input placeholder='请输入银行账号' />
+            </FormItem>
+
+            <FormItem label='通知邮箱' name='email'>
+              <Input placeholder='请输入通知邮箱' />
+            </FormItem>
+
+            <FormItem label='通知手机' name='phone'>
+              <Input placeholder='请输入通知手机' />
+            </FormItem>
+
+            <FormItem
+              label='收货人'
+              name='receiver'
+              rules={[{ required: true, message: '请输入收货人', type: 'error' }]}
+            >
+              <Input placeholder='请输入收货人' />
+            </FormItem>
+
+            <FormItem
+              label='收货人手机号'
+              name='receiverPhone'
+              rules={[{ required: true, message: '请输入收货人手机号', type: 'error' }]}
+            >
+              <Input placeholder='请输入收货人手机号号' />
+            </FormItem>
+
+            <FormItem
+              label='收货地址'
+              name='receiverAddress'
+              rules={[{ required: true, message: '请选择收货地址', type: 'error' }]}
+            >
+              <Select value='3' placeholder='请选择收货地址'>
+                <Option key='0' label='广东省深圳市南山区' value='0' />
+                <Option key='1' label='北京市海淀区' value='1' />
+                <Option key='2' label='四川省成都市高新区' value='2' />
+                <Option key='3' label='广东省广州市天河区' value='3' />
+                <Option key='4' label='陕西省西安市高新区' value='4' />
+              </Select>
+            </FormItem>
+
+            <FormItem
+              label='详细地址'
+              name='taxpayerId'
+              rules={[{ required: true, message: '请输入详细地址', type: 'error' }]}
+            >
+              <Textarea placeholder='请输入详细地址' value={'哈哈哈'} />
+            </FormItem>
+
+            <div className='steps-action' style={{ marginTop: '20px' }}>
+              <FormItem>
+                {current < steps.length - 1 && (
+                  <Button type='submit' onClick={() => next()}>
+                    {current === 0 ? '提交申请' : '下一步'}
+                  </Button>
+                )}
+                {current === steps.length - 1 && (
+                  <Button onClick={() => MessagePlugin.success('提交申请成功')}>完成</Button>
+                )}
+                {current > 0 && (
+                  <Button style={{ margin: '0 8px' }} onClick={() => prev()}>
+                    上一步
+                  </Button>
+                )}
+              </FormItem>
+            </div>
           </Form>
-        </div>
-        <div className='steps-action' style={{ marginTop: '20px' }}>
-          {current < steps.length - 1 && (
-            <Button onClick={() => next()}>{current === 0 ? '提交申请' : '下一步'}</Button>
-          )}
-          {current === steps.length - 1 && <Button onClick={() => MessagePlugin.success('提交申请成功')}>完成</Button>}
-          {current > 0 && (
-            <Button style={{ margin: '0 8px' }} onClick={() => prev()}>
-              上一步
-            </Button>
-          )}
         </div>
       </>
     </PageBox>
