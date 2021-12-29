@@ -290,6 +290,16 @@ export const MICRO_CHART_OPTIONS_BAR: EChartOption = {
 };
 
 export const INVENTORY_OVERVIEW = {
-  inbound: {},
-  outbound: {},
+  inbound: {
+    title: '',
+    number: 1726,
+    downTrend: '20.3%',
+    leftType: '',
+  },
+  outbound: {
+    title: '活跃用户（个）',
+    number: '1126',
+    downTrend: '20.5%',
+    leftType: '',
+  },
 };

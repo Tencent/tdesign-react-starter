@@ -13,6 +13,7 @@ import {
   SALE_Trend_LIST,
   PURCHASE_COLUMNS,
   PURCHASE_TREND_LIST,
+  INVENTORY_OVERVIEW,
 } from './constant';
 import type { DashboardPanel } from './constant';
 import { getBarChartOptions, getLineChartOptions, getPieChartOptions } from './chart';
@@ -52,7 +53,13 @@ const asideList: Array<React.ReactElement> = [
   </div>,
 ];
 
-const PaneBox = ({ value, dark = false, index = 0 }: { value: DashboardPanel; dark: boolean; index: number }) => (
+interface IPros extends React.HTMLAttributes<HTMLElement> {
+  value: DashboardPanel;
+  dark?: boolean;
+  index: number;
+}
+
+const PaneBox = ({ value, dark = false, index = 0 }: IPros) => (
   <div className={classnames(Style.paneBox, { [Style.paneBox_dark]: dark })}>
     <div className={Style.paneTop}>
       <span>{value.number}</span>
@@ -67,7 +74,7 @@ const PaneBox = ({ value, dark = false, index = 0 }: { value: DashboardPanel; da
           description={value.upTrend || value.downTrend || ''}
         />
       </div>
-      <Icon name='chevron-right' />
+      <Icon name='chevron-right' className={Style.rightMore} />
     </div>
   </div>
 );
@@ -199,7 +206,7 @@ const Overview = (): React.ReactElement => {
   };
   return (
     <div className={classnames(Style.overviewPanel, Style.rowContainer)}>
-      <Row gutter={gutter}>
+      <Row>
         <Col span={9}>
           <Board title=' 出入库概览 ' description='(件)' operation={DefaultDatePicker(onTimeChange)}>
             <Tvision2Bar
@@ -212,18 +219,17 @@ const Overview = (): React.ReactElement => {
           </Board>
         </Col>
         <Col span={3}>
-          <Board subtitle=' ' operation={<Button>导出数据</Button>}>
+          <Board operation={<Button>导出数据</Button>}>
             <Row gutter={0}>
-              <Col>
+              <Col span={12}>
                 <Board subtitle='' description='本月出库总计（件）' size='small'>
-                  {/* <PaneBox
-                    value={{ title: '活跃用户（个）', number: '1126', downTrend: '20.5%', leftType: 'icon-usergroup' }}
-                    index={2}
-                  ></PaneBox> */}
+                  <PaneBox value={INVENTORY_OVERVIEW.inbound} index={4} className={Style.inventoryPane}></PaneBox>
                 </Board>
               </Col>
-              <Col>
-                <Board subtitle='' description='本月出库总计（件）' size='small'></Board>
+              <Col span={12}>
+                <Board subtitle='' description='本月入库总计（件）' size='small'>
+                  <PaneBox value={INVENTORY_OVERVIEW.outbound} index={5} className={Style.inventoryPane}></PaneBox>
+                </Board>
               </Col>
             </Row>
           </Board>
