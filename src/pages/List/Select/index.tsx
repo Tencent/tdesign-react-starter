@@ -106,11 +106,11 @@ const selectTable: React.FC = () => {
             cell({ row }) {
               switch (row?.contractType) {
                 case 0:
-                  return <p>审核失败</p>;
+                  return <span>审核失败</span>;
                 case 1:
-                  return <p>待审核</p>;
+                  return <span>待审核</span>;
                 case 2:
-                  return <p>待履行</p>;
+                  return <span>待履行</span>;
                 default:
                   return <div></div>;
               }
@@ -124,9 +124,9 @@ const selectTable: React.FC = () => {
             cell({ row }) {
               switch (row?.paymentType) {
                 case 0:
-                  return <p>收款</p>;
+                  return <span>收款</span>;
                 case 1:
-                  return <p>付款</p>;
+                  return <span>付款</span>;
                 default:
                   return <div></div>;
               }
