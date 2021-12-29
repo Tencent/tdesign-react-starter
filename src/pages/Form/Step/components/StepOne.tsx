@@ -41,8 +41,8 @@ const types = [
   },
 ];
 
-export default memo((props: any) => {
-  const [current, setCurrent] = React.useState(props.current);
+export default memo(() => {
+  const [current, setCurrent] = React.useState(0);
 
   const next = () => {
     setCurrent(current + 1);
