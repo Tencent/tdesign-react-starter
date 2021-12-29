@@ -1,44 +1,7 @@
-import dayjs from 'dayjs';
 import type { EChartOption } from 'echarts';
 
-import { CHART_LIST_COLOR } from './constant';
-
-const getRandomArray = (num = 100): number => {
-  let resultNum = Number((Math.random() * num).toFixed(0));
-
-  if (resultNum <= 1) {
-    resultNum = 1;
-  }
-
-  return resultNum;
-};
-
-type ChartValue = number | string;
-
-const getChartDataSet = (dateTime: Array<string> = []): ChartValue[][] => {
-  const divideNum = 10;
-  const timeArray = [];
-  const inArray = [];
-  const outArray = [];
-  for (let i = 0; i < divideNum; i++) {
-    if (dateTime.length > 0) {
-      const dateAbsTime: number = (new Date(dateTime[1]).getTime() - new Date(dateTime[0]).getTime()) / divideNum;
-      const enhandTime: number = new Date(dateTime[0]).getTime() + dateAbsTime * i;
-      timeArray.push(dayjs(enhandTime).format('MM-DD'));
-    } else {
-      timeArray.push(
-        dayjs()
-          .subtract(divideNum - i, 'day')
-          .format('MM-DD'),
-      );
-    }
-
-    inArray.push(getRandomArray().toString());
-    outArray.push(getRandomArray().toString());
-  }
-
-  return [timeArray, inArray, outArray];
-};
+import { CHART_LIST_COLOR } from '../common/constant';
+import getChartDataSet from '../common/chart';
 
 // line chart options
 const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {

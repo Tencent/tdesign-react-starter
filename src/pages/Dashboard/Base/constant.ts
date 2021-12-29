@@ -1,6 +1,8 @@
 import type { TdPrimaryTableProps } from '@tencent/tdesign-react/es/table';
 import type { EChartOption } from 'echarts';
 
+import { ONE_WEEK_LIST, CHART_LIST_COLOR } from '../common/constant';
+
 export interface DashboardPanel {
   title: string;
   number: string | number;
@@ -203,10 +205,6 @@ export const PURCHASE_COLUMNS: TdPrimaryTableProps['columns'] = [
     width: 80,
   },
 ];
-
-const ONE_WEEK_LIST: Array<string> = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
-
-export const CHART_LIST_COLOR = ['#0052D9', '#BCC4D0', '#7D46BD', '#0594FA', '#ED7B2F'];
 
 export const MICRO_CHART_OPTIONS_LINE: EChartOption = {
   xAxis: {
