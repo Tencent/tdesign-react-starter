@@ -53,8 +53,8 @@ export default memo(() => {
             <Step key={item.title} title={item.title} />
           ))}
         </Steps>
-        <div className='steps-content'>
-          <Comp steps={steps} />
+        <div className='steps-content' style={{ marginTop: '32px' }}>
+          <Comp steps={steps} current={current} />
           <div className='steps-action' style={{ marginTop: '20px' }}>
             {current < steps.length - 1 && (
               <Button type='submit' onClick={() => next()}>

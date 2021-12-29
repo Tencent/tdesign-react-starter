@@ -4,6 +4,29 @@ import { Button, Form, Select, Input, Textarea } from 'tdesign-react';
 const { FormItem } = Form;
 const { Option } = Select;
 
+const addressOptions = [
+  {
+    label: '广东省深圳市南山区',
+    value: '0',
+  },
+  {
+    label: '北京市海淀区',
+    value: '1',
+  },
+  {
+    label: '四川省成都市高新区',
+    value: '2',
+  },
+  {
+    label: '广东省广州市天河区',
+    value: '3',
+  },
+  {
+    label: '陕西省西安市高新区',
+    value: '4',
+  },
+];
+
 export default memo((props: any) => {
   const [current, setCurrent] = React.useState(0);
   const { steps } = props;
@@ -36,11 +59,10 @@ export default memo((props: any) => {
         rules={[{ required: true, message: '请选择收货地址', type: 'error' }]}
       >
         <Select value='3' placeholder='请选择收货地址'>
-          <Option key='0' label='广东省深圳市南山区' value='0' />
-          <Option key='1' label='北京市海淀区' value='1' />
-          <Option key='2' label='四川省成都市高新区' value='2' />
-          <Option key='3' label='广东省广州市天河区' value='3' />
-          <Option key='4' label='陕西省西安市高新区' value='4' />
+          {addressOptions.map((item: { label: string; value: string }) => {
+            const { label, value } = item;
+            return <Option key={value} label={label} value={value} />;
+          })}
         </Select>
       </FormItem>
 

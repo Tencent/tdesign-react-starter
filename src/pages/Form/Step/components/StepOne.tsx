@@ -11,8 +11,38 @@ const message = [
   '3、如有疑问请直接联系：13300001111。',
 ];
 
-export default memo(() => {
-  const [current, setCurrent] = React.useState(0);
+const names = [
+  {
+    label: '合同A',
+    value: 'A',
+  },
+  {
+    label: '合同B',
+    value: 'B',
+  },
+  {
+    label: '合同C',
+    value: 'C',
+  },
+];
+
+const types = [
+  {
+    label: '类型A',
+    value: 'A',
+  },
+  {
+    label: '类型B',
+    value: 'B',
+  },
+  {
+    label: '类型C',
+    value: 'C',
+  },
+];
+
+export default memo((props: any) => {
+  const [current, setCurrent] = React.useState(props.current);
 
   const next = () => {
     setCurrent(current + 1);
@@ -26,17 +56,19 @@ export default memo(() => {
       <Form labelWidth={100}>
         <FormItem label='合同名称' name='name' rules={[{ required: true, message: '请选择合同名称', type: 'error' }]}>
           <Select value='A' placeholder='请选择合同'>
-            <Option key='A' label='合同A' value='A' />
-            <Option key='B' label='合同B' value='B' />
-            <Option key='C' label='合同C' value='C' />
+            {names.map((item) => {
+              const { label, value } = item;
+              return <Option label={label} value={value} key={value} />;
+            })}
           </Select>
         </FormItem>
 
         <FormItem label='发票类型' name='type' rules={[{ required: true, message: '请选择发票类型', type: 'error' }]}>
           <Select value='A' placeholder='请选择发票类型'>
-            <Option key='A' label='类型A' value='A' />
-            <Option key='B' label='类型B' value='B' />
-            <Option key='C' label='类型C' value='C' />
+            {types.map((item) => {
+              const { label, value } = item;
+              return <Option label={label} value={value} key={value} />;
+            })}
           </Select>
         </FormItem>
 

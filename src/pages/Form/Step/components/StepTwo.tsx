@@ -4,7 +4,7 @@ import { Button, Form, Input } from 'tdesign-react';
 const { FormItem } = Form;
 
 export default memo((props: any) => {
-  const [current, setCurrent] = React.useState(0);
+  const [current, setCurrent] = React.useState(props.current);
   const { steps = [] } = props;
 
   const next = () => {
