@@ -1,16 +1,16 @@
 import React, { memo } from 'react';
 import PageBox from 'components/PageBox';
 import { Steps, Button, MessagePlugin } from 'tdesign-react';
-import StepOne from './components/StepOne';
-import StepTwo from './components/StepTwo';
-import StepThree from './components/StepThree';
-import StepFour from './components/StepFour';
-
-// import { StepOne, StepTwo, StepThree, StepFour } from './components';
+import { StepOne, StepTwo, StepThree, StepFour } from './components';
 
 const { StepItem: Step } = Steps;
+interface IStep {
+  title: string;
+  content: string;
+  component: any;
+}
 
-const steps = [
+const steps: IStep[] = [
   {
     title: '申请提交',
     content: '申请提交已于12月21日提交',
@@ -35,6 +35,7 @@ const steps = [
 
 export default memo(() => {
   const [current, setCurrent] = React.useState(0);
+  const Comp = steps[current].component;
 
   const next = () => {
     setCurrent(current + 1);
@@ -44,7 +45,6 @@ export default memo(() => {
     setCurrent(current - 1);
   };
 
-  const Comp = steps[current].component;
   return (
     <PageBox>
       <>
@@ -53,7 +53,7 @@ export default memo(() => {
             <Step key={item.title} title={item.title} />
           ))}
         </Steps>
-        <div className='steps-content' style={{ marginTop: '32px' }}>
+        <div className='steps-content' style={{ marginTop: '52px' }}>
           <Comp steps={steps} current={current} />
           <div className='steps-action' style={{ marginTop: '20px' }}>
             {current < steps.length - 1 && (

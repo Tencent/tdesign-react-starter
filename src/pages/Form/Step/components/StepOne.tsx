@@ -75,7 +75,7 @@ export default memo((props: any) => {
         <FormItem label='开票金额' name='name'>
           <div>--</div>
         </FormItem>
-        <FormItem>
+        <FormItem style={{ display: 'none' }}>
           <Button type='submit' onClick={() => next()}>
             提交申请
           </Button>

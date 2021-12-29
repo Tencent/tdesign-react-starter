@@ -74,7 +74,7 @@ export default memo((props: any) => {
         <Textarea placeholder='请输入详细地址' value={'哈哈哈'} />
       </FormItem>
 
-      <FormItem>
+      <FormItem style={{ display: 'none' }}>
         {current < steps.length - 1 && (
           <Button type='submit' onClick={() => next()}>
             下一步

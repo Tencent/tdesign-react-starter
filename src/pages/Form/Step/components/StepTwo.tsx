@@ -49,7 +49,7 @@ export default memo((props: any) => {
         <Input placeholder='请输入通知手机' />
       </FormItem>
 
-      <FormItem>
+      <FormItem style={{ display: 'none' }}>
         {current < steps.length - 1 && (
           <Button type='submit' onClick={() => next()}>
             下一步
