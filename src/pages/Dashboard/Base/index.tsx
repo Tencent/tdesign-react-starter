@@ -1,7 +1,8 @@
 import React, { memo, useState } from 'react';
-import { Row, Col, DatePicker, Radio, Table } from '@tencent/tdesign-react';
+import { Row, Col, DatePicker, Radio, Table, Button } from '@tencent/tdesign-react';
 import { Icon } from '@tencent/tdesign-icons-react';
 import { Tvision2Area, Tvision2Line, Tvision2Bar, Tvision2Pie } from '@tencent/react-tvision2';
+import type { TdPrimaryTableProps } from '@tencent/tdesign-react/es/table';
 import classnames from 'classnames';
 
 import {
@@ -10,10 +11,11 @@ import {
   MICRO_CHART_OPTIONS_BAR,
   SALE_COLUMNS,
   SALE_Trend_LIST,
+  PURCHASE_COLUMNS,
+  PURCHASE_TREND_LIST,
 } from './constant';
 import type { DashboardPanel } from './constant';
-import { getLineChartOptions, getPieChartOptions } from './chart';
-
+import { getBarChartOptions, getLineChartOptions, getPieChartOptions } from './chart';
 import { RECENT_7_DAYS } from '../common/date';
 
 import Board from 'pages/Dashboard/components/Board';
@@ -33,7 +35,7 @@ const asideList: Array<React.ReactElement> = [
       }}
     ></Tvision2Line>
   </div>,
-  <div key='dashboard-column-chart' className={Style.paneColumnChart}>
+  <div key='dashboard-bar-chart' className={Style.paneBarChart}>
     <Tvision2Bar
       style={{ height: 36 }}
       option={{
@@ -137,32 +139,99 @@ const MiddleChart = () => {
   );
 };
 
+const getTableColumns = (columns: TdPrimaryTableProps['columns']): TdPrimaryTableProps['columns'] => {
+  if (columns) {
+    columns[0].render = (context) => {
+      const { type, rowIndex } = context;
+      if (type === 'title') return '排名';
+      return <span className={classnames(Style.rankNO, { [Style.rankNO_top]: rowIndex < 3 })}>{rowIndex + 1}</span>;
+    };
+    columns[2].render = (context) => {
+      const { type, row } = context;
+      if (type === 'title') return '较上周';
+      return <Trend type={row.growUp > 0 ? 'up' : 'down'} description={Math.abs(row.growUp)} />;
+    };
+    columns[5].render = (context) => {
+      const { type, row } = context;
+      if (type === 'title') return '操作';
+      return (
+        <a className={Style.linkBtn} onClick={() => console.log(row)}>
+          操作
+        </a>
+      );
+    };
+  }
+  return columns;
+};
+
 // rank list of sale order
 const RankList = () => (
   <Row gutter={gutter} className={Style.rowContainer}>
     <Col span={6}>
       <Board title='销售订单排名' operation={DateRadioGroup}>
-        <Table columns={SALE_COLUMNS} rowKey='productName' size='large' data={SALE_Trend_LIST}></Table>
+        <Table
+          columns={getTableColumns(SALE_COLUMNS)}
+          rowKey='productName'
+          size='medium'
+          data={SALE_Trend_LIST}
+        ></Table>
       </Board>
     </Col>
     <Col span={6}>
-      <Board title='采购订单排名'></Board>
+      <Board title='采购订单排名' operation={DateRadioGroup}>
+        <Table
+          columns={getTableColumns(PURCHASE_COLUMNS)}
+          rowKey='productName'
+          size='medium'
+          data={PURCHASE_TREND_LIST}
+        ></Table>
+      </Board>
     </Col>
   </Row>
 );
 
-const Overview = (): React.ReactElement => (
-  <div className={Style.overviewPanel}>
-    <Row gutter={gutter}>
-      <Col span={9}>
-        <Board title='出入库概览' description='(件)'></Board>
-      </Col>
-      <Col span={3}>
-        <Board></Board>
-      </Col>
-    </Row>
-  </div>
-);
+const Overview = (): React.ReactElement => {
+  const options = getBarChartOptions();
+  const [customOptions, setCustomOptions] = useState(options);
+  const onTimeChange = (value: Array<string>) => {
+    const options = getBarChartOptions(value);
+    setCustomOptions(options);
+  };
+  return (
+    <div className={classnames(Style.overviewPanel, Style.rowContainer)}>
+      <Row gutter={gutter}>
+        <Col span={9}>
+          <Board title=' 出入库概览 ' description='(件)' operation={DefaultDatePicker(onTimeChange)}>
+            <Tvision2Bar
+              style={{ height: 351 }}
+              option={{
+                dataset: [[]],
+                injectOption: (option) => ({ ...option, ...customOptions }),
+              }}
+            ></Tvision2Bar>
+          </Board>
+        </Col>
+        <Col span={3}>
+          <Board subtitle=' ' operation={<Button>导出数据</Button>}>
+            <Row gutter={0}>
+              <Col>
+                <Board subtitle='' description='本月出库总计（件）' size='small'>
+                  {/* <PaneBox
+                    value={{ title: '活跃用户（个）', number: '1126', downTrend: '20.5%', leftType: 'icon-usergroup' }}
+                    index={2}
+                  ></PaneBox> */}
+                </Board>
+              </Col>
+              <Col>
+                <Board subtitle='' description='本月出库总计（件）' size='small'></Board>
+              </Col>
+            </Row>
+          </Board>
+        </Col>
+      </Row>
+    </div>
+  );
+};
 
 const DashBoard = () => (
   <div className={Style.dashboardPanel}>

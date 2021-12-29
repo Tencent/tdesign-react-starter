@@ -15,7 +15,7 @@ const getRandomArray = (num = 100): number => {
 
 type ChartValue = number | string;
 
-const getLineChartDataSet = (dateTime: Array<string> = []): ChartValue[][] => {
+const getChartDataSet = (dateTime: Array<string> = []): ChartValue[][] => {
   const divideNum = 10;
   const timeArray = [];
   const inArray = [];
@@ -42,7 +42,7 @@ const getLineChartDataSet = (dateTime: Array<string> = []): ChartValue[][] => {
 
 // line chart options
 const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
-  const [timeArray, inArray, outArray] = getLineChartDataSet(dateTime);
+  const [timeArray, inArray, outArray] = getChartDataSet(dateTime);
   return {
     color: CHART_LIST_COLOR,
     tooltip: {
@@ -197,4 +197,68 @@ const getPieChartOptions = (radius = 42): EChartOption => ({
   ],
 });
 
-export { getLineChartOptions, getPieChartOptions };
+const getBarChartOptions = (dateTime: Array<string> = []): EChartOption => {
+  const [timeArray, inArray, outArray] = getChartDataSet(dateTime);
+  return {
+    color: CHART_LIST_COLOR,
+    tooltip: {
+      trigger: 'item',
+    },
+    xAxis: {
+      type: 'category',
+      data: timeArray,
+      axisLabel: {
+        color: 'rgba(0, 0, 0, 0.4)',
+      },
+      axisLine: {
+        lineStyle: {
+          color: CHART_LIST_COLOR[1],
+          width: 1,
+        },
+      },
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: {
+        color: 'rgba(0, 0, 0, 0.4)',
+      },
+    },
+    grid: {
+      top: '5%',
+      left: '25px',
+      right: 0,
+      bottom: '60px',
+    },
+    legend: {
+      icon: 'rect',
+      itemWidth: 12,
+      itemHeight: 4,
+      itemGap: 48,
+      textStyle: {
+        fontSize: 12,
+        color: 'rgba(0, 0, 0, 0.6)',
+      },
+      left: 'center',
+      bottom: '0',
+      orient: 'horizontal',
+      data: ['本月', '上月'],
+    },
+    series: [
+      {
+        name: '本月',
+        data: outArray,
+        type: 'bar',
+      },
+      {
+        name: '上月',
+        data: inArray,
+        type: 'bar',
+        itemStyle: {
+          color: CHART_LIST_COLOR[1],
+        },
+      },
+    ],
+  };
+};
+
+export { getLineChartOptions, getPieChartOptions, getBarChartOptions };

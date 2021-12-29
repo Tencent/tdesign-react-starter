@@ -82,7 +82,7 @@ export const SALE_Trend_LIST: Array<TrendItem> = [
   },
 ];
 
-export const BUY_TREND_LIST: Array<TrendItem> = [
+export const PURCHASE_TREND_LIST: Array<TrendItem> = [
   {
     growUp: 1,
     productName: '腾讯科技（深圳）有限公司',
@@ -128,11 +128,6 @@ export const SALE_COLUMNS: TdPrimaryTableProps['columns'] = [
     title: '排名',
     width: 80,
     fixed: 'left',
-    render(context) {
-      const { type, rowIndex } = context;
-      if (type === 'title') return '排名';
-      return rowIndex + 1;
-    },
   },
   {
     align: 'left',
@@ -157,30 +152,31 @@ export const SALE_COLUMNS: TdPrimaryTableProps['columns'] = [
     align: 'center',
     colKey: 'date',
     width: 140,
-    fixed: 'right',
     title: '合同签订日期',
   },
   {
     align: 'center',
     colKey: 'operation',
+    fixed: 'right',
     title: '操作',
-    width: 76,
+    width: 80,
   },
 ];
 
-export const BUY_COLUMNS: TdPrimaryTableProps['columns'] = [
+export const PURCHASE_COLUMNS: TdPrimaryTableProps['columns'] = [
   {
     align: 'center',
     colKey: 'index',
     title: '排名',
-    width: 64,
+    width: 80,
+    fixed: 'left',
   },
   {
     align: 'left',
     ellipsis: true,
     colKey: 'productName',
     title: '供应商名称',
-    width: 276,
+    minWidth: 200,
   },
   {
     align: 'center',
@@ -192,19 +188,19 @@ export const BUY_COLUMNS: TdPrimaryTableProps['columns'] = [
     align: 'center',
     colKey: 'count',
     title: '订单量',
-    width: '100',
+    width: 100,
   },
   {
     align: 'center',
     colKey: 'date',
-    width: 132,
+    width: 140,
     title: '合同签订日期',
   },
   {
     align: 'center',
     colKey: 'operation',
     title: '操作',
-    width: 76,
+    width: 80,
   },
 ];
 
@@ -291,4 +287,9 @@ export const MICRO_CHART_OPTIONS_BAR: EChartOption = {
       barWidth: 9,
     },
   ],
+};
+
+export const INVENTORY_OVERVIEW = {
+  inbound: {},
+  outbound: {},
 };
