@@ -184,7 +184,7 @@ const selectTable: React.FC = () => {
         hover
         onSelectChange={onSelectChange}
         pagination={{
-          pageSize: 10,
+          pageSize: 20,
           total,
           current: 1,
           showJumper: true,
