@@ -137,7 +137,14 @@ export default memo(() => (
               colKey: 'name',
               title: '产品名称',
               cell({ row }) {
-                return <Tag theme='primary'>{row.tag}</Tag>;
+                return (
+                  <>
+                    {row.name}
+                    <Tag theme='default' size='small'>
+                      {row.tag}
+                    </Tag>
+                  </>
+                );
               },
             },
             {
@@ -156,7 +163,7 @@ export default memo(() => (
               colKey: 'amount',
               title: '采购数量',
               cell({ row }) {
-                return <>{row.money}</>;
+                return <>{row.amount}</>;
               },
             },
             {
