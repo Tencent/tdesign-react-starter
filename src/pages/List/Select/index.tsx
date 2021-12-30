@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Tag } from 'tdesign-react';
+import { Table, Tag, Dialog } from 'tdesign-react';
 import SearchForm from './components/searchForm';
 import Mock from 'mockjs';
 import './index.less';
@@ -24,12 +24,22 @@ const Mockdata = Mock.mock({
 data = Mockdata.list;
 const selectTable: React.FC = () => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<(string | number)[]>([0, 1]);
+  const [visible, setVisible] = useState(false);
   function onSelectChange(value: (string | number)[]) {
     setSelectedRowKeys(value);
   }
 
   function rehandleClickOp(record: any) {
     console.log(record);
+  }
+
+  function handleClickDelete(record: any) {
+    console.log(record);
+    setVisible(true);
+  }
+
+  function handleClose() {
+    setVisible(false);
   }
 
   return (
@@ -158,7 +168,7 @@ const selectTable: React.FC = () => {
                   <a
                     className='list-common-table-btn'
                     onClick={() => {
-                      rehandleClickOp(record);
+                      handleClickDelete(record);
                     }}
                   >
                     删除
@@ -190,7 +200,10 @@ const selectTable: React.FC = () => {
             console.log(pageInfo, 'onPageSizeChange pageInfo');
           },
         }}
-      ></Table>
+      />
+      <Dialog header='确认删除当前所选合同？' visible={visible} onClose={handleClose}>
+        <p>删除后的所有合同信息将被清空,且无法恢复</p>
+      </Dialog>
     </div>
   );
 };

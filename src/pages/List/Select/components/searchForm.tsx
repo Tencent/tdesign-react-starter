@@ -35,7 +35,7 @@ const SearchForm: React.FC<SearchFormProps> = (props) => {
 
   return (
     <div className='list-common-table-query'>
-      <Form ref={formRef} onSubmit={onSubmit} onReset={onReset} labelWidth={100} colon>
+      <Form ref={formRef} onSubmit={onSubmit} onReset={onReset} labelWidth={80} colon>
         <Row>
           <Col span={10}>
             <Row gutter={16}>
