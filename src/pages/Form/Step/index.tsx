@@ -53,20 +53,20 @@ export default memo(() => {
             <Step key={item.title} title={item.title} />
           ))}
         </Steps>
-        <div className='steps-content' style={{ marginTop: '52px' }}>
+        <div style={{ marginTop: '52px' }}>
           <Comp steps={steps} current={current} />
           <div className='steps-action' style={{ marginTop: '20px' }}>
-            {current < steps.length - 1 && (
-              <Button type='submit' onClick={() => next()}>
-                {current === 0 ? '提交申请' : '下一步'}
+            {current > 0 && (
+              <Button style={{ margin: '0 8px' }} onClick={() => prev()}>
+                上一步
               </Button>
             )}
             {current === steps.length - 1 && (
               <Button onClick={() => MessagePlugin.success('提交申请成功')}>完成</Button>
             )}
-            {current > 0 && (
-              <Button style={{ margin: '0 8px' }} onClick={() => prev()}>
-                上一步
+            {current < steps.length - 1 && (
+              <Button type='submit' onClick={() => next()}>
+                {current === 0 ? '提交申请' : '下一步'}
               </Button>
             )}
           </div>
