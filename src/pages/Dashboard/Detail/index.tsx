@@ -4,12 +4,12 @@ import { Icon } from '@tencent/tdesign-icons-react';
 import classnames from 'classnames';
 import { Tvision2Line, Tvision2Scatter } from '@tencent/react-tvision2';
 
-import Board from '../components/Board';
-import Trend from '../components/Trend';
-import type { TrendType } from '../components/Trend';
+import Board from '../common/Board';
+import Trend from '../common/Trend';
+import type { TrendType } from '../common/Trend';
 
 import PANE_LIST, { PRODUCT } from './constant';
-import LastWeekDatePicker from '../components/DatePicker';
+import LastWeekDatePicker from '../common/DatePicker';
 import { getLineChartOptions, getScatterChartOptions } from './chart';
 import type { IProduct } from './constant';
 

@@ -18,9 +18,9 @@ import {
 import type { DashboardPanel } from './constant';
 import { getBarChartOptions, getLineChartOptions, getPieChartOptions } from './chart';
 
-import Board from 'pages/Dashboard/components/Board';
-import Trend from '../components/Trend';
-import LastWeekDatePicker from '../components/DatePicker';
+import Board from 'pages/Dashboard/common/Board';
+import Trend from '../common/Trend';
+import LastWeekDatePicker from '../common/DatePicker';
 
 import Style from './index.module.less';
 
