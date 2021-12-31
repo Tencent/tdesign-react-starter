@@ -2,12 +2,12 @@ import React, { memo } from 'react';
 import { Button } from 'tdesign-react';
 import { CheckCircleIcon } from 'tdesign-icons-react';
 
-import style from '../SuccessAndFail.module.less';
+import style from './index.module.less';
 
 const Success = () => (
   <div className={style.Content}>
     <CheckCircleIcon className={style.icon} />
-    <div className={style.title}>创建成功</div>
+    <div className={style.title}>项目已创建成功</div>
     <div className={style.description}>可以联系负责人分发应用</div>
     <div>
       <Button>返回首页</Button>

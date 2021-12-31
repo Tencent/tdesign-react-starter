@@ -8,7 +8,7 @@ const NetworkError = () => (
   <div className={style.Content}>
     <img src={networkErrorIcon} className={style.icon} />
     <div className={style.title}>网络异常</div>
-    <div className={style.description}>当前网络异常，请稍后再试！</div>
+    <div className={style.description}>网络异常，请稍后再试</div>
     <div>
       <Button>重新加载</Button>
       <Button className={style.rightButton} theme='default'>

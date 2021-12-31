@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Button } from 'tdesign-react';
 import { ErrorCircleIcon } from 'tdesign-icons-react';
 
-import style from '../SuccessAndFail.module.less';
+import style from './index.module.less';
 
 const Fail = () => (
   <div className={style.Content}>
