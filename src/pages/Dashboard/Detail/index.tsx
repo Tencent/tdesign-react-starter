@@ -37,7 +37,7 @@ const MonthPurchase = () => (
     <Board title='本月采购申请情况'>
       <Row gutter={16}>
         {PANE_LIST.map((pane) => (
-          <Col key={pane.title} span={3}>
+          <Col key={pane.title} xs={6} xl={3} span={12}>
             <Board description={pane.title} size='small' border={true} style={{ height: 170 }}>
               <PaneBox
                 count={pane.number}
@@ -112,7 +112,7 @@ const PurchaseTrend = () => {
 
   return (
     <Row className={classnames(Style.purchaseTrend, Style.boardMargin)} gutter={16}>
-      <Col span={9}>
+      <Col xs={12} xl={9} span={12}>
         <Board title='采购商品申请趋势' description='(件)' operation={LastWeekDatePicker(onTimeChange)}>
           <Tvision2Line
             style={{ height: 416 }}
@@ -123,7 +123,7 @@ const PurchaseTrend = () => {
           />
         </Board>
       </Col>
-      <Col span={3}>
+      <Col xs={12} xl={3} span={12}>
         <ProductBoard {...PRODUCT} />
         <ProductBoard {...PRODUCT} />
       </Col>
