@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Button } from 'tdesign-react';
 
-import Light404Icon from 'assets/images/404-light.png';
+import Light404Icon from 'assets/images/404-result.png';
 import style from '../index.module.less';
 
 const NotFound = () => (

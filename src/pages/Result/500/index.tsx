@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Button } from 'tdesign-react';
 
-import Light500Icon from 'assets/images/500-light.png';
+import Light500Icon from 'assets/images/500-result.png';
 import style from '../index.module.less';
 
 const ServerError = () => (

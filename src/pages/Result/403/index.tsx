@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Button } from 'tdesign-react';
 
-import Light403Icon from 'assets/images/403-light.png';
+import Light403Icon from 'assets/images/403-result.png';
 import style from '../index.module.less';
 
 const UnAuthorized = () => (
