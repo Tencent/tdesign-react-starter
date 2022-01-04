@@ -1,6 +1,6 @@
 import React, { useState, memo } from 'react';
-import { Row, Col, Button, Dropdown, Tag } from '@tencent/tdesign-react';
-import { Icon } from '@tencent/tdesign-icons-react';
+import { Row, Col, Button, Dropdown, Tag } from 'tdesign-react';
+import { Icon } from 'tdesign-icons-react';
 import classnames from 'classnames';
 import { Tvision2Line, Tvision2Scatter } from '@tencent/react-tvision2';
 

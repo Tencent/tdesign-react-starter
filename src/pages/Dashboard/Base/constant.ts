@@ -1,4 +1,4 @@
-import type { TdPrimaryTableProps } from '@tencent/tdesign-react/es/table';
+import type { TdPrimaryTableProps } from 'tdesign-react/es/table';
 import type { EChartOption } from 'echarts';
 
 import { ONE_WEEK_LIST, CHART_LIST_COLOR } from '../common/constant';
