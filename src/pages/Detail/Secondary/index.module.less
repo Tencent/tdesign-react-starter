@@ -1,0 +1,42 @@
+@Wrap: secondaryNotification;
+
+.@{Wrap} {
+  background-color: var(--td-bg-color-container);
+  border-radius: 3px;
+  padding: 24px 32px;
+  .tabsContent {
+    margin: 0px;
+  }
+  .msgList {
+    height: 70vh;
+    .listItem {
+      cursor: pointer;
+      padding: 13px 24px 13px 0;
+    }
+    .content {
+      margin: 0;
+      font-size: 14px;
+      color: var(--td-text-color-placeholder);
+      text-align: left;
+      line-height: 22px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      .tag {
+        margin-right: 8px;
+        margin-left: 0;
+      }
+    }
+    // 未读
+    .unread {
+      color: var(--td-text-color-primary);
+    }
+  }
+  .info {
+    margin: 20px;
+  }
+}
+
+.logBox {
+  margin-top: 15px;
+}

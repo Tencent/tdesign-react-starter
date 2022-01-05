@@ -23,3 +23,6 @@ dwt-junit.xml
 dwt-reporter.html
 dwt-result.json
 dwt-tmp-result
+
+# code editor setting
+/.vscode
