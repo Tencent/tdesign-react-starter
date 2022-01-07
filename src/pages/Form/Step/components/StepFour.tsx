@@ -5,6 +5,7 @@ import { Button } from 'tdesign-react';
 import Style from './index.module.less';
 
 export default memo((props: any) => {
+  console.log('1');
   const history = useHistory();
   const { callback } = props;
 
