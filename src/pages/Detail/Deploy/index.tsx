@@ -1,9 +1,10 @@
-import React, { memo } from 'react';
-import { Row, Col, Radio, Table } from 'tdesign-react';
-// import classnames from 'classnames';
+import React, { memo, useState } from 'react';
+import { Row, Col, Radio, Table, Dialog } from 'tdesign-react';
+import type { TableSort, TdPrimaryTableProps } from 'tdesign-react/es/table';
+import classnames from 'classnames';
 
 import Card from 'components/Card';
-import { TABLE_COLUMNS } from './constant';
+import { TABLE_COLUMNS, BASE_INFO_DATA } from './constant';
 import type { TableModel } from './constant';
 
 import Style from './index.module.less';
@@ -21,8 +22,8 @@ const getTableData = (): Array<TableModel> => {
   for (let i = 0; i < 10; i++) {
     const randomNum = Math.random();
     list.push({
-      name: names[randomNum * names.length],
-      adminName: adminNames[randomNum * adminNames.length],
+      name: names[Math.floor(randomNum * names.length)],
+      adminName: adminNames[Math.floor(randomNum * adminNames.length)],
       telephone: '+86 13587609955',
       updateTime: '2020-05-30 10:02:57',
     });
@@ -59,17 +60,92 @@ const TopChart = () => {
   );
 };
 
+interface IProps {
+  visible: boolean;
+}
+
+const ManagementPopup = ({ visible }: IProps) => {
+  const [isShow, setVisible] = useState<boolean>(visible);
+  const handleConfirm = () => setVisible(!isShow);
+  console.log('visible = ', isShow);
+
+  return (
+    <Dialog
+      header='基本信息'
+      visible={isShow}
+      onClose={handleConfirm}
+      onConfirm={handleConfirm}
+      onCancel={handleConfirm}
+    >
+      <div>
+        <div className={Style.popupBox}>
+          {BASE_INFO_DATA.map((item, index) => (
+            <div key={index} className={Style.popupItem}>
+              <h1>{item.name}</h1>
+              <p
+                className={classnames({
+                  [Style.popupItem_green]: item.type && item.type.value === 'green',
+                  [Style.popupItem_blue]: item.type && item.type.value === 'blue',
+                })}
+              >
+                {item.value}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Dialog>
+  );
+};
+
 const BottomTable = () => {
+  const [sort, setSort] = useState<TableSort>({ sortBy: 'name', descending: true });
+  const [visible, setVisible] = useState<boolean>(true);
+  const [{ tableData }, setTableData] = useState({ tableData: getTableData() });
   const pagination = {
-    current: 1,
     pageSize: 10,
     total: 38,
     pageSizeOptions: [],
   };
+
+  const getTableColumns = (columns: TdPrimaryTableProps['columns']): TdPrimaryTableProps['columns'] => {
+    if (columns) {
+      columns[4].cell = (context) => {
+        const { rowIndex } = context;
+        return (
+          <>
+            <a className={Style.operationLink} onClick={() => setVisible(true)}>
+              管理
+            </a>
+            <a className={Style.operationLink} onClick={() => removeRow(rowIndex)}>
+              删除
+            </a>
+          </>
+        );
+      };
+    }
+    return columns;
+  };
+
+  const removeRow = (rowIndex: number) => {
+    tableData.splice(rowIndex, 1);
+    setTableData({ tableData });
+  };
+
   return (
-    <Card title='项目列表'>
-      <Table columns={TABLE_COLUMNS} rowKey='index' pagination={pagination} data={getTableData()}></Table>
-    </Card>
+    <>
+      <Card title='项目列表'>
+        <Table
+          columns={getTableColumns(TABLE_COLUMNS)}
+          rowKey='index'
+          pagination={pagination}
+          data={tableData}
+          sort={sort}
+          onSortChange={(sort: TableSort) => setSort(sort)}
+        ></Table>
+      </Card>
+      <ManagementPopup visible={visible} />
+    </>
   );
 };
 
