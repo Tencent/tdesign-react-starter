@@ -27,7 +27,7 @@ const addressOptions = [
   },
 ];
 
-export default memo((props: any) => {
+export default memo((props: { current: number; callback: Function; steps: any[] }) => {
   const { current, callback, steps } = props;
 
   const next = () => {

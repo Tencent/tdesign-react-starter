@@ -41,7 +41,7 @@ const types = [
   },
 ];
 
-export default memo((props: any) => {
+export default memo((props: { callback: Function }) => {
   const { callback } = props;
   const next = () => {
     callback('next');

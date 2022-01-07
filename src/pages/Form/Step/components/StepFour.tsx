@@ -4,8 +4,7 @@ import { CheckCircleFilledIcon } from 'tdesign-icons-react';
 import { Button } from 'tdesign-react';
 import Style from './index.module.less';
 
-export default memo((props: any) => {
-  console.log('1');
+export default memo((props: { callback: Function }) => {
   const history = useHistory();
   const { callback } = props;
 
@@ -14,7 +13,7 @@ export default memo((props: any) => {
   };
 
   const onCheck = () => {
-    const url = '/detail/advanced#/detail/advanced';
+    const url = '/detail/advanced';
     history.push(url);
   };
 
