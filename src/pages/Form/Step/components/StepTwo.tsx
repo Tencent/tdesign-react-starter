@@ -4,15 +4,14 @@ import { Button, Form, Input } from 'tdesign-react';
 const { FormItem } = Form;
 
 export default memo((props: any) => {
-  const [current, setCurrent] = React.useState(0);
-  const { steps = [] } = props;
+  const { current, callback, steps = [] } = props;
 
   const next = () => {
-    setCurrent(current + 1);
+    callback('next');
   };
 
   const prev = () => {
-    setCurrent(current - 1);
+    callback('back');
   };
 
   return (
@@ -49,7 +48,7 @@ export default memo((props: any) => {
         <Input placeholder='请输入通知手机' />
       </FormItem>
 
-      <FormItem style={{ display: 'none' }}>
+      <FormItem>
         {current < steps.length - 1 && (
           <Button type='submit' onClick={() => next()}>
             下一步

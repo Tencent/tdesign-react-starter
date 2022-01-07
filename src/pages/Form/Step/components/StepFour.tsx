@@ -1,15 +1,20 @@
 import React, { memo } from 'react';
+import { useHistory } from 'react-router-dom';
 import { CheckCircleFilledIcon } from 'tdesign-icons-react';
 import { Button } from 'tdesign-react';
 import Style from './index.module.less';
 
-export default memo(() => {
+export default memo((props: any) => {
+  const history = useHistory();
+  const { callback } = props;
+
   const onClickAgain = () => {
-    window.location.reload();
+    callback('first');
   };
 
   const onCheck = () => {
-    window.location.href = '/detail/advanced#/detail/advanced';
+    const url = '/detail/advanced#/detail/advanced';
+    history.push(url);
   };
 
   return (

@@ -41,11 +41,10 @@ const types = [
   },
 ];
 
-export default memo(() => {
-  const [current, setCurrent] = React.useState(0);
-
+export default memo((props: any) => {
+  const { callback } = props;
   const next = () => {
-    setCurrent(current + 1);
+    callback('next');
   };
 
   return (
@@ -75,7 +74,7 @@ export default memo(() => {
         <FormItem label='开票金额' name='name'>
           <div>--</div>
         </FormItem>
-        <FormItem style={{ display: 'none' }}>
+        <FormItem>
           <Button type='submit' onClick={() => next()}>
             提交申请
           </Button>

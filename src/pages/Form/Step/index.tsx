@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import PageBox from 'components/PageBox';
-import { Steps, Button, MessagePlugin } from 'tdesign-react';
+import { Steps } from 'tdesign-react';
 import { StepOne, StepTwo, StepThree, StepFour } from './components';
 
 const { StepItem: Step } = Steps;
@@ -45,6 +45,22 @@ export default memo(() => {
     setCurrent(current - 1);
   };
 
+  const handleSteps = (value: string) => {
+    switch (value) {
+      case 'back':
+        prev();
+        break;
+      case 'next':
+        next();
+        break;
+      case 'first':
+        setCurrent(0);
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <PageBox>
       <>
@@ -54,22 +70,7 @@ export default memo(() => {
           ))}
         </Steps>
         <div style={{ marginTop: '52px' }}>
-          <Comp steps={steps} current={current} />
-          <div className='steps-action' style={{ marginTop: '20px' }}>
-            {current > 0 && (
-              <Button style={{ margin: '0 8px' }} onClick={() => prev()}>
-                上一步
-              </Button>
-            )}
-            {current === steps.length - 1 && (
-              <Button onClick={() => MessagePlugin.success('提交申请成功')}>完成</Button>
-            )}
-            {current < steps.length - 1 && (
-              <Button type='submit' onClick={() => next()}>
-                {current === 0 ? '提交申请' : '下一步'}
-              </Button>
-            )}
-          </div>
+          <Comp steps={steps} current={current} callback={handleSteps} />
         </div>
       </>
     </PageBox>
