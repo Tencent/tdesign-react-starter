@@ -64,10 +64,9 @@ interface IProps {
   visible: boolean;
 }
 
-const ManagementPopup = ({ visible }: IProps) => {
+const ManagementPopup = ({ visible }: IProps): React.ReactElement => {
   const [isShow, setVisible] = useState<boolean>(visible);
   const handleConfirm = () => setVisible(!isShow);
-  console.log('visible = ', isShow);
 
   return (
     <Dialog
@@ -100,7 +99,7 @@ const ManagementPopup = ({ visible }: IProps) => {
 
 const BottomTable = () => {
   const [sort, setSort] = useState<TableSort>({ sortBy: 'name', descending: true });
-  const [visible, setVisible] = useState<boolean>(true);
+  const [visible, setVisible] = useState(false);
   const [{ tableData }, setTableData] = useState({ tableData: getTableData() });
   const pagination = {
     pageSize: 10,
@@ -114,7 +113,7 @@ const BottomTable = () => {
         const { rowIndex } = context;
         return (
           <>
-            <a className={Style.operationLink} onClick={() => setVisible(true)}>
+            <a className={Style.operationLink} onClick={() => setVisible(!visible)}>
               管理
             </a>
             <a className={Style.operationLink} onClick={() => removeRow(rowIndex)}>
@@ -144,7 +143,7 @@ const BottomTable = () => {
           onSortChange={(sort: TableSort) => setSort(sort)}
         ></Table>
       </Card>
-      <ManagementPopup visible={visible} />
+      {visible && <ManagementPopup visible={visible} />}
     </>
   );
 };

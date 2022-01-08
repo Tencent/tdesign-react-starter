@@ -28,8 +28,7 @@ function getTimeArray(dateTime: string[] = [], divideNum = 10, format = 'MM-DD')
   return timeArray;
 }
 
-const getChartDataSet = (dateTime: Array<string> = []): ChartValue[][] => {
-  const divideNum = 10;
+const getChartDataSet = (dateTime: Array<string> = [], divideNum = 10): ChartValue[][] => {
   const timeArray = getTimeArray(dateTime, divideNum);
   const inArray = [];
   const outArray = [];
@@ -43,3 +42,4 @@ const getChartDataSet = (dateTime: Array<string> = []): ChartValue[][] => {
 
 export default getChartDataSet;
 export { CHART_LIST_COLOR, getTimeArray, getRandomInt };
+// export type { ChartValue };
