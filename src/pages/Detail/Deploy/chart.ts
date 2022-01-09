@@ -92,7 +92,7 @@ export function getLineOptions(dateTime: any = []): EChartOption {
   };
 }
 
-export const lastYearList: Array<any> = [100, 120, 140, 160, 180, 200, 210];
+export const lastYearList: Array<number> = [100, 120, 140, 160, 180, 200, 210];
 
 export function getBarChartOptions(isMonth = false): EChartOption {
   let lastYearListCopy = lastYearList.concat([]);

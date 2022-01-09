@@ -1,11 +1,13 @@
 import React, { memo, useState } from 'react';
 import { Row, Col, Radio, Table, Dialog } from 'tdesign-react';
 import type { TableSort, TdPrimaryTableProps } from 'tdesign-react/es/table';
+import { Tvision2Line, Tvision2Bar } from '@tencent/react-tvision2';
 import classnames from 'classnames';
 
 import Card from 'components/Card';
 import { TABLE_COLUMNS, BASE_INFO_DATA } from './constant';
 import type { TableModel } from './constant';
+import { getLineOptions, getBarChartOptions } from './chart';
 
 import Style from './index.module.less';
 
@@ -41,7 +43,13 @@ const TopChart = () => {
       <Col span={6}>
         <Card title='部署趋势'>
           <div className={Style.deployPanelLeft}>
-            <div id='monitorContainer' style={{ width: '100%', height: 265 }}></div>
+            <Tvision2Line
+              style={{ height: 265 }}
+              option={{
+                dataset: [[]],
+                injectOption: (option) => ({ ...option, ...getLineOptions() }),
+              }}
+            />
           </div>
         </Card>
       </Col>
@@ -53,7 +61,13 @@ const TopChart = () => {
               <Radio value='monthVal'>本月</Radio>
             </Radio.Group>
           </div>
-          <div id='dataContainer' style={{ width: '100%', height: 265 }}></div>
+          <Tvision2Bar
+            style={{ height: 265 }}
+            option={{
+              dataset: [[]],
+              injectOption: (option) => ({ ...option, ...getBarChartOptions() }),
+            }}
+          />
         </Card>
       </Col>
     </Row>
