@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { Row, Col, Radio, Table, Dialog } from 'tdesign-react';
 import type { TableSort, TdPrimaryTableProps } from 'tdesign-react/es/table';
 import { Tvision2Line, Tvision2Bar } from '@tencent/react-tvision2';
@@ -7,9 +7,10 @@ import classnames from 'classnames';
 import Card from 'components/Card';
 import { TABLE_COLUMNS, BASE_INFO_DATA } from './constant';
 import type { TableModel } from './constant';
-import { getLineOptions, getBarChartOptions } from './chart';
+import { getLineOptions, getBarOptions } from './chart';
 
 import Style from './index.module.less';
+import type { EChartOption } from 'echarts';
 
 const getTableData = (): Array<TableModel> => {
   const list: Array<TableModel> = [];
@@ -34,8 +35,16 @@ const getTableData = (): Array<TableModel> => {
 };
 
 const TopChart = () => {
-  const tabChange = () => {
-    console.log('aa');
+  const [lineOptions, setLineOptions] = useState<EChartOption>(getLineOptions);
+  const [barOptions, setBarOptions] = useState<EChartOption>(getBarOptions);
+  useEffect(() => {
+    const timer = setInterval(() => setLineOptions(getLineOptions()), 3000);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+  const tabChange = (isMonth: boolean) => {
+    setBarOptions(getBarOptions(isMonth));
   };
 
   return (
@@ -47,25 +56,27 @@ const TopChart = () => {
               style={{ height: 265 }}
               option={{
                 dataset: [[]],
-                injectOption: (option) => ({ ...option, ...getLineOptions() }),
+                injectOption: (option) => ({ ...option, ...lineOptions }),
               }}
             />
           </div>
         </Card>
       </Col>
       <Col span={6}>
-        <Card title='告警情况'>
-          <div slot='option'>
-            <Radio.Group default-value='dateVal' onChange={tabChange}>
-              <Radio value='dateVal'>本周</Radio>
-              <Radio value='monthVal'>本月</Radio>
+        <Card
+          title='告警情况'
+          extra={
+            <Radio.Group defaultValue='week' onChange={(val) => tabChange(val === 'month')}>
+              <Radio.Button value='week'>本周</Radio.Button>
+              <Radio.Button value='month'>本月</Radio.Button>
             </Radio.Group>
-          </div>
+          }
+        >
           <Tvision2Bar
             style={{ height: 265 }}
             option={{
               dataset: [[]],
-              injectOption: (option) => ({ ...option, ...getBarChartOptions() }),
+              injectOption: (option) => ({ ...option, ...barOptions }),
             }}
           />
         </Card>
@@ -147,7 +158,7 @@ const BottomTable = () => {
 
   return (
     <>
-      <Card title='项目列表'>
+      <Card title='项目列表' style={{ marginTop: 16 }}>
         <Table
           columns={getTableColumns(TABLE_COLUMNS)}
           rowKey='index'
