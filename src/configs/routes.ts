@@ -13,6 +13,13 @@ import DetailAdvanced from 'pages/Detail/Advanced';
 import DetailDeploy from 'pages/Detail/Deploy';
 import DetailSecondary from 'pages/Detail/Secondary';
 import User from 'pages/User';
+import ResultSuccess from 'pages/Result/Success';
+import ResultFail from 'pages/Result/Fail';
+import ResultNetworkError from 'pages/Result/NetworkError';
+import Result403 from 'pages/Result/403';
+import Result404 from 'pages/Result/404';
+import Result500 from 'pages/Result/500';
+import ResultBrowserIncompatible from 'pages/Result/BrowserIncompatible';
 
 interface IRouteItem {
   key?: string;
@@ -81,5 +88,33 @@ export const routes: IRouteItem[] = [
   {
     path: '/user/index',
     Component: User,
+  },
+  {
+    path: '/result/success',
+    Component: ResultSuccess,
+  },
+  {
+    path: '/result/fail',
+    Component: ResultFail,
+  },
+  {
+    path: '/result/network-error',
+    Component: ResultNetworkError,
+  },
+  {
+    path: '/result/403',
+    Component: Result403,
+  },
+  {
+    path: '/result/404',
+    Component: Result404,
+  },
+  {
+    path: '/result/500',
+    Component: Result500,
+  },
+  {
+    path: '/result/browser-incompatible',
+    Component: ResultBrowserIncompatible,
   },
 ];

@@ -1,8 +1,8 @@
 import React, { memo, useState } from 'react';
-import { Row, Col, Radio, Table, Button } from '@tencent/tdesign-react';
-import { Icon } from '@tencent/tdesign-icons-react';
+import { Row, Col, Radio, Table, Button } from 'tdesign-react';
+import { Icon } from 'tdesign-icons-react';
 import { Tvision2Area, Tvision2Line, Tvision2Bar, Tvision2Pie } from '@tencent/react-tvision2';
-import type { TdPrimaryTableProps } from '@tencent/tdesign-react/es/table';
+import type { TdPrimaryTableProps } from 'tdesign-react/es/table';
 import classnames from 'classnames';
 
 import {
@@ -90,7 +90,7 @@ const DateRadioGroup = (
 const TopPanel = () => (
   <Row gutter={gutter}>
     {PANE_LIST.map((item, index) => (
-      <Col key={item.title} span={3}>
+      <Col key={item.title} xs={6} xl={3} span={12}>
         <Board subtitle={item.title} dark={index === 0} size='small' style={{ height: 168 }}>
           <PaneBox value={item} dark={index === 0} index={index} />
         </Board>
@@ -109,7 +109,7 @@ const MiddleChart = () => {
   };
   return (
     <Row gutter={gutter} className={Style.rowContainer}>
-      <Col span={9}>
+      <Col xs={12} xl={9} span={12}>
         <Board title=' 统计数据 ' description='(万元)' operation={LastWeekDatePicker(onTimeChange)}>
           <Tvision2Area
             style={{ height: 280 }}
@@ -120,7 +120,7 @@ const MiddleChart = () => {
           />
         </Board>
       </Col>
-      <Col span={3}>
+      <Col xs={12} xl={3} span={12}>
         <Board title=' 销售渠道 ' description='2021-12'>
           <Tvision2Pie
             style={{ width: 280, height: 280, margin: '0 auto' }}
@@ -163,7 +163,7 @@ const getTableColumns = (columns: TdPrimaryTableProps['columns']): TdPrimaryTabl
 // rank list of sale order
 const RankList = () => (
   <Row gutter={gutter} className={Style.rowContainer}>
-    <Col span={6}>
+    <Col xs={12} xl={6} span={12}>
       <Board title='销售订单排名' operation={DateRadioGroup}>
         <Table
           columns={getTableColumns(SALE_COLUMNS)}
@@ -173,7 +173,7 @@ const RankList = () => (
         ></Table>
       </Board>
     </Col>
-    <Col span={6}>
+    <Col xs={12} xl={6} span={12}>
       <Board title='采购订单排名' operation={DateRadioGroup}>
         <Table
           columns={getTableColumns(PURCHASE_COLUMNS)}
@@ -196,7 +196,7 @@ const Overview = (): React.ReactElement => {
   return (
     <div className={classnames(Style.overviewPanel, Style.rowContainer)}>
       <Row>
-        <Col span={9}>
+        <Col xs={12} xl={9} span={12}>
           <Board title=' 出入库概览 ' description='(件)' operation={LastWeekDatePicker(onTimeChange)}>
             <Tvision2Bar
               style={{ height: 351 }}
@@ -207,7 +207,7 @@ const Overview = (): React.ReactElement => {
             ></Tvision2Bar>
           </Board>
         </Col>
-        <Col span={3}>
+        <Col xs={12} xl={3} span={12}>
           <Board operation={<Button>导出数据</Button>}>
             <Row gutter={0}>
               <Col span={12}>

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Steps, Row, Col, Progress, Table, Button, Tag } from 'tdesign-react';
-import { ChevronRightIcon, AddIcon, CartIcon } from '@tencent/tdesign-icons-react';
+import { ChevronRightIcon, AddIcon, CartIcon } from 'tdesign-icons-react';
 import classnames from 'classnames';
 import PageBox from 'components/PageBox';
 import Card from 'components/Card';
