@@ -1,7 +1,8 @@
 import React, { memo, useState } from 'react';
 import { Row, Col, Radio, Table, Button } from 'tdesign-react';
 import { Icon } from 'tdesign-icons-react';
-import { Tvision2Area, Tvision2Line, Tvision2Bar, Tvision2Pie } from '@tencent/react-tvision2';
+import { Tvision2Bar, Tvision2Pie } from '@tencent/react-tvision2';
+import { Tvision2Line, Tvision2Area } from 'components/Charts';
 import type { TdPrimaryTableProps } from 'tdesign-react/es/table';
 import classnames from 'classnames';
 
