@@ -2,7 +2,7 @@ import React, { useState, memo } from 'react';
 import { Row, Col, Button, Dropdown, Tag } from 'tdesign-react';
 import { Icon } from 'tdesign-icons-react';
 import classnames from 'classnames';
-import { Tvision2Line, Tvision2Scatter } from 'components/Charts';
+import { Tvision2Line, Tvision2Scatter } from 'components/Charts/Tvision';
 
 import Board from '../common/Board';
 import Trend from '../common/Trend';
