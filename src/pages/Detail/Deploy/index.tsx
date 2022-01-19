@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect } from 'react';
 import { Row, Col, Radio, Table, Dialog } from 'tdesign-react';
 import type { TableSort, TdPrimaryTableProps } from 'tdesign-react/es/table';
-import { Tvision2Line, Tvision2Bar } from '@tencent/react-tvision2';
+import { Tvision2Line, Tvision2Bar } from 'components/Charts/Tvision';
 import classnames from 'classnames';
 
 import Card from 'components/Card';
