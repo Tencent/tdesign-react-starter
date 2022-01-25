@@ -4,45 +4,40 @@ import type { TableSort, TdPrimaryTableProps } from 'tdesign-react/es/table';
 import { Tvision2Line, Tvision2Bar } from 'components/Charts/Tvision';
 import classnames from 'classnames';
 
+import request from 'utils/request';
+
 import Card from 'components/Card';
 import { TABLE_COLUMNS, BASE_INFO_DATA } from './constant';
-import type { TableModel } from './constant';
 import { getLineOptions, getBarOptions } from './chart';
 
 import Style from './index.module.less';
 import type { EChartOption } from 'echarts';
 
-const getTableData = (): Array<TableModel> => {
-  const list: Array<TableModel> = [];
-  const names = [
-    '沧州市办公用品采购项目',
-    '红河哈尼族彝族自治州办公用品采购项目	',
-    '铜川市办公用品采购项目',
-    '陇南市办公用品采购项目	',
-    '六安市办公用品采购项目	 ',
-  ];
-  const adminNames = ['顾娟	', '常刚', '郑洋'];
-  for (let i = 0; i < 10; i++) {
-    const randomNum = Math.random();
-    list.push({
-      name: names[Math.floor(randomNum * names.length)],
-      adminName: adminNames[Math.floor(randomNum * adminNames.length)],
-      telephone: '+86 13587609955',
-      updateTime: '2020-05-30 10:02:57',
-    });
-  }
-  return list;
-};
-
-const TopChart = () => {
-  const [lineOptions, setLineOptions] = useState<EChartOption>(getLineOptions);
-  const [barOptions, setBarOptions] = useState<EChartOption>(getBarOptions);
+const DynamicLineChart = () => {
+  const [lineOptions, setLineOptions] = useState<EChartOption>(getLineOptions());
   useEffect(() => {
     const timer = setInterval(() => setLineOptions(getLineOptions()), 3000);
     return () => {
       clearInterval(timer);
     };
   }, []);
+
+  return (
+    <>
+      <Tvision2Line
+        style={{ height: 265 }}
+        option={{
+          dataset: [[]],
+          injectOption: (option) => ({ ...option, ...lineOptions }),
+        }}
+      />
+    </>
+  );
+};
+
+const TopChart = () => {
+  const [barOptions, setBarOptions] = useState<EChartOption>(getBarOptions());
+
   const tabChange = (isMonth: boolean) => {
     setBarOptions(getBarOptions(isMonth));
   };
@@ -52,13 +47,7 @@ const TopChart = () => {
       <Col span={6}>
         <Card title='部署趋势'>
           <div className={Style.deployPanelLeft}>
-            <Tvision2Line
-              style={{ height: 265 }}
-              option={{
-                dataset: [[]],
-                injectOption: (option) => ({ ...option, ...lineOptions }),
-              }}
-            />
+            <DynamicLineChart />
           </div>
         </Card>
       </Col>
@@ -125,12 +114,21 @@ const ManagementPopup = ({ visible }: IProps): React.ReactElement => {
 const BottomTable = () => {
   const [sort, setSort] = useState<TableSort>({ sortBy: 'name', descending: true });
   const [visible, setVisible] = useState(false);
-  const [{ tableData }, setTableData] = useState({ tableData: getTableData() });
+  const [{ tableData }, setTableData] = useState({ tableData: [] });
   const pagination = {
     pageSize: 10,
-    total: 38,
+    total: tableData.length,
     pageSizeOptions: [],
   };
+
+  useEffect(() => {
+    request.get('/api/get-project-list').then((res) => {
+      if (res.code === 0) {
+        const { list = [] } = res.data;
+        setTableData({ tableData: list });
+      }
+    });
+  }, []);
 
   const getTableColumns = (columns: TdPrimaryTableProps['columns']): TdPrimaryTableProps['columns'] => {
     if (columns) {
@@ -152,6 +150,9 @@ const BottomTable = () => {
   };
 
   const removeRow = (rowIndex: number) => {
+    console.log(' rowIndex = ', rowIndex);
+    console.log(' tableData = ', tableData);
+
     tableData.splice(rowIndex, 1);
     setTableData({ tableData });
   };
