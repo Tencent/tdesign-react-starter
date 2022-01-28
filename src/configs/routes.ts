@@ -30,12 +30,6 @@ interface IRouteItem {
 }
 
 export const routes: IRouteItem[] = [
-  // {
-  //   key: 'home',
-  //   path: '/',
-  //   exact: true,
-  //   Component: Home,
-  // },
   {
     path: '/dashboard/base',
     Component: DashboardBase,
