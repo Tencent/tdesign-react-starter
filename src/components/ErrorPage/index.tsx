@@ -1,35 +1,46 @@
-import React from 'react';
-import classnames from 'classnames';
+import React, { memo } from 'react';
+import { Button } from 'tdesign-react';
 
-import Style from './index.module.less';
+import Light403Icon from 'assets/images/403.png';
+import Light404Icon from 'assets/images/404.png';
+import Light500Icon from 'assets/images/500.png';
+import style from './index.module.less';
 
-interface IErrorPageProps {
-  code: '403' | '404' | '500';
-  msg?: string;
+type TCode = '403' | '404' | '500';
+interface IErrorProps {
+  code: TCode;
+  title?: string;
+  desc?: string;
 }
 
-const ErrorPage = (props: IErrorPageProps) => {
-  let codeStyle;
+const errorInfo = {
+  '403': {
+    title: '403 Forbidden',
+    desc: '抱歉，您无权限访问此页面',
+    icon: Light403Icon,
+  },
+  '404': {
+    title: '404 Not Found',
+    desc: '抱歉，您访问的页面不存在。',
+    icon: Light404Icon,
+  },
+  '500': {
+    title: '500 Internal Server Error',
+    desc: '抱歉，服务器出错啦！',
+    icon: Light500Icon,
+  },
+};
 
-  switch (props.code) {
-    case '403':
-      codeStyle = Style.error403;
-      break;
-    case '404':
-      codeStyle = Style.error404;
-      break;
-    case '500':
-      codeStyle = Style.error500;
-      break;
-  }
-
+const ErrorPage = (props: IErrorProps) => {
+  const info = errorInfo[props.code];
   return (
-    <div className={Style.errorBox}>
-      <div className={classnames(Style.errorImage, codeStyle)}></div>
-      <div className={Style.errorCode}>{props.code}</div>
-      <div className={Style.errorMsg}>{props.msg ? props.msg : '发生错误'}</div>
+    <div className={style.errorBox}>
+      <img src={info?.icon} className={style.icon} />
+      <div className={style.title}>{info?.title}</div>
+      <div className={style.description}>{info?.desc}</div>
+      <Button theme='primary'>返回首页</Button>
     </div>
   );
 };
 
-export default React.memo(ErrorPage);
+export default memo(ErrorPage);

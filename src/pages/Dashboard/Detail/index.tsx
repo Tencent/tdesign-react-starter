@@ -25,7 +25,7 @@ const PaneBox = ({ count = 0, type = 'up', description }: IProps): React.ReactEl
     <div className={Style.paneBtm}>
       <div>
         环比
-        <Trend type={type} description={description}></Trend>
+        <Trend type={type} description={description} />
       </div>
       <Icon name='chevron-right' />
     </div>
@@ -43,7 +43,7 @@ const MonthPurchase = () => (
                 count={pane.number}
                 type={pane.upTrend ? 'up' : 'down'}
                 description={pane.upTrend || pane.downTrend || ''}
-              ></PaneBox>
+              />
             </Board>
           </Col>
         ))}

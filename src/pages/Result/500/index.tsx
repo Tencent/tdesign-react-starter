@@ -1,16 +1,6 @@
-import React, { memo } from 'react';
-import { Button } from 'tdesign-react';
+import React from 'react';
+import ErrorPage from 'components/ErrorPage';
 
-import Light500Icon from 'assets/images/500-result.png';
-import style from '../index.module.less';
+const ServerError = () => <ErrorPage code='500' />;
 
-const ServerError = () => (
-  <div className={style.Content}>
-    <img src={Light500Icon} className={style.icon} />
-    <div className={style.title}>500 Internal Server Error</div>
-    <div className={style.description}>抱歉，服务器出错啦！</div>
-    <Button theme='primary'>返回首页</Button>
-  </div>
-);
-
-export default memo(ServerError);
+export default React.memo(ServerError);
