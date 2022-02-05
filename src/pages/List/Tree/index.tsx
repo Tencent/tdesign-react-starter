@@ -1,5 +1,6 @@
 import React from 'react';
 import { Input, Tree } from 'tdesign-react';
+import PageBox from 'components/PageBox';
 import './index.less';
 import SelectTable from '../Select/index';
 
@@ -91,7 +92,7 @@ const items = [
 ];
 
 const TreeTable: React.FC = () => (
-  <div className='table-tree-container'>
+  <PageBox className='table-tree-container'>
     <div className='list-tree-wrapper'>
       <div className='list-tree-operator'>
         <Input placeholder='请输入关键词' />
@@ -101,7 +102,7 @@ const TreeTable: React.FC = () => (
         <SelectTable />
       </div>
     </div>
-  </div>
+  </PageBox>
 );
 
 export default TreeTable;

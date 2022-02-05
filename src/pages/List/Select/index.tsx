@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Table, Tag, Dialog } from 'tdesign-react';
-import SearchForm from './components/searchForm';
+import PageBox from 'components/PageBox';
+import SearchForm from './components/SearchForm';
 import Mock from 'mockjs';
-import './index.less';
+import './index.module.less';
 
 let data: any = [];
 const total = 100;
@@ -43,7 +44,7 @@ const selectTable: React.FC = () => {
   }
 
   return (
-    <div className='list-common-table'>
+    <PageBox>
       <SearchForm
         onSubmit={async (value) => {
           console.log(value);
@@ -204,7 +205,7 @@ const selectTable: React.FC = () => {
       <Dialog header='确认删除当前所选合同？' visible={visible} onClose={handleClose}>
         <p>删除后的所有合同信息将被清空,且无法恢复</p>
       </Dialog>
-    </div>
+    </PageBox>
   );
 };
 export default selectTable;

@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, memo } from 'react';
 import { Row, Col, Form, Input, Button, MessagePlugin, FormInstance, Select } from 'tdesign-react';
 import { CONTRACT_STATUS_OPTIONS, CONTRACT_TYPE_OPTIONS } from 'utils/consts';
 const { FormItem } = Form;
 
 export type FormValueType = {
   name?: string;
-  statu?: string;
+  status?: string;
   number?: string;
   time?: string;
   type?: string;
@@ -75,4 +75,4 @@ const SearchForm: React.FC<SearchFormProps> = (props) => {
   );
 };
 
-export default SearchForm;
+export default memo(SearchForm);
