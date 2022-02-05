@@ -3,9 +3,9 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   extends: [
     'plugin:react/recommended',
-    '@tencent/eslint-config-tencent',
-    '@tencent/eslint-config-tencent/ts',
-    '@tencent/eslint-config-tencent/prettier',
+    'eslint-config-tencent',
+    'eslint-config-tencent/ts',
+    'eslint-config-tencent/prettier',
   ],
   env: {
     jest: true,
