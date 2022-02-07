@@ -42,4 +42,3 @@ const getChartDataSet = (dateTime: Array<string> = [], divideNum = 10): ChartVal
 
 export default getChartDataSet;
 export { CHART_LIST_COLOR, getTimeArray, getRandomInt };
-// export type { ChartValue };

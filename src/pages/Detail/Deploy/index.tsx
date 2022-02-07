@@ -1,7 +1,7 @@
 import React, { memo, useState, useEffect } from 'react';
 import { Row, Col, Radio, Table, Dialog } from 'tdesign-react';
 import type { TableSort, TdPrimaryTableProps } from 'tdesign-react/es/table';
-import { Tvision2Line, Tvision2Bar } from 'components/Charts/Tvision';
+import ReactEcharts from 'echarts-for-react';
 import classnames from 'classnames';
 
 import request from 'utils/request';
@@ -23,15 +23,12 @@ const DynamicLineChart = () => {
   }, []);
 
   return (
-    <>
-      <Tvision2Line
-        style={{ height: 265 }}
-        option={{
-          dataset: [[]],
-          injectOption: (option) => ({ ...option, ...lineOptions }),
-        }}
-      />
-    </>
+    <ReactEcharts
+      option={lineOptions} // option：图表配置项
+      notMerge={true}
+      lazyUpdate={true}
+      style={{ height: 265 }}
+    />
   );
 };
 
@@ -61,12 +58,11 @@ const TopChart = () => {
             </Radio.Group>
           }
         >
-          <Tvision2Bar
+          <ReactEcharts
+            option={barOptions} // option：图表配置项
+            notMerge={true}
+            lazyUpdate={true}
             style={{ height: 265 }}
-            option={{
-              dataset: [[]],
-              injectOption: (option) => ({ ...option, ...barOptions }),
-            }}
           />
         </Card>
       </Col>
