@@ -9,7 +9,7 @@ const gutter = [16, 16];
 const TopPanel = () => (
   <Row gutter={gutter}>
     {PANE_LIST.map((item, index) => (
-      <Col key={item.title} xs={6} xl={3} span={12}>
+      <Col key={item.title} xs={6} xl={3}>
         <Board subtitle={item.title} dark={index === 0} size='small' style={{ height: 168 }}>
           <PaneBox value={item} dark={index === 0} index={index} />
         </Board>

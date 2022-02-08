@@ -16,9 +16,10 @@ const MiddleChart = () => {
     const options = getLineChartOptions(value);
     setCustomOptions(options);
   };
+
   return (
     <Row gutter={gutter} className={Style.rowContainer}>
-      <Col xs={12} xl={9} span={12}>
+      <Col xs={12} xl={9}>
         <Board title=' 统计数据 ' description='(万元)' operation={LastWeekDatePicker(onTimeChange)}>
           <ReactEcharts
             option={customOptions} // option：图表配置项
@@ -28,7 +29,7 @@ const MiddleChart = () => {
           />
         </Board>
       </Col>
-      <Col xs={12} xl={3} span={12}>
+      <Col xs={12} xl={3}>
         <Board title=' 销售渠道 ' description='2021-12'>
           <ReactEcharts
             option={pieOptions} // option：图表配置项

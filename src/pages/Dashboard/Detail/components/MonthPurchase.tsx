@@ -5,10 +5,12 @@ import PANE_LIST from '../constant';
 import PaneBox from './PaneBox';
 import React from 'react';
 
+const gutter = [16, 16];
+
 const MonthPurchase = () => (
   <div className={Style.purchaseOverview}>
     <Board title='本月采购申请情况'>
-      <Row gutter={16}>
+      <Row gutter={gutter}>
         {PANE_LIST.map((pane) => (
           <Col key={pane.title} xs={6} xl={3} span={12}>
             <Board description={pane.title} size='small' border={true} style={{ height: 170 }}>

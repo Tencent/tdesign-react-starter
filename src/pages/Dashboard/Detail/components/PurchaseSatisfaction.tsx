@@ -1,11 +1,11 @@
-import { getScatterChartOptions } from '../chart';
 import React, { useState } from 'react';
-import LastWeekDatePicker from '../../common/DatePicker';
 import { Button } from 'tdesign-react';
-import Style from '../index.module.less';
-import classnames from 'classnames';
-import Board from '../../common/Board';
 import ReactEcharts from 'echarts-for-react';
+import classnames from 'classnames';
+import { getScatterChartOptions } from '../chart';
+import LastWeekDatePicker from '../../common/DatePicker';
+import Board from '../../common/Board';
+import Style from '../index.module.less';
 
 const PurchaseSatisfaction = () => {
   const options = getScatterChartOptions();

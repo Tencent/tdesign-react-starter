@@ -1,13 +1,13 @@
-import { getLineChartOptions } from '../chart';
 import React, { useState } from 'react';
 import { Button, Col, Dropdown, Row, Tag } from 'tdesign-react';
+import { Icon } from 'tdesign-icons-react';
+import ReactEcharts from 'echarts-for-react';
 import classnames from 'classnames';
-import Style from '../index.module.less';
+import { getLineChartOptions } from '../chart';
 import Board from '../../common/Board';
 import LastWeekDatePicker from '../../common/DatePicker';
-import ReactEcharts from 'echarts-for-react';
 import { IProduct, PRODUCT } from '../constant';
-import { Icon } from 'tdesign-icons-react';
+import Style from '../index.module.less';
 
 const iconMap = [
   <Icon key='a' name='shop' />,
@@ -70,7 +70,7 @@ const PurchaseTrend = () => {
 
   return (
     <Row className={classnames(Style.purchaseTrend, Style.boardMargin)} gutter={16}>
-      <Col xs={12} xl={9} span={12}>
+      <Col xs={12} xl={9}>
         <Board title='采购商品申请趋势' description='(件)' operation={LastWeekDatePicker(onTimeChange)}>
           <ReactEcharts
             option={customOptions} // option：图表配置项
@@ -80,7 +80,7 @@ const PurchaseTrend = () => {
           />
         </Board>
       </Col>
-      <Col xs={12} xl={3} span={12}>
+      <Col xs={12} xl={3}>
         <ProductBoard {...PRODUCT} />
         <ProductBoard {...PRODUCT} />
       </Col>

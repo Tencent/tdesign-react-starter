@@ -1,7 +1,7 @@
 import React from 'react';
-import Style from '../index.module.less';
-import Trend, { TrendType } from '../../common/Trend';
 import { Icon } from 'tdesign-icons-react';
+import Trend, { TrendType } from '../../common/Trend';
+import Style from '../index.module.less';
 
 interface IProps extends TrendType {
   count: number | string;
