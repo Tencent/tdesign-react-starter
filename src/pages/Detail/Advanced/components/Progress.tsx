@@ -6,18 +6,16 @@ import Style from '../index.module.less';
 
 const { StepItem } = Steps;
 
-const Progress = () => {
-  return (
-    <Card borded={false} title='发票进度' className={Style.cardBox}>
-      <div>
-        <Steps current={stepCurrent}>
-          {dataStep.map((item) => (
-            <StepItem key={item.id} title={item.name} content={item.detail} />
-          ))}
-        </Steps>
-      </div>
-    </Card>
-  );
-};
+const Progress = () => (
+  <Card borded={false} title='发票进度' className={Style.cardBox}>
+    <div>
+      <Steps current={stepCurrent}>
+        {dataStep.map((item) => (
+          <StepItem key={item.id} title={item.name} content={item.detail} />
+        ))}
+      </Steps>
+    </div>
+  </Card>
+);
 
 export default React.memo(Progress);

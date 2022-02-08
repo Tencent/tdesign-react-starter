@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import cx from 'classnames';
 import throttle from 'lodash/throttle';
-import { getPrefixCls, getWidth } from 'utils/utils';
+import { getPrefixCls, getWidth } from './utils';
 
 export interface GridProps {
   prefixCls?: string;

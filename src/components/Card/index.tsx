@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import cx from 'classnames';
 import { Tabs } from 'tdesign-react';
 import { TabsProps, TabPanelProps } from 'tdesign-react/es/tabs';
-import { getPrefixCls } from 'utils/utils';
+import { getPrefixCls } from './utils';
 import Grid from './Grid';
 import './index.less';
 
