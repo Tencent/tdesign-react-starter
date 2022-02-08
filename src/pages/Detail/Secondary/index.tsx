@@ -16,16 +16,8 @@ export default memo(() => (
           <div className={Style.tabsContent}>
             <div className={Style.msgList}>
               <List>
-                {dataItemList.map((item) => (
-                  <ListItem
-                    className={Style.listItem}
-                    key={item.id}
-                    action={
-                      <>
-                        <li>{item.createtime}</li>
-                      </>
-                    }
-                  >
+                {dataItemList.map((item, index) => (
+                  <ListItem className={Style.listItem} key={index} action={<li>{item.createTime}</li>}>
                     <p className={Style.content}>
                       <Tag variant='dark' size='small' className={Style.tag}>
                         {item.tag}

@@ -1,6 +1,6 @@
 import React, { useRef, memo } from 'react';
 import { Row, Col, Form, Input, Button, MessagePlugin, FormInstance, Select } from 'tdesign-react';
-import { CONTRACT_STATUS_OPTIONS, CONTRACT_TYPE_OPTIONS } from 'utils/consts';
+import { CONTRACT_STATUS_OPTIONS, CONTRACT_TYPE_OPTIONS } from '../consts';
 const { FormItem } = Form;
 
 export type FormValueType = {
