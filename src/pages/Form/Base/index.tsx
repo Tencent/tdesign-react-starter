@@ -10,7 +10,6 @@ import {
   Select,
   Textarea,
   Avatar,
-  AvatarGroup,
   Upload,
   MessagePlugin,
 } from 'tdesign-react';
@@ -19,6 +18,7 @@ import Style from './index.module.less';
 
 const { FormItem } = Form;
 const { Option } = Select;
+const { Group: AvatarGroup } = Avatar;
 
 export default memo(() => {
   const [labelAlign] = useState('top' as any);
