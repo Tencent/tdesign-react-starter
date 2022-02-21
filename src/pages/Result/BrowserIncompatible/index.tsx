@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Button } from 'tdesign-react';
 
-import networkErrorIcon from 'assets/images/browser-incompatible.png';
+import networkErrorIcon from 'assets/svg/assets-result-browser-incompatible.svg';
 import style from './index.module.less';
 
 const BrowserIncompatible = () => (

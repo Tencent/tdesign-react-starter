@@ -4,6 +4,8 @@ import ReactEcharts from 'echarts-for-react';
 import classnames from 'classnames';
 import Trend from '../../common/Trend';
 import { DashboardPanel, MICRO_CHART_OPTIONS_BAR, MICRO_CHART_OPTIONS_LINE } from '../constant';
+import useDynamicChartColor from 'utils/hooks/useDynamicChartColor';
+
 import Style from '../index.module.less';
 
 interface IPros extends React.HTMLAttributes<HTMLElement> {
@@ -12,7 +14,7 @@ interface IPros extends React.HTMLAttributes<HTMLElement> {
   index: number;
 }
 
-const asideList: Array<React.ReactElement> = [
+const asideList: Array<JSX.Element | (() => JSX.Element)> = [
   <div key='dashboard-line-chart' className={Style.paneLineChart}>
     <ReactEcharts
       option={MICRO_CHART_OPTIONS_LINE} // option：图表配置项
@@ -21,14 +23,19 @@ const asideList: Array<React.ReactElement> = [
       style={{ height: 56 }}
     />
   </div>,
-  <div key='dashboard-bar-chart' className={Style.paneBarChart}>
-    <ReactEcharts
-      option={MICRO_CHART_OPTIONS_BAR} // option：图表配置项
-      notMerge={true}
-      lazyUpdate={true}
-      style={{ height: 36 }}
-    />
-  </div>,
+  () => {
+    const chartColor = useDynamicChartColor();
+    return (
+      <div key='dashboard-bar-chart' className={Style.paneBarChart}>
+        <ReactEcharts
+          option={{ ...MICRO_CHART_OPTIONS_BAR, color: chartColor }} // option：图表配置项
+          notMerge={true}
+          lazyUpdate={true}
+          style={{ height: 36 }}
+        />
+      </div>
+    );
+  },
   <div key='dashboard-user-icon' className={Style.iconWrap}>
     <Icon name='usergroup' className={Style.svgIcon} />
   </div>,
@@ -42,7 +49,9 @@ const PaneBox = ({ value, dark = false, index = 0 }: IPros) => (
     <div className={Style.paneTop}>
       <span>{value.number}</span>
     </div>
-    <div className={Style.paneSide}>{asideList[index]}</div>
+    <div className={Style.paneSide}>
+      {typeof asideList[index] === 'function' ? (asideList[index] as Function)() : asideList[index]}
+    </div>
     <div className={Style.paneBottom}>
       <div className={Style.bottomBar}>
         自从上周以来

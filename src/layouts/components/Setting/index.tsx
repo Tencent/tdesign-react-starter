@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import { Row, Col, Switch } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
+import { DARK_CHART_COLORS, LIGHT_CHART_COLORS } from 'configs/color';
 import {
   selectGlobal,
   toggleFixedHeader,
@@ -10,6 +11,7 @@ import {
   switchTheme,
   switchColor,
   switchLayout,
+  switchChartColor,
 } from 'modules/global';
 import RadioColor from './RadioColor';
 import RadioRect from './RadioRect';
@@ -54,15 +56,18 @@ export default memo(() => {
   const dispatch = useAppDispatch();
   const globalState = useAppSelector(selectGlobal);
 
+  const handleSwitchTheme = (value: string | number) => {
+    dispatch(switchTheme(value));
+    if (value) {
+      const isDarkMode = value === 'dark';
+      switchChartColor(isDarkMode ? DARK_CHART_COLORS : LIGHT_CHART_COLORS);
+    }
+  };
   return (
     <div>
       <div className={Style.settingTitle}>主题模式</div>
       <div>
-        <RadioRect
-          defaultValue={globalState.theme}
-          onChange={(value) => dispatch(switchTheme(value))}
-          options={themeList}
-        />
+        <RadioRect defaultValue={globalState.theme} onChange={handleSwitchTheme} options={themeList} />
       </div>
 
       <div className={Style.settingTitle}>主题色</div>

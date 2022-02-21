@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
+import { COLOR_TOKEN, TColorSeries, TColorToken, LIGHT_CHART_COLORS } from 'configs/color';
 
 const namespace = 'global';
 
@@ -10,7 +11,6 @@ export interface IGlobalState {
   collapsed: boolean;
   setting: boolean;
   version: string;
-
   color: string;
   theme: TTheme;
   layout: 'layout1' | 'layout2' | 'layout3';
@@ -18,6 +18,8 @@ export interface IGlobalState {
   showHeader: boolean;
   showBreadcrumbs: boolean;
   showFooter: boolean;
+  colorList: TColorSeries;
+  chartColors: TColorToken;
 }
 
 const initialState: IGlobalState = {
@@ -25,14 +27,15 @@ const initialState: IGlobalState = {
   collapsed: window.innerWidth < 1000, // 宽度小于1000 菜单闭合
   setting: false,
   version: '0.0.1',
-
   theme: 'light',
   layout: 'layout1',
-  color: '#0152D9',
+  color: '#0052D9',
   fixedHeader: false,
   showHeader: true,
   showBreadcrumbs: false,
   showFooter: true,
+  colorList: COLOR_TOKEN,
+  chartColors: LIGHT_CHART_COLORS,
 };
 
 // 创建带有命名空间的reducer
@@ -80,11 +83,17 @@ const globalSlice = createSlice({
         state.layout = action?.payload;
       }
     },
+    switchChartColor(state, action) {
+      if (action?.payload) {
+        state.chartColors = action?.payload;
+      }
+    },
   },
   extraReducers: () => {},
 });
 
 export const selectGlobal = (state: RootState) => state.global;
+
 export const {
   toggleMenu,
   toggleSetting,
@@ -95,5 +104,7 @@ export const {
   switchTheme,
   switchColor,
   switchLayout,
+  switchChartColor,
 } = globalSlice.actions;
+
 export default globalSlice.reducer;

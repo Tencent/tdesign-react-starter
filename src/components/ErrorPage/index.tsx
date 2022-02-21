@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 import { Button } from 'tdesign-react';
 
-import Light403Icon from 'assets/images/403.png';
-import Light404Icon from 'assets/images/404.png';
-import Light500Icon from 'assets/images/500.png';
+import Light403Icon from 'assets/svg/assets-result-403.svg';
+import Light404Icon from 'assets/svg/assets-result-404.svg';
+import Light500Icon from 'assets/svg/assets-result-500.svg';
 import style from './index.module.less';
 
 type TCode = '403' | '404' | '500';
