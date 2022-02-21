@@ -7,7 +7,7 @@ interface IProps {
   onChange: (color: string) => void;
 }
 
-const colors = ['#0152D9', '#844DC2', '#0794F9', '#05A86F', '#EBB102', '#E34D59', '#EC49B4', '#000'];
+const colors = ['#0052D9', '#0594FA', '#00A870', '#EBB105', '#ED7B2F', '#E34D59', '#ED49B4', '#834EC2'];
 
 export default memo((props: IProps) => {
   const [selectedColor, setSelectedColor] = useState(props.defaultValue);

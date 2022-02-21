@@ -3,13 +3,18 @@ import { getBarChartOptions } from '../chart';
 import classnames from 'classnames';
 import { Button, Col, Row } from 'tdesign-react';
 import ReactEcharts from 'echarts-for-react';
+
 import Board from '../../common/Board';
 import LastWeekDatePicker from '../../common/DatePicker';
 import PaneBox from './PaneBox';
 import { INVENTORY_OVERVIEW } from '../constant';
+import useDynamicChartColor from 'utils/hooks/useDynamicChartColor';
+
 import Style from '../index.module.less';
 
 const Overview = (): React.ReactElement => {
+  const chartColor = useDynamicChartColor();
+
   const options = getBarChartOptions();
   const [customOptions, setCustomOptions] = useState(options);
   const onTimeChange = (value: Array<string>) => {
@@ -22,7 +27,7 @@ const Overview = (): React.ReactElement => {
         <Col xs={12} xl={9} span={12}>
           <Board title=' 出入库概览 ' description='(件)' operation={LastWeekDatePicker(onTimeChange)}>
             <ReactEcharts
-              option={customOptions} // option：图表配置项
+              option={{ ...customOptions, color: chartColor }} // option：图表配置项
               notMerge={true}
               lazyUpdate={true}
               style={{ height: 351 }}

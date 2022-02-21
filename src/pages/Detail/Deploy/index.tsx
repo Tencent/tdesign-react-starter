@@ -12,9 +12,12 @@ import { getLineOptions, getBarOptions } from './chart';
 
 import Style from './index.module.less';
 import type { EChartOption } from 'echarts';
+import useDynamicChartColor from 'utils/hooks/useDynamicChartColor';
 
 const DynamicLineChart = () => {
   const [lineOptions, setLineOptions] = useState<EChartOption>(getLineOptions());
+  const chartColor = useDynamicChartColor();
+
   useEffect(() => {
     const timer = setInterval(() => setLineOptions(getLineOptions()), 3000);
     return () => {
@@ -24,7 +27,7 @@ const DynamicLineChart = () => {
 
   return (
     <ReactEcharts
-      option={lineOptions} // option：图表配置项
+      option={{ ...lineOptions, color: chartColor }} // option：图表配置项
       notMerge={true}
       lazyUpdate={true}
       style={{ height: 265 }}
@@ -38,7 +41,7 @@ const TopChart = () => {
   const tabChange = (isMonth: boolean) => {
     setBarOptions(getBarOptions(isMonth));
   };
-
+  const chartColor = useDynamicChartColor();
   return (
     <Row gutter={16}>
       <Col span={6}>
@@ -59,7 +62,7 @@ const TopChart = () => {
           }
         >
           <ReactEcharts
-            option={barOptions} // option：图表配置项
+            option={{ ...barOptions, color: chartColor }} // option：图表配置项
             notMerge={true}
             lazyUpdate={true}
             style={{ height: 265 }}

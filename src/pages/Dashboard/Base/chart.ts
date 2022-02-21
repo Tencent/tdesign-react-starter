@@ -7,7 +7,6 @@ import getChartDataSet from '../common/chart';
 const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
   const [timeArray, inArray, outArray] = getChartDataSet(dateTime);
   return {
-    color: CHART_LIST_COLOR,
     tooltip: {
       trigger: 'item',
     },
@@ -87,7 +86,6 @@ const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
 };
 
 const getPieChartOptions = (radius = 42): EChartOption => ({
-  color: CHART_LIST_COLOR,
   tooltip: {
     trigger: 'item',
   },
