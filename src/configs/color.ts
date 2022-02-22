@@ -1,4 +1,3 @@
-import hexToHsl from 'hex-to-hsl';
 import { useAppSelector } from 'modules/store';
 import { selectGlobal } from 'modules/global';
 
@@ -137,14 +136,14 @@ export const COLOR_TOKEN: TColorSeries = {
   },
 };
 
-export const LIGHT_CHART_COLORS: TColorToken = {
+export const LIGHT_CHART_COLORS = {
   textColor: 'rgba(0, 0, 0, 0.9)',
   placeholderColor: 'rgba(0, 0, 0, 0.35)',
   borderColor: '#dcdcdc',
   containerColor: '#fff',
 };
 
-export const DARK_CHART_COLORS: TColorToken = {
+export const DARK_CHART_COLORS = {
   textColor: 'rgba(255, 255, 255, 0.9)',
   placeholderColor: 'rgba(255, 255, 255, 0.35)',
   borderColor: '#5e5e5e',
@@ -166,72 +165,6 @@ export function getColorList(colorArray: Array<TColorToken>): Array<string> {
 
   return pureColorList;
 }
-// inspired by https://stackoverflow.com/questions/36721830/convert-hsl-to-rgb-and-hex
-export function hslToHex(h: number, s: number, l: number) {
-  // eslint-disable-next-line no-param-reassign
-  l = l / 100;
-  const a = (s * Math.min(l, 1 - l)) / 100;
-  const f = (n: number) => {
-    const k = (n + h / 30) % 12;
-    const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-    return Math.round(255 * color)
-      .toString(16)
-      .padStart(2, '0');
-  };
-  return `#${f(0)}${f(8)}${f(4)}`;
-}
-
-export function generateColorMap(theme: string, colorPalette: Array<string>, mode: 'light' | 'dark') {
-  const isDarkMode = mode === 'dark';
-  let brandColorIdx = colorPalette.indexOf(theme);
-
-  if (isDarkMode) {
-    // eslint-disable-next-line no-use-before-define
-    colorPalette.reverse().map((color) => {
-      const [h, s, l] = hexToHsl(color);
-      return hslToHex(h, s - 4, l);
-    });
-    brandColorIdx = 5;
-    colorPalette[0] = `${colorPalette[brandColorIdx]}20`;
-  }
-
-  const colorMap = {
-    '@brand-color': colorPalette[brandColorIdx], // 主题色
-    '@brand-color-1': colorPalette[0], // light
-    '@brand-color-2': colorPalette[1], // focus
-    '@brand-color-3': colorPalette[2], // disabled
-    '@brand-color-4': colorPalette[3],
-    '@brand-color-5': colorPalette[4],
-    '@brand-color-6': colorPalette[5],
-    '@brand-color-7': brandColorIdx > 0 ? colorPalette[brandColorIdx - 1] : theme, // hover
-    '@brand-color-8': colorPalette[brandColorIdx], // 主题色
-    '@brand-color-9': brandColorIdx > 8 ? theme : colorPalette[brandColorIdx + 1], // click
-    '@brand-color-10': colorPalette[9],
-  };
-  return colorMap;
-}
-export function insertThemeStylesheet(theme: string, colorMap: TColorToken, mode: 'light' | 'dark') {
-  const isDarkMode = mode === 'dark';
-  const root = !isDarkMode ? `:root[theme-color='${theme}']` : `:root[theme-color='${theme}'][theme-mode='dark']`;
-
-  const styleSheet = document.createElement('style');
-  styleSheet.type = 'text/css';
-  styleSheet.innerText = `${root}{
-    --td-brand-color: ${colorMap['@brand-color']};
-    --td-brand-color-1: ${colorMap['@brand-color-1']};
-    --td-brand-color-2: ${colorMap['@brand-color-2']};
-    --td-brand-color-3: ${colorMap['@brand-color-3']};
-    --td-brand-color-4: ${colorMap['@brand-color-4']};
-    --td-brand-color-5: ${colorMap['@brand-color-5']};
-    --td-brand-color-6: ${colorMap['@brand-color-6']};
-    --td-brand-color-7: ${colorMap['@brand-color-7']};
-    --td-brand-color-8: ${colorMap['@brand-color-8']};
-    --td-brand-color-9: ${colorMap['@brand-color-9']};
-    --td-brand-color-10: ${colorMap['@brand-color-10']};
-  }`;
-
-  document.head.appendChild(styleSheet);
-}
 
 /**
  * 依据主题类型获取颜色
@@ -246,11 +179,9 @@ export function getColorFromTheme(theme: string): Array<string> {
   const { colorList, theme: mode } = state;
 
   const isDarkMode = mode === 'dark';
-  console.log(mode, 'mode');
   let themeColorList = [];
   const themeColor = getBrandColor(theme, colorList);
-
-  if (!/^#[A-F\d]{6}$/i.test(theme)) {
+  if (!/^#[A-F\d]{6}$/i.test(theme) || defaultLightColor.includes(theme.toLocaleLowerCase())) {
     // eslint-disable-next-line no-param-reassign
     theme = themeColor?.['@brand-color'] || '#0052D9';
     const themIdx = defaultLightColor.indexOf(theme.toLocaleLowerCase());
@@ -271,8 +202,15 @@ export function getColorFromTheme(theme: string): Array<string> {
   return themeColorList;
 }
 
-export function getChartListColor(color: string): Array<string> {
-  const res = getColorFromTheme(color);
-
-  return res;
+export function getChartColor(color: string) {
+  const finalColor = getColorFromTheme(color);
+  const state = useAppSelector(selectGlobal);
+  const { theme } = state;
+  if (theme === 'dark') {
+    return {
+      ...DARK_CHART_COLORS,
+      colorList: finalColor,
+    };
+  }
+  return { ...LIGHT_CHART_COLORS, colorList: finalColor };
 }

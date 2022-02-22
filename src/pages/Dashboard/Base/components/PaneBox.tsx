@@ -4,7 +4,7 @@ import ReactEcharts from 'echarts-for-react';
 import classnames from 'classnames';
 import Trend from '../../common/Trend';
 import { DashboardPanel, MICRO_CHART_OPTIONS_BAR, MICRO_CHART_OPTIONS_LINE } from '../constant';
-import useDynamicChartColor from 'utils/hooks/useDynamicChartColor';
+import useDynamicChart from 'utils/hooks/useDynamicChart';
 
 import Style from '../index.module.less';
 
@@ -24,11 +24,11 @@ const asideList: Array<JSX.Element | (() => JSX.Element)> = [
     />
   </div>,
   () => {
-    const chartColor = useDynamicChartColor();
+    const dynamicChartOption = useDynamicChart(MICRO_CHART_OPTIONS_BAR);
     return (
       <div key='dashboard-bar-chart' className={Style.paneBarChart}>
         <ReactEcharts
-          option={{ ...MICRO_CHART_OPTIONS_BAR, color: chartColor }} // option：图表配置项
+          option={dynamicChartOption} // option：图表配置项
           notMerge={true}
           lazyUpdate={true}
           style={{ height: 36 }}

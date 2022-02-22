@@ -9,7 +9,6 @@ export function getLineOptions(dateTime: any = []): EChartOption {
   }
 
   return {
-    color: CHART_LIST_COLOR,
     tooltip: {
       trigger: 'item',
     },
@@ -24,9 +23,6 @@ export function getLineOptions(dateTime: any = []): EChartOption {
       type: 'category',
       data: dateArray,
       boundaryGap: false,
-      axisLabel: {
-        color: 'rgba(0, 0, 0, 0.4)',
-      },
       axisLine: {
         lineStyle: {
           color: '#E3E6EB',
@@ -36,9 +32,6 @@ export function getLineOptions(dateTime: any = []): EChartOption {
     },
     yAxis: {
       type: 'value',
-      axisLabel: {
-        color: 'rgba(0, 0, 0, 0.4)',
-      },
     },
     legend: {
       data: ['本月', '上月'],
@@ -62,7 +55,6 @@ export function getLineOptions(dateTime: any = []): EChartOption {
         ],
         type: 'line',
         smooth: true,
-        // color: CHART_LIST_COLOR[0],
         showSymbol: true,
         symbol: 'circle',
         symbolSize: 8,
@@ -86,7 +78,6 @@ export function getLineOptions(dateTime: any = []): EChartOption {
         showSymbol: true,
         symbol: 'circle',
         symbolSize: 8,
-        // color: CHART_LIST_COLOR[1],
       },
     ],
   };
@@ -121,9 +112,6 @@ export function getBarOptions(isMonth = false): EChartOption {
         data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
         axisTick: {
           alignWithLabel: true,
-        },
-        axisLabel: {
-          color: 'rgba(0, 0, 0, 0.4)',
         },
         axisLine: {
           lineStyle: {

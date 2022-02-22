@@ -5,18 +5,21 @@ import classnames from 'classnames';
 import { getScatterChartOptions } from '../chart';
 import LastWeekDatePicker from '../../common/DatePicker';
 import Board from '../../common/Board';
-import useDynamicChartColor from 'utils/hooks/useDynamicChartColor';
+import useDynamicChart from 'utils/hooks/useDynamicChart';
 
 import Style from '../index.module.less';
 
 const PurchaseSatisfaction = () => {
-  const chartColor = useDynamicChartColor();
   const options = getScatterChartOptions();
   const [customOptions, setCustomOptions] = useState(options);
   const onTimeChange = (value: Array<string>) => {
     const options = getScatterChartOptions(value);
     setCustomOptions(options);
   };
+
+  const dynamicChartOption = useDynamicChart(customOptions, {
+    placeholderColor: ['legend.textStyle.color', 'xAxis.axisLabel.color', 'yAxis.axisLabel.color'],
+  });
 
   const actionComp = (): React.ReactElement => (
     <>
@@ -28,7 +31,7 @@ const PurchaseSatisfaction = () => {
     <div className={classnames(Style.purchaseSatisfaction, Style.boardMargin)}>
       <Board title='采购商品满意度分布' operation={actionComp()}>
         <ReactEcharts
-          option={{ ...customOptions, color: chartColor }} // option：图表配置项
+          option={dynamicChartOption} // option：图表配置项
           notMerge={true}
           lazyUpdate={true}
           style={{ height: 374 }}

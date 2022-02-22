@@ -8,26 +8,29 @@ import Board from '../../common/Board';
 import LastWeekDatePicker from '../../common/DatePicker';
 import PaneBox from './PaneBox';
 import { INVENTORY_OVERVIEW } from '../constant';
-import useDynamicChartColor from 'utils/hooks/useDynamicChartColor';
+import useDynamicChart from 'utils/hooks/useDynamicChart';
 
 import Style from '../index.module.less';
 
 const Overview = (): React.ReactElement => {
-  const chartColor = useDynamicChartColor();
-
   const options = getBarChartOptions();
   const [customOptions, setCustomOptions] = useState(options);
   const onTimeChange = (value: Array<string>) => {
     const options = getBarChartOptions(value);
     setCustomOptions(options);
   };
+
+  const dynamicChartOption = useDynamicChart(customOptions, {
+    placeholderColor: ['legend.textStyle.color', 'xAxis.axisLabel.color', 'yAxis.axisLabel.color'],
+  });
+
   return (
     <div className={classnames(Style.overviewPanel, Style.rowContainer)}>
       <Row>
         <Col xs={12} xl={9} span={12}>
           <Board title=' 出入库概览 ' description='(件)' operation={LastWeekDatePicker(onTimeChange)}>
             <ReactEcharts
-              option={{ ...customOptions, color: chartColor }} // option：图表配置项
+              option={dynamicChartOption} // option：图表配置项
               notMerge={true}
               lazyUpdate={true}
               style={{ height: 351 }}

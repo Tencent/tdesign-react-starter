@@ -24,16 +24,12 @@ const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
       data: ['本月', '上月'],
       textStyle: {
         fontSize: 12,
-        color: 'rgba(0, 0, 0, 0.6)',
       },
     },
     xAxis: {
       type: 'category',
       data: timeArray,
       boundaryGap: false,
-      axisLabel: {
-        color: 'rgba(0, 0, 0, 0.4)',
-      },
       axisLine: {
         lineStyle: {
           color: '#E3E6EB',
@@ -43,9 +39,6 @@ const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
     },
     yAxis: {
       type: 'value',
-      axisLabel: {
-        color: 'rgba(0, 0, 0, 0.4)',
-      },
     },
     series: [
       {
@@ -57,7 +50,6 @@ const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
         symbol: 'circle',
         symbolSize: 8,
         itemStyle: {
-          borderColor: '#ffffff',
           borderWidth: 1,
         },
         areaStyle: {
@@ -73,11 +65,6 @@ const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
         symbol: 'circle',
         symbolSize: 8,
         itemStyle: {
-          borderColor: '#ffffff',
-          color: '#BCC4D0',
-          lineStyle: {
-            color: '#BCC4D0',
-          },
           borderWidth: 1,
         },
       },
@@ -98,7 +85,6 @@ const getPieChartOptions = (radius = 42): EChartOption => ({
     itemHeight: 4,
     textStyle: {
       fontSize: 12,
-      color: 'rgba(0, 0, 0, 0.6)',
     },
     left: 'center',
     bottom: '0',
@@ -116,7 +102,6 @@ const getPieChartOptions = (radius = 42): EChartOption => ({
         formatter: ['{value|{d}%}', '{name|{b}渠道占比}'].join('\n'),
         rich: {
           value: {
-            color: '#303133',
             fontSize: 28,
             fontWeight: 'normal',
             lineHeight: 46,
@@ -134,7 +119,6 @@ const getPieChartOptions = (radius = 42): EChartOption => ({
           formatter: ['{value|{d}%}', '{name|{b}渠道占比}'].join('\n'),
           rich: {
             value: {
-              color: '#303133',
               fontSize: 28,
               fontWeight: 'normal',
               lineHeight: 46,
@@ -168,9 +152,6 @@ const getBarChartOptions = (dateTime: Array<string> = []): EChartOption => {
     xAxis: {
       type: 'category',
       data: timeArray,
-      axisLabel: {
-        color: 'rgba(0, 0, 0, 0.4)',
-      },
       axisLine: {
         lineStyle: {
           color: CHART_LIST_COLOR[1],
@@ -180,9 +161,6 @@ const getBarChartOptions = (dateTime: Array<string> = []): EChartOption => {
     },
     yAxis: {
       type: 'value',
-      axisLabel: {
-        color: 'rgba(0, 0, 0, 0.4)',
-      },
     },
     grid: {
       top: '5%',

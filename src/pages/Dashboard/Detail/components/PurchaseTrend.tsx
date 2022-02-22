@@ -8,7 +8,7 @@ import { getLineChartOptions } from '../chart';
 import Board from '../../common/Board';
 import LastWeekDatePicker from '../../common/DatePicker';
 import { IProduct, PRODUCT } from '../constant';
-import useDynamicChartColor from 'utils/hooks/useDynamicChartColor';
+import useDynamicChart from 'utils/hooks/useDynamicChart';
 
 import Style from '../index.module.less';
 
@@ -65,21 +65,22 @@ const ProductBoard = ({ type, isSetup, description, name }: IProduct): React.Rea
 };
 
 const PurchaseTrend = () => {
-  const chartColor = useDynamicChartColor();
-
   const options = getLineChartOptions();
   const [customOptions, setCustomOptions] = useState(options);
   const onTimeChange = (value: Array<string>) => {
     const options = getLineChartOptions(value);
     setCustomOptions(options);
   };
+  const dynamicChartOptions = useDynamicChart(customOptions, {
+    placeholderColor: ['legend.textStyle.color', 'xAxis.axisLabel.color', 'yAxis.axisLabel.color'],
+  });
 
   return (
     <Row className={classnames(Style.purchaseTrend, Style.boardMargin)} gutter={16}>
       <Col xs={12} xl={9}>
         <Board title='采购商品申请趋势' description='(件)' operation={LastWeekDatePicker(onTimeChange)}>
           <ReactEcharts
-            option={{ ...customOptions, color: chartColor }} // option：图表配置项
+            option={dynamicChartOptions} // option：图表配置项
             notMerge={true}
             lazyUpdate={true}
             style={{ height: 416 }}
