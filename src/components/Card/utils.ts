@@ -27,6 +27,7 @@ export interface GetWidthParams {
 
 // 按传入的顺序优先级获取响应式Col的值
 export const getColValue = (values: (number | undefined)[]) => {
+  // eslint-disable-next-line no-restricted-syntax
   for (const item of values) {
     if (isNumber(item)) {
       return item;

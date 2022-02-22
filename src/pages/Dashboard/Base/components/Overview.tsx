@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { getBarChartOptions } from '../chart';
 import classnames from 'classnames';
 import { Button, Col, Row } from 'tdesign-react';
 import ReactEcharts from 'echarts-for-react';
+import useDynamicChart from 'utils/hooks/useDynamicChart';
 
 import Board from '../../common/Board';
 import LastWeekDatePicker from '../../common/DatePicker';
 import PaneBox from './PaneBox';
 import { INVENTORY_OVERVIEW } from '../constant';
-import useDynamicChart from 'utils/hooks/useDynamicChart';
+import { getBarChartOptions } from '../chart';
 
 import Style from '../index.module.less';
 
@@ -16,6 +16,7 @@ const Overview = (): React.ReactElement => {
   const options = getBarChartOptions();
   const [customOptions, setCustomOptions] = useState(options);
   const onTimeChange = (value: Array<string>) => {
+    // eslint-disable-next-line no-shadow
     const options = getBarChartOptions(value);
     setCustomOptions(options);
   };

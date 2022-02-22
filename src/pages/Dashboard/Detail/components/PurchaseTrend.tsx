@@ -68,6 +68,7 @@ const PurchaseTrend = () => {
   const options = getLineChartOptions();
   const [customOptions, setCustomOptions] = useState(options);
   const onTimeChange = (value: Array<string>) => {
+    // eslint-disable-next-line no-shadow
     const options = getLineChartOptions(value);
     setCustomOptions(options);
   };

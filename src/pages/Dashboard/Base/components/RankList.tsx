@@ -4,7 +4,7 @@ import { TdPrimaryTableProps } from 'tdesign-react/es/table';
 import classnames from 'classnames';
 import Board from '../../common/Board';
 import Trend from '../../common/Trend';
-import { PURCHASE_COLUMNS, PURCHASE_TREND_LIST, SALE_COLUMNS, SALE_Trend_LIST } from '../constant';
+import { PURCHASE_COLUMNS, PURCHASE_TREND_LIST, SALE_COLUMNS, SALE_TREND_LIST } from '../constant';
 import Style from '../index.module.less';
 
 const gutter = [16, 16];
@@ -49,7 +49,7 @@ const RankList = () => (
           columns={getTableColumns(SALE_COLUMNS)}
           rowKey='productName'
           size='medium'
-          data={SALE_Trend_LIST}
+          data={SALE_TREND_LIST}
         ></Table>
       </Board>
     </Col>

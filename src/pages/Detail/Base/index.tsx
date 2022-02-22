@@ -5,6 +5,7 @@ import PageBox from 'components/PageBox';
 import Card from 'components/Card';
 import { dataInfo, dataStep, stepCurrent } from './consts';
 import Style from './index.module.less';
+
 const { StepItem } = Steps;
 
 export default memo(() => (

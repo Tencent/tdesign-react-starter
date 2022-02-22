@@ -13,6 +13,7 @@ const PurchaseSatisfaction = () => {
   const options = getScatterChartOptions();
   const [customOptions, setCustomOptions] = useState(options);
   const onTimeChange = (value: Array<string>) => {
+    // eslint-disable-next-line no-shadow
     const options = getScatterChartOptions(value);
     setCustomOptions(options);
   };

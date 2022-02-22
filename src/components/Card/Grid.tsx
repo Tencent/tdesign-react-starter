@@ -30,6 +30,7 @@ const Grid: React.FC<GridProps> = (props) => {
 
   useEffect(() => {
     const getColValue = throttle(() => {
+      // eslint-disable-next-line no-shadow
       const width = getWidth({ xs, sm, md, lg, xl, xxl, span });
       setColValue(width);
     }, 500);

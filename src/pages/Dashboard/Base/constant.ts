@@ -45,7 +45,7 @@ export const PANE_LIST: Array<DashboardPanel> = [
   },
 ];
 
-export const SALE_Trend_LIST: Array<TrendItem> = [
+export const SALE_TREND_LIST: Array<TrendItem> = [
   {
     growUp: 1,
     productName: '国家电网有限公司',

@@ -1,6 +1,7 @@
 import React, { useRef, memo } from 'react';
-import { Row, Col, Form, Input, Button, MessagePlugin, FormInstance, Select } from 'tdesign-react';
+import { Row, Col, Form, Input, Button, MessagePlugin, Select } from 'tdesign-react';
 import { CONTRACT_STATUS_OPTIONS, CONTRACT_TYPE_OPTIONS } from '../consts';
+
 const { FormItem } = Form;
 
 export type FormValueType = {
@@ -17,7 +18,7 @@ export type SearchFormProps = {
 };
 
 const SearchForm: React.FC<SearchFormProps> = (props) => {
-  const formRef = useRef<FormInstance>();
+  const formRef = useRef<any>();
   const onSubmit = (e: any) => {
     if (e.validateResult === true) {
       MessagePlugin.info('提交成功');

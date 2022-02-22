@@ -3,6 +3,7 @@ import proxy from '../configs/host';
 
 // const env = import.meta.env.MODE || 'development';
 
+// eslint-disable-next-line no-restricted-globals
 const env = location.hostname === 'localhost' ? 'mock' : 'release';
 const API_HOST = env === 'mock' ? '/' : proxy.test.API; // 如果是mock模式 就不配置host 会走本地Mock拦截
 
@@ -37,6 +38,7 @@ instance.interceptors.retry = 3;
 instance.interceptors.request.use((config) => config);
 
 instance.interceptors.response.use(
+  // eslint-disable-next-line consistent-return
   (response) => {
     if (response.status === 200) {
       const { data } = response;

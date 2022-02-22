@@ -133,6 +133,14 @@ const BottomTable = () => {
     });
   }, []);
 
+  const removeRow = (rowIndex: number) => {
+    console.log(' rowIndex = ', rowIndex);
+    console.log(' tableData = ', tableData);
+
+    tableData.splice(rowIndex, 1);
+    setTableData({ tableData });
+  };
+
   const getTableColumns = (columns: TdPrimaryTableProps['columns']): TdPrimaryTableProps['columns'] => {
     if (columns) {
       columns[4].cell = (context) => {
@@ -152,14 +160,6 @@ const BottomTable = () => {
     return columns;
   };
 
-  const removeRow = (rowIndex: number) => {
-    console.log(' rowIndex = ', rowIndex);
-    console.log(' tableData = ', tableData);
-
-    tableData.splice(rowIndex, 1);
-    setTableData({ tableData });
-  };
-
   return (
     <>
       <Card title='项目列表' style={{ marginTop: 16 }}>
@@ -169,7 +169,7 @@ const BottomTable = () => {
           pagination={pagination}
           data={tableData}
           sort={sort}
-          onSortChange={(sort: TableSort) => setSort(sort)}
+          onSortChange={(newSort: TableSort) => setSort(newSort)}
         ></Table>
       </Card>
       {visible && <ManagementPopup visible={visible} />}

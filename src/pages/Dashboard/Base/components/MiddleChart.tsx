@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Col, Row } from 'tdesign-react';
 import ReactEcharts from 'echarts-for-react';
 
+import useDynamicChart from 'utils/hooks/useDynamicChart';
 import Board from '../../common/Board';
 import LastWeekDatePicker from '../../common/DatePicker';
 import { getLineChartOptions, getPieChartOptions } from '../chart';
-import useDynamicChart from 'utils/hooks/useDynamicChart';
 import Style from '../index.module.less';
 
 const gutter = [16, 16];

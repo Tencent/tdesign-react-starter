@@ -22,6 +22,7 @@ export default function useDynamicChart(
   if (options) {
     options = lodashSet(options, 'color', dynamicColor.colorList); // 设置动态的图表颜色
     lodashMap(configs, (config, configKey: TChartColorKey) => {
+      // eslint-disable-next-line no-return-assign
       config?.map((v) => (options = lodashSet(options, `${v}`, dynamicColor[configKey])));
     });
     return { ...options };

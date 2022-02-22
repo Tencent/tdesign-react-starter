@@ -10,7 +10,13 @@ import MenuLogoMini from './MenuLogoMini';
 import Style from './Menu.module.less';
 
 const { SubMenu, MenuItem, HeadMenu } = Menu;
+interface IMenuProps {
+  showLogo?: boolean;
+  showOperation?: boolean;
+  theme?: 'light' | 'dark';
+}
 
+// eslint-disable-next-line no-shadow
 const renderMenuItems = (menu: IMenuItem[]) =>
   menu.map((item) => {
     const history = useHistory();
@@ -52,12 +58,6 @@ export const HeaderMenu = memo((props: IMenuProps) => {
     </HeadMenu>
   );
 });
-
-interface IMenuProps {
-  showLogo?: boolean;
-  showOperation?: boolean;
-  theme?: 'light' | 'dark';
-}
 
 export default memo((props: IMenuProps) => {
   const location = useLocation();
