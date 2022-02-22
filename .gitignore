@@ -17,12 +17,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# tencent dwt files
-dwt-cases.yml
-dwt-junit.xml
-dwt-reporter.html
-dwt-result.json
-dwt-tmp-result
+
 
 # code editor setting
 /.vscode

@@ -5,4 +5,4 @@ if [[ `uname` == 'Darwin' ]]; then
   PATH="/usr/local/bin:$PATH"
 fi
 
-npm run lintfix
+npm run lint:fix
