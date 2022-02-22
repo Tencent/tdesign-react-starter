@@ -5,7 +5,7 @@ const { Footer } = Layout;
 
 const LFooter = () => (
   <Footer>
-    <Row justify='center'>Copyright @ 2021-2021 Tencent. All Rights Reserved</Row>
+    <Row justify='center'>Copyright @ 2022-2022 Tencent. All Rights Reserved</Row>
   </Footer>
 );
 
