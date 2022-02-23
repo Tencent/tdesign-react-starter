@@ -30,17 +30,6 @@ TDesign React Starter 是一个基于 tdesign-react，使用 `React`、`Vite2`�
 - 多种空间布局
 - 内置 Mock 数据方案
 
-### 使用
-
-> 通过 [tdesign-starter-cli](https://www.npmjs.com/package/tdesign-starter-cli) 初始化项目仓库
-
-```bash
-## 1、安装 tdesign-starter-cli
-npm i tdesign-starter-cli@latest -g
-
-## 2、创建项目
-td-starter init
-```
 
 ### 开发
 
