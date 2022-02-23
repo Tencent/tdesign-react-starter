@@ -65,7 +65,7 @@ export default memo((props: IMenuProps) => {
 
   const { version } = globalState;
   const bottomText = globalState.collapsed ? version : `TDesign Starter ${version}`;
-  const Logo = globalState.collapsed ? <MenuLogoMini /> : <MenuLogo />;
+  const Logo = globalState.collapsed ? <MenuLogoMini /> : <MenuLogo theme={props.theme} />;
 
   return (
     <Menu

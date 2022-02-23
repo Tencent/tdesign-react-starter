@@ -26,7 +26,7 @@ const initialState: IGlobalState = {
   loading: true,
   collapsed: window.innerWidth < 1000, // 宽度小于1000 菜单闭合
   setting: false,
-  version: '0.0.1',
+  version: '0.1.0',
   theme: 'light',
   layout: 'layout1',
   color: '#0052D9',
