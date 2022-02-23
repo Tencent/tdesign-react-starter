@@ -1,9 +1,0 @@
-$:
-  push:
-    - stages:
-      - name: 测试用例检查
-        script: npm i --registry=https://mirrors.tencent.com/npm && npm run test
-      - name: 上传测试覆盖率
-        type: qcoverage:upload
-        options:
-          macaron: e77c4d75-626b-443f-afcc-e208866e
