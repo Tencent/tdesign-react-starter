@@ -5,7 +5,6 @@ import { menu, IMenuItem } from 'configs/menu';
 import { useAppSelector } from 'modules/store';
 import { selectGlobal } from 'modules/global';
 import MenuLogo from './MenuLogo';
-import MenuLogoMini from './MenuLogoMini';
 
 import Style from './Menu.module.less';
 
@@ -65,7 +64,6 @@ export default memo((props: IMenuProps) => {
 
   const { version } = globalState;
   const bottomText = globalState.collapsed ? version : `TDesign Starter ${version}`;
-  const Logo = globalState.collapsed ? <MenuLogoMini /> : <MenuLogo />;
 
   return (
     <Menu
@@ -73,11 +71,9 @@ export default memo((props: IMenuProps) => {
       style={{ flexShrink: 0, height: '100%' }}
       value={location.pathname}
       theme={props.theme}
-      // expanded={['level1']}
       collapsed={globalState.collapsed}
-      // onChange={(v) => setActive(v)}
       operations={props.showOperation ? <div className={Style.menuTip}>{bottomText}</div> : undefined}
-      logo={props.showLogo ? Logo : undefined}
+      logo={props.showLogo ? <MenuLogo theme={props.theme} collapsed={globalState.collapsed} /> : undefined}
     >
       {renderMenuItems(menu)}
     </Menu>

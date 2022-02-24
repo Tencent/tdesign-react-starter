@@ -14,7 +14,6 @@ export interface IGlobalState {
   color: string;
   theme: TTheme;
   layout: 'layout1' | 'layout2' | 'layout3';
-  fixedHeader: boolean;
   showHeader: boolean;
   showBreadcrumbs: boolean;
   showFooter: boolean;
@@ -26,11 +25,10 @@ const initialState: IGlobalState = {
   loading: true,
   collapsed: window.innerWidth < 1000, // 宽度小于1000 菜单闭合
   setting: false,
-  version: '0.0.1',
+  version: '0.1.0',
   theme: 'light',
   layout: 'layout1',
   color: '#0052D9',
-  fixedHeader: false,
   showHeader: true,
   showBreadcrumbs: false,
   showFooter: true,
@@ -52,10 +50,6 @@ const globalSlice = createSlice({
     },
     toggleSetting: (state) => {
       state.setting = !state.setting;
-    },
-
-    toggleFixedHeader: (state) => {
-      state.fixedHeader = !state.fixedHeader;
     },
     toggleShowHeader: (state) => {
       state.showHeader = !state.showHeader;
@@ -97,7 +91,6 @@ export const selectGlobal = (state: RootState) => state.global;
 export const {
   toggleMenu,
   toggleSetting,
-  toggleFixedHeader,
   toggleShowHeader,
   toggleShowBreadcrumbs,
   toggleShowFooter,

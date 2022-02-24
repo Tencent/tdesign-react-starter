@@ -11,7 +11,6 @@ import Style from './Header.module.less';
 const { Header } = Layout;
 
 interface IHeaderProps {
-  fixed?: boolean;
   showMenu?: boolean;
   theme?: TTheme;
 }
@@ -41,7 +40,6 @@ export default memo((props: IHeaderProps) => {
     <Header
       className={classnames(
         Style.headerPanel,
-        { [Style.headerFixed]: props.fixed },
         { [Style.headerPanelDark]: props.theme === 'dark' },
         { [Style.headerPanelLight]: props.theme === 'light' },
       )}

@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from 'modules/store';
 import { DARK_CHART_COLORS, LIGHT_CHART_COLORS } from 'configs/color';
 import {
   selectGlobal,
-  toggleFixedHeader,
   toggleShowHeader,
   toggleShowBreadcrumbs,
   toggleShowFooter,
@@ -93,9 +92,6 @@ export default memo(() => {
       <Row justify='space-between'>
         <Col>
           <div className={Style.settingSubTitle}>固定 Header</div>
-        </Col>
-        <Col>
-          <Switch size='large' value={globalState.fixedHeader} onChange={() => dispatch(toggleFixedHeader())} />
         </Col>
       </Row>
 
