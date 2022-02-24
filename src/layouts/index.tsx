@@ -40,12 +40,7 @@ export default memo(() => {
 
   return (
     <Layout className={Style.mainPanel}>
-      <Component
-        showHeader={globalState.showHeader}
-        theme={globalState.theme}
-        fixedHeader={globalState.fixedHeader}
-        showFooter={globalState.showFooter}
-      />
+      <Component showHeader={globalState.showHeader} theme={globalState.theme} showFooter={globalState.showFooter} />
       <Drawer
         destroyOnClose
         visible={globalState.setting}
