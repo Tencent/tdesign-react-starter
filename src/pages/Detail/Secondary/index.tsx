@@ -27,51 +27,49 @@ const MsgList = memo((props: IMsgListProps) => {
   const { list, onUpdate, onDelete } = props;
   return (
     <List className={Style.msgList}>
-      {list?.map((item) => {
-        return (
-          <ListItem
-            className={Style.listItem}
-            key={item.id}
-            action={
-              <li>
-                <div className={Style.createTime}>{item.createTime}</div>
-                <div className={Style.action}>
-                  <Row gutter={8}>
-                    <Col>
-                      {item.status === 1 && (
-                        <Popup trigger='hover' showArrow content='设为已读'>
-                          <AddRectangleIcon onClick={() => onUpdate(item, 2)} />
-                        </Popup>
-                      )}
-                      {item.status === 2 && (
-                        <Popup trigger='hover' showArrow content='设为未读'>
-                          <ChatIcon onClick={() => onUpdate(item, 1)} />
-                        </Popup>
-                      )}
-                    </Col>
-                    <Col>
-                      <Popup trigger='hover' showArrow content='删除通知'>
-                        <DeleteIcon onClick={() => onDelete(item)} />
+      {list?.map((item) => (
+        <ListItem
+          className={Style.listItem}
+          key={item.id}
+          action={
+            <li>
+              <div className={Style.createTime}>{item.createTime}</div>
+              <div className={Style.action}>
+                <Row gutter={8}>
+                  <Col>
+                    {item.status === 1 && (
+                      <Popup trigger='hover' showArrow content='设为已读'>
+                        <AddRectangleIcon onClick={() => onUpdate(item, 2)} />
                       </Popup>
-                    </Col>
-                  </Row>
-                </div>
-              </li>
-            }
+                    )}
+                    {item.status === 2 && (
+                      <Popup trigger='hover' showArrow content='设为未读'>
+                        <ChatIcon onClick={() => onUpdate(item, 1)} />
+                      </Popup>
+                    )}
+                  </Col>
+                  <Col>
+                    <Popup trigger='hover' showArrow content='删除通知'>
+                      <DeleteIcon onClick={() => onDelete(item)} />
+                    </Popup>
+                  </Col>
+                </Row>
+              </div>
+            </li>
+          }
+        >
+          <div
+            className={classnames(Style.content, {
+              [Style.unread]: item.status === 1,
+            })}
           >
-            <div
-              className={classnames(Style.content, {
-                [Style.unread]: item.status === 1,
-              })}
-            >
-              <Tag variant='light' theme={typeMap[item.type]} className={Style.tag}>
-                {item.tag}
-              </Tag>
-              {item.content}
-            </div>
-          </ListItem>
-        );
-      })}
+            <Tag variant='light' theme={typeMap[item.type]} className={Style.tag}>
+              {item.tag}
+            </Tag>
+            {item.content}
+          </div>
+        </ListItem>
+      ))}
       {list.length === 0 && <div className={Style.noData}>暂无数据</div>}
     </List>
   );
