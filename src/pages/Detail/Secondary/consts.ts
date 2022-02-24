@@ -22,7 +22,7 @@ export const dataItemList: IItem[] = [
     content: '三季度生产原材料采购项目 开票成功！',
     tag: '票务动态',
     createTime: '2021-01-01 08:00',
-    status: 1,
+    status: 2,
     type: 2,
   },
   {
