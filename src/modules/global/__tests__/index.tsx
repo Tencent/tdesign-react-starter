@@ -2,7 +2,6 @@ import { store } from '../../store';
 import {
   toggleMenu,
   toggleSetting,
-  toggleFixedHeader,
   toggleShowHeader,
   toggleShowBreadcrumbs,
   toggleShowFooter,
@@ -35,15 +34,6 @@ test('test toggleSetting', () => {
   store.dispatch(toggleSetting());
   state = store.getState().global;
   expect(state.setting).toBe(!defaultValue);
-});
-
-test('test toggleFixedHeader', () => {
-  let state = store.getState().global;
-  const defaultValue = state.fixedHeader;
-
-  store.dispatch(toggleFixedHeader());
-  state = store.getState().global;
-  expect(state.fixedHeader).toBe(!defaultValue);
 });
 
 test('test toggleShowHeader', () => {
