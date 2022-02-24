@@ -4,6 +4,7 @@ import { Button, Popup, Badge, Dropdown, Row, Col } from 'tdesign-react';
 import { Icon, LogoGithubIcon, MailIcon, HelpCircleIcon, SettingIcon } from 'tdesign-icons-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { selectGlobal, toggleSetting } from 'modules/global';
+import Style from './HeaderIcon.module.less';
 
 export default memo(() => {
   const dispatch = useAppDispatch();
@@ -34,7 +35,6 @@ export default memo(() => {
   ];
 
   const clickHandler = (data: any) => {
-    // MessagePlugin.success(`选中【${data.value}】`);
     if (data.value === 1) {
       history.push('/user/index');
     }
@@ -64,7 +64,7 @@ export default memo(() => {
         </Button>
       </Col>
       <Col>
-        <Dropdown options={options} trigger={'click'} onClick={clickHandler}>
+        <Dropdown className={Style.dropdown} options={options} trigger={'click'} onClick={clickHandler}>
           <Button variant='text'>
             <span style={{ display: 'inline-flex', justifyContent: 'center', alignItems: 'center' }}>
               <Icon name='user-circle' size='20' />
