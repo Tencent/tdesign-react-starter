@@ -73,7 +73,7 @@ export default memo((props: IMenuProps) => {
       theme={props.theme}
       collapsed={globalState.collapsed}
       operations={props.showOperation ? <div className={Style.menuTip}>{bottomText}</div> : undefined}
-      logo={props.showLogo ? <MenuLogo theme={props.theme} collapsed={globalState.collapsed} /> : undefined}
+      logo={props.showLogo ? <MenuLogo collapsed={globalState.collapsed} /> : undefined}
     >
       {renderMenuItems(menu)}
     </Menu>

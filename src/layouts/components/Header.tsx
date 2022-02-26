@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import classnames from 'classnames';
 import { Layout, Button, Row, Col, Input } from 'tdesign-react';
 import { ViewListIcon, SearchIcon } from 'tdesign-icons-react';
 import { useAppDispatch } from 'modules/store';
@@ -37,13 +36,7 @@ export default memo((props: IHeaderProps) => {
   }
 
   return (
-    <Header
-      className={classnames(
-        Style.headerPanel,
-        { [Style.headerPanelDark]: props.theme === 'dark' },
-        { [Style.headerPanelLight]: props.theme === 'light' },
-      )}
-    >
+    <Header className={Style.headerPanel}>
       <Row justify='space-between'>
         <Col>{HeaderLeft}</Col>
         <Col>
