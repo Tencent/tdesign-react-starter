@@ -8,6 +8,7 @@ import {
   switchTheme,
   switchColor,
   switchLayout,
+  ELayout,
 } from '../index';
 
 test('test toggleMenu', () => {
@@ -78,7 +79,7 @@ test('test switchColor', () => {
 });
 
 test('test switchLayout', () => {
-  const layout = 'layout1';
+  const layout = ELayout.side;
   store.dispatch(switchLayout(layout));
   const state = store.getState().global;
   expect(state.layout).toBe(layout);

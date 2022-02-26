@@ -18,6 +18,7 @@ module.exports = {
     },
   },
   rules: {
+    'no-shadow': 'off',
     'no-param-reassign': ['error', { props: false }],
     'no-console': 'off',
     'no-plusplus': [

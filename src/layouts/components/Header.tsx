@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 import { Layout, Button, Row, Col, Input } from 'tdesign-react';
 import { ViewListIcon, SearchIcon } from 'tdesign-icons-react';
-import { useAppDispatch } from 'modules/store';
-import { toggleMenu, TTheme } from 'modules/global';
+import { useAppDispatch, useAppSelector } from 'modules/store';
+import { selectGlobal, toggleMenu } from 'modules/global';
 import HeaderIcon from './HeaderIcon';
 import { HeaderMenu } from './Menu';
 import Style from './Header.module.less';
@@ -11,15 +11,19 @@ const { Header } = Layout;
 
 interface IHeaderProps {
   showMenu?: boolean;
-  theme?: TTheme;
 }
 
 export default memo((props: IHeaderProps) => {
+  const globalState = useAppSelector(selectGlobal);
   const dispatch = useAppDispatch();
-  let HeaderLeft;
 
+  if (!globalState.showFooter) {
+    return null;
+  }
+
+  let HeaderLeft;
   if (props.showMenu) {
-    HeaderLeft = <HeaderMenu theme={props.theme} />;
+    HeaderLeft = <HeaderMenu />;
   } else {
     HeaderLeft = (
       <Row gutter={16} align='middle'>
