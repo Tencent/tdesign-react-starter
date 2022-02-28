@@ -1,30 +1,16 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import proxy from '../configs/host';
 
-// const env = import.meta.env.MODE || 'development';
-
-// eslint-disable-next-line no-restricted-globals
-const env = location.hostname === 'localhost' ? 'mock' : 'release';
-const API_HOST = env === 'mock' ? '/' : proxy.test.API; // 如果是mock模式 就不配置host 会走本地Mock拦截
+const env = import.meta.env.MODE || 'development';
+const API_HOST = proxy[env].API;
 
 const CODE = {
   LOGIN_TIMEOUT: 1000,
   REQUEST_SUCCESS: 0,
   REQUEST_FORBID: 1001,
 };
-interface IAxiosInstance extends AxiosInstance {
-  request<T = any>(config: AxiosRequestConfig): Promise<T>;
-  get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
-  delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
-  head<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
-  options<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
-  post<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-  put<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-  patch<T = any>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-}
 
-// todo retry
-export const instance: IAxiosInstance = axios.create({
+export const instance = axios.create({
   baseURL: API_HOST,
   timeout: 5000,
   withCredentials: true,
@@ -45,7 +31,7 @@ instance.interceptors.response.use(
       if (data.code === CODE.REQUEST_SUCCESS) {
         return data;
       }
-      return response;
+      return Promise.reject(data);
     }
   },
   (err) => {

@@ -1,25 +1,82 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useEffect } from 'react';
 import { Table, Tag, Row, Col, Button, Input } from 'tdesign-react';
-import { ChevronUpCircleIcon, SearchIcon } from 'tdesign-icons-react';
+import { ChevronUpCircleIcon, SearchIcon, ChevronDownCircleIcon } from 'tdesign-icons-react';
 import PageBox from 'components/PageBox';
+import { useAppDispatch, useAppSelector } from 'modules/store';
+import { selectListBase, getList } from 'modules/list/base';
 import style from './index.module.less';
 
-const data: any = [];
-const total = 50;
-for (let i = 0; i < total; i++) {
-  data.push({
-    index: i,
-    name: '公有',
-    status: '已完成',
-    code: 'BH0001',
-    type: '收款',
-    department: '财务部',
-    money: '120,000',
-  });
-}
+const PaymentTypeMap: {
+  [key: number]: React.ReactElement;
+} = {
+  0: (
+    <>
+      付款
+      <ChevronUpCircleIcon style={{ color: 'red', marginLeft: 4 }} />
+    </>
+  ),
+  1: (
+    <>
+      收款
+      <ChevronDownCircleIcon style={{ color: 'green', marginLeft: 4 }} />
+    </>
+  ),
+};
+
+const StatusMap: {
+  [key: number]: React.ReactElement;
+} = {
+  1: (
+    <Tag theme='warning' variant='light'>
+      待审核
+    </Tag>
+  ),
+  2: (
+    <Tag theme='warning' variant='light'>
+      待履行
+    </Tag>
+  ),
+  3: (
+    <Tag theme='success' variant='light'>
+      履行中
+    </Tag>
+  ),
+  4: (
+    <Tag theme='success' variant='light'>
+      已完成
+    </Tag>
+  ),
+  5: (
+    <Tag theme='danger' variant='light'>
+      审核失败
+    </Tag>
+  ),
+};
+
+const ContractTypeMap: {
+  [key: number]: string;
+} = {
+  0: '审核失败',
+  1: '待审核',
+  2: '待履行',
+};
 
 export default memo(() => {
-  const [selectedRowKeys, setSelectedRowKeys] = useState<(string | number)[]>([0, 1]);
+  const dispatch = useAppDispatch();
+  const baseState = useAppSelector(selectListBase);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<(string | number)[]>([1, 2]);
+
+  const { loading, contractList, current, pageSize, total } = baseState;
+
+  useEffect(() => {
+    dispatch(
+      getList({
+        pageSize: baseState.pageSize,
+        current: baseState.current,
+      }),
+    );
+  }, []);
+
   function onSelectChange(value: (string | number)[]) {
     setSelectedRowKeys(value);
   }
@@ -45,7 +102,6 @@ export default memo(() => {
       </Row>
 
       <Table
-        data={data}
         columns={[
           {
             colKey: 'row-select',
@@ -69,7 +125,7 @@ export default memo(() => {
             colKey: 'status',
             title: '合同状态',
             cell({ row }) {
-              return <Tag theme='primary'>{row.status}</Tag>;
+              return StatusMap[row.status || 5];
             },
           },
           {
@@ -77,7 +133,7 @@ export default memo(() => {
             width: 200,
             minWidth: 200,
             ellipsis: true,
-            colKey: 'code',
+            colKey: 'no',
             title: '合同编号',
           },
           {
@@ -85,15 +141,10 @@ export default memo(() => {
             width: 200,
             minWidth: 200,
             ellipsis: true,
-            colKey: 'type',
-            title: '合同付款类型',
+            colKey: 'contractType',
+            title: '合同类型',
             cell({ row }) {
-              return (
-                <>
-                  {row.money}
-                  <ChevronUpCircleIcon style={{ color: 'red' }} />
-                </>
-              );
+              return ContractTypeMap[row.contractType];
             },
           },
           {
@@ -101,15 +152,18 @@ export default memo(() => {
             width: 200,
             minWidth: 200,
             ellipsis: true,
-            colKey: 'department',
-            title: '申请部门',
+            colKey: 'paymentType',
+            title: '合同收付类型',
+            cell({ row }) {
+              return PaymentTypeMap[row.paymentType];
+            },
           },
           {
             align: 'left',
             width: 200,
             minWidth: 200,
             ellipsis: true,
-            colKey: 'money',
+            colKey: 'amount',
             title: '合同金额（元）',
           },
           {
@@ -123,7 +177,7 @@ export default memo(() => {
               return (
                 <>
                   <Button theme='primary' variant='text'>
-                    详情
+                    管理
                   </Button>
                   <Button theme='primary' variant='text'>
                     删除
@@ -133,6 +187,8 @@ export default memo(() => {
             },
           },
         ]}
+        loading={loading}
+        data={contractList}
         rowKey='index'
         selectedRowKeys={selectedRowKeys}
         tableLayout='auto'
@@ -140,20 +196,25 @@ export default memo(() => {
         hover
         onSelectChange={onSelectChange}
         pagination={{
-          pageSize: 10,
-          total,
-          current: 1,
+          pageSize: pageSize,
+          total: total,
+          current: current,
           showJumper: true,
-          onChange(pageInfo) {
-            console.log(pageInfo, 'onChange pageInfo');
-          },
           onCurrentChange(current, pageInfo) {
-            console.log(current, 'onCurrentChange current');
-            console.log(pageInfo, 'onCurrentChange pageInfo');
+            dispatch(
+              getList({
+                pageSize: pageInfo.pageSize,
+                current: pageInfo.current,
+              }),
+            );
           },
-          onPageSizeChange(size, pageInfo) {
-            console.log(size, 'onPageSizeChange size');
-            console.log(pageInfo, 'onPageSizeChange pageInfo');
+          onPageSizeChange(size) {
+            dispatch(
+              getList({
+                pageSize: size,
+                current: 1,
+              }),
+            );
           },
         }}
       />

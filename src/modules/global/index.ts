@@ -8,7 +8,6 @@ const namespace = 'global';
 export enum ETheme {
   light = 'light',
   dark = 'dark',
-  // system = 'system',
 }
 
 export enum ELayout {

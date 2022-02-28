@@ -43,3 +43,11 @@ declare module '*.less' {
 }
 
 declare module 'hex-to-hsl';
+
+declare interface ImportMeta {
+  env: {
+    MODE: 'development' | 'test' | 'release';
+  };
+  // eslint-disable-next-line no-unused-vars
+  glob: (url: string) => { url };
+}
