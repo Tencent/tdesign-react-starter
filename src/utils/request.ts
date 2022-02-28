@@ -1,7 +1,7 @@
 import axios from 'axios';
 import proxy from '../configs/host';
 
-const env = import.meta.env.MODE || 'development';
+const env = import.meta?.env?.MODE || 'development';
 const API_HOST = proxy[env].API;
 
 const CODE = {
