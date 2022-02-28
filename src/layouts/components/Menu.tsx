@@ -12,7 +12,6 @@ const { SubMenu, MenuItem, HeadMenu } = Menu;
 interface IMenuProps {
   showLogo?: boolean;
   showOperation?: boolean;
-  theme?: 'light' | 'dark';
 }
 
 // eslint-disable-next-line no-shadow
@@ -42,7 +41,8 @@ const renderMenuItems = (menu: IMenuItem[]) =>
     );
   });
 
-export const HeaderMenu = memo((props: IMenuProps) => {
+export const HeaderMenu = memo(() => {
+  const globalState = useAppSelector(selectGlobal);
   const location = useLocation();
   const [active, setActive] = useState<MenuValue>(location.pathname); // todo
   return (
@@ -50,7 +50,7 @@ export const HeaderMenu = memo((props: IMenuProps) => {
       expandType='popup'
       style={{ marginBottom: 20 }}
       value={active}
-      theme={props.theme}
+      theme={globalState.theme}
       onChange={(v) => setActive(v)}
     >
       {renderMenuItems(menu)}
@@ -70,10 +70,10 @@ export default memo((props: IMenuProps) => {
       width='232px'
       style={{ flexShrink: 0, height: '100%' }}
       value={location.pathname}
-      theme={props.theme}
+      theme={globalState.theme}
       collapsed={globalState.collapsed}
       operations={props.showOperation ? <div className={Style.menuTip}>{bottomText}</div> : undefined}
-      logo={props.showLogo ? <MenuLogo theme={props.theme} collapsed={globalState.collapsed} /> : undefined}
+      logo={props.showLogo ? <MenuLogo collapsed={globalState.collapsed} /> : undefined}
     >
       {renderMenuItems(menu)}
     </Menu>

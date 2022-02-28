@@ -1,5 +1,5 @@
 import React, { useState, memo } from 'react';
-import { Table, Tag, Dialog } from 'tdesign-react';
+import { Table, Tag, Dialog, Button } from 'tdesign-react';
 import PageBox from 'components/PageBox';
 import SearchForm from './components/SearchForm';
 import Mock from 'mockjs';
@@ -153,27 +153,30 @@ const selectTable: React.FC = () => {
             align: 'left',
             fixed: 'right',
             width: 200,
+            minWidth: 200,
             colKey: 'op',
             title: '操作',
             cell(record) {
               return (
                 <>
-                  <a
-                    className='list-common-table-btn'
+                  <Button
+                    theme='primary'
+                    variant='text'
                     onClick={() => {
                       rehandleClickOp(record);
                     }}
                   >
                     管理
-                  </a>
-                  <a
-                    className='list-common-table-btn'
+                  </Button>
+                  <Button
+                    theme='primary'
+                    variant='text'
                     onClick={() => {
                       handleClickDelete(record);
                     }}
                   >
                     删除
-                  </a>
+                  </Button>
                 </>
               );
             },

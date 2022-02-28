@@ -1,10 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../store';
 import { COLOR_TOKEN, TColorSeries, TColorToken, LIGHT_CHART_COLORS } from 'configs/color';
+import { RootState } from '../store';
+import { version } from '../../../package.json';
 
 const namespace = 'global';
 
-export type TTheme = 'light' | 'dark';
+export enum ETheme {
+  light = 'light',
+  dark = 'dark',
+}
+
+export enum ELayout {
+  side = 1,
+  top,
+  mix,
+}
 
 export interface IGlobalState {
   loading: boolean;
@@ -12,8 +22,8 @@ export interface IGlobalState {
   setting: boolean;
   version: string;
   color: string;
-  theme: TTheme;
-  layout: 'layout1' | 'layout2' | 'layout3';
+  theme: ETheme;
+  layout: ELayout;
   showHeader: boolean;
   showBreadcrumbs: boolean;
   showFooter: boolean;
@@ -25,9 +35,9 @@ const initialState: IGlobalState = {
   loading: true,
   collapsed: window.innerWidth < 1000, // 宽度小于1000 菜单闭合
   setting: false,
-  version: '0.1.0',
-  theme: 'light',
-  layout: 'layout1',
+  version,
+  theme: ETheme.light,
+  layout: ELayout.side,
   color: '#0052D9',
   showHeader: true,
   showBreadcrumbs: false,
