@@ -196,9 +196,9 @@ export default memo(() => {
         hover
         onSelectChange={onSelectChange}
         pagination={{
-          pageSize: pageSize,
-          total: total,
-          current: current,
+          pageSize,
+          total,
+          current,
           showJumper: true,
           onCurrentChange(current, pageInfo) {
             dispatch(
