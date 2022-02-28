@@ -4,7 +4,7 @@ import throttle from 'lodash/throttle';
 import { useAppSelector, useAppDispatch } from 'modules/store';
 import { selectGlobal, toggleSetting, toggleMenu } from 'modules/global';
 import Setting from './components/Setting';
-import { Layout1, Layout2, Layout3 } from './components/Container';
+import LayoutMap from './components/Container';
 import Style from './index.module.less';
 
 export default memo(() => {
@@ -25,29 +25,19 @@ export default memo(() => {
     };
   }, []);
 
-  let Component;
-  if (globalState.layout === 'layout1') {
-    Component = Layout1;
-  } else if (globalState.layout === 'layout2') {
-    Component = Layout2;
-  } else {
-    Component = Layout3;
-  }
-
-  const handleClose = () => {
-    dispatch(toggleSetting());
-  };
+  console.log('x', globalState.layout);
+  const Container = LayoutMap[globalState.layout];
 
   return (
     <Layout className={Style.mainPanel}>
-      <Component showHeader={globalState.showHeader} theme={globalState.theme} showFooter={globalState.showFooter} />
+      <Container />
       <Drawer
         destroyOnClose
         visible={globalState.setting}
         size='458px'
         footer={false}
         header={<div>页面配置</div>}
-        onClose={handleClose}
+        onClose={() => dispatch(toggleSetting())}
       >
         <Setting />
       </Drawer>

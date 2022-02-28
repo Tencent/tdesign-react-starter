@@ -2,12 +2,12 @@ import React from 'react';
 
 export const Light = (
   <svg width='88' height='48' fill='none' xmlns='http://www.w3.org/2000/svg'>
-    <path d='M0 0h88v48H0z'></path>
+    <path d='M0 0h88v48H0z' fill='var(--td-component-border)'></path>
     <path
       fillRule='evenodd'
       clipRule='evenodd'
       d='M44 20.583a3.417 3.417 0 100 6.833 3.417 3.417 0 000-6.833zM39.083 24a4.917 4.917 0 119.834 0 4.917 4.917 0 01-9.834 0zM43.25 17.333v-2.5h1.5v2.5h-1.5zM48.184 18.755l1.767-1.767 1.06 1.06-1.767 1.768-1.06-1.06zM50.667 23.25h2.5v1.5h-2.5v-1.5zM49.244 28.183l1.768 1.768-1.06 1.06-1.768-1.767 1.06-1.06zM44.75 30.666v2.5h-1.5v-2.5h1.5zM39.816 29.244l-1.767 1.768-1.061-1.061 1.767-1.768 1.061 1.061zM37.333 24.75h-2.5v-1.5h2.5v1.5zM38.755 19.816l-1.767-1.768 1.06-1.06 1.768 1.767-1.06 1.06z'
-      fill='var(--td-brand-color)'
+      fill='var(--td-text-color-primary)'
     ></path>
   </svg>
 );
@@ -26,7 +26,7 @@ export const Dark = (
 
 export const System = (
   <svg width='88' height='48' fill='none' xmlns='http://www.w3.org/2000/svg'>
-    <path d='M0 0h88v48H0V0z'></path>
+    <path d='M0 0h88v48H0V0z' fill='var(--td-component-border)'></path>
     <path d='M42.863 14.052v2.708h1.625v-2.708h-1.625z' fill='var(--td-text-color-primary)'></path>
     <path
       fillRule='evenodd'

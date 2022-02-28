@@ -11,26 +11,29 @@ import {
   switchColor,
   switchLayout,
   switchChartColor,
+  ELayout,
+  ETheme,
 } from 'modules/global';
 import RadioColor from './RadioColor';
 import RadioRect from './RadioRect';
-import { Dark, Light, System } from './Icons';
+
+import { Light, Dark, System } from './Icons';
 
 import Style from './index.module.less';
 
 const themeList = [
   {
-    value: 'light',
+    value: ETheme.light,
     image: Light,
     name: '明亮',
   },
   {
-    value: 'dark',
+    value: ETheme.dark,
     image: Dark,
     name: '黑暗',
   },
   {
-    value: 'system',
+    value: ETheme.light, // todo
     image: System,
     name: '跟随系统',
   },
@@ -38,15 +41,15 @@ const themeList = [
 
 const layoutList = [
   {
-    value: 'layout1',
+    value: ELayout.side,
     image: 'https://tdesign.gtimg.com/starter/setting/side.png',
   },
   {
-    value: 'layout2',
+    value: ELayout.top,
     image: 'https://tdesign.gtimg.com/starter/setting/top.png',
   },
   {
-    value: 'layout3',
+    value: ELayout.mix,
     image: 'https://tdesign.gtimg.com/starter/setting/mix.png',
   },
 ];
@@ -58,16 +61,15 @@ export default memo(() => {
   const handleSwitchTheme = (value: string | number) => {
     dispatch(switchTheme(value));
     if (value) {
-      const isDarkMode = value === 'dark';
+      const isDarkMode = value === ETheme.dark;
       switchChartColor(isDarkMode ? DARK_CHART_COLORS : LIGHT_CHART_COLORS);
     }
   };
+
   return (
     <div>
       <div className={Style.settingTitle}>主题模式</div>
-      <div>
-        <RadioRect defaultValue={globalState.theme} onChange={handleSwitchTheme} options={themeList} />
-      </div>
+      <RadioRect defaultValue={globalState.theme} onChange={handleSwitchTheme} options={themeList} />
 
       <div className={Style.settingTitle}>主题色</div>
       <RadioColor defaultValue={globalState.color} onChange={(value) => dispatch(switchColor(value))} />

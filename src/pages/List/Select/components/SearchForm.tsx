@@ -28,7 +28,7 @@ const SearchForm: React.FC<SearchFormProps> = (props) => {
     console.log(queryValue);
   };
 
-  const onReset = (e: any) => {
+  const onReset = () => {
     props.onCancel();
     MessagePlugin.info('重置成功');
   };
