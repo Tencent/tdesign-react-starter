@@ -2,18 +2,13 @@ import React, { memo } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Popup, Badge, Dropdown, Row, Col } from 'tdesign-react';
 import { Icon, LogoGithubIcon, MailIcon, HelpCircleIcon, SettingIcon } from 'tdesign-icons-react';
-import { useAppDispatch, useAppSelector } from 'modules/store';
-import { selectGlobal, toggleSetting } from 'modules/global';
+import { useAppDispatch } from 'modules/store';
+import { toggleSetting } from 'modules/global';
 import Style from './HeaderIcon.module.less';
 
 export default memo(() => {
   const dispatch = useAppDispatch();
   const history = useHistory();
-
-  const globalState = useAppSelector(selectGlobal);
-  if (!globalState.showHeader) {
-    return null;
-  }
 
   const gotoWiki = () => {
     window.open('https://tdesign.tencent.com/react/components/overview');
