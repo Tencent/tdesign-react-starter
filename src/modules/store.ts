@@ -3,10 +3,12 @@ import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 
 import global from './global';
 import listBase from './list/base';
+import listSelect from './list/select';
 
 const reducer = combineReducers({
   global,
   listBase,
+  listSelect,
 });
 
 export const store = configureStore({
