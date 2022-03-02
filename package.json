@@ -13,7 +13,6 @@
     "test": "echo \"no test specified,work in process\"",
     "jest": "jest",
     "snap": "jest -u",
-    "api": "mocker ./mock --port 8889",
     "coverage": "jest --coverage",
     "lint": "eslint ./src --ext ts,tsx",
     "lint:fix": "eslint ./src --ext ts,tsx --fix",
