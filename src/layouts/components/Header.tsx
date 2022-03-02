@@ -17,7 +17,7 @@ export default memo((props: IHeaderProps) => {
   const globalState = useAppSelector(selectGlobal);
   const dispatch = useAppDispatch();
 
-  if (!globalState.showFooter) {
+  if (!globalState.showHeader) {
     return null;
   }
 
