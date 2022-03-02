@@ -39,6 +39,9 @@ npm install
 
 ## 启动项目
 npm run dev
+
+## mock方式启动项目
+npm run dev:mock
 ```
 
 ### 构建
