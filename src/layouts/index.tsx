@@ -25,7 +25,6 @@ export default memo(() => {
     };
   }, []);
 
-  console.log('x', globalState.layout);
   const Container = LayoutMap[globalState.layout];
 
   return (
