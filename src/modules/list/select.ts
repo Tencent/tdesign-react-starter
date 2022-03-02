@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { getContractList, IContract } from 'services/contract';
 
-const namespace = 'list/base';
+const namespace = 'list/select';
 
 interface IInitialState {
   loading: boolean;
@@ -21,7 +21,7 @@ const initialState: IInitialState = {
 };
 
 export const getList = createAsyncThunk(
-  `${namespace}/getList`,
+  `${namespace}/getSelectList`,
   async (params: { pageSize: number; current: number }) => {
     const result = await getContractList(params);
     return {
@@ -33,7 +33,7 @@ export const getList = createAsyncThunk(
   },
 );
 
-const listBaseSlice = createSlice({
+const listSelectSlice = createSlice({
   name: namespace,
   initialState,
   reducers: {
@@ -57,8 +57,8 @@ const listBaseSlice = createSlice({
   },
 });
 
-export const { clearPageState } = listBaseSlice.actions;
+export const { clearPageState } = listSelectSlice.actions;
 
-export const selectListBase = (state: RootState) => state.listBase;
+export const selectListSelect = (state: RootState) => state.listSelect;
 
-export default listBaseSlice.reducer;
+export default listSelectSlice.reducer;

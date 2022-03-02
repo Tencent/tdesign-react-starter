@@ -1,31 +1,32 @@
-import React, { useState, memo } from 'react';
-import { Table, Tag, Dialog, Button } from 'tdesign-react';
+import React, { useState, memo, useEffect } from 'react';
+import { Table, Dialog, Button } from 'tdesign-react';
+import { useAppDispatch, useAppSelector } from 'modules/store';
+import { selectListSelect, getList, clearPageState } from 'modules/list/select';
 import PageBox from 'components/PageBox';
 import SearchForm from './components/SearchForm';
-import Mock from 'mockjs';
+import { StatusMap, ContractTypeMap, PaymentTypeMap } from '../Base';
+
 import './index.module.less';
 
-let data: any = [];
-const total = 100;
-const Mockdata = Mock.mock({
-  'list|1-100': [
-    {
-      'index|+1': 1,
-      'status|1': '@natural(0, 4)',
-      no: 'BH00@natural(01, 100)',
-      name: '@city()办公用品采购项目',
-      'paymentType|1': '@natural(0, 1)',
-      'contractType|1': '@natural(0, 2)',
-      updateTime: '2020-05-30 @date("HH:mm:ss")',
-      amount: '@natural(10, 500),000,000',
-      adminName: '@cname()',
-    },
-  ],
-});
-data = Mockdata.list;
 const selectTable: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const pageState = useAppSelector(selectListSelect);
   const [selectedRowKeys, setSelectedRowKeys] = useState<(string | number)[]>([0, 1]);
   const [visible, setVisible] = useState(false);
+  const { loading, contractList, current, pageSize, total } = pageState;
+
+  useEffect(() => {
+    dispatch(
+      getList({
+        pageSize: pageState.pageSize,
+        current: pageState.current,
+      }),
+    );
+    return () => {
+      dispatch(clearPageState());
+    };
+  }, []);
+
   function onSelectChange(value: (string | number)[]) {
     setSelectedRowKeys(value);
   }
@@ -52,7 +53,8 @@ const selectTable: React.FC = () => {
         onCancel={() => {}}
       />
       <Table
-        data={data}
+        loading={loading}
+        data={contractList}
         columns={[
           {
             title: '合同名称',
@@ -67,40 +69,7 @@ const selectTable: React.FC = () => {
             colKey: 'status',
             width: 200,
             cell({ row }) {
-              switch (row?.status) {
-                case 0:
-                  return (
-                    <Tag theme='danger' variant='light'>
-                      审核失败
-                    </Tag>
-                  );
-                case 1:
-                  return (
-                    <Tag theme='warning' variant='light'>
-                      待审核
-                    </Tag>
-                  );
-                case 2:
-                  return (
-                    <Tag theme='warning' variant='light'>
-                      待履行
-                    </Tag>
-                  );
-                case 3:
-                  return (
-                    <Tag theme='success' variant='light'>
-                      审核成功
-                    </Tag>
-                  );
-                case 4:
-                  return (
-                    <Tag theme='success' variant='light'>
-                      已完成
-                    </Tag>
-                  );
-                default:
-                  return <div></div>;
-              }
+              return StatusMap[row.status || 5];
             },
           },
           {
@@ -115,16 +84,7 @@ const selectTable: React.FC = () => {
             ellipsis: true,
             colKey: 'contractType',
             cell({ row }) {
-              switch (row?.contractType) {
-                case 0:
-                  return <span>审核失败</span>;
-                case 1:
-                  return <span>待审核</span>;
-                case 2:
-                  return <span>待履行</span>;
-                default:
-                  return <div></div>;
-              }
+              return ContractTypeMap[row.contractType];
             },
           },
           {
@@ -133,14 +93,7 @@ const selectTable: React.FC = () => {
             ellipsis: true,
             colKey: 'paymentType',
             cell({ row }) {
-              switch (row?.paymentType) {
-                case 0:
-                  return <span>收款</span>;
-                case 1:
-                  return <span>付款</span>;
-                default:
-                  return <div></div>;
-              }
+              return PaymentTypeMap[row.paymentType];
             },
           },
           {
@@ -188,20 +141,25 @@ const selectTable: React.FC = () => {
         hover
         onSelectChange={onSelectChange}
         pagination={{
-          pageSize: 20,
+          pageSize,
           total,
-          current: 1,
+          current,
           showJumper: true,
-          onChange(pageInfo) {
-            console.log(pageInfo, 'onChange pageInfo');
-          },
           onCurrentChange(current, pageInfo) {
-            console.log(current, 'onCurrentChange current');
-            console.log(pageInfo, 'onCurrentChange pageInfo');
+            dispatch(
+              getList({
+                pageSize: pageInfo.pageSize,
+                current: pageInfo.current,
+              }),
+            );
           },
-          onPageSizeChange(size, pageInfo) {
-            console.log(size, 'onPageSizeChange size');
-            console.log(pageInfo, 'onPageSizeChange pageInfo');
+          onPageSizeChange(size) {
+            dispatch(
+              getList({
+                pageSize: size,
+                current: 1,
+              }),
+            );
           },
         }}
       />

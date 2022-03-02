@@ -3,10 +3,10 @@ import { Table, Tag, Row, Col, Button, Input } from 'tdesign-react';
 import { ChevronUpCircleIcon, SearchIcon, ChevronDownCircleIcon } from 'tdesign-icons-react';
 import PageBox from 'components/PageBox';
 import { useAppDispatch, useAppSelector } from 'modules/store';
-import { selectListBase, getList } from 'modules/list/base';
+import { selectListBase, getList, clearPageState } from 'modules/list/base';
 import style from './index.module.less';
 
-const PaymentTypeMap: {
+export const PaymentTypeMap: {
   [key: number]: React.ReactElement;
 } = {
   0: (
@@ -23,7 +23,7 @@ const PaymentTypeMap: {
   ),
 };
 
-const StatusMap: {
+export const StatusMap: {
   [key: number]: React.ReactElement;
 } = {
   1: (
@@ -53,7 +53,7 @@ const StatusMap: {
   ),
 };
 
-const ContractTypeMap: {
+export const ContractTypeMap: {
   [key: number]: string;
 } = {
   0: '审核失败',
@@ -63,18 +63,22 @@ const ContractTypeMap: {
 
 export default memo(() => {
   const dispatch = useAppDispatch();
-  const baseState = useAppSelector(selectListBase);
+  const pageState = useAppSelector(selectListBase);
   const [selectedRowKeys, setSelectedRowKeys] = useState<(string | number)[]>([1, 2]);
 
-  const { loading, contractList, current, pageSize, total } = baseState;
+  const { loading, contractList, current, pageSize, total } = pageState;
 
   useEffect(() => {
     dispatch(
       getList({
-        pageSize: baseState.pageSize,
-        current: baseState.current,
+        pageSize: pageState.pageSize,
+        current: pageState.current,
       }),
     );
+    return () => {
+      console.log('clear');
+      dispatch(clearPageState());
+    };
   }, []);
 
   function onSelectChange(value: (string | number)[]) {
