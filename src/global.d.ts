@@ -46,8 +46,6 @@ declare module 'hex-to-hsl';
 
 declare interface ImportMeta {
   env: {
-    MODE: 'development' | 'test' | 'release';
+    MODE: 'development' | 'test' | 'production';
   };
-  // eslint-disable-next-line no-unused-vars
-  glob: (url: string) => { url };
 }
