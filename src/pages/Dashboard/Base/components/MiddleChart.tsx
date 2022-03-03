@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Col, Row } from 'tdesign-react';
 import ReactEcharts from 'echarts-for-react';
-
 import useDynamicChart from 'utils/hooks/useDynamicChart';
 import Board from '../../common/Board';
 import LastWeekDatePicker from '../../common/DatePicker';
@@ -27,7 +26,6 @@ const MiddleChart = () => {
 
   const dynamicPieChartOption = useDynamicChart(pieOptions, {
     placeholderColor: ['legend.textStyle.color'],
-    textColor: ['series.0.label.rich.value.color', 'series.1.label.rich.value.color'],
   });
 
   return (
