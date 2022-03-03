@@ -3,7 +3,6 @@ import { BrowserRouterProps } from 'react-router-dom';
 import DashboardBase from 'pages/Dashboard/Base';
 import DashboardDetail from 'pages/Dashboard/Detail';
 import ListBase from 'pages/List/Base';
-import ListCard from 'pages/List/Card';
 import ListSelect from 'pages/List/Select';
 import ListTree from 'pages/List/Tree';
 import FormBase from 'pages/Form/Base';
@@ -42,10 +41,6 @@ export const routes: IRouteItem[] = [
   {
     path: '/list/base',
     Component: ListBase,
-  },
-  {
-    path: '/list/card',
-    Component: ListCard,
   },
   {
     path: '/list/select',
