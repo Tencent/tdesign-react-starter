@@ -44,11 +44,6 @@ export const menu: IMenuItem[] = [
         label: '基础列表页',
         path: '/list/base',
       },
-      // {
-      //   key: '/list/card',
-      //   label: '卡片列表页',
-      //   path: '/list/card',
-      // },
       {
         key: '/list/select',
         label: '筛选列表页',
