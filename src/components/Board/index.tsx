@@ -54,6 +54,7 @@ const Board = ({ title, count, desc, trend, trendNum, Icon, dark, border }: IBoa
       [Style.boardPanelDark]: dark,
     })}
     border={border}
+    size='small'
   >
     <div className={Style.boardItem}>
       <div className={Style.boardItemLeft}>{count}</div>

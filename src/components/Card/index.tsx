@@ -1,5 +1,5 @@
 import React from 'react';
-import classname from 'classnames';
+import classnames from 'classnames';
 import Style from './index.module.less';
 
 export interface ICardProps {
@@ -8,6 +8,7 @@ export interface ICardProps {
   operation?: React.ReactNode;
   className?: string;
   border?: boolean;
+  size?: 'small' | 'large';
   [key: string]: any;
 }
 
@@ -18,10 +19,11 @@ const Card = ({
   children,
   border,
   className,
+  size,
   ...other
 }: React.PropsWithChildren<ICardProps>) => (
   <div
-    className={classname(
+    className={classnames(
       Style.cardPanel,
       {
         [Style.cardPanelBorder]: border,
@@ -32,7 +34,13 @@ const Card = ({
   >
     <div className={Style.top}>
       <div className={Style.left}>
-        <div className={Style.cardTitle}>{title}</div>
+        <div
+          className={classnames(Style.cardTitle, {
+            [Style.cardTitleSmall]: size === 'small',
+          })}
+        >
+          {title}
+        </div>
         <div className={Style.cardDescription}>{description}</div>
       </div>
       <div>{operation}</div>
