@@ -1,21 +1,19 @@
-import dayjs from 'dayjs';
-import { RECENT_7_DAYS } from './date';
+// 获取 chart 的 mock 数据
+import dayjs, { Dayjs } from 'dayjs';
 
-const CHART_LIST_COLOR = ['#0052D9', '#BCC4D0', '#7D46BD', '#0594FA', '#ED7B2F'];
+const RECENT_7_DAYS: [Dayjs, Dayjs] = [dayjs().subtract(7, 'day'), dayjs().subtract(1, 'day')];
+export const CHART_LIST_COLOR = ['#0052D9', '#BCC4D0', '#7D46BD', '#0594FA', '#ED7B2F'];
+export const ONE_WEEK_LIST = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
 
-const getRandomInt = (num = 100): number => {
-  let resultNum = Number((Math.random() * num).toFixed(0));
-  if (resultNum <= 1) {
-    resultNum = 1;
-  }
-
-  return resultNum;
+export const getRandomInt = (num = 100): number => {
+  const resultNum = Number((Math.random() * num).toFixed(0));
+  return resultNum <= 1 ? 1 : resultNum;
 };
 
 type ChartValue = number | string;
 
-function getTimeArray(dateTime: string[] = [], divideNum = 10, format = 'MM-DD'): string[] {
-  const timeArray: string[] = [];
+export function getTimeArray(dateTime: string[] = [], divideNum = 10, format = 'MM-DD'): string[] {
+  const timeArray = [];
   if (dateTime.length === 0) {
     dateTime.push(...RECENT_7_DAYS.map((item) => item.format(format)));
   }
@@ -28,7 +26,7 @@ function getTimeArray(dateTime: string[] = [], divideNum = 10, format = 'MM-DD')
   return timeArray;
 }
 
-const getChartDataSet = (dateTime: Array<string> = [], divideNum = 10): ChartValue[][] => {
+export const getChartDataSet = (dateTime: Array<string> = [], divideNum = 10): ChartValue[][] => {
   const timeArray = getTimeArray(dateTime, divideNum);
   const inArray = [];
   const outArray = [];
@@ -39,6 +37,3 @@ const getChartDataSet = (dateTime: Array<string> = [], divideNum = 10): ChartVal
 
   return [timeArray, inArray, outArray];
 };
-
-export default getChartDataSet;
-export { CHART_LIST_COLOR, getTimeArray, getRandomInt };

@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
 import { Button } from 'tdesign-react';
 import ReactEcharts from 'echarts-for-react';
-import classnames from 'classnames';
-import { getScatterChartOptions } from '../chart';
-import LastWeekDatePicker from '../../common/DatePicker';
-import Board from '../../common/Board';
+import LastWeekDatePicker from 'components/DatePicker';
+import Board from 'components/Card';
 import useDynamicChart from 'utils/hooks/useDynamicChart';
+import { getScatterChartOptions } from '../chart';
+import Style from './Satisfaction.module.less';
 
-import Style from '../index.module.less';
-
-const PurchaseSatisfaction = () => {
+const Satisfaction = () => {
   const options = getScatterChartOptions();
   const [customOptions, setCustomOptions] = useState(options);
   const onTimeChange = (value: Array<string>) => {
-    // eslint-disable-next-line no-shadow
     const options = getScatterChartOptions(value);
     setCustomOptions(options);
   };
@@ -22,15 +19,17 @@ const PurchaseSatisfaction = () => {
     placeholderColor: ['legend.textStyle.color', 'xAxis.axisLabel.color', 'yAxis.axisLabel.color'],
   });
 
-  const actionComp = (): React.ReactElement => (
-    <>
-      {LastWeekDatePicker(onTimeChange)}
-      <Button className={Style.exportBtn}>导出数据</Button>
-    </>
-  );
   return (
-    <div className={classnames(Style.purchaseSatisfaction, Style.boardMargin)}>
-      <Board title='采购商品满意度分布' operation={actionComp()}>
+    <div className={Style.satisfactionPanel}>
+      <Board
+        title='采购商品满意度分布'
+        operation={
+          <div className={Style.operation}>
+            {LastWeekDatePicker(onTimeChange)}
+            <Button className={Style.exportBtn}>导出数据</Button>
+          </div>
+        }
+      >
         <ReactEcharts
           option={dynamicChartOption} // option：图表配置项
           notMerge={true}
@@ -42,4 +41,4 @@ const PurchaseSatisfaction = () => {
   );
 };
 
-export default React.memo(PurchaseSatisfaction);
+export default React.memo(Satisfaction);

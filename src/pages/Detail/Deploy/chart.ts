@@ -1,5 +1,5 @@
 import type { EChartOption } from 'echarts';
-import { CHART_LIST_COLOR, getTimeArray, getRandomInt } from '../../Dashboard/common/chart';
+import { CHART_LIST_COLOR, getTimeArray, getRandomInt } from 'utils/chart';
 
 export function getLineOptions(dateTime: any = []): EChartOption {
   let dateArray: Array<string> = ['00:00', '02:00', '04:00', '06:00'];
