@@ -8,13 +8,11 @@ const { StepItem } = Steps;
 
 const Progress = () => (
   <Card borded={false} title='发票进度' className={Style.cardBox}>
-    <div>
-      <Steps current={stepCurrent}>
-        {dataStep.map((item) => (
-          <StepItem key={item.id} title={item.name} content={item.detail} />
-        ))}
-      </Steps>
-    </div>
+    <Steps current={stepCurrent}>
+      {dataStep.map((item) => (
+        <StepItem key={item.id} title={item.name} content={item.detail} />
+      ))}
+    </Steps>
   </Card>
 );
 

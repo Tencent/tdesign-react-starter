@@ -1,9 +1,9 @@
 import React from 'react';
 import { DatePicker } from 'tdesign-react';
-
 import type { DateValue } from 'tdesign-react/es/date-picker';
+import dayjs, { Dayjs } from 'dayjs';
 
-import { RECENT_7_DAYS } from '../date';
+const RECENT_7_DAYS: [Dayjs, Dayjs] = [dayjs().subtract(7, 'day'), dayjs().subtract(1, 'day')];
 
 const LastWeekDatePicker = (onChange: (value: Array<string>) => void) => (
   <DatePicker

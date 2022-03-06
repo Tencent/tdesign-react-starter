@@ -1,10 +1,9 @@
 import type { EChartOption } from 'echarts';
 
-import { ONE_WEEK_LIST } from '../common/constant';
-import getChartDataSet, { CHART_LIST_COLOR, getTimeArray, getRandomInt } from '../common/chart';
+import { ONE_WEEK_LIST, CHART_LIST_COLOR, getChartDataSet, getTimeArray, getRandomInt } from 'utils/chart';
 
 // line chart options
-const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
+export const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
   let dateArray: Array<string> = ONE_WEEK_LIST;
   if (dateTime.length > 0) {
     const dividedNum = 7;
@@ -137,7 +136,7 @@ const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
   };
 };
 
-const getScatterChartOptions = (dateTime: Array<string> = []): EChartOption => {
+export const getScatterChartOptions = (dateTime: Array<string> = []): EChartOption => {
   const [timeArray, inArray, outArray] = getChartDataSet(dateTime);
 
   return {
@@ -204,5 +203,3 @@ const getScatterChartOptions = (dateTime: Array<string> = []): EChartOption => {
     ],
   };
 };
-
-export { getLineChartOptions, getScatterChartOptions };

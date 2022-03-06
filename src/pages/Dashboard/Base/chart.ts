@@ -1,10 +1,7 @@
 import type { EChartOption } from 'echarts';
+import { getChartDataSet, ONE_WEEK_LIST, CHART_LIST_COLOR } from 'utils/chart';
 
-import { CHART_LIST_COLOR } from '../common/constant';
-import getChartDataSet from '../common/chart';
-
-// line chart options
-const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
+export const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
   const [timeArray, inArray, outArray] = getChartDataSet(dateTime);
   return {
     tooltip: {
@@ -72,7 +69,7 @@ const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
   };
 };
 
-const getPieChartOptions = (radius = 42): EChartOption => ({
+export const getPieChartOptions = (radius = 42): EChartOption => ({
   tooltip: {
     trigger: 'item',
   },
@@ -142,7 +139,7 @@ const getPieChartOptions = (radius = 42): EChartOption => ({
   ],
 });
 
-const getBarChartOptions = (dateTime: Array<string> = []): EChartOption => {
+export const getBarChartOptions = (dateTime: Array<string> = []): EChartOption => {
   const [timeArray, inArray, outArray] = getChartDataSet(dateTime);
   return {
     color: CHART_LIST_COLOR,
@@ -200,4 +197,85 @@ const getBarChartOptions = (dateTime: Array<string> = []): EChartOption => {
   };
 };
 
-export { getLineChartOptions, getPieChartOptions, getBarChartOptions };
+// PieChartIcon Data
+export const MICRO_CHART_OPTIONS_LINE: EChartOption = {
+  xAxis: {
+    type: 'category',
+    show: false,
+    data: ONE_WEEK_LIST,
+  },
+  yAxis: {
+    show: false,
+    type: 'value',
+  },
+  grid: {
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    tooltip: {
+      show: false,
+    },
+  },
+  color: ['#fff'],
+  series: [
+    {
+      data: [150, 230, 224, 218, 135, 147, 260],
+      type: 'line',
+      showSymbol: false,
+    },
+  ],
+};
+
+// BarChartIcon Data
+export const MICRO_CHART_OPTIONS_BAR: EChartOption = {
+  xAxis: {
+    type: 'category',
+    show: false,
+    data: ONE_WEEK_LIST,
+  },
+  yAxis: {
+    show: false,
+    type: 'value',
+  },
+  grid: {
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    tooltip: {
+      show: false,
+    },
+  },
+  color: CHART_LIST_COLOR,
+  series: [
+    {
+      data: [
+        100,
+        130,
+        184,
+        218,
+        {
+          value: 135,
+          itemStyle: {
+            color: CHART_LIST_COLOR[1],
+          },
+        },
+        {
+          value: 118,
+          itemStyle: {
+            color: CHART_LIST_COLOR[1],
+          },
+        },
+        {
+          value: 60,
+          itemStyle: {
+            color: CHART_LIST_COLOR[1],
+          },
+        },
+      ],
+      type: 'bar',
+      barWidth: 9,
+    },
+  ],
+};

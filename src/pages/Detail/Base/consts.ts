@@ -1,11 +1,4 @@
-// Mock Data of 基本信息
-interface InfoItem {
-  id: number;
-  name: string;
-  value: string;
-  type?: string;
-}
-export const dataInfo: InfoItem[] = [
+export const dataInfo = [
   { id: 1, name: '合同名称', value: '总部办公用品采购项目' },
   { id: 2, name: '合同状态', value: '履行中', type: 'status' },
   { id: 3, name: '合同编号', value: 'BH00010' },
@@ -22,15 +15,8 @@ export const dataInfo: InfoItem[] = [
   { id: 14, name: '创建时间', value: '2020-12-22 10:00:00' },
 ];
 
-// Mock Data of 变更记录
-interface IStepItem {
-  id: number;
-  name: string;
-  detail?: string;
-}
-export const dataStep: IStepItem[] = [
+export const dataStep = [
   { id: 1, name: '上传合同附件', detail: '这里是提示文字' },
   { id: 2, name: '修改合同金额', detail: '这里是提示文字' },
   { id: 3, name: '新建合同', detail: '2020-12-01 15:00:00 管理员-李川操作' },
 ];
-export const stepCurrent = 1;

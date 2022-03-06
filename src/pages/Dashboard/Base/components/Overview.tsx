@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
-import classnames from 'classnames';
 import { Button, Col, Row } from 'tdesign-react';
 import ReactEcharts from 'echarts-for-react';
 import useDynamicChart from 'utils/hooks/useDynamicChart';
-
-import Board from '../../common/Board';
-import LastWeekDatePicker from '../../common/DatePicker';
-import PaneBox from './PaneBox';
-import { INVENTORY_OVERVIEW } from '../constant';
+import Card from 'components/Card';
+import Board from 'components/Board';
+import LastWeekDatePicker from 'components/DatePicker';
 import { getBarChartOptions } from '../chart';
+import Style from './Overview.module.less';
 
-import Style from '../index.module.less';
-
+const options = getBarChartOptions();
 const Overview = (): React.ReactElement => {
-  const options = getBarChartOptions();
   const [customOptions, setCustomOptions] = useState(options);
   const onTimeChange = (value: Array<string>) => {
     // eslint-disable-next-line no-shadow
@@ -26,33 +22,29 @@ const Overview = (): React.ReactElement => {
   });
 
   return (
-    <div className={classnames(Style.overviewPanel, Style.rowContainer)}>
+    <div className={Style.overviewPanel}>
       <Row>
         <Col xs={12} xl={9} span={12}>
-          <Board title=' 出入库概览 ' description='(件)' operation={LastWeekDatePicker(onTimeChange)}>
+          <Card title=' 出入库概览 ' description='(件)' operation={LastWeekDatePicker(onTimeChange)}>
             <ReactEcharts
               option={dynamicChartOption} // option：图表配置项
               notMerge={true}
               lazyUpdate={true}
               style={{ height: 351 }}
             />
-          </Board>
+          </Card>
         </Col>
         <Col xs={12} xl={3} span={12}>
-          <Board operation={<Button>导出数据</Button>}>
-            <Row gutter={0}>
+          <Card operation={<Button>导出数据</Button>}>
+            <Row>
               <Col span={12}>
-                <Board subtitle='' description='本月出库总计（件）' size='small'>
-                  <PaneBox value={INVENTORY_OVERVIEW.inbound} index={4}></PaneBox>
-                </Board>
+                <Board title='本月出库总计（件）' count='1726' trend='down' trendNum='20.3%' desc='自从上周以来' />
               </Col>
               <Col span={12}>
-                <Board subtitle='' description='本月入库总计（件）' size='small'>
-                  <PaneBox value={INVENTORY_OVERVIEW.outbound} index={5}></PaneBox>
-                </Board>
+                <Board title='活跃用户（个）' count='1126' trend='down' trendNum='20.5%' desc='自从上周以来' />
               </Col>
             </Row>
-          </Board>
+          </Card>
         </Col>
       </Row>
     </div>
