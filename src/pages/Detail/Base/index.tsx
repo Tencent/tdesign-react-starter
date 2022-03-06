@@ -3,14 +3,14 @@ import { Steps } from 'tdesign-react';
 import classnames from 'classnames';
 import PageBox from 'components/PageBox';
 import Card from 'components/Card';
-import { dataInfo, dataStep, stepCurrent } from './consts';
+import { dataInfo, dataStep } from './consts';
 import Style from './index.module.less';
 
 const { StepItem } = Steps;
 
 export default memo(() => (
   <PageBox withColor={false} withPadding={false}>
-    <Card borded={false} title='基本信息'>
+    <Card title='基本信息'>
       <div className={classnames(Style.infoBox)}>
         {dataInfo.map((item) => (
           <div key={item.id} className={classnames(Style.infoBoxItem)}>
@@ -28,9 +28,9 @@ export default memo(() => (
         ))}
       </div>
     </Card>
-    <Card borded={false} title='变更记录' className={Style.logBox}>
+    <Card title='变更记录' className={Style.logBox}>
       <div>
-        <Steps layout='vertical' theme='dot' current={stepCurrent}>
+        <Steps layout='vertical' theme='dot' current={1}>
           {dataStep.map((item) => (
             <StepItem key={item.id} title={item.name} content={item.detail} />
           ))}

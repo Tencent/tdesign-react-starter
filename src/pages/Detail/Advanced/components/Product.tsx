@@ -5,7 +5,7 @@ import ProductCard from './ProductCard';
 import Style from '../index.module.less';
 
 const Product = () => (
-  <Card borded={false} title='产品目录' className={Style.cardBox}>
+  <Card title='产品目录' className={Style.cardBox}>
     <div>
       <Row gutter={[16, 16]}>
         <Col xs={12} xl={4}>

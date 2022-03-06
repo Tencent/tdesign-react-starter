@@ -58,7 +58,7 @@ const TopChart = () => {
       <Col span={6}>
         <Card
           title='告警情况'
-          extra={
+          operation={
             <Radio.Group defaultValue='week' onChange={(val) => tabChange(val === 'month')}>
               <Radio.Button value='week'>本周</Radio.Button>
               <Radio.Button value='month'>本月</Radio.Button>
@@ -125,7 +125,7 @@ const BottomTable = () => {
   };
 
   useEffect(() => {
-    request.get('/api/get-project-list').then((res) => {
+    request.get('/api/get-project-list').then((res: any) => {
       if (res.code === 0) {
         const { list = [] } = res.data;
         setTableData({ tableData: list });

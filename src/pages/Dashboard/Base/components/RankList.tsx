@@ -1,13 +1,11 @@
 import React from 'react';
-import { Col, Radio, Row, Table } from 'tdesign-react';
+import { Col, Radio, Row, Table, Button } from 'tdesign-react';
 import { TdPrimaryTableProps } from 'tdesign-react/es/table';
 import classnames from 'classnames';
-import Board from '../../common/Board';
-import Trend from '../../common/Trend';
-import { PURCHASE_COLUMNS, PURCHASE_TREND_LIST, SALE_COLUMNS, SALE_TREND_LIST } from '../constant';
-import Style from '../index.module.less';
-
-const gutter = [16, 16];
+import Board from 'components/Card';
+import { TrendIcon } from 'components/Board';
+import { PURCHASE_TREND_LIST, SALE_TREND_LIST } from '../constant';
+import Style from './RankList.module.less';
 
 const DateRadioGroup = (
   <Radio.Group defaultValue='recent_week'>
@@ -16,51 +14,118 @@ const DateRadioGroup = (
   </Radio.Group>
 );
 
-const getTableColumns = (columns: TdPrimaryTableProps['columns']): TdPrimaryTableProps['columns'] => {
-  if (columns) {
-    columns[0].render = (context) => {
-      const { type, rowIndex } = context;
-      if (type === 'title') return '排名';
-      return <span className={classnames(Style.rankNO, { [Style.rankNO_top]: rowIndex < 3 })}>{rowIndex + 1}</span>;
-    };
-    columns[2].render = (context) => {
-      const { type, row } = context;
-      if (type === 'title') return '较上周';
-      return <Trend type={row.growUp > 0 ? 'up' : 'down'} description={Math.abs(row.growUp)} />;
-    };
-    columns[5].render = (context) => {
-      const { type, row } = context;
-      if (type === 'title') return '操作';
-      return (
-        <a className={Style.linkBtn} onClick={() => console.log(row)}>
-          操作
-        </a>
-      );
-    };
-  }
-  return columns;
-};
+const SALE_COLUMNS: TdPrimaryTableProps['columns'] = [
+  {
+    align: 'center',
+    colKey: 'index',
+    title: '排名',
+    width: 80,
+    fixed: 'left',
+    render: ({ rowIndex }) => (
+      <span className={classnames(Style.rankIndex, { [Style.rankIndexTop]: rowIndex < 3 })}>{rowIndex + 1}</span>
+    ),
+  },
+  {
+    align: 'left',
+    ellipsis: true,
+    colKey: 'productName',
+    title: '客户名称',
+    minWidth: 200,
+  },
+  {
+    align: 'center',
+    colKey: 'growUp',
+    width: 100,
+    title: '较上周',
+    render: ({ row }) => <TrendIcon trend={row.growUp < 0 ? 'down' : 'up'} trendNum={Math.abs(row.growUp)} />,
+  },
+  {
+    align: 'center',
+    colKey: 'count',
+    title: '订单量',
+    width: 100,
+  },
+  {
+    align: 'center',
+    colKey: 'date',
+    width: 140,
+    title: '合同签订日期',
+  },
+  {
+    align: 'center',
+    colKey: 'operation',
+    fixed: 'right',
+    title: '操作',
+    width: 80,
+    render: ({ row }) => (
+      <Button variant='text' theme='primary' onClick={() => console.log(row)}>
+        操作
+      </Button>
+    ),
+  },
+];
+
+const PURCHASE_COLUMNS: TdPrimaryTableProps['columns'] = [
+  {
+    align: 'center',
+    colKey: 'index',
+    title: '排名',
+    width: 80,
+    fixed: 'left',
+    render: ({ rowIndex }) => (
+      <span className={classnames(Style.rankIndex, { [Style.rankIndexTop]: rowIndex < 3 })}>{rowIndex + 1}</span>
+    ),
+  },
+  {
+    align: 'left',
+    ellipsis: true,
+    colKey: 'productName',
+    title: '供应商名称',
+    minWidth: 200,
+  },
+  {
+    align: 'center',
+    colKey: 'growUp',
+    width: 100,
+    title: '较上周',
+    render: ({ row }) => <TrendIcon trend={row.growUp < 0 ? 'down' : 'up'} trendNum={Math.abs(row.growUp)} />,
+  },
+  {
+    align: 'center',
+    colKey: 'count',
+    title: '订单量',
+    width: 100,
+  },
+  {
+    align: 'center',
+    colKey: 'date',
+    width: 140,
+    title: '合同签订日期',
+  },
+  {
+    align: 'center',
+    colKey: 'operation',
+    title: '操作',
+    fixed: 'right',
+    width: 80,
+    render: ({ row }) => (
+      <Button variant='text' theme='primary' onClick={() => console.log(row)}>
+        操作
+      </Button>
+    ),
+  },
+];
 
 const RankList = () => (
-  <Row gutter={gutter} className={Style.rowContainer}>
+  <Row gutter={[16, 16]} className={Style.rankListPanel}>
     <Col xs={12} xl={6} span={12}>
       <Board title='销售订单排名' operation={DateRadioGroup}>
-        <Table
-          columns={getTableColumns(SALE_COLUMNS)}
-          rowKey='productName'
-          size='medium'
-          data={SALE_TREND_LIST}
-        ></Table>
+        <Table columns={SALE_COLUMNS} rowKey='productName' size='medium' data={SALE_TREND_LIST} />
       </Board>
     </Col>
     <Col xs={12} xl={6} span={12}>
       <Board title='采购订单排名' operation={DateRadioGroup}>
-        <Table
-          columns={getTableColumns(PURCHASE_COLUMNS)}
-          rowKey='productName'
-          size='medium'
-          data={PURCHASE_TREND_LIST}
-        ></Table>
+        <Table columns={PURCHASE_COLUMNS} rowKey='productName' size='medium' data={PURCHASE_TREND_LIST} />
       </Board>
     </Col>
   </Row>

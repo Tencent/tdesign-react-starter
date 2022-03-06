@@ -5,7 +5,7 @@ import Card from 'components/Card';
 import Style from '../index.module.less';
 
 const Detail = () => (
-  <Card borded={false} title='产品采购明细' className={Style.cardBox}>
+  <Card title='产品采购明细' className={Style.cardBox}>
     <Table
       data={dataBuyList}
       columns={[

@@ -1,93 +1,52 @@
-import React, { ReactNode } from 'react';
-import cx from 'classnames';
-import { Tabs } from 'tdesign-react';
-import { TabsProps, TabPanelProps } from 'tdesign-react/es/tabs';
-import { getPrefixCls } from './utils';
-import Grid from './Grid';
-import './index.less';
+import React from 'react';
+import classnames from 'classnames';
+import Style from './index.module.less';
 
-const { TabPanel } = Tabs;
-
-export interface CardProps {
-  title?: ReactNode;
-  extra?: ReactNode;
-  actions?: React.ReactNode[];
-  children?: React.ReactNode;
-  tabProps?: TabsProps;
-  tabList?: TabPanelProps[];
-  onTapChange?: TabsProps['onChange'];
+export interface ICardProps {
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  operation?: React.ReactNode;
   className?: string;
-  prefixCls?: string;
-  borded?: boolean;
-  style?: React.CSSProperties;
-  bodyStyle?: React.CSSProperties;
-  headStyle?: React.CSSProperties;
+  border?: boolean;
+  size?: 'small' | 'large';
+  [key: string]: any;
 }
 
-export interface CardInterface extends React.FC<CardProps> {
-  Grid: typeof Grid;
-}
-
-const Card: CardInterface = (props: CardProps) => {
-  const {
-    title,
-    extra,
-    actions,
-    tabList,
-    tabProps,
-    onTapChange,
-    className,
-    prefixCls,
-    borded,
-    style,
-    headStyle,
-    bodyStyle,
-  } = props;
-
-  const cls = getPrefixCls('card', prefixCls);
-  const borderCls = `${cls}-borderd`;
-
-  const tabs = tabList?.length ? (
-    <Tabs {...(tabProps || {})} onChange={onTapChange}>
-      {tabList?.map((tab) => (
-        <TabPanel key={tab.value} {...tab}></TabPanel>
-      ))}
-    </Tabs>
-  ) : null;
-
-  const hasHead = Boolean(title || extra || tabs);
-
-  return (
-    <div style={style} className={cx(cls, className, { [borderCls]: borded })}>
-      {hasHead && (
-        <div className={cx(`${cls}-head`)} style={headStyle}>
-          <div className={cx(`${cls}-head-wrapper`)}>
-            {title && <div className={cx(`${cls}-head-title`)}>{title}</div>}
-            {extra && <div className={cx(`${cls}-head-extra`)}>{extra}</div>}
-          </div>
-          {tabs}
+const Card = ({
+  title,
+  description,
+  operation,
+  children,
+  border,
+  className,
+  size,
+  ...other
+}: React.PropsWithChildren<ICardProps>) => (
+  <div
+    className={classnames(
+      Style.cardPanel,
+      {
+        [Style.cardPanelBorder]: border,
+      },
+      className,
+    )}
+    {...other}
+  >
+    <div className={Style.top}>
+      <div className={Style.left}>
+        <div
+          className={classnames(Style.cardTitle, {
+            [Style.cardTitleSmall]: size === 'small',
+          })}
+        >
+          {title}
         </div>
-      )}
-      <div className={cx(`${cls}-body`)} style={bodyStyle}>
-        {props.children}
+        <div className={Style.cardDescription}>{description}</div>
       </div>
-      {actions?.length && (
-        <ul className={cx(`${cls}-actions`)}>
-          {actions.map((action, index) => (
-            <li style={{ width: `${100 / actions.length}%` }} key={`action-${index}`}>
-              <span>{action}</span>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div>{operation}</div>
     </div>
-  );
-};
+    <div className={Style.cardContainer}>{children}</div>
+  </div>
+);
 
-Card.defaultProps = {
-  borded: true,
-};
-
-Card.Grid = Grid;
-
-export default Card;
+export default React.memo(Card);
