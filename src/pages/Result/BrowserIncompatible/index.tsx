@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
 import { Button } from 'tdesign-react';
 
-import networkErrorIcon from 'assets/svg/assets-result-browser-incompatible.svg';
+import BrowserIncompatibleIcon from 'assets/svg/assets-result-browser-incompatible.svg?component';
 import style from './index.module.less';
 
 const BrowserIncompatible = () => (
   <div className={style.Content}>
-    <img src={networkErrorIcon} className={style.icon} />
+    <BrowserIncompatibleIcon />
     <div className={style.title}>浏览器版本低</div>
     <div className={style.description}>抱歉，您正在使用的浏览器版本过低，无法打开当前网页。</div>
 

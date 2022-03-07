@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
 import { Button } from 'tdesign-react';
 
-import networkErrorIcon from 'assets/svg/assets-result-network-error.svg';
+import NetworkErrorIcon from 'assets/svg/assets-result-network-error.svg?component';
 import style from '../index.module.less';
 
 const NetworkError = () => (
   <div className={style.Content}>
-    <img src={networkErrorIcon} className={style.icon} />
+    <NetworkErrorIcon />
     <div className={style.title}>网络异常</div>
     <div className={style.description}>网络异常，请稍后再试</div>
     <div>
