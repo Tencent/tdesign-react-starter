@@ -6,6 +6,11 @@ import ReactEcharts from 'echarts-for-react';
 import Card from 'components/Card';
 import { TEAMS } from './consts';
 import { visitData } from './chart';
+import ProductA from 'assets/svg/assets-product-1.svg?component';
+import ProductB from 'assets/svg/assets-product-2.svg?component';
+import ProductC from 'assets/svg/assets-product-3.svg?component';
+import ProductD from 'assets/svg/assets-product-4.svg?component';
+
 import styles from './index.module.less';
 
 const { ListItem, ListItemMeta } = List;
@@ -119,14 +124,17 @@ const User: React.FC<BrowserRouterProps> = () => (
           }
         >
           <Row gutter={32}>
-            <Col>
-              <img src='https://tdesign.gtimg.com/pro-template/tdesign-icon1.png' className={styles.logo} />
+            <Col span={3}>
+              <ProductA />
             </Col>
-            <Col>
-              <img src='https://tdesign.gtimg.com/pro-template/tdesign-icon2.png' className={styles.logo} />
+            <Col span={3}>
+              <ProductB />
             </Col>
-            <Col>
-              <img src='https://tdesign.gtimg.com/pro-template/tdesign-icon3.png' className={styles.logo} />
+            <Col span={3}>
+              <ProductC />
+            </Col>
+            <Col span={3}>
+              <ProductD />
             </Col>
           </Row>
         </Card>

@@ -33,7 +33,7 @@ const themeList = [
     name: '黑暗',
   },
   {
-    value: ETheme.light, // todo
+    value: ETheme.auto,
     image: System,
     name: '跟随系统',
   },

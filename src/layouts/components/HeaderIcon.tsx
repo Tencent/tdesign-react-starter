@@ -11,11 +11,11 @@ export default memo(() => {
   const history = useHistory();
 
   const gotoWiki = () => {
-    window.open('https://tdesign.tencent.com/react/components/overview');
+    window.open('https://tdesign.tencent.com/react/overview');
   };
 
   const gotoGitHub = () => {
-    window.open('https://github.com/Tencent');
+    window.open('https://github.com/Tencent/tdesign-react-starter');
   };
 
   const options = [
@@ -24,7 +24,7 @@ export default memo(() => {
       value: 1,
     },
     {
-      content: '推出登录',
+      content: '退出登录',
       value: 2,
     },
   ];
@@ -62,9 +62,9 @@ export default memo(() => {
         <Dropdown className={Style.dropdown} options={options} trigger={'click'} onClick={clickHandler}>
           <Button variant='text'>
             <span style={{ display: 'inline-flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Icon name='user-circle' size='20' />
+              <Icon name='user-circle' size='20px' />
               <span style={{ display: 'inline-block', margin: '0 5px' }}>Tencent</span>
-              <Icon name='chevron-down' size='20' />
+              <Icon name='chevron-down' size='20px' />
             </span>
           </Button>
         </Dropdown>

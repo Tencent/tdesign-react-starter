@@ -93,6 +93,9 @@ export const getPieChartOptions = (radius = 42): EChartOption => ({
       type: 'pie',
       radius: ['48%', '60%'],
       avoidLabelOverlap: false,
+      itemStyle: {
+        borderWidth: 1,
+      },
       label: {
         show: true,
         position: 'center',
