@@ -1,5 +1,5 @@
 import type { EChartOption } from 'echarts';
-import { getChartDataSet, ONE_WEEK_LIST, CHART_LIST_COLOR } from 'utils/chart';
+import { getChartDataSet, ONE_WEEK_LIST } from 'utils/chart';
 
 export const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
   const [timeArray, inArray, outArray] = getChartDataSet(dateTime);
@@ -145,7 +145,6 @@ export const getPieChartOptions = (radius = 42): EChartOption => ({
 export const getBarChartOptions = (dateTime: Array<string> = []): EChartOption => {
   const [timeArray, inArray, outArray] = getChartDataSet(dateTime);
   return {
-    color: CHART_LIST_COLOR,
     tooltip: {
       trigger: 'item',
     },
@@ -154,7 +153,6 @@ export const getBarChartOptions = (dateTime: Array<string> = []): EChartOption =
       data: timeArray,
       axisLine: {
         lineStyle: {
-          color: CHART_LIST_COLOR[1],
           width: 1,
         },
       },
@@ -192,9 +190,6 @@ export const getBarChartOptions = (dateTime: Array<string> = []): EChartOption =
         name: '上月',
         data: inArray,
         type: 'bar',
-        itemStyle: {
-          color: CHART_LIST_COLOR[1],
-        },
       },
     ],
   };
@@ -250,7 +245,6 @@ export const MICRO_CHART_OPTIONS_BAR: EChartOption = {
       show: false,
     },
   },
-  color: CHART_LIST_COLOR,
   series: [
     {
       data: [
@@ -261,19 +255,19 @@ export const MICRO_CHART_OPTIONS_BAR: EChartOption = {
         {
           value: 135,
           itemStyle: {
-            color: CHART_LIST_COLOR[1],
+            opacity: 0.2,
           },
         },
         {
           value: 118,
           itemStyle: {
-            color: CHART_LIST_COLOR[1],
+            opacity: 0.2,
           },
         },
         {
           value: 60,
           itemStyle: {
-            color: CHART_LIST_COLOR[1],
+            opacity: 0.2,
           },
         },
       ],
