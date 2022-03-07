@@ -5,9 +5,10 @@ import Style from './index.module.less';
 
 const { Content } = Layout;
 
-interface IPageBoxProps {
+export interface IPageBoxProps {
   withColor?: boolean;
   withPadding?: boolean;
+  className?: string;
 }
 
 const PageBox: React.FC<React.PropsWithChildren<IPageBoxProps>> = ({

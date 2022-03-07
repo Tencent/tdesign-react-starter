@@ -8,6 +8,7 @@ const namespace = 'global';
 export enum ETheme {
   light = 'light',
   dark = 'dark',
+  auto = 'auto',
 }
 
 export enum ELayout {
@@ -71,9 +72,17 @@ const globalSlice = createSlice({
       state.showFooter = !state.showFooter;
     },
     switchTheme: (state, action) => {
-      if (action?.payload) {
-        state.theme = action?.payload;
-        document.documentElement.setAttribute('theme-mode', action?.payload);
+      let finalTheme = action?.payload;
+      if (finalTheme) {
+        if (finalTheme === ETheme.auto) {
+          const media = window.matchMedia('(prefers-color-scheme:dark)');
+          if (media.matches) {
+            //
+            finalTheme = media.matches ? ETheme.dark : ETheme.light;
+          }
+        }
+        state.theme = finalTheme;
+        document.documentElement.setAttribute('theme-mode', finalTheme);
       }
     },
     switchColor: (state, action) => {
