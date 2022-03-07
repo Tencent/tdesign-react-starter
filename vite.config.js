@@ -1,6 +1,7 @@
 import { viteMockServe } from 'vite-plugin-mock';
 import path from 'path';
 import react from '@vitejs/plugin-react';
+import svgr from '@honkhonk/vite-plugin-svgr';
 
 export default (params) => {
   return {
@@ -30,6 +31,7 @@ export default (params) => {
     },
 
     plugins: [
+      svgr(),
       react(),
       params.mode === 'mock' &&
         viteMockServe({
