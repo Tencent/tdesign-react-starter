@@ -1,10 +1,10 @@
 import React from 'react';
 import { Input, Tree } from 'tdesign-react';
+import { SearchIcon } from 'tdesign-icons-react';
 import PageBox from 'components/PageBox';
 import { SelectTable } from '../Select/index';
 import { treeList } from './consts';
 import Style from './index.module.less';
-import { SearchIcon } from 'tdesign-icons-react';
 
 const TreeTable: React.FC = () => (
   <PageBox className={Style.content}>
