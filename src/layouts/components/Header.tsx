@@ -41,12 +41,8 @@ export default memo((props: IHeaderProps) => {
 
   return (
     <Header className={Style.headerPanel}>
-      <Row justify='space-between'>
-        <Col>{HeaderLeft}</Col>
-        <Col>
-          <HeaderIcon />
-        </Col>
-      </Row>
+      {HeaderLeft}
+      <HeaderIcon />
     </Header>
   );
 });
