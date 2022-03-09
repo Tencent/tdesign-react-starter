@@ -38,7 +38,7 @@ export default memo(() => {
   return (
     <Row align='middle' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
       <Col>
-        <Button shape='square' size='large' variant='text'>
+        <Button shape='square' size='large' variant='text' className={Style.badgeBtn}>
           <Badge count={6} style={{ zIndex: 1 }}>
             <MailIcon />
           </Badge>
