@@ -15,13 +15,18 @@ const PageBox: React.FC<React.PropsWithChildren<IPageBoxProps>> = ({
   children,
   withColor = true,
   withPadding = true,
+  className,
   ...others
 }) => (
   <Content
-    className={classnames(Style.pageBox, {
-      [Style.pageBoxWithColor]: withColor,
-      [Style.pageBoxWithPadding]: withPadding,
-    })}
+    className={classnames(
+      Style.pageBox,
+      {
+        [Style.pageBoxWithColor]: withColor,
+        [Style.pageBoxWithPadding]: withPadding,
+      },
+      className,
+    )}
     {...others}
   >
     {children}
