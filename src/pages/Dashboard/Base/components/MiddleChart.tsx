@@ -33,17 +33,12 @@ const MiddleChart = () => {
     <Row gutter={[16, 16]} className={Style.middleChartPanel}>
       <Col xs={12} xl={9}>
         <Card title='统计数据' description='(万元)' operation={LastWeekDatePicker(onTimeChange)}>
-          <ReactEcharts option={dynamicLineChartOption} notMerge={true} lazyUpdate={false} style={{ height: 280 }} />
+          <ReactEcharts option={dynamicLineChartOption} notMerge={true} lazyUpdate={false} />
         </Card>
       </Col>
       <Col xs={12} xl={3}>
         <Card title='销售渠道' description='2021-12'>
-          <ReactEcharts
-            option={dynamicPieChartOption}
-            notMerge={true}
-            lazyUpdate={true}
-            style={{ width: 280, height: 280, margin: '0 auto' }}
-          />
+          <ReactEcharts option={dynamicPieChartOption} notMerge={true} lazyUpdate={true} />
         </Card>
       </Col>
     </Row>
