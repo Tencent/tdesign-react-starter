@@ -80,7 +80,7 @@ const PurchaseTrend = () => {
             option={dynamicChartOptions} // option：图表配置项
             notMerge={true}
             lazyUpdate={true}
-            style={{ height: 416 }}
+            style={{ height: 453 }}
           />
         </Board>
       </Col>
