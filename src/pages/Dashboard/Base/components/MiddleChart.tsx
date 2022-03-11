@@ -26,7 +26,7 @@ const MiddleChart = () => {
   const dynamicPieChartOption = useDynamicChart(pieOptions, {
     placeholderColor: ['legend.textStyle.color'],
     containerColor: ['series.0.itemStyle.borderColor'],
-    textColor: ['series.0.label.color', 'series.1.label.color'],
+    textColor: ['label.color', 'label.color'],
   });
 
   return (
