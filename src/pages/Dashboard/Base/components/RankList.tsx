@@ -30,7 +30,7 @@ const SALE_COLUMNS: TdPrimaryTableProps['columns'] = [
     ellipsis: true,
     colKey: 'productName',
     title: '客户名称',
-    minWidth: 200,
+    width: 200,
   },
   {
     align: 'center',
@@ -81,7 +81,7 @@ const PURCHASE_COLUMNS: TdPrimaryTableProps['columns'] = [
     ellipsis: true,
     colKey: 'productName',
     title: '供应商名称',
-    minWidth: 200,
+    width: 200,
   },
   {
     align: 'center',
