@@ -52,7 +52,7 @@ export default memo(() => {
   return (
     <PageBox withPadding={false}>
       <div className={Style.formContainer}>
-        <Form ref={formRef} onSubmit={onSubmit} labelWidth={100} labelAlign='top' className={Style.baseForm}>
+        <Form ref={formRef} onSubmit={onSubmit} labelWidth={100} labelAlign='top'>
           <div className={Style.titleBox}>
             <div className={Style.titleText}>合同信息</div>
           </div>
