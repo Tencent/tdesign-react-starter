@@ -1,5 +1,5 @@
 import React, { useState, memo, useEffect } from 'react';
-import { Table, Dialog, Button } from 'tdesign-react';
+import { Table, Dialog, Button, Row } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { selectListSelect, getList, clearPageState } from 'modules/list/select';
 import PageBox from 'components/PageBox';
@@ -46,12 +46,14 @@ export const SelectTable = () => {
 
   return (
     <>
-      <SearchForm
-        onSubmit={async (value) => {
-          console.log(value);
-        }}
-        onCancel={() => {}}
-      />
+      <Row justify='start' style={{ marginBottom: '20px' }}>
+        <SearchForm
+          onSubmit={async (value) => {
+            console.log(value);
+          }}
+          onCancel={() => {}}
+        />
+      </Row>
       <Table
         loading={loading}
         data={contractList}
