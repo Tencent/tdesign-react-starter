@@ -19,6 +19,7 @@ import Result403 from 'pages/Result/403';
 import Result404 from 'pages/Result/404';
 import Result500 from 'pages/Result/500';
 import ResultBrowserIncompatible from 'pages/Result/BrowserIncompatible';
+import Login from 'pages/Login';
 
 interface IRouteItem {
   key?: string;
@@ -26,6 +27,7 @@ interface IRouteItem {
   exact?: boolean;
   isHome?: boolean;
   Component: React.FC<BrowserRouterProps>;
+  isFullPage?: boolean;
 }
 
 export const routes: IRouteItem[] = [
@@ -105,5 +107,10 @@ export const routes: IRouteItem[] = [
   {
     path: '/result/browser-incompatible',
     Component: ResultBrowserIncompatible,
+  },
+  {
+    path: '/login',
+    Component: Login,
+    isFullPage: true,
   },
 ];

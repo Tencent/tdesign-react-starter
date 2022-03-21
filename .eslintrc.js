@@ -35,6 +35,7 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/order': 'off',
     'import/prefer-default-export': 'off',
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     // 关闭variable必须全部大写规则
     '@typescript-eslint/naming-convention': [
       'error',

@@ -155,6 +155,18 @@ export const menu: IMenuItem[] = [
     ],
   },
   {
+    key: 'login',
+    label: '登录页',
+    Icon: UserCircleIcon,
+    children: [
+      {
+        key: '/login/index',
+        label: '登录中心',
+        path: '/login',
+      },
+    ],
+  },
+  {
     key: 'level1',
     label: '一级菜单',
     Icon: UserCircleIcon,

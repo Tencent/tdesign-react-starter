@@ -2,11 +2,13 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
 
 import global from './global';
+import user from './user';
 import listBase from './list/base';
 import listSelect from './list/select';
 
 const reducer = combineReducers({
   global,
+  user,
   listBase,
   listSelect,
 });
