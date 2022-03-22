@@ -6,6 +6,8 @@ import {
   LayersIcon,
   CheckCircleIcon,
   UserCircleIcon,
+  LogoutIcon,
+  RootListIcon,
 } from 'tdesign-icons-react';
 
 export interface IMenuItem {
@@ -155,9 +157,21 @@ export const menu: IMenuItem[] = [
     ],
   },
   {
+    key: 'login',
+    label: '登录页',
+    Icon: LogoutIcon,
+    children: [
+      {
+        key: '/login/index',
+        label: '登录中心',
+        path: '/login',
+      },
+    ],
+  },
+  {
     key: 'level1',
     label: '一级菜单',
-    Icon: UserCircleIcon,
+    Icon: RootListIcon,
     children: [
       {
         key: '/level1/level2',
