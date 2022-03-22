@@ -1,10 +1,21 @@
 import React, { memo } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button, Popup, Badge, Dropdown, Row, Col } from 'tdesign-react';
-import { Icon, LogoGithubIcon, MailIcon, HelpCircleIcon, SettingIcon } from 'tdesign-icons-react';
+import {
+  Icon,
+  LogoGithubIcon,
+  MailIcon,
+  HelpCircleIcon,
+  SettingIcon,
+  PoweroffIcon,
+  UserCircleIcon,
+} from 'tdesign-icons-react';
 import { useAppDispatch } from 'modules/store';
 import { toggleSetting } from 'modules/global';
+import { logout } from 'modules/user';
 import Style from './HeaderIcon.module.less';
+
+const { DropdownMenu, DropdownItem } = Dropdown;
 
 export default memo(() => {
   const dispatch = useAppDispatch();
@@ -18,21 +29,14 @@ export default memo(() => {
     window.open('https://github.com/Tencent/tdesign-react-starter');
   };
 
-  const options = [
-    {
-      content: '个人中心',
-      value: 1,
-    },
-    {
-      content: '退出登录',
-      value: 2,
-    },
-  ];
-
   const clickHandler = (data: any) => {
     if (data.value === 1) {
       history.push('/user/index');
     }
+  };
+  const handleLogout = async () => {
+    await dispatch(logout());
+    history.push('/login/index');
   };
 
   return (
@@ -59,7 +63,7 @@ export default memo(() => {
         </Button>
       </Col>
       <Col>
-        <Dropdown className={Style.dropdown} options={options} trigger={'click'} onClick={clickHandler}>
+        <Dropdown className={Style.dropdown} trigger={'click'} onClick={clickHandler}>
           <Button variant='text'>
             <span style={{ display: 'inline-flex', justifyContent: 'center', alignItems: 'center' }}>
               <Icon name='user-circle' size='20px' />
@@ -67,6 +71,20 @@ export default memo(() => {
               <Icon name='chevron-down' size='20px' />
             </span>
           </Button>
+          <DropdownMenu>
+            <DropdownItem value={1}>
+              <>
+                <UserCircleIcon />
+                个人中心
+              </>
+            </DropdownItem>
+            <DropdownItem value={1} onClick={handleLogout}>
+              <>
+                <PoweroffIcon />
+                退出登录
+              </>
+            </DropdownItem>
+          </DropdownMenu>
         </Dropdown>
       </Col>
       <Col>

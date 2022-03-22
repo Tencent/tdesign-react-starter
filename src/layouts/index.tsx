@@ -4,7 +4,7 @@ import throttle from 'lodash/throttle';
 import { useAppSelector, useAppDispatch } from 'modules/store';
 import { selectGlobal, toggleSetting, toggleMenu } from 'modules/global';
 import Setting from './components/Setting';
-import LayoutMap from './components/Container';
+import Content from './components/Content';
 import Style from './index.module.less';
 
 export default memo(() => {
@@ -25,11 +25,9 @@ export default memo(() => {
     };
   }, []);
 
-  const Container = LayoutMap[globalState.layout];
-
   return (
     <Layout className={Style.mainPanel}>
-      <Container />
+      <Content />
       <Drawer
         destroyOnClose
         visible={globalState.setting}
