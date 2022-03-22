@@ -15,7 +15,6 @@ export enum ELayout {
   side = 1,
   top,
   mix,
-  full,
 }
 
 export interface IGlobalState {

@@ -39,15 +39,8 @@ const MixLayout = React.memo(({ children }: { children: React.ReactNode }) => (
   </Layout>
 ));
 
-const FullPageLayout = React.memo(({ children }: { children: React.ReactNode }) => (
-  <Layout className={Style.sidePanel}>
-    <Layout className={Style.sideContainer}>{children}</Layout>
-  </Layout>
-));
-
 export default {
   [ELayout.side]: SideLayout,
   [ELayout.top]: TopLayout,
   [ELayout.mix]: MixLayout,
-  [ELayout.full]: FullPageLayout,
 };

@@ -1,7 +1,10 @@
 import React, { useState, useRef } from 'react';
 import classnames from 'classnames';
 import { Form, MessagePlugin, Input, Checkbox, Button, FormInstanceFunctions, SubmitContext } from 'tdesign-react';
-import { LockOnIcon, UserIcon, MailIcon, BrowseOffIcon, BrowseIcon, RefreshIcon } from 'tdesign-icons-react';
+import { LockOnIcon, UserIcon, BrowseOffIcon, BrowseIcon, RefreshIcon } from 'tdesign-icons-react';
+import { useAppDispatch } from 'modules/store';
+import QRCode from 'qrcode.react';
+
 import useCountdown from '../../hooks/useCountDown';
 import { useHistory } from 'react-router-dom';
 import { login } from 'modules/user';
@@ -10,20 +13,23 @@ import Style from './index.module.less';
 
 const { FormItem } = Form;
 
+export type ELoginType = 'password' | 'phone' | 'qrcode';
+
 export default function Login() {
-  const [loginType, changeLoginType] = useState('password');
+  const [loginType, changeLoginType] = useState<ELoginType>('password');
   const [showPsw, toggleShowPsw] = useState(false);
-  const countDown = useCountdown(60);
+  const { countdown, setupCountdown } = useCountdown(60);
   const formRef = useRef<FormInstanceFunctions>();
   const history = useHistory();
+  const dispatch = useAppDispatch();
 
   const onSubmit = async (e: SubmitContext) => {
     if (e.validateResult === true) {
       try {
         const formValue = formRef.current?.getFieldsValue?.(true) || {};
-        await login(formValue);
+        await dispatch(login(formValue));
 
-        MessagePlugin.success('登陆成功');
+        MessagePlugin.success('登录成功');
 
         history.push('/dashboard/base');
       } catch (e) {
@@ -33,12 +39,11 @@ export default function Login() {
     }
   };
 
-  const switchType = (val: any) => {
-    (formRef as any).value.reset();
+  const switchType = (val: ELoginType) => {
+    formRef.current?.reset?.();
     changeLoginType(val);
   };
 
-  const handleCounter = () => {};
   return (
     <div>
       <Form
@@ -47,26 +52,11 @@ export default function Login() {
         labelWidth={0}
         onSubmit={onSubmit}
       >
-        {loginType === 'phone' && (
-          <FormItem name='phone' rules={[{ required: true, message: '手机号必填', type: 'error' }]}>
-            <Input maxlength={11} size='large' placeholder='请输入您的手机号' prefixIcon={<UserIcon />} />
-          </FormItem>
-        )}
-
-        {loginType === 'email' && (
-          <FormItem
-            name='email'
-            rules={[
-              { required: true, message: '邮箱必填', type: 'error' },
-              { email: true, message: '请输入正确的邮箱', type: 'warning' },
-            ]}
-          >
-            <Input type='text' size='large' placeholder='请输入您的邮箱' prefixIcon={<MailIcon />} />
-          </FormItem>
-        )}
-
         {loginType === 'password' && (
           <>
+            <FormItem name='account' rules={[{ required: true, message: '账号必填', type: 'error' }]}>
+              <Input size='large' placeholder='请输入账号：admin' prefixIcon={<UserIcon />}></Input>
+            </FormItem>
             <FormItem name='password' rules={[{ required: true, message: '密码必填', type: 'error' }]}>
               <Input
                 size='large'
@@ -96,24 +86,30 @@ export default function Login() {
             <div className={Style.tipContainer}>
               <span className='tip'>请使用微信扫一扫登录</span>
               <span className='refresh'>
-                刷新 <RefreshIcon />{' '}
+                刷新 <RefreshIcon />
               </span>
             </div>
+            <QRCode id='qrCode' value='' size={200} />
           </>
         )}
         {/* // 手机号登陆 */}
         {loginType === 'phone' && (
-          <FormItem name='verifyCode'>
-            <Input size='large' placeholder='请输入验证码' />
-            <Button
-              variant='outline'
-              className={Style.verificationBtn}
-              disabled={countDown > 0}
-              onClick={handleCounter}
-            >
-              {countDown === 0 ? '发送验证码' : `${countDown}秒后可重发`}
-            </Button>
-          </FormItem>
+          <>
+            <FormItem name='phone' rules={[{ required: true, message: '手机号必填', type: 'error' }]}>
+              <Input maxlength={11} size='large' placeholder='请输入您的手机号' prefixIcon={<UserIcon />} />
+            </FormItem>
+            <FormItem name='verifyCode' rules={[{ required: true, message: '验证码必填', type: 'error' }]}>
+              <Input size='large' placeholder='请输入验证码' />
+              <Button
+                variant='outline'
+                className={Style.verificationBtn}
+                disabled={countdown > 0}
+                onClick={setupCountdown}
+              >
+                {countdown === 0 ? '发送验证码' : `${countdown}秒后可重发`}
+              </Button>
+            </FormItem>
+          </>
         )}
         {loginType !== 'qrcode' && (
           <FormItem className={Style.btnContainer}>
@@ -124,17 +120,17 @@ export default function Login() {
         )}
         <div className={Style.switchContainer}>
           {loginType !== 'password' && (
-            <span className={Style.switchTip} onClick={() => switchType('password')}>
+            <span className='tip' onClick={() => switchType('password')}>
               使用账号密码登录
             </span>
           )}
           {loginType !== 'qrcode' && (
-            <span className={Style.switchTip} onClick={() => switchType('qrcode')}>
+            <span className='tip' onClick={() => switchType('qrcode')}>
               使用微信扫码登录
             </span>
           )}
           {loginType !== 'phone' && (
-            <span className={Style.switchTip} onClick={() => switchType('phone')}>
+            <span className='tip' onClick={() => switchType('phone')}>
               使用手机号登录
             </span>
           )}

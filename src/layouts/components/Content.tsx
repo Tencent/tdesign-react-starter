@@ -15,7 +15,6 @@ export default React.memo(() => {
   const home = routes.find((item) => item.isHome);
   const globalState = useAppSelector(selectGlobal);
   const Container = LayoutMap[globalState.layout];
-  console.log(Container, 'Container');
   return (
     <Content>
       <Switch>
