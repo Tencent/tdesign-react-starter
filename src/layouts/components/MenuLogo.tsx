@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import Style from './Menu.module.less';
 import MiniLogo from 'assets/svg/assets-t-logo.svg';
+import { useHistory } from 'react-router-dom';
 
 const LogoFull = () => (
   <svg
@@ -107,8 +108,16 @@ interface IProps {
   collapsed?: boolean;
 }
 
-export default memo((props: IProps) => (
-  <div className={Style.menuLogo}>
-    {props.collapsed ? <img src={MiniLogo} className={Style.menuMiniLogo} /> : <LogoFull />}
-  </div>
-));
+export default memo((props: IProps) => {
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push('/');
+  };
+
+  return (
+    <div className={Style.menuLogo} onClick={handleClick}>
+      {props.collapsed ? <img src={MiniLogo} className={Style.menuMiniLogo} /> : <LogoFull />}
+    </div>
+  );
+});
