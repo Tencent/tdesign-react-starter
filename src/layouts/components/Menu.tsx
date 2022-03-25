@@ -64,7 +64,6 @@ export default memo((props: IMenuProps) => {
 
   const { version } = globalState;
   const bottomText = globalState.collapsed ? version : `TDesign Starter ${version}`;
-
   return (
     <Menu
       width='232px'

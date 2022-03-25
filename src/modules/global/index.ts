@@ -15,6 +15,7 @@ export enum ELayout {
   side = 1,
   top,
   mix,
+  fullPage,
 }
 
 export interface IGlobalState {
