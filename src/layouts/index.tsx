@@ -1,15 +1,28 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState, useMemo } from 'react';
 import { Drawer, Layout } from 'tdesign-react';
 import throttle from 'lodash/throttle';
+import { useLocation } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from 'modules/store';
-import { selectGlobal, toggleSetting, toggleMenu } from 'modules/global';
+import { selectGlobal, toggleSetting, toggleMenu, ELayout } from 'modules/global';
 import Setting from './components/Setting';
-import Content from './components/Content';
+import LayoutMap from './components/Container';
+import { routes } from 'configs/routes';
+
 import Style from './index.module.less';
 
 export default memo(() => {
   const globalState = useAppSelector(selectGlobal);
   const dispatch = useAppDispatch();
+  const location = useLocation();
+  const [isFullPage, toggleFullPage] = useState(false);
+
+  const fullPageList = useMemo(() => routes.filter((route) => route.isFullPage).map((route) => route.path), []);
+
+  useEffect(() => {
+    toggleFullPage(fullPageList.includes(location.pathname));
+  }, [location]);
+
+  const Container = LayoutMap[isFullPage ? ELayout.fullPage : globalState.layout];
 
   useEffect(() => {
     const handleResize = throttle(() => {
@@ -27,7 +40,7 @@ export default memo(() => {
 
   return (
     <Layout className={Style.mainPanel}>
-      <Content />
+      <Container />
       <Drawer
         destroyOnClose
         visible={globalState.setting}
