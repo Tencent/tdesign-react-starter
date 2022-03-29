@@ -1,6 +1,6 @@
 import React from 'react';
-import { DatePicker } from 'tdesign-react';
-import type { DateValue } from 'tdesign-react/es/date-picker';
+import { DatePicker } from 'tdesign-react/esm';
+import type { DateValue } from 'tdesign-react/esm/date-picker';
 import dayjs, { Dayjs } from 'dayjs';
 
 const RECENT_7_DAYS: [Dayjs, Dayjs] = [dayjs().subtract(7, 'day'), dayjs().subtract(1, 'day')];

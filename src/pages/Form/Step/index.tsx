@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import PageBox from 'components/PageBox';
-import { Steps } from 'tdesign-react';
+import { Steps } from 'tdesign-react/esm';
 import { StepOne, StepTwo, StepThree, StepFour } from './components';
 
 const { StepItem: Step } = Steps;

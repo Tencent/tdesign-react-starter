@@ -12,8 +12,9 @@ import {
   Avatar,
   Upload,
   MessagePlugin,
-} from 'tdesign-react';
-import { SubmitContext, FormInstanceFunctions } from 'tdesign-react/es/form/type';
+  Loading,
+} from 'tdesign-react/esm';
+import { SubmitContext, FormInstanceFunctions } from 'tdesign-react/esm/form/type';
 import PageBox from 'components/PageBox';
 import Style from './index.module.less';
 
@@ -51,6 +52,7 @@ export default memo(() => {
 
   return (
     <PageBox withPadding={false}>
+      <Loading />
       <div className={Style.formContainer}>
         <Form ref={formRef} onSubmit={onSubmit} labelWidth={100} labelAlign='top'>
           <div className={Style.titleBox}>

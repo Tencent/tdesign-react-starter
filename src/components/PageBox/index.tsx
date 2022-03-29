@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from 'tdesign-react';
+import { Layout } from 'tdesign-react/esm';
 import classnames from 'classnames';
 import Style from './index.module.less';
 

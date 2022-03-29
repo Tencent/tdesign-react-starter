@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Steps } from 'tdesign-react';
+import { Steps } from 'tdesign-react/esm';
 import classnames from 'classnames';
 import PageBox from 'components/PageBox';
 import Card from 'components/Card';

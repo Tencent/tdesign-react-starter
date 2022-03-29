@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Menu, MenuValue } from 'tdesign-react';
+import { Menu, MenuValue } from 'tdesign-react/esm';
 import { menu, IMenuItem } from 'configs/menu';
 import { useAppSelector } from 'modules/store';
 import { selectGlobal } from 'modules/global';

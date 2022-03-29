@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Button } from 'tdesign-react';
+import { Button } from 'tdesign-react/esm';
 
 import NetworkErrorIcon from 'assets/svg/assets-result-network-error.svg?component';
 import style from '../index.module.less';

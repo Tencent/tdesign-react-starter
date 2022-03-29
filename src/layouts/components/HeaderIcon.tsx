@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button, Popup, Badge, Dropdown, Row, Col } from 'tdesign-react';
+import { Button, Popup, Badge, Dropdown, Row, Col } from 'tdesign-react/esm';
 import {
   Icon,
   LogoGithubIcon,
@@ -26,7 +26,7 @@ export default memo(() => {
   };
 
   const gotoGitHub = () => {
-    window.open('https://github.com/Tencent/tdesign-react-starter');
+    window.open('https://github.com/Tencent/tdesign-react/starter');
   };
 
   const clickHandler = (data: any) => {

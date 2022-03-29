@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect } from 'react';
-import { Row, Col, Radio, Table, Dialog } from 'tdesign-react';
-import type { TableSort, TdPrimaryTableProps } from 'tdesign-react/es/table';
+import { Row, Col, Radio, Table, Dialog } from 'tdesign-react/esm';
+import type { TableSort, TdPrimaryTableProps } from 'tdesign-react/esm/table';
 import ReactEcharts from 'echarts-for-react';
 import classnames from 'classnames';
 

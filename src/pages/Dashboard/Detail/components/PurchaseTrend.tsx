@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Col, Dropdown, Row, Tag } from 'tdesign-react';
+import { Button, Col, Dropdown, Row, Tag } from 'tdesign-react/esm';
 import { Icon } from 'tdesign-icons-react';
 import ReactEcharts from 'echarts-for-react';
 import Board from 'components/Card';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Tree } from 'tdesign-react';
+import { Input, Tree } from 'tdesign-react/esm';
 import { SearchIcon } from 'tdesign-icons-react';
 import PageBox from 'components/PageBox';
 import { SelectTable } from '../Select/index';

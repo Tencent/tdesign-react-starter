@@ -1,5 +1,5 @@
 import React, { useState, memo, useEffect } from 'react';
-import { Table, Tag, Row, Col, Button, Input } from 'tdesign-react';
+import { Table, Tag, Row, Col, Button, Input } from 'tdesign-react/esm';
 import { ChevronUpCircleIcon, SearchIcon, ChevronDownCircleIcon } from 'tdesign-icons-react';
 import PageBox from 'components/PageBox';
 import { useAppDispatch, useAppSelector } from 'modules/store';

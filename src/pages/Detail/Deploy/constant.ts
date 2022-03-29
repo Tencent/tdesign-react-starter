@@ -1,4 +1,4 @@
-import type { TdPrimaryTableProps, SorterFun, TableRowData } from 'tdesign-react/es/table';
+import type { TdPrimaryTableProps, SorterFun, TableRowData } from 'tdesign-react/esm/table';
 
 export interface TableModel {
   name: string;

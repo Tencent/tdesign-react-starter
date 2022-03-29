@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Layout, Button, Row, Col, Input } from 'tdesign-react';
+import { Layout, Button, Row, Col, Input } from 'tdesign-react/esm';
 import { ViewListIcon, SearchIcon } from 'tdesign-icons-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { selectGlobal, toggleMenu } from 'modules/global';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row } from 'tdesign-react';
+import { Col, Row } from 'tdesign-react/esm';
 import Card from 'components/Card';
 import ProductCard from './ProductCard';
 import Style from '../index.module.less';

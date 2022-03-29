@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Row, Col, Switch } from 'tdesign-react';
+import { Row, Col, Switch } from 'tdesign-react/esm';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { DARK_CHART_COLORS, LIGHT_CHART_COLORS } from 'configs/color';
 import {

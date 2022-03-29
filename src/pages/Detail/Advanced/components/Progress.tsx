@@ -1,5 +1,5 @@
 import React from 'react';
-import { Steps } from 'tdesign-react';
+import { Steps } from 'tdesign-react/esm';
 import { dataStep, stepCurrent } from '../consts';
 import Card from 'components/Card';
 import Style from '../index.module.less';

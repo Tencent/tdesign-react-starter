@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import { Tabs, List, Tag, Row, Col, Popup } from 'tdesign-react';
+import { Tabs, List, Tag, Row, Col, Popup } from 'tdesign-react/esm';
 import { AddRectangleIcon, DeleteIcon, ChatIcon } from 'tdesign-icons-react';
 import classnames from 'classnames';
 import PageBox from 'components/PageBox';

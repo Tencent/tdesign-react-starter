@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Layout } from 'tdesign-react';
+import { Layout } from 'tdesign-react/esm';
 import { routes } from 'configs/routes';
 import UnAuthorized from 'pages/Result/403';
 import NotFound from 'pages/Result/404';

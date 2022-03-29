@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Col, Row } from 'tdesign-react';
+import { Col, Row } from 'tdesign-react/esm';
 import ReactEcharts from 'echarts-for-react';
 import useDynamicChart from 'utils/hooks/useDynamicChart';
 import Card from 'components/Card';

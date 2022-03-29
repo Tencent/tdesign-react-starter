@@ -23,7 +23,8 @@ export default (params) => ({
     preprocessorOptions: {
       less: {
         modifyVars: {
-          // 如需自定义组件其他 token, 在此处配置
+          '@brand-color': 'red',
+          '@brand-color-8': 'red',
         },
       },
     },

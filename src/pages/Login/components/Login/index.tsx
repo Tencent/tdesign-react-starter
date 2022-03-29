@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import classnames from 'classnames';
-import { Form, MessagePlugin, Input, Checkbox, Button, FormInstanceFunctions, SubmitContext } from 'tdesign-react';
+import { Form, MessagePlugin, Input, Checkbox, Button, FormInstanceFunctions, SubmitContext } from 'tdesign-react/esm';
 import { LockOnIcon, UserIcon, BrowseOffIcon, BrowseIcon, RefreshIcon } from 'tdesign-icons-react';
 import { useAppDispatch } from 'modules/store';
 import QRCode from 'qrcode.react';
