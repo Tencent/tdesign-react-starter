@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.0",
-    "axios": "^0.21.4",
+    "axios": "^0.26.1",
     "axios-jsonp": "^1.0.4",
     "classnames": "^2.3.1",
     "dayjs": "^1.10.7",
