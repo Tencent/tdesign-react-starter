@@ -93,6 +93,7 @@ export const getPieChartOptions = (radius = 42): EChartOption => ({
       type: 'pie',
       radius: ['48%', '60%'],
       avoidLabelOverlap: false,
+      silent: true,
       itemStyle: {
         borderWidth: 1,
       },
@@ -110,24 +111,6 @@ export const getPieChartOptions = (radius = 42): EChartOption => ({
             color: '#909399',
             fontSize: 12,
             lineHeight: 14,
-          },
-        },
-      },
-      emphasis: {
-        label: {
-          show: true,
-          formatter: ['{value|{d}%}', '{name|{b}渠道占比}'].join('\n'),
-          rich: {
-            value: {
-              fontSize: 28,
-              fontWeight: 'normal',
-              lineHeight: 46,
-            },
-            name: {
-              color: '#909399',
-              fontSize: 12,
-              lineHeight: 14,
-            },
           },
         },
       },
