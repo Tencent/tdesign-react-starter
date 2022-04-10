@@ -173,7 +173,7 @@ export const SelectTable = () => {
 };
 
 const selectPage: React.FC = () => (
-  <PageBox>
+  <PageBox withColor withPadding>
     <SelectTable />
   </PageBox>
 );

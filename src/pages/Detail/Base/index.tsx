@@ -9,7 +9,7 @@ import Style from './index.module.less';
 const { StepItem } = Steps;
 
 export default memo(() => (
-  <PageBox withColor={false} withPadding={false}>
+  <PageBox>
     <Card title='基本信息'>
       <div className={classnames(Style.infoBox)}>
         {dataInfo.map((item) => (

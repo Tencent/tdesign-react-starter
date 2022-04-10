@@ -62,7 +62,7 @@ export default memo(() => {
   };
 
   return (
-    <PageBox>
+    <PageBox withPadding withColor>
       <>
         <Steps current={current}>
           {steps.map((item) => (

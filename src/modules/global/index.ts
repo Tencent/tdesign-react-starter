@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { COLOR_TOKEN, TColorSeries, TColorToken, LIGHT_CHART_COLORS } from 'configs/color';
+import { COLOR_TOKEN, TColorSeries, TColorToken, LIGHT_CHART_COLORS, DARK_CHART_COLORS } from 'configs/color';
 import { RootState } from '../store';
 import { version } from '../../../package.json';
 
@@ -8,7 +8,6 @@ const namespace = 'global';
 export enum ETheme {
   light = 'light',
   dark = 'dark',
-  auto = 'auto',
 }
 
 export enum ELayout {
@@ -26,6 +25,7 @@ export interface IGlobalState {
   color: string;
   theme: ETheme;
   layout: ELayout;
+  isFullPage: boolean;
   showHeader: boolean;
   showBreadcrumbs: boolean;
   showFooter: boolean;
@@ -40,6 +40,7 @@ const initialState: IGlobalState = {
   version,
   theme: ETheme.light,
   layout: ELayout.side,
+  isFullPage: false,
   color: '#0052D9',
   showHeader: true,
   showBreadcrumbs: false,
@@ -74,17 +75,18 @@ const globalSlice = createSlice({
     },
     switchTheme: (state, action) => {
       let finalTheme = action?.payload;
-      if (finalTheme) {
-        if (finalTheme === ETheme.auto) {
-          const media = window.matchMedia('(prefers-color-scheme:dark)');
-          if (media.matches) {
-            //
-            finalTheme = media.matches ? ETheme.dark : ETheme.light;
-          }
+      if (!finalTheme) {
+        // 跟随系统
+        const media = window.matchMedia('(prefers-color-scheme:dark)');
+        if (media.matches) {
+          finalTheme = media.matches ? ETheme.dark : ETheme.light;
         }
-        state.theme = finalTheme;
-        document.documentElement.setAttribute('theme-mode', finalTheme);
       }
+      // 切换 chart 颜色
+      state.chartColors = finalTheme === ETheme.dark ? DARK_CHART_COLORS : LIGHT_CHART_COLORS;
+      // 切换主题颜色
+      state.theme = finalTheme;
+      document.documentElement.setAttribute('theme-mode', finalTheme);
     },
     switchColor: (state, action) => {
       if (action?.payload) {
@@ -97,10 +99,8 @@ const globalSlice = createSlice({
         state.layout = action?.payload;
       }
     },
-    switchChartColor(state, action) {
-      if (action?.payload) {
-        state.chartColors = action?.payload;
-      }
+    switchFullPage: (state, action) => {
+      state.isFullPage = !!action?.payload;
     },
   },
   extraReducers: () => {},
@@ -117,7 +117,7 @@ export const {
   switchTheme,
   switchColor,
   switchLayout,
-  switchChartColor,
+  switchFullPage,
 } = globalSlice.actions;
 
 export default globalSlice.reducer;

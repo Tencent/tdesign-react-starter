@@ -1,16 +1,17 @@
 import React, { memo, useState } from 'react';
 import classname from 'classnames';
+import { ETheme, ELayout } from 'modules/global';
 import Style from './RadioRect.module.less';
 
 interface IOption {
-  value: number | string;
+  value?: ETheme | ELayout;
   image: JSX.Element | string;
   name?: string;
 }
 
 interface IProps {
   defaultValue?: number | string;
-  onChange: (value: number | string) => void;
+  onChange: (value?: ETheme | ELayout) => void;
   options: IOption[];
 }
 

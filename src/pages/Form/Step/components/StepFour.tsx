@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { CheckCircleFilledIcon } from 'tdesign-icons-react';
 import { Button } from 'tdesign-react';
 import Style from './index.module.less';
 
 export default memo((props: { callback: Function }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { callback } = props;
 
   const onClickAgain = () => {
@@ -14,7 +14,7 @@ export default memo((props: { callback: Function }) => {
 
   const onCheck = () => {
     const url = '/detail/advanced';
-    history.push(url);
+    navigate(url);
   };
 
   return (
