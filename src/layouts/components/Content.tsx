@@ -26,13 +26,11 @@ const PageBox = memo(
   },
 );
 
-const PageLoading = memo(() => {
-  return (
-    <div className={Style.loading}>
-      <Loading />
-    </div>
-  );
-});
+const PageLoading = memo(() => (
+  <div className={Style.loading}>
+    <Loading />
+  </div>
+));
 
 const renderRoutes = (routes: any, parentPath = '') =>
   routes.map((route: any, index: number) => {
