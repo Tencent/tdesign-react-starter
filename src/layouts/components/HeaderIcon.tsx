@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button, Popup, Badge, Dropdown, Row, Col } from 'tdesign-react';
 import {
   Icon,
@@ -19,7 +19,7 @@ const { DropdownMenu, DropdownItem } = Dropdown;
 
 export default memo(() => {
   const dispatch = useAppDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const gotoWiki = () => {
     window.open('https://tdesign.tencent.com/react/overview');
@@ -31,12 +31,12 @@ export default memo(() => {
 
   const clickHandler = (data: any) => {
     if (data.value === 1) {
-      history.push('/user/index');
+      navigate('/user/index');
     }
   };
   const handleLogout = async () => {
     await dispatch(logout());
-    history.push('/login/index');
+    navigate('/login/index');
   };
 
   return (

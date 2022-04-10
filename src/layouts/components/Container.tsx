@@ -6,7 +6,7 @@ import Footer from './Footer';
 import Menu from './Menu';
 import Content from './Content';
 
-import Style from './Content.module.less';
+import Style from './Container.module.less';
 
 const SideLayout = React.memo(() => (
   <Layout className={Style.sidePanel}>
@@ -21,7 +21,7 @@ const SideLayout = React.memo(() => (
 
 const TopLayout = React.memo(() => (
   <Layout className={Style.topPanel}>
-    <Header showMenu={true} />
+    <Header showMenu />
     <Content />
     <Footer />
   </Layout>

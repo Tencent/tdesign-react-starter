@@ -50,7 +50,7 @@ export default memo(() => {
   };
 
   return (
-    <PageBox withPadding={false}>
+    <PageBox withColor>
       <div className={Style.formContainer}>
         <Form ref={formRef} onSubmit={onSubmit} labelWidth={100} labelAlign='top'>
           <div className={Style.titleBox}>

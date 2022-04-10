@@ -95,7 +95,7 @@ export default memo(() => {
   };
 
   return (
-    <PageBox withColor={false} withPadding={false}>
+    <PageBox>
       <section className={Style.secondaryNotification}>
         <Tabs placement='top' size='medium' defaultValue='1'>
           <TabPanel value='1' label='全部通知'>

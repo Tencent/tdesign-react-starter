@@ -1,18 +1,17 @@
 import React, { memo } from 'react';
+import PageBox from 'components/PageBox';
 import TopPanel from './components/TopPanel';
 import MiddleChart from './components/MiddleChart';
 import RankList from './components/RankList';
 import Overview from './components/Overview';
 
-import Style from './index.module.less';
-
 const DashBoard = () => (
-  <div className={Style.dashboardPanel}>
+  <PageBox>
     <TopPanel />
     <MiddleChart />
     <RankList />
     <Overview />
-  </div>
+  </PageBox>
 );
 
 export default memo(DashBoard);

@@ -9,7 +9,6 @@ export interface ICardProps {
   className?: string;
   border?: boolean;
   size?: 'small' | 'large';
-  [key: string]: any;
 }
 
 const Card = ({
@@ -20,7 +19,6 @@ const Card = ({
   border,
   className,
   size,
-  ...other
 }: React.PropsWithChildren<ICardProps>) => (
   <div
     className={classnames(
@@ -30,7 +28,6 @@ const Card = ({
       },
       className,
     )}
-    {...other}
   >
     <div className={Style.top}>
       <div className={Style.left}>
