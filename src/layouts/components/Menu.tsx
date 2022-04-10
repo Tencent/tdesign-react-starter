@@ -2,6 +2,7 @@ import React, { memo, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, MenuValue } from 'tdesign-react';
 import router, { IRouter } from 'router';
+import { resolve } from 'utils/path';
 import { useAppSelector } from 'modules/store';
 import { selectGlobal } from 'modules/global';
 import MenuLogo from './MenuLogo';
@@ -25,7 +26,7 @@ const renderMenuItems = (menu: IRouter[], parentPath = '') =>
     }
 
     const { Icon, title } = meta || {};
-    const routerPath = `${parentPath ? `${parentPath}/` : ''}${path}`;
+    const routerPath = resolve(parentPath, path);
 
     if (!children || children.length === 0) {
       return (

@@ -2,6 +2,7 @@ import React, { Suspense, useEffect, memo } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from 'tdesign-react';
 import routers from 'router';
+import { resolve } from 'utils/path';
 import { useAppDispatch } from '../../modules/store';
 import { switchFullPage } from '../../modules/global';
 
@@ -24,19 +25,11 @@ const FullPage = memo(
   },
 );
 
-const resolvePath = (path1 = '', path2 = '') => {
-  let separator = '/';
-  if (path1.endsWith('/') || path2.startsWith('/')) {
-    separator = '';
-  }
-  return `${path1}${separator}${path2}`;
-};
-
 const renderRoutes = (routes: any, parentPath = '') =>
   routes.map((route: any, index: number) => {
     const { Component } = route;
     const { children } = route;
-    const currentPath = resolvePath(parentPath, route.path);
+    const currentPath = resolve(parentPath, route.path);
 
     if (Component) {
       return (
