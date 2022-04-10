@@ -10,6 +10,7 @@ import login from './modules/login';
 
 export interface IRouter {
   path: string;
+  redirect?: string;
   Component?: React.FC<BrowserRouterProps> | (() => any);
   /**
    * 当前路由是否全屏显示
@@ -33,7 +34,7 @@ const routes: IRouter[] = [
   },
   {
     path: '/',
-    Component: lazy(() => import('pages/Dashboard/Base')),
+    redirect: '/dashboard/base',
   },
 ];
 

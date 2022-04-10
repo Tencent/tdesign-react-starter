@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, memo } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Layout, Loading } from 'tdesign-react';
-import routers from 'router';
+import routers, { IRouter } from 'router';
 import { resolve } from 'utils/path';
 import { useAppDispatch } from '../../modules/store';
 import { switchFullPage } from '../../modules/global';
@@ -32,11 +32,15 @@ const PageLoading = memo(() => (
   </div>
 ));
 
-const renderRoutes = (routes: any, parentPath = '') =>
-  routes.map((route: any, index: number) => {
-    const { Component } = route;
-    const { children } = route;
+const renderRoutes = (routes: IRouter[], parentPath = ''): React.ReactNode[] =>
+  routes.map((route, index: number) => {
+    const { Component, children, redirect } = route;
     const currentPath = resolve(parentPath, route.path);
+
+    if (redirect) {
+      // 重定向
+      return <Route path={currentPath} element={<Navigate to={redirect} replace />} />;
+    }
 
     if (Component) {
       return (
