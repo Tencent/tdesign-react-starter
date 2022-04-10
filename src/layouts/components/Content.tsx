@@ -1,14 +1,15 @@
 import React, { Suspense, useEffect, memo } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Layout } from 'tdesign-react';
+import { Layout, Loading } from 'tdesign-react';
 import routers from 'router';
 import { resolve } from 'utils/path';
 import { useAppDispatch } from '../../modules/store';
 import { switchFullPage } from '../../modules/global';
+import Style from './Content.module.less';
 
 const { Content } = Layout;
 
-const FullPage = memo(
+const PageBox = memo(
   ({
     children,
     isFullPage,
@@ -25,6 +26,14 @@ const FullPage = memo(
   },
 );
 
+const PageLoading = memo(() => {
+  return (
+    <div className={Style.loading}>
+      <Loading />
+    </div>
+  );
+});
+
 const renderRoutes = (routes: any, parentPath = '') =>
   routes.map((route: any, index: number) => {
     const { Component } = route;
@@ -37,9 +46,9 @@ const renderRoutes = (routes: any, parentPath = '') =>
           key={index}
           path={currentPath}
           element={
-            <FullPage isFullPage={route.isFullPage}>
+            <PageBox isFullPage={route.isFullPage}>
               <Component />
-            </FullPage>
+            </PageBox>
           }
         >
           {children && renderRoutes(children, currentPath)}
@@ -54,7 +63,7 @@ const renderRoutes = (routes: any, parentPath = '') =>
 
 export default memo(() => (
   <Content>
-    <Suspense fallback={null}>
+    <Suspense fallback={<PageLoading />}>
       <Routes>{renderRoutes(routers)}</Routes>
     </Suspense>
   </Content>
