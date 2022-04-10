@@ -13,6 +13,7 @@ const result: IRouter[] = [
       {
         path: 'index',
         Component: lazy(() => import('pages/Login')),
+        isFullPage: true,
         meta: {
           title: '登录中心',
         },

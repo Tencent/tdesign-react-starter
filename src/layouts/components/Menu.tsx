@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, MenuValue } from 'tdesign-react';
 import router, { IRouter } from 'router';
 import { useAppSelector } from 'modules/store';
@@ -16,7 +16,7 @@ interface IMenuProps {
 
 const renderMenuItems = (menu: IRouter[], parentPath = '') =>
   menu.map((item) => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const { children, meta, path } = item;
 
     if (!meta) {
@@ -33,7 +33,7 @@ const renderMenuItems = (menu: IRouter[], parentPath = '') =>
           key={routerPath}
           value={routerPath}
           icon={Icon ? <Icon /> : undefined}
-          onClick={() => history.push(routerPath)}
+          onClick={() => navigate(routerPath)}
         >
           {title}
         </MenuItem>

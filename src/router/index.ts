@@ -10,8 +10,10 @@ import login from './modules/login';
 
 export interface IRouter {
   path: string;
-  exact?: boolean;
   Component?: React.FC<BrowserRouterProps> | (() => any);
+  /**
+   * 当前路由是否全屏显示
+   */
   isFullPage?: boolean;
   /**
    * meta未赋值 路由不显示到菜单中
@@ -32,8 +34,6 @@ const routes: IRouter[] = [
   {
     path: '/',
     Component: lazy(() => import('pages/Dashboard/Base')),
-    isFullPage: true,
-    exact: true,
   },
 ];
 
@@ -53,15 +53,5 @@ const otherRoutes: IRouter[] = [
 ];
 
 const allRoutes = [...routes, ...dashboard, ...list, ...form, ...detail, ...result, ...user, ...login, ...otherRoutes];
-
-// const getRouters = (routers: IRouter[], result: IRouter[], parent?: IRouter) => {
-//   routers.map((route) => {
-//     const { children } = route;
-//     if (children) {
-//     } else {
-//       result.push(route);
-//     }
-//   });
-// };
 
 export default allRoutes;

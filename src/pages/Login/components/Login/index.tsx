@@ -1,13 +1,12 @@
 import React, { useState, useRef } from 'react';
-import classnames from 'classnames';
+import { useNavigate } from 'react-router-dom';
 import { Form, MessagePlugin, Input, Checkbox, Button, FormInstanceFunctions, SubmitContext } from 'tdesign-react';
 import { LockOnIcon, UserIcon, BrowseOffIcon, BrowseIcon, RefreshIcon } from 'tdesign-icons-react';
-import { useAppDispatch } from 'modules/store';
+import classnames from 'classnames';
 import QRCode from 'qrcode.react';
-
-import useCountdown from '../../hooks/useCountDown';
-import { useHistory } from 'react-router-dom';
+import { useAppDispatch } from 'modules/store';
 import { login } from 'modules/user';
+import useCountdown from '../../hooks/useCountDown';
 
 import Style from './index.module.less';
 
@@ -20,7 +19,7 @@ export default function Login() {
   const [showPsw, toggleShowPsw] = useState(false);
   const { countdown, setupCountdown } = useCountdown(60);
   const formRef = useRef<FormInstanceFunctions>();
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const onSubmit = async (e: SubmitContext) => {
@@ -31,7 +30,7 @@ export default function Login() {
 
         MessagePlugin.success('登录成功');
 
-        history.push('/dashboard/base');
+        navigate('/dashboard/base');
       } catch (e) {
         console.log(e);
         MessagePlugin.error('登录失败');

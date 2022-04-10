@@ -26,6 +26,7 @@ export interface IGlobalState {
   color: string;
   theme: ETheme;
   layout: ELayout;
+  isFullPage: boolean;
   showHeader: boolean;
   showBreadcrumbs: boolean;
   showFooter: boolean;
@@ -40,6 +41,7 @@ const initialState: IGlobalState = {
   version,
   theme: ETheme.light,
   layout: ELayout.side,
+  isFullPage: false,
   color: '#0052D9',
   showHeader: true,
   showBreadcrumbs: false,
@@ -97,6 +99,9 @@ const globalSlice = createSlice({
         state.layout = action?.payload;
       }
     },
+    switchFullPage: (state, action) => {
+      state.isFullPage = !!action?.payload;
+    },
     switchChartColor(state, action) {
       if (action?.payload) {
         state.chartColors = action?.payload;
@@ -117,6 +122,7 @@ export const {
   switchTheme,
   switchColor,
   switchLayout,
+  switchFullPage,
   switchChartColor,
 } = globalSlice.actions;
 
