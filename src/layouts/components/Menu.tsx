@@ -57,7 +57,7 @@ export const HeaderMenu = memo(() => {
       expandType='popup'
       style={{ marginBottom: 20 }}
       value={active}
-      theme={globalState.theme} // todo
+      theme={globalState.theme}
       onChange={(v) => setActive(v)}
     >
       {renderMenuItems(router)}

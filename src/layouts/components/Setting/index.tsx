@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
 import { Row, Col, Switch } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
-import { DARK_CHART_COLORS, LIGHT_CHART_COLORS } from 'configs/color';
 import {
   selectGlobal,
   toggleShowHeader,
@@ -10,7 +9,6 @@ import {
   switchTheme,
   switchColor,
   switchLayout,
-  switchChartColor,
   ELayout,
   ETheme,
 } from 'modules/global';
@@ -33,7 +31,7 @@ const themeList = [
     name: '黑暗',
   },
   {
-    value: ETheme.auto,
+    // 跟随系统 value = undefined
     image: System,
     name: '跟随系统',
   },
@@ -58,18 +56,14 @@ export default memo(() => {
   const dispatch = useAppDispatch();
   const globalState = useAppSelector(selectGlobal);
 
-  const handleSwitchTheme = (value: string | number) => {
-    dispatch(switchTheme(value));
-    if (value) {
-      const isDarkMode = value === ETheme.dark;
-      switchChartColor(isDarkMode ? DARK_CHART_COLORS : LIGHT_CHART_COLORS);
-    }
-  };
-
   return (
     <div>
       <div className={Style.settingTitle}>主题模式</div>
-      <RadioRect defaultValue={globalState.theme} onChange={handleSwitchTheme} options={themeList} />
+      <RadioRect
+        defaultValue={globalState.theme}
+        onChange={(value) => dispatch(switchTheme(value))}
+        options={themeList}
+      />
 
       <div className={Style.settingTitle}>主题色</div>
       <RadioColor defaultValue={globalState.color} onChange={(value) => dispatch(switchColor(value))} />

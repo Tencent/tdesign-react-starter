@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { COLOR_TOKEN, TColorSeries, TColorToken, LIGHT_CHART_COLORS } from 'configs/color';
+import { COLOR_TOKEN, TColorSeries, TColorToken, LIGHT_CHART_COLORS, DARK_CHART_COLORS } from 'configs/color';
 import { RootState } from '../store';
 import { version } from '../../../package.json';
 
@@ -8,7 +8,6 @@ const namespace = 'global';
 export enum ETheme {
   light = 'light',
   dark = 'dark',
-  auto = 'auto',
 }
 
 export enum ELayout {
@@ -76,17 +75,18 @@ const globalSlice = createSlice({
     },
     switchTheme: (state, action) => {
       let finalTheme = action?.payload;
-      if (finalTheme) {
-        if (finalTheme === ETheme.auto) {
-          const media = window.matchMedia('(prefers-color-scheme:dark)');
-          if (media.matches) {
-            //
-            finalTheme = media.matches ? ETheme.dark : ETheme.light;
-          }
+      if (!finalTheme) {
+        // 跟随系统
+        const media = window.matchMedia('(prefers-color-scheme:dark)');
+        if (media.matches) {
+          finalTheme = media.matches ? ETheme.dark : ETheme.light;
         }
-        state.theme = finalTheme;
-        document.documentElement.setAttribute('theme-mode', finalTheme);
       }
+      // 切换 chart 颜色
+      state.chartColors = finalTheme === ETheme.dark ? DARK_CHART_COLORS : LIGHT_CHART_COLORS;
+      // 切换主题颜色
+      state.theme = finalTheme;
+      document.documentElement.setAttribute('theme-mode', finalTheme);
     },
     switchColor: (state, action) => {
       if (action?.payload) {
@@ -101,11 +101,6 @@ const globalSlice = createSlice({
     },
     switchFullPage: (state, action) => {
       state.isFullPage = !!action?.payload;
-    },
-    switchChartColor(state, action) {
-      if (action?.payload) {
-        state.chartColors = action?.payload;
-      }
     },
   },
   extraReducers: () => {},
@@ -123,7 +118,6 @@ export const {
   switchColor,
   switchLayout,
   switchFullPage,
-  switchChartColor,
 } = globalSlice.actions;
 
 export default globalSlice.reducer;
