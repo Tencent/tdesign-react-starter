@@ -6,7 +6,7 @@ import Product from './components/Product';
 import Detail from './components/Detail';
 
 export default memo(() => (
-  <PageBox withColor={false} withPadding={false}>
+  <PageBox>
     <Base />
     <ProgressComp />
     <Product />

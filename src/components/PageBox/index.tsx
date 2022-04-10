@@ -13,8 +13,8 @@ export interface IPageBoxProps {
 
 const PageBox: React.FC<React.PropsWithChildren<IPageBoxProps>> = ({
   children,
-  withColor = true,
-  withPadding = true,
+  withColor,
+  withPadding,
   className,
   ...others
 }) => (

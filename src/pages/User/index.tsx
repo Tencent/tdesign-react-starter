@@ -3,6 +3,7 @@ import { Row, Col, Button, List } from 'tdesign-react';
 import { IconFont } from 'tdesign-icons-react';
 import { BrowserRouterProps } from 'react-router-dom';
 import ReactEcharts from 'echarts-for-react';
+import PageBox from 'components/PageBox';
 import Card from 'components/Card';
 import { TEAMS } from './consts';
 import { visitData } from './chart';
@@ -21,7 +22,7 @@ const User: React.FC<BrowserRouterProps> = () => {
     placeholderColor: ['legend.textStyle.color', 'xAxis.axisLabel.color', 'yAxis.axisLabel.color'],
   });
   return (
-    <div className={styles.user}>
+    <PageBox>
       <Row gutter={[16, 16]}>
         <Col xs={12} lg={12} xl={9}>
           <Card className={styles.welcome}>
@@ -145,7 +146,7 @@ const User: React.FC<BrowserRouterProps> = () => {
           </Card>
         </Col>
       </Row>
-    </div>
+    </PageBox>
   );
 };
 
