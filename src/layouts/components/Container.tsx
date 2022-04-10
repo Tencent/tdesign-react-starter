@@ -21,7 +21,7 @@ const SideLayout = React.memo(() => (
 
 const TopLayout = React.memo(() => (
   <Layout className={Style.topPanel}>
-    <Header showMenu={true} />
+    <Header showMenu />
     <Content />
     <Footer />
   </Layout>

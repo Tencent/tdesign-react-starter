@@ -23,7 +23,11 @@ export default memo((props: IHeaderProps) => {
 
   let HeaderLeft;
   if (props.showMenu) {
-    HeaderLeft = <HeaderMenu />;
+    HeaderLeft = (
+      <div>
+        <HeaderMenu />
+      </div>
+    );
   } else {
     HeaderLeft = (
       <Row gutter={16} align='middle'>

@@ -47,6 +47,9 @@ const renderMenuItems = (menu: IRouter[], parentPath = '') =>
     );
   });
 
+/**
+ * 顶部菜单
+ */
 export const HeaderMenu = memo(() => {
   const globalState = useAppSelector(selectGlobal);
   const location = useLocation();
@@ -65,6 +68,9 @@ export const HeaderMenu = memo(() => {
   );
 });
 
+/**
+ * 左侧菜单
+ */
 export default memo((props: IMenuProps) => {
   const location = useLocation();
   const globalState = useAppSelector(selectGlobal);
