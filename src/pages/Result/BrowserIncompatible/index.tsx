@@ -12,7 +12,7 @@ const BrowserIncompatible = () => (
 
     <div className={style.resultSlotContainer}>
       <Button className={style.rightButton}>返回首页</Button>
-      <div className={style.recommandContainer}>
+      <div className={style.recommendContainer}>
         <div>TDesign Starter 推荐以下主流浏览器</div>
         <div className={style.recommendBrowser}>
           <div>
