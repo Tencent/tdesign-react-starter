@@ -1,8 +1,7 @@
 import React from 'react';
-import { Col, Radio, Row, Table, Button } from 'tdesign-react';
+import { Col, Radio, Row, Table, Button, Card } from 'tdesign-react';
 import { TdPrimaryTableProps } from 'tdesign-react/es/table';
 import classnames from 'classnames';
-import { Card } from 'tdesign-react';
 import { TrendIcon, ETrend } from 'components/Board';
 import { PURCHASE_TREND_LIST, SALE_TREND_LIST } from '../constant';
 import Style from './RankList.module.less';
