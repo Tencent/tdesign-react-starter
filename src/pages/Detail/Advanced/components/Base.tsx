@@ -1,11 +1,11 @@
 import React from 'react';
+import { Card } from 'tdesign-react';
 import classnames from 'classnames';
 import { dataInfo } from '../consts';
-import Card from 'components/Card';
 import Style from './Base.module.less';
 
 const Base = () => (
-  <Card title='基本信息'>
+  <Card title='基本信息' header>
     <div className={Style.infoBox}>
       {dataInfo.map((item) => (
         <div key={item.id} className={Style.infoBoxItem}>
@@ -16,7 +16,7 @@ const Base = () => (
               [Style.pdf]: item.type === 'link',
             })}
           >
-            {item.type === 'status' && <i></i>}
+            {item.type === 'status' && <i />}
             {item.value}
           </span>
         </div>

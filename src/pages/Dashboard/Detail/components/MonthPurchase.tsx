@@ -1,11 +1,10 @@
 import React from 'react';
+import { Col, Row, Card } from 'tdesign-react';
 import Board from 'components/Board';
-import { Col, Row } from 'tdesign-react';
-import Card from 'components/Card';
 import { PANE_LIST } from '../constant';
 
 const MonthPurchase = () => (
-  <Card title='本月采购申请情况'>
+  <Card title='本月采购申请情况' header>
     <Row gutter={[16, 16]}>
       {PANE_LIST.map((item) => (
         <Col key={item.title} xs={6} xl={3} span={12}>
