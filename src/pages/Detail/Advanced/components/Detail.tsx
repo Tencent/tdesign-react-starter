@@ -83,7 +83,7 @@ const Detail = () => (
           },
         },
       ]}
-      rowKey='index'
+      rowKey='id'
       tableLayout='auto'
       verticalAlign='top'
       hover
