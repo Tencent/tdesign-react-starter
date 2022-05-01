@@ -19,7 +19,7 @@ const TopChart = () => {
   return (
     <Row gutter={16} className={Style.panel}>
       <Col span={6}>
-        <Card title='部署趋势'>
+        <Card title='部署趋势' header>
           <div className={Style.deployPanelLeft}>
             <DynamicLineChart />
           </div>
