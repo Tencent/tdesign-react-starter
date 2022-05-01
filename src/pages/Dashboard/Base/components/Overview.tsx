@@ -34,7 +34,7 @@ const Overview = (): React.ReactElement => {
           </Card>
         </Col>
         <Col xs={12} xl={3} span={12}>
-          <Card actions={<Button>导出数据</Button>}>
+          <Card actions={<Button>导出数据</Button>} header>
             <Row>
               <Col span={12}>
                 <Board
