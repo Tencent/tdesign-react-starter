@@ -39,7 +39,7 @@ const renderRoutes = (routes: IRouter[], parentPath = ''): React.ReactNode[] =>
 
     if (redirect) {
       // 重定向
-      return <Route path={currentPath} element={<Navigate to={redirect} replace />} />;
+      return <Route key={index} path={currentPath} element={<Navigate to={redirect} replace />} />;
     }
 
     if (Component) {

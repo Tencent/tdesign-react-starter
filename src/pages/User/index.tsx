@@ -1,10 +1,9 @@
 import React, { memo } from 'react';
-import { Row, Col, Button, List } from 'tdesign-react';
+import { Row, Col, Button, List, Card } from 'tdesign-react';
 import { IconFont } from 'tdesign-icons-react';
 import { BrowserRouterProps } from 'react-router-dom';
 import ReactEcharts from 'echarts-for-react';
 import PageBox from 'components/PageBox';
-import Card from 'components/Card';
 import { TEAMS } from './consts';
 import { visitData } from './chart';
 import ProductA from 'assets/svg/assets-product-1.svg?component';
@@ -31,18 +30,19 @@ const User: React.FC<BrowserRouterProps> = () => {
                 Hi，Image <span className={styles.regular}>下午好，今天是你加入鹅厂的第 100 天～</span>
               </Col>
               <Col>
-                <img src='https://tdesign.gtimg.com/starter/assets-tencent-logo.png' className={styles.logo} />
+                <img alt='' src='https://tdesign.gtimg.com/starter/assets-tencent-logo.png' className={styles.logo} />
               </Col>
             </Row>
           </Card>
           <Card
             className={styles.userinfo}
             title='个人信息'
-            operation={
+            actions={
               <Button shape='square' theme='default' variant='text'>
                 <IconFont name='edit' />
               </Button>
             }
+            header
           >
             <Row gutter={[16, 16]}>
               <Col span={3}>
@@ -87,11 +87,7 @@ const User: React.FC<BrowserRouterProps> = () => {
               </Col>
             </Row>
           </Card>
-          <Card className={styles.statistics}>
-            <div className={styles.title}>
-              主页访问数据
-              <span className={styles.unit}>（次）</span>
-            </div>
+          <Card className={styles.statistics} title='主页访问数据' subtitle='（次）' header>
             <ReactEcharts option={chartData} notMerge={true} lazyUpdate={true} style={{ height: 360, marginTop: 16 }} />
           </Card>
         </Col>
@@ -106,7 +102,8 @@ const User: React.FC<BrowserRouterProps> = () => {
           <Card
             className={styles.teams}
             title='团队成员'
-            operation={
+            header
+            actions={
               <Button shape='square' theme='default' variant='text'>
                 <IconFont name='edit' />
               </Button>
@@ -123,7 +120,8 @@ const User: React.FC<BrowserRouterProps> = () => {
           <Card
             title='服务产品'
             className={styles.product}
-            operation={
+            header
+            actions={
               <Button shape='square' theme='default' variant='text'>
                 <IconFont name='edit' />
               </Button>

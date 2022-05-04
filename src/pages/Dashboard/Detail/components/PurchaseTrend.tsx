@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Col, Dropdown, Row, Tag } from 'tdesign-react';
+import { Button, Col, Dropdown, Row, Tag, Card } from 'tdesign-react';
 import { Icon } from 'tdesign-icons-react';
 import ReactEcharts from 'echarts-for-react';
-import Board from 'components/Card';
 import LastWeekDatePicker from 'components/DatePicker';
 import useDynamicChart from 'utils/hooks/useDynamicChart';
 import { PRODUCT_LIST } from '../constant';
@@ -28,7 +27,7 @@ const ProductTrend = ({ type, isSetup, description, name, icon }: IProductTrendP
 
     <p className={Style.productName}>{name}</p>
     <p className={Style.productDesc}>{description}</p>
-    <Row justify='space-between' align='middle' className='cardControlClass'>
+    <Row justify='space-between' align='middle'>
       <div className={Style.iconWrap}>
         <Button shape='circle' disabled={!isSetup}>
           {type}
@@ -75,14 +74,14 @@ const PurchaseTrend = () => {
   return (
     <Row className={Style.purchaseTrendPanel} gutter={[16, 16]}>
       <Col xs={12} xl={9}>
-        <Board title='采购商品申请趋势' description='(件)' operation={LastWeekDatePicker(onTimeChange)}>
+        <Card title='采购商品申请趋势' subtitle='(件)' actions={LastWeekDatePicker(onTimeChange)} header>
           <ReactEcharts
             option={dynamicChartOptions} // option：图表配置项
             notMerge={true}
             lazyUpdate={true}
             style={{ height: 453 }}
           />
-        </Board>
+        </Card>
       </Col>
       <Col xs={12} xl={3}>
         <Row gutter={[16, 16]}>

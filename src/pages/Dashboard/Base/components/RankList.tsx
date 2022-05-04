@@ -1,9 +1,8 @@
 import React from 'react';
-import { Col, Radio, Row, Table, Button } from 'tdesign-react';
+import { Col, Radio, Row, Table, Button, Card } from 'tdesign-react';
 import { TdPrimaryTableProps } from 'tdesign-react/es/table';
 import classnames from 'classnames';
-import Board from 'components/Card';
-import { TrendIcon } from 'components/Board';
+import { TrendIcon, ETrend } from 'components/Board';
 import { PURCHASE_TREND_LIST, SALE_TREND_LIST } from '../constant';
 import Style from './RankList.module.less';
 
@@ -21,7 +20,7 @@ const SALE_COLUMNS: TdPrimaryTableProps['columns'] = [
     title: '排名',
     width: 80,
     fixed: 'left',
-    render: ({ rowIndex }) => (
+    cell: ({ rowIndex }) => (
       <span className={classnames(Style.rankIndex, { [Style.rankIndexTop]: rowIndex < 3 })}>{rowIndex + 1}</span>
     ),
   },
@@ -37,7 +36,7 @@ const SALE_COLUMNS: TdPrimaryTableProps['columns'] = [
     colKey: 'growUp',
     width: 100,
     title: '较上周',
-    render: ({ row }) => <TrendIcon trend={row.growUp < 0 ? 'down' : 'up'} trendNum={Math.abs(row.growUp)} />,
+    cell: ({ row }) => <TrendIcon trend={row.growUp < 0 ? ETrend.down : ETrend.up} trendNum={Math.abs(row.growUp)} />,
   },
   {
     align: 'center',
@@ -57,7 +56,7 @@ const SALE_COLUMNS: TdPrimaryTableProps['columns'] = [
     fixed: 'right',
     title: '操作',
     width: 80,
-    render: ({ row }) => (
+    cell: ({ row }) => (
       <Button variant='text' theme='primary' onClick={() => console.log(row)}>
         操作
       </Button>
@@ -72,7 +71,7 @@ const PURCHASE_COLUMNS: TdPrimaryTableProps['columns'] = [
     title: '排名',
     width: 80,
     fixed: 'left',
-    render: ({ rowIndex }) => (
+    cell: ({ rowIndex }) => (
       <span className={classnames(Style.rankIndex, { [Style.rankIndexTop]: rowIndex < 3 })}>{rowIndex + 1}</span>
     ),
   },
@@ -88,7 +87,7 @@ const PURCHASE_COLUMNS: TdPrimaryTableProps['columns'] = [
     colKey: 'growUp',
     width: 100,
     title: '较上周',
-    render: ({ row }) => <TrendIcon trend={row.growUp < 0 ? 'down' : 'up'} trendNum={Math.abs(row.growUp)} />,
+    cell: ({ row }) => <TrendIcon trend={row.growUp < 0 ? ETrend.down : ETrend.up} trendNum={Math.abs(row.growUp)} />,
   },
   {
     align: 'center',
@@ -108,7 +107,7 @@ const PURCHASE_COLUMNS: TdPrimaryTableProps['columns'] = [
     title: '操作',
     fixed: 'right',
     width: 80,
-    render: ({ row }) => (
+    cell: ({ row }) => (
       <Button variant='text' theme='primary' onClick={() => console.log(row)}>
         操作
       </Button>
@@ -119,14 +118,14 @@ const PURCHASE_COLUMNS: TdPrimaryTableProps['columns'] = [
 const RankList = () => (
   <Row gutter={[16, 16]} className={Style.rankListPanel}>
     <Col xs={12} xl={6} span={12}>
-      <Board title='销售订单排名' operation={DateRadioGroup}>
+      <Card title='销售订单排名' actions={DateRadioGroup} header>
         <Table columns={SALE_COLUMNS} rowKey='productName' size='medium' data={SALE_TREND_LIST} />
-      </Board>
+      </Card>
     </Col>
     <Col xs={12} xl={6} span={12}>
-      <Board title='采购订单排名' operation={DateRadioGroup}>
+      <Card title='采购订单排名' actions={DateRadioGroup} header>
         <Table columns={PURCHASE_COLUMNS} rowKey='productName' size='medium' data={PURCHASE_TREND_LIST} />
-      </Board>
+      </Card>
     </Col>
   </Row>
 );

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Table } from 'tdesign-react';
+import { Table, Card } from 'tdesign-react';
 import { TableSort, TdPrimaryTableProps } from 'tdesign-react/es/table';
 import request from 'utils/request';
-import Card from 'components/Card';
 import { TABLE_COLUMNS } from '../constant';
 import ManagementPopup from './ManagementPopup';
 import Style from './BottomTable.module.less';
@@ -55,7 +54,7 @@ const BottomTable = () => {
 
   return (
     <>
-      <Card title='项目列表'>
+      <Card title='项目列表' header>
         <Table
           columns={getTableColumns(TABLE_COLUMNS)}
           rowKey='index'

@@ -61,7 +61,6 @@ export const SelectTable = () => {
           {
             title: '合同名称',
             fixed: 'left',
-            minWidth: '300',
             align: 'left',
             ellipsis: true,
             colKey: 'name',
@@ -108,7 +107,6 @@ export const SelectTable = () => {
             align: 'left',
             fixed: 'right',
             width: 200,
-            minWidth: 200,
             colKey: 'op',
             title: '操作',
             cell(record) {
@@ -139,7 +137,6 @@ export const SelectTable = () => {
         ]}
         rowKey='index'
         selectedRowKeys={selectedRowKeys}
-        tableLayout='auto'
         hover
         onSelectChange={onSelectChange}
         pagination={{
