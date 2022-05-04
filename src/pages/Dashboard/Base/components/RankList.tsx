@@ -20,7 +20,7 @@ const SALE_COLUMNS: TdPrimaryTableProps['columns'] = [
     title: '排名',
     width: 80,
     fixed: 'left',
-    render: ({ rowIndex }) => (
+    cell: ({ rowIndex }) => (
       <span className={classnames(Style.rankIndex, { [Style.rankIndexTop]: rowIndex < 3 })}>{rowIndex + 1}</span>
     ),
   },
@@ -36,7 +36,7 @@ const SALE_COLUMNS: TdPrimaryTableProps['columns'] = [
     colKey: 'growUp',
     width: 100,
     title: '较上周',
-    render: ({ row }) => <TrendIcon trend={row.growUp < 0 ? ETrend.down : ETrend.up} trendNum={Math.abs(row.growUp)} />,
+    cell: ({ row }) => <TrendIcon trend={row.growUp < 0 ? ETrend.down : ETrend.up} trendNum={Math.abs(row.growUp)} />,
   },
   {
     align: 'center',
@@ -56,7 +56,7 @@ const SALE_COLUMNS: TdPrimaryTableProps['columns'] = [
     fixed: 'right',
     title: '操作',
     width: 80,
-    render: ({ row }) => (
+    cell: ({ row }) => (
       <Button variant='text' theme='primary' onClick={() => console.log(row)}>
         操作
       </Button>
@@ -71,7 +71,7 @@ const PURCHASE_COLUMNS: TdPrimaryTableProps['columns'] = [
     title: '排名',
     width: 80,
     fixed: 'left',
-    render: ({ rowIndex }) => (
+    cell: ({ rowIndex }) => (
       <span className={classnames(Style.rankIndex, { [Style.rankIndexTop]: rowIndex < 3 })}>{rowIndex + 1}</span>
     ),
   },
@@ -87,7 +87,7 @@ const PURCHASE_COLUMNS: TdPrimaryTableProps['columns'] = [
     colKey: 'growUp',
     width: 100,
     title: '较上周',
-    render: ({ row }) => <TrendIcon trend={row.growUp < 0 ? ETrend.down : ETrend.up} trendNum={Math.abs(row.growUp)} />,
+    cell: ({ row }) => <TrendIcon trend={row.growUp < 0 ? ETrend.down : ETrend.up} trendNum={Math.abs(row.growUp)} />,
   },
   {
     align: 'center',
@@ -107,7 +107,7 @@ const PURCHASE_COLUMNS: TdPrimaryTableProps['columns'] = [
     title: '操作',
     fixed: 'right',
     width: 80,
-    render: ({ row }) => (
+    cell: ({ row }) => (
       <Button variant='text' theme='primary' onClick={() => console.log(row)}>
         操作
       </Button>

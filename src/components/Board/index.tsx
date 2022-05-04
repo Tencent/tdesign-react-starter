@@ -49,13 +49,14 @@ export const TrendIcon = ({ trend, trendNum }: { trend?: ETrend; trendNum?: stri
   </div>
 );
 
-const Board = ({ title, count, desc, trend, trendNum, Icon, dark }: IBoardProps) => (
+const Board = ({ title, count, desc, trend, trendNum, Icon, dark, border }: IBoardProps) => (
   <Card
     title={<div className={Style.boardTitle}>{title}</div>}
     header
     className={classnames({
       [Style.boardPanelDark]: dark,
     })}
+    bordered={border}
     footer={
       <div className={Style.boardItemBottom}>
         <div className={Style.boardItemDesc}>

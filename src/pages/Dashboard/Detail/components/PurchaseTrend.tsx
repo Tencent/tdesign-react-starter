@@ -27,7 +27,7 @@ const ProductTrend = ({ type, isSetup, description, name, icon }: IProductTrendP
 
     <p className={Style.productName}>{name}</p>
     <p className={Style.productDesc}>{description}</p>
-    <Row justify='space-between' align='middle' className='cardControlClass'>
+    <Row justify='space-between' align='middle'>
       <div className={Style.iconWrap}>
         <Button shape='circle' disabled={!isSetup}>
           {type}
