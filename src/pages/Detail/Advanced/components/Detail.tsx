@@ -84,7 +84,6 @@ const Detail = () => (
         },
       ]}
       rowKey='id'
-      tableLayout='auto'
       verticalAlign='top'
       hover
       pagination={{

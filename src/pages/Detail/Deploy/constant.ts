@@ -17,7 +17,7 @@ const nameSorter: SorterFun<TableRowData> = (a, b) => {
 
 export const TABLE_COLUMNS: TdPrimaryTableProps['columns'] = [
   {
-    minWidth: '448',
+    width: '448',
     ellipsis: true,
     colKey: 'name',
     title: '项目名称',

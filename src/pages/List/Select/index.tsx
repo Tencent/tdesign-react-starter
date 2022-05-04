@@ -137,7 +137,6 @@ export const SelectTable = () => {
         ]}
         rowKey='index'
         selectedRowKeys={selectedRowKeys}
-        tableLayout='auto'
         hover
         onSelectChange={onSelectChange}
         pagination={{

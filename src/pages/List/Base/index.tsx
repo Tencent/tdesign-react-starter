@@ -111,11 +111,11 @@ export default memo(() => {
             colKey: 'row-select',
             fixed: 'left',
             type: 'multiple',
-            width: 50,
+            // width: 50,
           },
           {
             align: 'left',
-            width: 50,
+            width: 200,
             ellipsis: true,
             colKey: 'name',
             title: '合同名称',
@@ -167,7 +167,7 @@ export default memo(() => {
           {
             align: 'left',
             fixed: 'right',
-            width: 200,
+            width: 180,
             colKey: 'op',
             title: '操作',
             cell() {
@@ -188,7 +188,6 @@ export default memo(() => {
         data={contractList}
         rowKey='index'
         selectedRowKeys={selectedRowKeys}
-        tableLayout='auto'
         verticalAlign='top'
         hover
         onSelectChange={onSelectChange}
