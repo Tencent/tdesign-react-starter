@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Button } from 'tdesign-react';
+import { Button, Card } from 'tdesign-react';
 import ReactEcharts from 'echarts-for-react';
 import LastWeekDatePicker from 'components/DatePicker';
-import Board from 'components/Card';
 import useDynamicChart from 'utils/hooks/useDynamicChart';
 import { getScatterChartOptions } from '../chart';
 import Style from './Satisfaction.module.less';
@@ -21,9 +20,10 @@ const Satisfaction = () => {
 
   return (
     <div className={Style.satisfactionPanel}>
-      <Board
+      <Card
         title='采购商品满意度分布'
-        operation={
+        header
+        actions={
           <div className={Style.operation}>
             {LastWeekDatePicker(onTimeChange)}
             <Button className={Style.exportBtn}>导出数据</Button>
@@ -36,7 +36,7 @@ const Satisfaction = () => {
           lazyUpdate={true}
           style={{ height: 374 }}
         />
-      </Board>
+      </Card>
     </div>
   );
 };

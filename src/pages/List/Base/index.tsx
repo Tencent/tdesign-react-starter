@@ -111,12 +111,11 @@ export default memo(() => {
             colKey: 'row-select',
             fixed: 'left',
             type: 'multiple',
-            width: 50,
+            // width: 50,
           },
           {
             align: 'left',
-            width: 300,
-            minWidth: 300,
+            width: 200,
             ellipsis: true,
             colKey: 'name',
             title: '合同名称',
@@ -124,7 +123,6 @@ export default memo(() => {
           {
             align: 'left',
             width: 200,
-            minWidth: 200,
             ellipsis: true,
             colKey: 'status',
             title: '合同状态',
@@ -135,7 +133,6 @@ export default memo(() => {
           {
             align: 'left',
             width: 200,
-            minWidth: 200,
             ellipsis: true,
             colKey: 'no',
             title: '合同编号',
@@ -143,7 +140,6 @@ export default memo(() => {
           {
             align: 'left',
             width: 200,
-            minWidth: 200,
             ellipsis: true,
             colKey: 'contractType',
             title: '合同类型',
@@ -154,7 +150,6 @@ export default memo(() => {
           {
             align: 'left',
             width: 200,
-            minWidth: 200,
             ellipsis: true,
             colKey: 'paymentType',
             title: '合同收付类型',
@@ -165,7 +160,6 @@ export default memo(() => {
           {
             align: 'left',
             width: 200,
-            minWidth: 200,
             ellipsis: true,
             colKey: 'amount',
             title: '合同金额（元）',
@@ -173,8 +167,7 @@ export default memo(() => {
           {
             align: 'left',
             fixed: 'right',
-            width: 200,
-            minWidth: 200,
+            width: 180,
             colKey: 'op',
             title: '操作',
             cell() {
@@ -195,7 +188,6 @@ export default memo(() => {
         data={contractList}
         rowKey='index'
         selectedRowKeys={selectedRowKeys}
-        tableLayout='auto'
         verticalAlign='top'
         hover
         onSelectChange={onSelectChange}

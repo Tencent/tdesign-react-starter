@@ -1,18 +1,16 @@
 import React from 'react';
-import { Button, Table, Tag } from 'tdesign-react';
+import { Button, Table, Tag, Card } from 'tdesign-react';
 import { dataBuyList, total } from '../consts';
-import Card from 'components/Card';
 import Style from '../index.module.less';
 
 const Detail = () => (
-  <Card title='产品采购明细' className={Style.cardBox}>
+  <Card title='产品采购明细' className={Style.cardBox} header>
     <Table
       data={dataBuyList}
       columns={[
         {
           align: 'left',
           width: 300,
-          minWidth: 300,
           ellipsis: true,
           colKey: 'number',
           title: '申请号',
@@ -20,7 +18,6 @@ const Detail = () => (
         {
           align: 'left',
           width: 200,
-          minWidth: 200,
           ellipsis: true,
           colKey: 'name',
           title: '产品名称',
@@ -38,34 +35,30 @@ const Detail = () => (
         {
           align: 'left',
           width: 200,
-          minWidth: 200,
           ellipsis: true,
           colKey: 'code',
           title: '产品编号',
         },
         {
           align: 'left',
-          width: 200,
-          minWidth: 200,
+          width: 100,
           ellipsis: true,
           colKey: 'amount',
           title: '采购数量',
           cell({ row }) {
-            return <>{row.amount}</>;
+            return row.amount;
           },
         },
         {
           align: 'left',
           width: 200,
-          minWidth: 200,
           ellipsis: true,
           colKey: 'department',
           title: '申请部门',
         },
         {
           align: 'left',
-          width: 300,
-          minWidth: 300,
+          width: 500,
           ellipsis: true,
           colKey: 'createtime',
           title: '创建时间',
@@ -73,8 +66,7 @@ const Detail = () => (
         {
           align: 'left',
           fixed: 'right',
-          width: 200,
-          minWidth: 200,
+          width: 300,
           colKey: 'op',
           title: '操作',
           cell() {
@@ -91,8 +83,7 @@ const Detail = () => (
           },
         },
       ]}
-      rowKey='index'
-      tableLayout='auto'
+      rowKey='id'
       verticalAlign='top'
       hover
       pagination={{

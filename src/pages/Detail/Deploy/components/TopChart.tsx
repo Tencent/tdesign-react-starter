@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Col, Radio, Row } from 'tdesign-react';
+import { Col, Radio, Row, Card } from 'tdesign-react';
 import { EChartOption } from 'echarts';
 import ReactEcharts from 'echarts-for-react';
 import { getBarOptions } from '../chart';
 import useDynamicChart from 'utils/hooks/useDynamicChart';
-import Card from 'components/Card';
 import DynamicLineChart from './DynamicLineChart';
 import Style from './TopChart.module.less';
 
@@ -20,7 +19,7 @@ const TopChart = () => {
   return (
     <Row gutter={16} className={Style.panel}>
       <Col span={6}>
-        <Card title='部署趋势'>
+        <Card title='部署趋势' header>
           <div className={Style.deployPanelLeft}>
             <DynamicLineChart />
           </div>
@@ -29,7 +28,8 @@ const TopChart = () => {
       <Col span={6}>
         <Card
           title='告警情况'
-          operation={
+          header
+          actions={
             <Radio.Group defaultValue='week' onChange={(val) => tabChange(val === 'month')}>
               <Radio.Button value='week'>本周</Radio.Button>
               <Radio.Button value='month'>本月</Radio.Button>

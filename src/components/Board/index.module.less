@@ -1,7 +1,3 @@
-.panel {
-  height: 160px
-}
-
 .boardPanelDark {
   background: var(--td-brand-color)!important;
   .boardTitle, .boardItemLeft, .boardItemDesc, .trendColorUp, .trendColorDown, .boardItemBottom {
@@ -12,7 +8,11 @@
   }
 }
 
-.boardTitle {}
+.boardTitle{
+  line-height: 22px;
+  font-size: 14px;
+  color: var(--td-text-color-secondary);
+}
 
 .boardItem {
   display: flex;
@@ -25,9 +25,6 @@
   color: var(--td-text-color-primary);
   font-size: 27px;
   line-height: 44px;
-}
-
-.boardItemRight {
 }
 
 .boardItemBottom {
