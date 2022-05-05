@@ -59,6 +59,13 @@ const result: IRouter[] = [
           title: '浏览器不兼容页',
         },
       },
+      {
+        path: 'maintenance',
+        Component: lazy(() => import('pages/Result/Maintenance')),
+        meta: {
+          title: '系统维护页',
+        },
+      },
     ],
   },
 ];
