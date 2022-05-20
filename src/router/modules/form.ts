@@ -20,7 +20,7 @@ const result: IRouter[] = [
       {
         path: 'step',
         Component: lazy(() => import('pages/Form/Step')),
-        meta: { title: '分布表单页' },
+        meta: { title: '分步表单页' },
       },
     ],
   },
