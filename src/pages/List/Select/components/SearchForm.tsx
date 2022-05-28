@@ -1,6 +1,7 @@
 import React, { useRef, memo } from 'react';
 import { Row, Col, Form, Input, Button, MessagePlugin, Select } from 'tdesign-react';
 import { CONTRACT_STATUS_OPTIONS, CONTRACT_TYPE_OPTIONS } from '../consts';
+import { FormInstanceFunctions, SubmitContext } from 'tdesign-react/es/form/type';
 
 const { FormItem } = Form;
 
@@ -18,14 +19,13 @@ export type SearchFormProps = {
 };
 
 const SearchForm: React.FC<SearchFormProps> = (props) => {
-  const formRef = useRef<any>();
-  const onSubmit = (e: any) => {
+  const formRef = useRef<FormInstanceFunctions>();
+  const onSubmit = (e: SubmitContext) => {
     if (e.validateResult === true) {
       MessagePlugin.info('提交成功');
     }
-    const getAllFields = formRef?.current?.getAllFieldsValue;
-    const queryValue = getAllFields?.();
-    console.log(queryValue);
+    const queryValue = formRef?.current?.getFieldsValue?.(true);
+    console.log('form 数据', queryValue);
   };
 
   const onReset = () => {
@@ -45,7 +45,7 @@ const SearchForm: React.FC<SearchFormProps> = (props) => {
                 </FormItem>
               </Col>
               <Col span={3} xs={12} sm={6} xl={3}>
-                <FormItem label='合同状态' name='statu'>
+                <FormItem label='合同状态' name='status'>
                   <Select options={CONTRACT_STATUS_OPTIONS} placeholder='请选择合同状态' />
                 </FormItem>
               </Col>
