@@ -88,7 +88,7 @@ export default function Login() {
                 刷新 <RefreshIcon />
               </span>
             </div>
-            <QRCode id='qrCode' value='' size={200} />
+            <QRCode value='' size={200} />
           </>
         )}
         {/* // 手机号登陆 */}
