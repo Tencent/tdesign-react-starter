@@ -42,7 +42,7 @@
     "vite-plugin-mock": "^2.9.6"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.6.0",
+    "@reduxjs/toolkit": "^1.8.2",
     "axios": "^0.26.1",
     "axios-jsonp": "^1.0.4",
     "classnames": "^2.3.1",
