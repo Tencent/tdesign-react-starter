@@ -1,6 +1,6 @@
 import type { EChartOption } from 'echarts';
 
-import { ONE_WEEK_LIST, CHART_LIST_COLOR, getChartDataSet, getTimeArray, getRandomInt } from 'utils/chart';
+import { ONE_WEEK_LIST, getChartDataSet, getTimeArray, getRandomInt } from 'utils/chart';
 
 // line chart options
 export const getLineChartOptions = (dateTime: Array<string> = []): EChartOption => {
@@ -11,7 +11,6 @@ export const getLineChartOptions = (dateTime: Array<string> = []): EChartOption 
   }
 
   return {
-    color: CHART_LIST_COLOR,
     grid: {
       top: '5%',
       right: '10px',
@@ -140,7 +139,6 @@ export const getScatterChartOptions = (dateTime: Array<string> = []): EChartOpti
   const [timeArray, inArray, outArray] = getChartDataSet(dateTime);
 
   return {
-    color: CHART_LIST_COLOR,
     xAxis: {
       data: timeArray,
       axisLabel: {

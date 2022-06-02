@@ -3,7 +3,7 @@ import { Col, Radio, Row, Card } from 'tdesign-react';
 import { EChartOption } from 'echarts';
 import ReactEcharts from 'echarts-for-react';
 import { getBarOptions } from '../chart';
-import useDynamicChart from 'utils/hooks/useDynamicChart';
+import useDynamicChart from 'hooks/useDynamicChart';
 import DynamicLineChart from './DynamicLineChart';
 import Style from './TopChart.module.less';
 

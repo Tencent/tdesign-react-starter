@@ -37,14 +37,14 @@ export default memo((props: IHeaderProps) => {
           </Button>
         </Col>
         <Col>
-          <Input prefixIcon={<SearchIcon />} placeholder='请输入内容' />
+          <Input prefixIcon={<SearchIcon />} placeholder='请输入内容1' />
         </Col>
       </Row>
     );
   }
 
   return (
-    <Header className={Style.headerPanel}>
+    <Header className={Style.panel}>
       {HeaderLeft}
       <HeaderIcon />
     </Header>

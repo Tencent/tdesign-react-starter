@@ -3,7 +3,7 @@ import { Col, Row } from 'tdesign-react';
 import { UsergroupIcon, FileIcon } from 'tdesign-icons-react';
 import ReactEcharts from 'echarts-for-react';
 import Board, { ETrend, IBoardProps } from 'components/Board';
-import useDynamicChart from 'utils/hooks/useDynamicChart';
+import useDynamicChart from 'hooks/useDynamicChart';
 import { MICRO_CHART_OPTIONS_BAR, MICRO_CHART_OPTIONS_LINE } from '../chart';
 import Style from './TopPanel.module.less';
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Col, Row, Card } from 'tdesign-react';
 import ReactEcharts from 'echarts-for-react';
-import useDynamicChart from 'utils/hooks/useDynamicChart';
+import useDynamicChart from 'hooks/useDynamicChart';
 import LastWeekDatePicker from 'components/DatePicker';
 import { getLineChartOptions, getPieChartOptions } from '../chart';
 import Style from './MiddleChart.module.less';

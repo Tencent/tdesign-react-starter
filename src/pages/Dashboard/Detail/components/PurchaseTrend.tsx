@@ -3,7 +3,7 @@ import { Button, Col, Dropdown, Row, Tag, Card } from 'tdesign-react';
 import { Icon } from 'tdesign-icons-react';
 import ReactEcharts from 'echarts-for-react';
 import LastWeekDatePicker from 'components/DatePicker';
-import useDynamicChart from 'utils/hooks/useDynamicChart';
+import useDynamicChart from 'hooks/useDynamicChart';
 import { PRODUCT_LIST } from '../constant';
 import { getLineChartOptions } from '../chart';
 import Style from './PurchaseThrend.module.less';

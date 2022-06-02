@@ -28,14 +28,14 @@ export default memo(() => {
   }, []);
 
   return (
-    <Layout className={Style.mainPanel}>
+    <Layout className={Style.panel}>
       <Container />
       <Drawer
         destroyOnClose
         visible={globalState.setting}
         size='458px'
         footer={false}
-        header={<div>页面配置</div>}
+        header='页面配置'
         onClose={() => dispatch(toggleSetting())}
       >
         <Setting />

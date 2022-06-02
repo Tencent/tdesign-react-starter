@@ -10,7 +10,7 @@ import ProductA from 'assets/svg/assets-product-1.svg?component';
 import ProductB from 'assets/svg/assets-product-2.svg?component';
 import ProductC from 'assets/svg/assets-product-3.svg?component';
 import ProductD from 'assets/svg/assets-product-4.svg?component';
-import useDynamicChart from 'utils/hooks/useDynamicChart';
+import useDynamicChart from 'hooks/useDynamicChart';
 
 import styles from './index.module.less';
 

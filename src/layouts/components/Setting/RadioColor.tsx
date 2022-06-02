@@ -1,34 +1,25 @@
-import React, { memo, useState } from 'react';
+import React from 'react';
+import { defaultColor } from 'configs/color';
 import Style from './RadioColor.module.less';
 
 interface IProps {
   defaultValue?: number | string;
-  options?: any;
   onChange: (color: string) => void;
 }
 
-const colors = ['#0052D9', '#0594FA', '#00A870', '#EBB105', '#ED7B2F', '#E34D59', '#ED49B4', '#834EC2'];
+const RadioColor = (props: IProps) => (
+  <div className={Style.panel}>
+    {defaultColor.map((color, index) => (
+      <div
+        key={index}
+        onClick={() => props?.onChange(color)}
+        className={Style.box}
+        style={{ borderColor: props.defaultValue === color ? color : 'transparent' }}
+      >
+        <div className={Style.item} style={{ backgroundColor: color }} />
+      </div>
+    ))}
+  </div>
+);
 
-export default memo((props: IProps) => {
-  const [selectedColor, setSelectedColor] = useState(props.defaultValue);
-
-  const handleClick = (color: string) => {
-    setSelectedColor(color);
-    props?.onChange(color);
-  };
-
-  return (
-    <div className={Style.radioColorPanel}>
-      {colors.map((color, index) => (
-        <div
-          key={index}
-          onClick={() => handleClick(color)}
-          className={Style.colorItemBox}
-          style={{ borderColor: selectedColor === color ? color : 'rgba(0,0,0,0)' }}
-        >
-          <div className={Style.colorItem} style={{ backgroundColor: color }}></div>
-        </div>
-      ))}
-    </div>
-  );
-});
+export default React.memo(RadioColor);

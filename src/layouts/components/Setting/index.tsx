@@ -10,8 +10,8 @@ import {
   switchColor,
   switchLayout,
   ELayout,
-  ETheme,
 } from 'modules/global';
+import { ETheme } from 'types/index.d';
 import RadioColor from './RadioColor';
 import RadioRect from './RadioRect';
 
@@ -31,7 +31,6 @@ const themeList = [
     name: '黑暗',
   },
   {
-    // 跟随系统 value = undefined
     image: System,
     name: '跟随系统',
   },
@@ -61,7 +60,7 @@ export default memo(() => {
       <div className={Style.settingTitle}>主题模式</div>
       <RadioRect
         defaultValue={globalState.theme}
-        onChange={(value) => dispatch(switchTheme(value))}
+        onChange={(value) => dispatch(switchTheme(value as ETheme))}
         options={themeList}
       />
 
