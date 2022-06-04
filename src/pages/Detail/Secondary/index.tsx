@@ -2,7 +2,6 @@ import React, { memo, useState } from 'react';
 import { Tabs, List, Tag, Row, Col, Popup } from 'tdesign-react';
 import { AddRectangleIcon, DeleteIcon, ChatIcon } from 'tdesign-icons-react';
 import classnames from 'classnames';
-import PageBox from 'components/PageBox';
 import { dataItemList, IItem, TStatus } from './consts';
 import Style from './index.module.less';
 
@@ -95,7 +94,7 @@ export default memo(() => {
   };
 
   return (
-    <PageBox>
+    <div>
       <section className={Style.secondaryNotification}>
         <Tabs placement='top' size='medium' defaultValue='1'>
           <TabPanel value='1' label='全部通知'>
@@ -109,6 +108,6 @@ export default memo(() => {
           </TabPanel>
         </Tabs>
       </section>
-    </PageBox>
+    </div>
   );
 });

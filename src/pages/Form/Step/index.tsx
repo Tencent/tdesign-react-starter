@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
-import PageBox from 'components/PageBox';
+import classnames from 'classnames';
 import { Steps } from 'tdesign-react';
 import { StepOne, StepTwo, StepThree, StepFour } from './components';
+import CommonStyle from 'styles/common.module.less';
 
 const { StepItem: Step } = Steps;
 interface IStep {
@@ -62,7 +63,7 @@ export default memo(() => {
   };
 
   return (
-    <PageBox withPadding withColor>
+    <div className={classnames(CommonStyle.pageWithPadding, CommonStyle.pageWithColor)}>
       <>
         <Steps current={current}>
           {steps.map((item) => (
@@ -73,6 +74,6 @@ export default memo(() => {
           <Comp steps={steps} current={current} callback={handleSteps} />
         </div>
       </>
-    </PageBox>
+    </div>
   );
 });

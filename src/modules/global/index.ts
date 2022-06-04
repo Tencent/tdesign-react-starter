@@ -16,6 +16,9 @@ export enum ELayout {
 export interface IGlobalState {
   loading: boolean;
   collapsed: boolean;
+  /**
+   * 是否显示面包屑导航
+   */
   setting: boolean;
   version: string;
   color: string;
@@ -40,7 +43,7 @@ const initialState: IGlobalState = {
   isFullPage: false,
   color: defaultColor?.[0],
   showHeader: true,
-  showBreadcrumbs: false,
+  showBreadcrumbs: true,
   showFooter: true,
   chartColors: CHART_COLORS[defaultTheme],
 };

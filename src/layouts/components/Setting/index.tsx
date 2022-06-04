@@ -84,7 +84,7 @@ export default memo(() => {
         </Col>
       </Row>
 
-      <Row justify='space-between' style={{ display: 'none' }}>
+      <Row justify='space-between'>
         <Col>
           <div className={Style.settingSubTitle}>显示 Breadcrumbs</div>
         </Col>

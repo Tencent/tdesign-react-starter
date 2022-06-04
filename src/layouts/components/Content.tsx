@@ -1,30 +1,12 @@
-import React, { Suspense, useEffect, memo } from 'react';
+import React, { Suspense, memo } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Layout, Loading } from 'tdesign-react';
 import routers, { IRouter } from 'router';
 import { resolve } from 'utils/path';
-import { useAppDispatch } from '../../modules/store';
-import { switchFullPage } from '../../modules/global';
+import Page from './Page';
 import Style from './Content.module.less';
 
 const { Content } = Layout;
-
-const PageBox = memo(
-  ({
-    children,
-    isFullPage,
-  }: React.PropsWithChildren<{
-    isFullPage?: boolean;
-  }>) => {
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-      dispatch(switchFullPage(isFullPage));
-    }, [isFullPage]);
-
-    return <>{children}</>;
-  },
-);
 
 const PageLoading = memo(() => (
   <div className={Style.loading}>
@@ -32,10 +14,21 @@ const PageLoading = memo(() => (
   </div>
 ));
 
-const renderRoutes = (routes: IRouter[], parentPath = ''): React.ReactNode[] =>
+/**
+ * 渲染应用路由
+ * @param routes
+ * @param parentPath
+ */
+type TRenderRoutes = (routes: IRouter[], parentPath?: string, breadcrumbs?: string[]) => React.ReactNode[];
+const renderRoutes: TRenderRoutes = (routes, parentPath = '', breadcrumb = []) =>
   routes.map((route, index: number) => {
-    const { Component, children, redirect } = route;
+    const { Component, children, redirect, meta } = route;
     const currentPath = resolve(parentPath, route.path);
+    let currentBreadcrumb = breadcrumb;
+
+    if (meta?.title) {
+      currentBreadcrumb = currentBreadcrumb.concat([meta?.title]);
+    }
 
     if (redirect) {
       // 重定向
@@ -43,28 +36,25 @@ const renderRoutes = (routes: IRouter[], parentPath = ''): React.ReactNode[] =>
     }
 
     if (Component) {
+      // 有路由菜单
       return (
         <Route
           key={index}
           path={currentPath}
           element={
-            <PageBox isFullPage={route.isFullPage}>
+            <Page isFullPage={route.isFullPage} breadcrumbs={currentBreadcrumb}>
               <Component />
-            </PageBox>
+            </Page>
           }
-        >
-          {children && renderRoutes(children, currentPath)}
-        </Route>
+        />
       );
     }
-    if (children) {
-      return renderRoutes(children, currentPath);
-    }
-    return null;
+    // 无路由菜单
+    return children ? renderRoutes(children, currentPath, currentBreadcrumb) : null;
   });
 
 export default memo(() => (
-  <Content>
+  <Content className={Style.panel}>
     <Suspense fallback={<PageLoading />}>
       <Routes>{renderRoutes(routers)}</Routes>
     </Suspense>

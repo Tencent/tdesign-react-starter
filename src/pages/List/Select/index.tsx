@@ -2,11 +2,12 @@ import React, { useState, memo, useEffect } from 'react';
 import { Table, Dialog, Button, Row } from 'tdesign-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { selectListSelect, getList, clearPageState } from 'modules/list/select';
-import PageBox from 'components/PageBox';
 import SearchForm from './components/SearchForm';
 import { StatusMap, ContractTypeMap, PaymentTypeMap } from '../Base';
 
 import './index.module.less';
+import classnames from 'classnames';
+import CommonStyle from '../../../styles/common.module.less';
 
 export const SelectTable = () => {
   const dispatch = useAppDispatch();
@@ -170,9 +171,9 @@ export const SelectTable = () => {
 };
 
 const selectPage: React.FC = () => (
-  <PageBox withColor withPadding>
+  <div className={classnames(CommonStyle.pageWithPadding, CommonStyle.pageWithColor)}>
     <SelectTable />
-  </PageBox>
+  </div>
 );
 
 export default memo(selectPage);
