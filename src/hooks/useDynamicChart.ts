@@ -24,9 +24,9 @@ export default function useDynamicChart(
     const newOptions = {
       ...options,
     };
-    if (newOptions) {
-      // 设置动态的图表颜色
-      lodashSet(newOptions, 'color', dynamicColor.colorList);
+    // 设置动态的图表颜色
+    lodashSet(newOptions, 'color', dynamicColor.colorList);
+    if (configs) {
       lodashMap(configs, (config, configKey: TChartColorKey) => {
         config?.map((val) => lodashSet(newOptions, val, dynamicColor[configKey]));
       });
