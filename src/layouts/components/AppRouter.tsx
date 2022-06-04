@@ -4,22 +4,17 @@ import { Layout, Loading } from 'tdesign-react';
 import routers, { IRouter } from 'router';
 import { resolve } from 'utils/path';
 import Page from './Page';
-import Style from './Content.module.less';
+import Style from './AppRouter.module.less';
 
 const { Content } = Layout;
 
-const PageLoading = memo(() => (
-  <div className={Style.loading}>
-    <Loading />
-  </div>
-));
-
+type TRenderRoutes = (routes: IRouter[], parentPath?: string, breadcrumbs?: string[]) => React.ReactNode[];
 /**
  * 渲染应用路由
  * @param routes
  * @param parentPath
+ * @param breadcrumb
  */
-type TRenderRoutes = (routes: IRouter[], parentPath?: string, breadcrumbs?: string[]) => React.ReactNode[];
 const renderRoutes: TRenderRoutes = (routes, parentPath = '', breadcrumb = []) =>
   routes.map((route, index: number) => {
     const { Component, children, redirect, meta } = route;
@@ -53,10 +48,18 @@ const renderRoutes: TRenderRoutes = (routes, parentPath = '', breadcrumb = []) =
     return children ? renderRoutes(children, currentPath, currentBreadcrumb) : null;
   });
 
-export default memo(() => (
+const AppRouter = () => (
   <Content className={Style.panel}>
-    <Suspense fallback={<PageLoading />}>
+    <Suspense
+      fallback={
+        <div className={Style.loading}>
+          <Loading />
+        </div>
+      }
+    >
       <Routes>{renderRoutes(routers)}</Routes>
     </Suspense>
   </Content>
-));
+);
+
+export default memo(AppRouter);

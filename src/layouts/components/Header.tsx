@@ -9,11 +9,7 @@ import Style from './Header.module.less';
 
 const { Header } = Layout;
 
-interface IHeaderProps {
-  showMenu?: boolean;
-}
-
-export default memo((props: IHeaderProps) => {
+export default memo((props: { showMenu?: boolean }) => {
   const globalState = useAppSelector(selectGlobal);
   const dispatch = useAppDispatch();
 

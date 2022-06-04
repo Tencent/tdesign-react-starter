@@ -4,9 +4,9 @@ import { ELayout } from 'modules/global';
 import Header from './Header';
 import Footer from './Footer';
 import Menu from './Menu';
-import Content from './Content';
+import Content from './AppRouter';
 
-import Style from './Container.module.less';
+import Style from './AppLayout.module.less';
 
 const SideLayout = React.memo(() => (
   <Layout className={Style.sidePanel}>
