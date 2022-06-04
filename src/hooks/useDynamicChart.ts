@@ -19,16 +19,18 @@ export default function useDynamicChart(
   configs?: Partial<Record<TChartColorKey, Array<string>>>,
 ) {
   const { theme, color } = useAppSelector(selectGlobal);
-  const dynamicColor = useMemo(() => getChartColor(theme, color), [theme, color]);
-  if (options) {
-    // 设置动态的图表颜色
-    lodashSet(options, 'color', dynamicColor.colorList);
-    lodashMap(configs, (config, configKey: TChartColorKey) => {
-      config?.map((val) => lodashSet(options, val, dynamicColor[configKey]));
-    });
-  }
-
-  return {
-    ...options,
-  };
+  return useMemo(() => {
+    const dynamicColor = getChartColor(theme, color);
+    const newOptions = {
+      ...options,
+    };
+    if (newOptions) {
+      // 设置动态的图表颜色
+      lodashSet(newOptions, 'color', dynamicColor.colorList);
+      lodashMap(configs, (config, configKey: TChartColorKey) => {
+        config?.map((val) => lodashSet(newOptions, val, dynamicColor[configKey]));
+      });
+    }
+    return newOptions;
+  }, [theme, color, options]);
 }
