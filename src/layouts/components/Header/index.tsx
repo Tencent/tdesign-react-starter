@@ -1,19 +1,16 @@
 import React, { memo } from 'react';
-import { Layout, Button, Row, Col, Input } from 'tdesign-react';
-import { ViewListIcon, SearchIcon } from 'tdesign-icons-react';
+import { Layout, Button, Row, Col } from 'tdesign-react';
+import { ViewListIcon } from 'tdesign-icons-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { selectGlobal, toggleMenu } from 'modules/global';
 import HeaderIcon from './HeaderIcon';
-import { HeaderMenu } from './Menu';
-import Style from './Header.module.less';
+import { HeaderMenu } from '../Menu';
+import Search from './Search';
+import Style from './index.module.less';
 
 const { Header } = Layout;
 
-interface IHeaderProps {
-  showMenu?: boolean;
-}
-
-export default memo((props: IHeaderProps) => {
+export default memo((props: { showMenu?: boolean }) => {
   const globalState = useAppSelector(selectGlobal);
   const dispatch = useAppDispatch();
 
@@ -37,14 +34,14 @@ export default memo((props: IHeaderProps) => {
           </Button>
         </Col>
         <Col>
-          <Input prefixIcon={<SearchIcon />} placeholder='请输入内容' />
+          <Search />
         </Col>
       </Row>
     );
   }
 
   return (
-    <Header className={Style.headerPanel}>
+    <Header className={Style.panel}>
       {HeaderLeft}
       <HeaderIcon />
     </Header>

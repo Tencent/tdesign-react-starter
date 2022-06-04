@@ -1,6 +1,7 @@
 import React, { memo, useState } from 'react';
 import classname from 'classnames';
-import { ETheme, ELayout } from 'modules/global';
+import { ELayout } from 'modules/global';
+import { ETheme } from 'types/index.d';
 import Style from './RadioRect.module.less';
 
 interface IOption {

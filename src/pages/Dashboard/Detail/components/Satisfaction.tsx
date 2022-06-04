@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Card } from 'tdesign-react';
 import ReactEcharts from 'echarts-for-react';
 import LastWeekDatePicker from 'components/DatePicker';
-import useDynamicChart from 'utils/hooks/useDynamicChart';
+import useDynamicChart from 'hooks/useDynamicChart';
 import { getScatterChartOptions } from '../chart';
 import Style from './Satisfaction.module.less';
 

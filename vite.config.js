@@ -17,6 +17,8 @@ export default (params) => ({
       utils: path.resolve(__dirname, './src/utils'),
       services: path.resolve(__dirname, './src/services'),
       router: path.resolve(__dirname, './src/router'),
+      hooks: path.resolve(__dirname, './src/hooks'),
+      types: path.resolve(__dirname, './src/types'),
     },
   },
 

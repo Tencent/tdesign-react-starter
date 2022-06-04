@@ -1,13 +1,12 @@
 import React, { memo } from 'react';
-import PageBox from 'components/PageBox';
 import TopChart from './components/TopChart';
 import BottomTable from './components/BottomTable';
 
 const Deploy = () => (
-  <PageBox>
+  <div>
     <TopChart />
     <BottomTable />
-  </PageBox>
+  </div>
 );
 
 export default memo(Deploy);

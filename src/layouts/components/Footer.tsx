@@ -3,19 +3,19 @@ import { Layout, Row } from 'tdesign-react';
 import { useAppSelector } from 'modules/store';
 import { selectGlobal } from 'modules/global';
 
-const { Footer } = Layout;
+const { Footer: TFooter } = Layout;
 
-const LFooter = () => {
+const Footer = () => {
   const globalState = useAppSelector(selectGlobal);
   if (!globalState.showFooter) {
     return null;
   }
 
   return (
-    <Footer>
+    <TFooter>
       <Row justify='center'>Copyright @ 2022-2022 Tencent. All Rights Reserved</Row>
-    </Footer>
+    </TFooter>
   );
 };
 
-export default React.memo(LFooter);
+export default React.memo(Footer);

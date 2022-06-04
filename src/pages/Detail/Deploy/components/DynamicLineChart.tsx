@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { EChartOption } from 'echarts';
 import ReactEcharts from 'echarts-for-react';
-import useDynamicChart from 'utils/hooks/useDynamicChart';
+import useDynamicChart from 'hooks/useDynamicChart';
 import { getLineOptions } from '../chart';
 
 const DynamicLineChart = () => {
