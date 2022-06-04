@@ -1,11 +1,12 @@
 import React, { memo } from 'react';
-import { Layout, Button, Row, Col, Input } from 'tdesign-react';
-import { ViewListIcon, SearchIcon } from 'tdesign-icons-react';
+import { Layout, Button, Row, Col } from 'tdesign-react';
+import { ViewListIcon } from 'tdesign-icons-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { selectGlobal, toggleMenu } from 'modules/global';
 import HeaderIcon from './HeaderIcon';
-import { HeaderMenu } from './Menu';
-import Style from './Header.module.less';
+import { HeaderMenu } from '../Menu';
+import Search from './Search';
+import Style from './index.module.less';
 
 const { Header } = Layout;
 
@@ -33,7 +34,7 @@ export default memo((props: { showMenu?: boolean }) => {
           </Button>
         </Col>
         <Col>
-          <Input prefixIcon={<SearchIcon />} placeholder='请输入内容1' />
+          <Search />
         </Col>
       </Row>
     );
