@@ -4,14 +4,14 @@ import throttle from 'lodash/throttle';
 import { useAppSelector, useAppDispatch } from 'modules/store';
 import { selectGlobal, toggleSetting, toggleMenu, ELayout } from 'modules/global';
 import Setting from './components/Setting';
-import LayoutMap from './components/Container';
+import AppLayout from './components/AppLayout';
 import Style from './index.module.less';
 
 export default memo(() => {
   const globalState = useAppSelector(selectGlobal);
   const dispatch = useAppDispatch();
 
-  const Container = LayoutMap[globalState.isFullPage ? ELayout.fullPage : globalState.layout];
+  const AppContainer = AppLayout[globalState.isFullPage ? ELayout.fullPage : globalState.layout];
 
   useEffect(() => {
     const handleResize = throttle(() => {
@@ -28,14 +28,14 @@ export default memo(() => {
   }, []);
 
   return (
-    <Layout className={Style.mainPanel}>
-      <Container />
+    <Layout className={Style.panel}>
+      <AppContainer />
       <Drawer
         destroyOnClose
         visible={globalState.setting}
         size='458px'
         footer={false}
-        header={<div>页面配置</div>}
+        header='页面配置'
         onClose={() => dispatch(toggleSetting())}
       >
         <Setting />

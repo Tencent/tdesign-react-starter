@@ -1,14 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { COLOR_TOKEN, TColorSeries, TColorToken, LIGHT_CHART_COLORS, DARK_CHART_COLORS } from 'configs/color';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ETheme } from 'types/index.d';
+import { CHART_COLORS, defaultColor } from 'configs/color';
 import { RootState } from '../store';
 import { version } from '../../../package.json';
 
 const namespace = 'global';
-
-export enum ETheme {
-  light = 'light',
-  dark = 'dark',
-}
 
 export enum ELayout {
   side = 1,
@@ -20,6 +16,9 @@ export enum ELayout {
 export interface IGlobalState {
   loading: boolean;
   collapsed: boolean;
+  /**
+   * 是否显示面包屑导航
+   */
   setting: boolean;
   version: string;
   color: string;
@@ -29,24 +28,24 @@ export interface IGlobalState {
   showHeader: boolean;
   showBreadcrumbs: boolean;
   showFooter: boolean;
-  colorList: TColorSeries;
-  chartColors: TColorToken;
+  chartColors: Record<string, string>;
 }
+
+const defaultTheme = ETheme.light;
 
 const initialState: IGlobalState = {
   loading: true,
   collapsed: window.innerWidth < 1000, // 宽度小于1000 菜单闭合
   setting: false,
   version,
-  theme: ETheme.light,
+  theme: defaultTheme,
   layout: ELayout.side,
   isFullPage: false,
-  color: '#0052D9',
+  color: defaultColor?.[0],
   showHeader: true,
-  showBreadcrumbs: false,
+  showBreadcrumbs: true,
   showFooter: true,
-  colorList: COLOR_TOKEN,
-  chartColors: LIGHT_CHART_COLORS,
+  chartColors: CHART_COLORS[defaultTheme],
 };
 
 // 创建带有命名空间的reducer
@@ -73,7 +72,7 @@ const globalSlice = createSlice({
     toggleShowFooter: (state) => {
       state.showFooter = !state.showFooter;
     },
-    switchTheme: (state, action) => {
+    switchTheme: (state, action: PayloadAction<ETheme>) => {
       let finalTheme = action?.payload;
       if (!finalTheme) {
         // 跟随系统
@@ -83,7 +82,7 @@ const globalSlice = createSlice({
         }
       }
       // 切换 chart 颜色
-      state.chartColors = finalTheme === ETheme.dark ? DARK_CHART_COLORS : LIGHT_CHART_COLORS;
+      state.chartColors = CHART_COLORS[finalTheme];
       // 切换主题颜色
       state.theme = finalTheme;
       document.documentElement.setAttribute('theme-mode', finalTheme);

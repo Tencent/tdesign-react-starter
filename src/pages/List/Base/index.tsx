@@ -1,9 +1,10 @@
 import React, { useState, memo, useEffect } from 'react';
 import { Table, Tag, Row, Col, Button, Input } from 'tdesign-react';
 import { ChevronUpCircleIcon, SearchIcon, ChevronDownCircleIcon } from 'tdesign-icons-react';
-import PageBox from 'components/PageBox';
+import classnames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { selectListBase, getList, clearPageState } from 'modules/list/base';
+import CommonStyle from 'styles/common.module.less';
 import style from './index.module.less';
 
 export const PaymentTypeMap: {
@@ -85,7 +86,7 @@ export default memo(() => {
     setSelectedRowKeys(value);
   }
   return (
-    <PageBox withColor withPadding>
+    <div className={classnames(CommonStyle.pageWithPadding, CommonStyle.pageWithColor)}>
       <Row justify='space-between' className={style.toolBar}>
         <Col>
           <Row gutter={8} align='middle'>
@@ -214,6 +215,6 @@ export default memo(() => {
           },
         }}
       />
-    </PageBox>
+    </div>
   );
 });

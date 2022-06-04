@@ -13,8 +13,9 @@ import {
   Upload,
   MessagePlugin,
 } from 'tdesign-react';
+import classnames from 'classnames';
 import { SubmitContext, FormInstanceFunctions } from 'tdesign-react/es/form/type';
-import PageBox from 'components/PageBox';
+import CommonStyle from 'styles/common.module.less';
 import Style from './index.module.less';
 
 const { FormItem } = Form;
@@ -50,7 +51,7 @@ export default memo(() => {
   };
 
   return (
-    <PageBox withColor>
+    <div className={classnames(CommonStyle.pageWithColor)}>
       <div className={Style.formContainer}>
         <Form ref={formRef} onSubmit={onSubmit} labelWidth={100} labelAlign='top'>
           <div className={Style.titleBox}>
@@ -173,6 +174,6 @@ export default memo(() => {
           </FormItem>
         </Form>
       </div>
-    </PageBox>
+    </div>
   );
 });
