@@ -68,7 +68,7 @@ const User: React.FC<BrowserRouterProps> = () => {
               </Col>
               <Col span={3}>
                 <div className={styles.label}>直属上级</div>
-                <div className={styles.value}>Account@qq.com</div>
+                <div className={styles.value}>Michael Wang</div>
               </Col>
               <Col span={3}>
                 <div className={styles.label}>职称</div>
