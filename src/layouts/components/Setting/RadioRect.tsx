@@ -1,18 +1,16 @@
 import React, { memo, useState } from 'react';
 import classname from 'classnames';
-import { ELayout } from 'modules/global';
-import { ETheme } from 'types/index.d';
 import Style from './RadioRect.module.less';
 
 interface IOption {
-  value?: ETheme | ELayout;
+  value?: any;
   image: JSX.Element | string;
   name?: string;
 }
 
 interface IProps {
   defaultValue?: number | string;
-  onChange: (value?: ETheme | ELayout) => void;
+  onChange: (value?: any) => void;
   options: IOption[];
 }
 
@@ -29,7 +27,7 @@ export default memo((props: IProps) => {
       {props.options.map((item, index) => {
         let ImageItem = item.image;
         if (typeof item.image === 'string') {
-          ImageItem = <div className={Style.rectImg} style={{ backgroundImage: `url(${item.image})` }}></div>;
+          ImageItem = <div className={Style.rectImg} style={{ backgroundImage: `url(${item.image})` }} />;
         }
 
         return (
