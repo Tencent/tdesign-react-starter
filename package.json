@@ -1,6 +1,6 @@
 {
   "name": "tdesign-react-starter",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "private": true,
   "scripts": {
     "dev:mock": "vite --open --mode mock",

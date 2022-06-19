@@ -18,6 +18,13 @@ const result: IRouter[] = [
         },
       },
       {
+        path: 'card',
+        Component: lazy(() => import('pages/List/Card')),
+        meta: {
+          title: '卡片列表页',
+        },
+      },
+      {
         path: 'select',
         Component: lazy(() => import('pages/List/Select')),
         meta: { title: '筛选列表页' },

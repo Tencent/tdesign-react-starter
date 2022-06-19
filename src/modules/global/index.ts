@@ -22,7 +22,14 @@ export interface IGlobalState {
   setting: boolean;
   version: string;
   color: string;
+  /**
+   * 主题：深色 浅色
+   */
   theme: ETheme;
+  /**
+   * 是否开启跟随系统主题
+   */
+  systemTheme: boolean;
   layout: ELayout;
   isFullPage: boolean;
   showHeader: boolean;
@@ -39,6 +46,7 @@ const initialState: IGlobalState = {
   setting: false,
   version,
   theme: defaultTheme,
+  systemTheme: false,
   layout: ELayout.side,
   isFullPage: false,
   color: defaultColor?.[0],
@@ -73,19 +81,25 @@ const globalSlice = createSlice({
       state.showFooter = !state.showFooter;
     },
     switchTheme: (state, action: PayloadAction<ETheme>) => {
-      let finalTheme = action?.payload;
-      if (!finalTheme) {
-        // 跟随系统
-        const media = window.matchMedia('(prefers-color-scheme:dark)');
-        if (media.matches) {
-          finalTheme = media.matches ? ETheme.dark : ETheme.light;
-        }
-      }
+      const finalTheme = action?.payload;
       // 切换 chart 颜色
       state.chartColors = CHART_COLORS[finalTheme];
       // 切换主题颜色
       state.theme = finalTheme;
+      // 关闭跟随系统
+      state.systemTheme = false;
       document.documentElement.setAttribute('theme-mode', finalTheme);
+    },
+    openSystemTheme: (state) => {
+      const media = window.matchMedia('(prefers-color-scheme:dark)');
+      if (media.matches) {
+        const finalTheme = media.matches ? ETheme.dark : ETheme.light;
+        state.chartColors = CHART_COLORS[finalTheme];
+        // 切换主题颜色
+        state.theme = finalTheme;
+        state.systemTheme = true;
+        document.documentElement.setAttribute('theme-mode', finalTheme);
+      }
     },
     switchColor: (state, action) => {
       if (action?.payload) {
@@ -117,6 +131,7 @@ export const {
   switchColor,
   switchLayout,
   switchFullPage,
+  openSystemTheme,
 } = globalSlice.actions;
 
 export default globalSlice.reducer;
