@@ -42,7 +42,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
             trigger={'click'}
             options={[
               {
-                content: '管理1',
+                content: '管理',
                 value: 1,
               },
               {
