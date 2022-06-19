@@ -35,7 +35,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
       footer={
         <div className={Style.footer}>
           <AvatarGroup cascading='left-up'>
-            <Avatar>Q</Avatar>
+            <Avatar>{String.fromCharCode(64 + product.type || 0)}</Avatar>
             <Avatar>+</Avatar>
           </AvatarGroup>
           <Dropdown
