@@ -15,23 +15,25 @@ import { ETheme } from 'types/index.d';
 import RadioColor from './RadioColor';
 import RadioRect from './RadioRect';
 
-import { Light, Dark, System } from './Icons';
+import Light from 'assets/svg/assets-setting-light.svg?component';
+import Dark from 'assets/svg/assets-setting-dark.svg?component';
+import System from 'assets/svg/assets-setting-auto.svg?component';
 
 import Style from './index.module.less';
 
 const themeList = [
   {
     value: ETheme.light,
-    image: Light,
+    image: <Light />,
     name: '明亮',
   },
   {
     value: ETheme.dark,
-    image: Dark,
+    image: <Dark />,
     name: '黑暗',
   },
   {
-    image: System,
+    image: <System />,
     name: '跟随系统',
   },
 ];
