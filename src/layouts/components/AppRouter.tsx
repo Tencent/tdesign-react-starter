@@ -49,7 +49,7 @@ const renderRoutes: TRenderRoutes = (routes, parentPath = '', breadcrumb = []) =
   });
 
 const AppRouter = () => (
-  <Content className={Style.panel}>
+  <Content>
     <Suspense
       fallback={
         <div className={Style.loading}>
