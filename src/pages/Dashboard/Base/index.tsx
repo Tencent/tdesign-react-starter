@@ -5,7 +5,7 @@ import RankList from './components/RankList';
 import Overview from './components/Overview';
 
 const DashBoard = () => (
-  <div>
+  <div style={{ overflowX: 'hidden' }}>
     <TopPanel />
     <MiddleChart />
     <RankList />

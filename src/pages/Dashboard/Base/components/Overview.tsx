@@ -10,7 +10,7 @@ import Style from './Overview.module.less';
 const options = getBarChartOptions();
 const Overview = (): React.ReactElement => {
   const [customOptions, setCustomOptions] = useState(options);
-  const onTimeChange = (value: Array<string>) => {
+  const onTimeChange = (value: any) => {
     // eslint-disable-next-line no-shadow
     const options = getBarChartOptions(value);
     setCustomOptions(options);
@@ -24,7 +24,7 @@ const Overview = (): React.ReactElement => {
     <div className={Style.overviewPanel}>
       <Row>
         <Col xs={12} xl={9} span={12}>
-          <Card title=' 出入库概览 ' subtitle='(件)' actions={LastWeekDatePicker(onTimeChange)} header>
+          <Card title=' 出入库概览 ' subtitle='(件)' actions={LastWeekDatePicker(onTimeChange)} bordered={false}>
             <ReactEcharts
               option={dynamicChartOption} // option：图表配置项
               notMerge={true}
@@ -34,19 +34,27 @@ const Overview = (): React.ReactElement => {
           </Card>
         </Col>
         <Col xs={12} xl={3} span={12}>
-          <Card actions={<Button>导出数据</Button>} header>
+          <Card actions={<Button>导出数据</Button>} bordered={false}>
             <Row>
-              <Col span={12}>
+              <Col xl={12} xs={6} span={12}>
                 <Board
                   title='本月出库总计（件）'
                   count='1726'
                   trend={ETrend.down}
                   trendNum='20.3%'
                   desc='自从上周以来'
+                  border={false}
                 />
               </Col>
-              <Col span={12}>
-                <Board title='活跃用户（个）' count='1126' trend={ETrend.down} trendNum='20.5%' desc='自从上周以来' />
+              <Col xl={12} xs={6} span={12}>
+                <Board
+                  title='活跃用户（个）'
+                  count='1126'
+                  trend={ETrend.down}
+                  trendNum='20.5%'
+                  desc='自从上周以来'
+                  border={false}
+                />
               </Col>
             </Row>
           </Card>

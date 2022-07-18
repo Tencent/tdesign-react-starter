@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ETheme } from 'types/index.d';
-import { CHART_COLORS, defaultColor } from 'configs/color';
+import { CHART_COLORS, defaultColor, colorMap } from 'configs/color';
 import { RootState } from '../store';
 import { version } from '../../../package.json';
 
@@ -104,7 +104,8 @@ const globalSlice = createSlice({
     switchColor: (state, action) => {
       if (action?.payload) {
         state.color = action?.payload;
-        document.documentElement.style.setProperty(`--td-brand-color-8`, action?.payload);
+        const colorType = colorMap?.[action?.payload];
+        document.documentElement.setAttribute('theme-color', colorType || '');
       }
     },
     switchLayout: (state, action) => {
