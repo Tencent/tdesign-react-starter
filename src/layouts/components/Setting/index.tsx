@@ -9,29 +9,37 @@ import {
   switchTheme,
   switchColor,
   switchLayout,
+  openSystemTheme,
   ELayout,
 } from 'modules/global';
 import { ETheme } from 'types/index.d';
 import RadioColor from './RadioColor';
 import RadioRect from './RadioRect';
 
-import { Light, Dark, System } from './Icons';
+import Light from 'assets/svg/assets-setting-light.svg?component';
+import Dark from 'assets/svg/assets-setting-dark.svg?component';
+import System from 'assets/svg/assets-setting-auto.svg?component';
 
 import Style from './index.module.less';
+
+enum ESettingTheme {
+  system,
+}
 
 const themeList = [
   {
     value: ETheme.light,
-    image: Light,
+    image: <Light />,
     name: '明亮',
   },
   {
     value: ETheme.dark,
-    image: Dark,
+    image: <Dark />,
     name: '黑暗',
   },
   {
-    image: System,
+    value: ESettingTheme.system,
+    image: <System />,
     name: '跟随系统',
   },
 ];
@@ -55,12 +63,20 @@ export default memo(() => {
   const dispatch = useAppDispatch();
   const globalState = useAppSelector(selectGlobal);
 
+  const handleThemeSwitch = (value: any) => {
+    if (value === ESettingTheme.system) {
+      dispatch(openSystemTheme());
+    } else {
+      dispatch(switchTheme(value));
+    }
+  };
+
   return (
     <div>
       <div className={Style.settingTitle}>主题模式</div>
       <RadioRect
-        defaultValue={globalState.theme}
-        onChange={(value) => dispatch(switchTheme(value as ETheme))}
+        defaultValue={globalState.systemTheme ? ESettingTheme.system : globalState.theme}
+        onChange={handleThemeSwitch}
         options={themeList}
       />
 

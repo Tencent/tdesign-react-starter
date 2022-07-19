@@ -7,6 +7,7 @@ import detail from './modules/detail';
 import result from './modules/result';
 import user from './modules/user';
 import login from './modules/login';
+import otherRoutes from './modules/others';
 
 export interface IRouter {
   path: string;
@@ -22,6 +23,14 @@ export interface IRouter {
   meta?: {
     title?: string;
     Icon?: React.FC;
+    /**
+     * 侧边栏隐藏该路由
+     */
+    hidden?: boolean;
+    /**
+     * 单层路由
+     */
+    single?: boolean;
   };
   children?: IRouter[];
 }
@@ -31,25 +40,13 @@ const routes: IRouter[] = [
     path: '/login',
     Component: lazy(() => import('pages/Login')),
     isFullPage: true,
+    meta: {
+      hidden: true,
+    },
   },
   {
     path: '/',
     redirect: '/dashboard/base',
-  },
-];
-
-const otherRoutes: IRouter[] = [
-  {
-    path: '/403',
-    Component: lazy(() => import('pages/Result/403')),
-  },
-  {
-    path: '/500',
-    Component: lazy(() => import('pages/Result/500')),
-  },
-  {
-    path: '*',
-    Component: lazy(() => import('pages/Result/404')),
   },
 ];
 

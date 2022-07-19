@@ -15,17 +15,17 @@ interface IMenuProps {
   showOperation?: boolean;
 }
 
-const renderMenuItems = (menu: IRouter[], parentPath = '') =>
-  menu.map((item) => {
-    const navigate = useNavigate();
+const renderMenuItems = (menu: IRouter[], parentPath = '') => {
+  const navigate = useNavigate();
+  return menu.map((item) => {
     const { children, meta, path } = item;
 
-    if (!meta) {
-      // 无meta信息，路由不显示为菜单
+    if (!meta || meta?.hidden === true) {
+      // 无meta信息 或 hidden == true，路由不显示为菜单
       return null;
     }
 
-    const { Icon, title } = meta || {};
+    const { Icon, title, single } = meta;
     const routerPath = resolve(parentPath, path);
 
     if (!children || children.length === 0) {
@@ -41,12 +41,31 @@ const renderMenuItems = (menu: IRouter[], parentPath = '') =>
       );
     }
 
+    if (single && children?.length > 0) {
+      const firstChild = children[0];
+      if (firstChild?.meta && !firstChild?.meta?.hidden) {
+        const { Icon, title } = meta;
+        const singlePath = resolve(resolve(parentPath, path), firstChild.path);
+        return (
+          <MenuItem
+            key={singlePath}
+            value={singlePath}
+            icon={Icon ? <Icon /> : undefined}
+            onClick={() => navigate(singlePath)}
+          >
+            {title}
+          </MenuItem>
+        );
+      }
+    }
+
     return (
       <SubMenu key={routerPath} value={routerPath} title={title} icon={Icon ? <Icon /> : undefined}>
         {renderMenuItems(children, routerPath)}
       </SubMenu>
     );
   });
+};
 
 /**
  * 顶部菜单
