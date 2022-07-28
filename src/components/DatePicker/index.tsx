@@ -1,5 +1,5 @@
 import React from 'react';
-import { DateRangePicker, DateRangeValue } from 'tdesign-react';
+import { DateRangePicker, DateRangeValue } from 'tdesign-react/esm';
 import dayjs from 'dayjs';
 
 const RECENT_7_DAYS: DateRangeValue = [

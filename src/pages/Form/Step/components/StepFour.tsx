@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CheckCircleFilledIcon } from 'tdesign-icons-react';
-import { Button } from 'tdesign-react';
+import { Button } from 'tdesign-react/esm';
 import Style from './index.module.less';
 
 export default memo((props: { callback: Function }) => {

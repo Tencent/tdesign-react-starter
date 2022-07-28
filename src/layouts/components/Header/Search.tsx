@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from 'tdesign-react';
+import { Input } from 'tdesign-react/esm';
 import { SearchIcon } from 'tdesign-icons-react';
 import Style from './Search.module.less';
 

@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Row, Col, Button, List, Card } from 'tdesign-react';
+import { Row, Col, Button, List, Card } from 'tdesign-react/esm';
 import { IconFont } from 'tdesign-icons-react';
 import { BrowserRouterProps } from 'react-router-dom';
 import ReactEcharts from 'echarts-for-react';

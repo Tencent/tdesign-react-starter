@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card } from 'tdesign-react';
+import { Button, Card } from 'tdesign-react/esm';
 import ReactEcharts from 'echarts-for-react';
 import LastWeekDatePicker from 'components/DatePicker';
 import useDynamicChart from 'hooks/useDynamicChart';

@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Button } from 'tdesign-react';
+import { Button } from 'tdesign-react/esm';
 import { ErrorCircleIcon } from 'tdesign-icons-react';
 
 import style from './index.module.less';

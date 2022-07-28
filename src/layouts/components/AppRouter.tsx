@@ -1,6 +1,6 @@
 import React, { Suspense, memo } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Layout, Loading } from 'tdesign-react';
+import { Layout, Loading } from 'tdesign-react/esm';
 import routers, { IRouter } from 'router';
 import { resolve } from 'utils/path';
 import Page from './Page';

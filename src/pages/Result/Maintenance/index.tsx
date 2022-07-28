@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Button } from 'tdesign-react';
+import { Button } from 'tdesign-react/esm';
 
 import MaintenanceIcon from 'assets/svg/assets-result-maintenance.svg?component';
 import style from './index.module.less';

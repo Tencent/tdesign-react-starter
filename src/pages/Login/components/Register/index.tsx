@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import classnames from 'classnames';
-import { Form, MessagePlugin, Input, Checkbox, Button, FormInstanceFunctions, SubmitContext } from 'tdesign-react';
+import { Form, MessagePlugin, Input, Checkbox, Button, FormInstanceFunctions, SubmitContext } from 'tdesign-react/esm';
 import { LockOnIcon, UserIcon, MailIcon, BrowseOffIcon, BrowseIcon } from 'tdesign-icons-react';
 import useCountdown from '../../hooks/useCountDown';
 

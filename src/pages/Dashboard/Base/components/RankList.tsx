@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Radio, Row, Table, Button, Card } from 'tdesign-react';
+import { Col, Radio, Row, Table, Button, Card } from 'tdesign-react/esm';
 import { TdPrimaryTableProps } from 'tdesign-react/es/table';
 import classnames from 'classnames';
 import { TrendIcon, ETrend } from 'components/Board';

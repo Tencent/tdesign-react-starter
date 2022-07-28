@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Avatar, Tag, Dropdown, Button } from 'tdesign-react';
+import { Card, Avatar, Tag, Dropdown, Button } from 'tdesign-react/esm';
 import { UserAvatarIcon, CalendarIcon, LaptopIcon, ShopIcon, ServiceIcon, Icon } from 'tdesign-icons-react';
 import { IProduct } from 'services/product';
 import Style from './ProductCard.module.less';

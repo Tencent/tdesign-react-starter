@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'tdesign-react';
+import { Card } from 'tdesign-react/esm';
 import classnames from 'classnames';
 import { dataInfo } from '../consts';
 import Style from './Base.module.less';

@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Steps, Card } from 'tdesign-react';
+import { Steps, Card } from 'tdesign-react/esm';
 import classnames from 'classnames';
 import { dataInfo, dataStep } from './consts';
 import Style from './index.module.less';

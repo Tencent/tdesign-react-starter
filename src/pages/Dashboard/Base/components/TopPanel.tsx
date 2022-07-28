@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Col, Row } from 'tdesign-react';
+import { Col, Row } from 'tdesign-react/esm';
 import { UsergroupIcon, FileIcon } from 'tdesign-icons-react';
 import ReactEcharts from 'echarts-for-react';
 import Board, { ETrend, IBoardProps } from 'components/Board';

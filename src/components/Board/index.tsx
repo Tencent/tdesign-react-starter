@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRightIcon } from 'tdesign-icons-react';
-import { Card } from 'tdesign-react';
+import { Card } from 'tdesign-react/esm';
 import classnames from 'classnames';
 import Style from './index.module.less';
 

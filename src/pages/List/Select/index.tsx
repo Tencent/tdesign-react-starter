@@ -1,5 +1,5 @@
 import React, { useState, memo, useEffect } from 'react';
-import { Table, Dialog, Button, Row } from 'tdesign-react';
+import { Table, Dialog, Button, Row } from 'tdesign-react/esm';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { selectListSelect, getList, clearPageState } from 'modules/list/select';
 import SearchForm from './components/SearchForm';

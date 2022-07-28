@@ -1,5 +1,5 @@
 import React from 'react';
-import { Progress, Tag } from 'tdesign-react';
+import { Progress, Tag } from 'tdesign-react/esm';
 import { AddIcon, ChevronRightIcon, Icon } from 'tdesign-icons-react';
 import Styles from './ProductCard.module.less';
 

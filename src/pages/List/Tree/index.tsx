@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Tree } from 'tdesign-react';
+import { Input, Tree } from 'tdesign-react/esm';
 import { SearchIcon } from 'tdesign-icons-react';
 import classnames from 'classnames';
 import { SelectTable } from '../Select';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Table, Tag, Card } from 'tdesign-react';
+import { Button, Table, Tag, Card } from 'tdesign-react/esm';
 import { dataBuyList, total } from '../consts';
 import Style from '../index.module.less';
 

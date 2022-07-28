@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Row, Col, Button, Input, Pagination, Loading } from 'tdesign-react';
+import { Row, Col, Button, Input, Pagination, Loading } from 'tdesign-react/esm';
 import { SearchIcon } from 'tdesign-icons-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { selectListCard, clearPageState, getList, switchPageLoading } from 'modules/list/card';

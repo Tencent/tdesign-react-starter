@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dialog } from 'tdesign-react';
+import { Dialog } from 'tdesign-react/esm';
 import classnames from 'classnames';
 import { BASE_INFO_DATA } from '../constant';
 import Style from './ManagementPopup.module.less';

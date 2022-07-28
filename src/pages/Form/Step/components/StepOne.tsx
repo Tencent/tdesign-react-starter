@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Alert, Button, Form, Select } from 'tdesign-react';
+import { Alert, Button, Form, Select } from 'tdesign-react/esm';
 import Style from '../index.module.less';
 
 const { FormItem } = Form;

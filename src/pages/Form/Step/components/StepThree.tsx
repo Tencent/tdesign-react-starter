@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Button, Form, Select, Input, Textarea } from 'tdesign-react';
+import { Button, Form, Select, Input, Textarea } from 'tdesign-react/esm';
 
 const { FormItem } = Form;
 const { Option } = Select;

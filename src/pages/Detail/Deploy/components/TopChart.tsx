@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Col, Radio, Row, Card } from 'tdesign-react';
+import { Col, Radio, Row, Card } from 'tdesign-react/esm';
 import { EChartOption } from 'echarts';
 import ReactEcharts from 'echarts-for-react';
 import { getBarOptions } from '../chart';

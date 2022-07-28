@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, MenuValue } from 'tdesign-react';
+import { Menu, MenuValue } from 'tdesign-react/esm';
 import router, { IRouter } from 'router';
 import { resolve } from 'utils/path';
 import { useAppSelector } from 'modules/store';

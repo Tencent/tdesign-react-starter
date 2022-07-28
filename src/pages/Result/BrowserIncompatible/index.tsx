@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Button } from 'tdesign-react';
+import { Button } from 'tdesign-react/esm';
 
 import BrowserIncompatibleIcon from 'assets/svg/assets-result-browser-incompatible.svg?component';
 import style from './index.module.less';

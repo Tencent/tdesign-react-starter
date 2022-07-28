@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Button } from 'tdesign-react';
+import { Button } from 'tdesign-react/esm';
 
 import Light403Icon from 'assets/svg/assets-result-403.svg?component';
 import Light404Icon from 'assets/svg/assets-result-404.svg?component';

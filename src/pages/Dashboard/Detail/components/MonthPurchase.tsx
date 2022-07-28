@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Card } from 'tdesign-react';
+import { Col, Row, Card } from 'tdesign-react/esm';
 import Board from 'components/Board';
 import { PANE_LIST } from '../constant';
 

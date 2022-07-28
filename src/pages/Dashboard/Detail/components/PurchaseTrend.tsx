@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Col, Dropdown, Row, Tag, Card } from 'tdesign-react';
+import { Button, Col, Dropdown, Row, Tag, Card } from 'tdesign-react/esm';
 import { Icon } from 'tdesign-icons-react';
 import ReactEcharts from 'echarts-for-react';
 import LastWeekDatePicker from 'components/DatePicker';

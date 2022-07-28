@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import classnames from 'classnames';
-import { Steps } from 'tdesign-react';
+import { Steps } from 'tdesign-react/esm';
 import { StepOne, StepTwo, StepThree, StepFour } from './components';
 import CommonStyle from 'styles/common.module.less';
 

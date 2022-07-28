@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, Card } from 'tdesign-react';
+import { Table, Card } from 'tdesign-react/esm';
 import { TableSort, TdPrimaryTableProps } from 'tdesign-react/es/table';
 import request from 'utils/request';
 import { TABLE_COLUMNS } from '../constant';

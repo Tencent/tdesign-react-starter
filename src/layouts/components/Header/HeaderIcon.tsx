@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Popup, Badge, Dropdown, Row, Col } from 'tdesign-react';
+import { Button, Popup, Badge, Dropdown, Row, Col } from 'tdesign-react/esm';
 import {
   Icon,
   LogoGithubIcon,

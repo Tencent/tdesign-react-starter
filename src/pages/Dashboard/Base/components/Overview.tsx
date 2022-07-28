@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Col, Row, Card } from 'tdesign-react';
+import { Button, Col, Row, Card } from 'tdesign-react/esm';
 import ReactEcharts from 'echarts-for-react';
 import useDynamicChart from 'hooks/useDynamicChart';
 import Board, { ETrend } from 'components/Board';

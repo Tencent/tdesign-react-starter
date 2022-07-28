@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Row, Col, Switch } from 'tdesign-react';
+import { Row, Col, Switch } from 'tdesign-react/esm';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import {
   selectGlobal,

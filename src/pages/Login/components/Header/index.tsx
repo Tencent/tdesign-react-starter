@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'tdesign-react';
+import { Button } from 'tdesign-react/esm';
 import { LogoGithubIcon, HelpCircleIcon, SettingIcon } from 'tdesign-icons-react';
 import { useAppDispatch } from 'modules/store';
 import { toggleSetting } from 'modules/global';

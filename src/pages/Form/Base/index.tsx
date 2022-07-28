@@ -12,7 +12,7 @@ import {
   Avatar,
   Upload,
   MessagePlugin,
-} from 'tdesign-react';
+} from 'tdesign-react/esm';
 import classnames from 'classnames';
 import { SubmitContext, FormInstanceFunctions } from 'tdesign-react/es/form/type';
 import CommonStyle from 'styles/common.module.less';

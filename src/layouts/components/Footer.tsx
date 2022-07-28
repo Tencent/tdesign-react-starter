@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Row } from 'tdesign-react';
+import { Layout, Row } from 'tdesign-react/esm';
 import { useAppSelector } from 'modules/store';
 import { selectGlobal } from 'modules/global';
 
