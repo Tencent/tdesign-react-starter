@@ -1,13 +1,36 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.badge {
+  :global {
+    .t-badge--circle {
+      top: 5px;
+      right: 12px;
+    }
+  }
+}
+.menuIcon {
+  width: 30px!important;
+  height: 30px!important;
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.dropItem {
+  display: flex;
+  align-items: center;
+  span {
+    margin-left: 8px;
+  }
+}
 .dropdown {
-  padding-left: 9px;
-  padding-right: 9px;
+  padding-left: 4px;
+  padding-right: 4px;
   .icon {
     font-size: 20px;
     display: inline-block;
     margin: 0 5px;
-  }
-  .text {
-
   }
   :global {
     .t-button--variant-text {
@@ -32,6 +55,3 @@
   }
 }
 
-.badgeBtn {
-  overflow: visible;
-}

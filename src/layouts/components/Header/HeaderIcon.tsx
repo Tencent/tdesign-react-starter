@@ -40,27 +40,43 @@ export default memo(() => {
   };
 
   return (
-    <Row align='middle' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+    <Row align='middle' justify='center'>
       <Col>
-        <Button shape='square' size='large' variant='text' className={Style.badgeBtn}>
-          <Badge count={6} style={{ zIndex: 1 }}>
-            <MailIcon />
-          </Badge>
-        </Button>
+        <Badge
+          className={Style.badge}
+          count={6}
+          dot={false}
+          maxCount={99}
+          shape='circle'
+          showZero={false}
+          size='medium'
+        >
+          <Button className={Style.menuIcon} shape='square' size='large' variant='text' icon={<MailIcon />} />
+        </Badge>
       </Col>
       <Col>
-        <Button shape='square' size='large' variant='text' onClick={gotoGitHub}>
-          <Popup content='代码仓库' placement='bottom' showArrow destroyOnClose>
-            <LogoGithubIcon />
-          </Popup>
-        </Button>
+        <Popup content='代码仓库' placement='bottom' showArrow destroyOnClose>
+          <Button
+            className={Style.menuIcon}
+            shape='square'
+            size='large'
+            variant='text'
+            onClick={gotoGitHub}
+            icon={<LogoGithubIcon />}
+          />
+        </Popup>
       </Col>
       <Col>
-        <Button shape='square' size='large' variant='text' onClick={gotoWiki}>
-          <Popup content='帮助文档' placement='bottom' showArrow destroyOnClose>
-            <HelpCircleIcon />
-          </Popup>
-        </Button>
+        <Popup content='帮助文档' placement='bottom' showArrow destroyOnClose>
+          <Button
+            className={Style.menuIcon}
+            shape='square'
+            size='large'
+            variant='text'
+            onClick={gotoWiki}
+            icon={<HelpCircleIcon />}
+          />
+        </Popup>
       </Col>
       <Col>
         <Dropdown trigger={'click'} onClick={clickHandler}>
@@ -71,26 +87,31 @@ export default memo(() => {
           </Button>
           <DropdownMenu>
             <DropdownItem value={1}>
-              <>
+              <div className={Style.dropItem}>
                 <UserCircleIcon />
-                个人中心
-              </>
+                <span>个人中心</span>
+              </div>
             </DropdownItem>
             <DropdownItem value={1} onClick={handleLogout}>
-              <>
+              <div className={Style.dropItem}>
                 <PoweroffIcon />
-                退出登录
-              </>
+                <span>退出登录</span>
+              </div>
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
       </Col>
       <Col>
-        <Button shape='square' size='large' variant='text' onClick={() => dispatch(toggleSetting())}>
-          <Popup content='页面设置' placement='bottom' showArrow destroyOnClose>
-            <SettingIcon />
-          </Popup>
-        </Button>
+        <Popup content='页面设置' placement='bottom' showArrow destroyOnClose>
+          <Button
+            className={Style.menuIcon}
+            shape='square'
+            size='large'
+            variant='text'
+            onClick={() => dispatch(toggleSetting())}
+            icon={<SettingIcon />}
+          />
+        </Popup>
       </Col>
     </Row>
   );
