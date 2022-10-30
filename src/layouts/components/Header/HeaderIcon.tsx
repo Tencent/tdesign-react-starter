@@ -63,13 +63,11 @@ export default memo(() => {
         </Button>
       </Col>
       <Col>
-        <Dropdown className={Style.dropdown} trigger={'click'} onClick={clickHandler}>
-          <Button variant='text'>
-            <span style={{ display: 'inline-flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Icon name='user-circle' size='20px' />
-              <span style={{ display: 'inline-block', margin: '0 5px' }}>Tencent</span>
-              <Icon name='chevron-down' size='20px' />
-            </span>
+        <Dropdown trigger={'click'} onClick={clickHandler}>
+          <Button variant='text' className={Style.dropdown}>
+            <Icon name='user-circle' className={Style.icon} />
+            <span className={Style.text}>Tencent</span>
+            <Icon name='chevron-down' className={Style.icon} />
           </Button>
           <DropdownMenu>
             <DropdownItem value={1}>
