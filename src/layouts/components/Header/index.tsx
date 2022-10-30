@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Layout, Button, Row, Col } from 'tdesign-react';
+import { Layout, Button, Space } from 'tdesign-react';
 import { ViewListIcon } from 'tdesign-icons-react';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { selectGlobal, toggleMenu } from 'modules/global';
@@ -27,16 +27,16 @@ export default memo((props: { showMenu?: boolean }) => {
     );
   } else {
     HeaderLeft = (
-      <Row gutter={16} align='middle'>
-        <Col>
-          <Button shape='square' size='large' variant='text' onClick={() => dispatch(toggleMenu(null))}>
-            <ViewListIcon />
-          </Button>
-        </Col>
-        <Col>
-          <Search />
-        </Col>
-      </Row>
+      <Space align='center'>
+        <Button
+          shape='square'
+          size='large'
+          variant='text'
+          onClick={() => dispatch(toggleMenu(null))}
+          icon={<ViewListIcon />}
+        />
+        <Search />
+      </Space>
     );
   }
 

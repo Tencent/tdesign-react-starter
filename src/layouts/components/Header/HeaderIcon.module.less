@@ -1,5 +1,44 @@
-.dropdown {
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.badge {
   :global {
+    .t-badge--circle {
+      top: 5px;
+      right: 12px;
+    }
+  }
+}
+.menuIcon {
+  width: 30px!important;
+  height: 30px!important;
+}
+.dropItem {
+  display: flex;
+  align-items: center;
+  span {
+    margin-left: 8px;
+  }
+}
+.dropdown {
+  padding-left: 0;
+  padding-right: 0;
+  .icon {
+    font-size: 20px;
+    display: inline-block;
+    margin: 0 5px;
+  }
+  :global {
+    .t-button--variant-text {
+     padding-left: 9px;
+      padding-right: 9px;
+    }
+    .t-button__text {
+      display: flex;
+      align-items: center;
+    }
     .t-dropdown__item {
       max-width: none !important;
       width: 117px;
@@ -14,6 +53,3 @@
   }
 }
 
-.badgeBtn {
-  overflow: visible;
-}
