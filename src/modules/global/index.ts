@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ETheme } from 'types/index.d';
+import { Color } from 'tvision-color';
 import { CHART_COLORS, defaultColor, colorMap } from 'configs/color';
+import { generateColorMap, insertThemeStylesheet } from 'utils/color';
 import { RootState } from '../store';
 import { version } from '../../../package.json';
 
@@ -104,7 +106,19 @@ const globalSlice = createSlice({
     switchColor: (state, action) => {
       if (action?.payload) {
         state.color = action?.payload;
-        const colorType = colorMap?.[action?.payload];
+        const mode = state.theme;
+
+        let colorType = colorMap?.[action?.payload];
+        if (!colorType) {
+          colorType = action?.payload;
+          const newPalette = Color.getPaletteByGradation({
+            colors: [colorType],
+            step: 10,
+          })[0];
+          const newColorMap = generateColorMap(colorType, newPalette, mode);
+          insertThemeStylesheet(colorType, newColorMap, mode);
+        }
+
         document.documentElement.setAttribute('theme-color', colorType || '');
       }
     },

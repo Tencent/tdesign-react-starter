@@ -102,6 +102,7 @@ export default memo((props: IMenuProps) => {
     <Menu
       width='232px'
       style={{ flexShrink: 0, height: '100%' }}
+      className={Style.menuPanel2}
       value={location.pathname}
       theme={globalState.theme}
       collapsed={globalState.collapsed}

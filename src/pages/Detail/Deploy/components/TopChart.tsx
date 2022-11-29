@@ -19,7 +19,7 @@ const TopChart = () => {
   return (
     <Row gutter={16} className={Style.panel}>
       <Col span={6}>
-        <Card title='部署趋势' header>
+        <Card title='部署趋势'>
           <div className={Style.deployPanelLeft}>
             <DynamicLineChart />
           </div>
@@ -28,7 +28,6 @@ const TopChart = () => {
       <Col span={6}>
         <Card
           title='告警情况'
-          header
           actions={
             <Radio.Group defaultValue='week' onChange={(val) => tabChange(val === 'month')}>
               <Radio.Button value='week'>本周</Radio.Button>

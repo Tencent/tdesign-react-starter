@@ -4,7 +4,6 @@ export const defaultColor = ['#0052d9', '#0594fa', '#00a870', '#ebb105', '#ed7b2
 
 export const darkColor = ['#4582e6', '#29a4fb', '#03a56f', '#ca8d03', '#ed7b2f', '#ea7b84', '#f172c5', '#ab87d5'];
 
-// todo 写法可优化
 export const colorMap: {
   [key: string]: string;
 } = {
