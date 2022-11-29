@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { defaultColor } from 'configs/color';
 import { Popup, ColorPickerPanel } from 'tdesign-react';
 import Style from './RadioColor.module.less';

@@ -44,7 +44,7 @@ declare module '*.less' {
   export default classes as { readonly [key: string]: string };
 }
 
-declare module 'hex-to-hsl';
+declare module 'tvision-color';
 
 declare interface ImportMeta {
   env: {
