@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Popup, Badge, Dropdown, Row, Col } from 'tdesign-react';
+import { Button, Popup, Badge, Dropdown, Space } from 'tdesign-react';
 import {
   Icon,
   LogoGithubIcon,
@@ -40,60 +40,61 @@ export default memo(() => {
   };
 
   return (
-    <Row align='middle' style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <Col>
-        <Button shape='square' size='large' variant='text' className={Style.badgeBtn}>
-          <Badge count={6} style={{ zIndex: 1 }}>
-            <MailIcon />
-          </Badge>
+    <Space align='center'>
+      <Badge className={Style.badge} count={6} dot={false} maxCount={99} shape='circle' showZero={false} size='medium'>
+        <Button className={Style.menuIcon} shape='square' size='large' variant='text' icon={<MailIcon />} />
+      </Badge>
+      <Popup content='代码仓库' placement='bottom' showArrow destroyOnClose>
+        <Button
+          className={Style.menuIcon}
+          shape='square'
+          size='large'
+          variant='text'
+          onClick={gotoGitHub}
+          icon={<LogoGithubIcon />}
+        />
+      </Popup>
+      <Popup content='帮助文档' placement='bottom' showArrow destroyOnClose>
+        <Button
+          className={Style.menuIcon}
+          shape='square'
+          size='large'
+          variant='text'
+          onClick={gotoWiki}
+          icon={<HelpCircleIcon />}
+        />
+      </Popup>
+      <Dropdown trigger={'click'} onClick={clickHandler}>
+        <Button variant='text' className={Style.dropdown}>
+          <Icon name='user-circle' className={Style.icon} />
+          <span className={Style.text}>Tencent</span>
+          <Icon name='chevron-down' className={Style.icon} />
         </Button>
-      </Col>
-      <Col>
-        <Button shape='square' size='large' variant='text' onClick={gotoGitHub}>
-          <Popup content='代码仓库' placement='bottom' showArrow destroyOnClose>
-            <LogoGithubIcon />
-          </Popup>
-        </Button>
-      </Col>
-      <Col>
-        <Button shape='square' size='large' variant='text' onClick={gotoWiki}>
-          <Popup content='帮助文档' placement='bottom' showArrow destroyOnClose>
-            <HelpCircleIcon />
-          </Popup>
-        </Button>
-      </Col>
-      <Col>
-        <Dropdown className={Style.dropdown} trigger={'click'} onClick={clickHandler}>
-          <Button variant='text'>
-            <span style={{ display: 'inline-flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Icon name='user-circle' size='20px' />
-              <span style={{ display: 'inline-block', margin: '0 5px' }}>Tencent</span>
-              <Icon name='chevron-down' size='20px' />
-            </span>
-          </Button>
-          <DropdownMenu>
-            <DropdownItem value={1}>
-              <>
-                <UserCircleIcon />
-                个人中心
-              </>
-            </DropdownItem>
-            <DropdownItem value={1} onClick={handleLogout}>
-              <>
-                <PoweroffIcon />
-                退出登录
-              </>
-            </DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
-      </Col>
-      <Col>
-        <Button shape='square' size='large' variant='text' onClick={() => dispatch(toggleSetting())}>
-          <Popup content='页面设置' placement='bottom' showArrow destroyOnClose>
-            <SettingIcon />
-          </Popup>
-        </Button>
-      </Col>
-    </Row>
+        <DropdownMenu>
+          <DropdownItem value={1}>
+            <div className={Style.dropItem}>
+              <UserCircleIcon />
+              <span>个人中心</span>
+            </div>
+          </DropdownItem>
+          <DropdownItem value={1} onClick={handleLogout}>
+            <div className={Style.dropItem}>
+              <PoweroffIcon />
+              <span>退出登录</span>
+            </div>
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+      <Popup content='页面设置' placement='bottom' showArrow destroyOnClose>
+        <Button
+          className={Style.menuIcon}
+          shape='square'
+          size='large'
+          variant='text'
+          onClick={() => dispatch(toggleSetting())}
+          icon={<SettingIcon />}
+        />
+      </Popup>
+    </Space>
   );
 });

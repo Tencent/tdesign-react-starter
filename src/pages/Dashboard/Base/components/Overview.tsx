@@ -44,6 +44,7 @@ const Overview = (): React.ReactElement => {
                   trendNum='20.3%'
                   desc='自从上周以来'
                   border={false}
+                  style={{ height: '168px' }}
                 />
               </Col>
               <Col xl={12} xs={6} span={12}>
@@ -54,6 +55,7 @@ const Overview = (): React.ReactElement => {
                   trendNum='20.5%'
                   desc='自从上周以来'
                   border={false}
+                  style={{ height: '168px' }}
                 />
               </Col>
             </Row>

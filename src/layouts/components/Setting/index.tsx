@@ -68,6 +68,7 @@ export default memo(() => {
       dispatch(openSystemTheme());
     } else {
       dispatch(switchTheme(value));
+      dispatch(switchColor(globalState.color));
     }
   };
 
