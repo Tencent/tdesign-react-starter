@@ -1,14 +1,26 @@
 .boardPanelDark {
-  background: var(--td-brand-color)!important;
-  .boardTitle, .boardItemLeft, .boardItemDesc, .trendColorUp, .trendColorDown, .boardItemBottom {
+  background: var(--td-brand-color) !important;
+  .boardTitle,
+  .boardItemLeft,
+  .boardItemDesc,
+  .trendColorUp,
+  .trendColorDown,
+  .boardItemBottom {
     color: var(--td-text-color-anti);
   }
-  .trendIconUp, .trendIconDown {
+  .trendIconUp,
+  .trendIconDown {
     background: var(--td-brand-color-5);
   }
 }
-
-.boardTitle{
+.boardPanel {
+  :global {
+    .t-card__body {
+      padding-top: 0;
+    }
+  }
+}
+.boardTitle {
   line-height: 22px;
   font-size: 14px;
   color: var(--td-text-color-secondary);

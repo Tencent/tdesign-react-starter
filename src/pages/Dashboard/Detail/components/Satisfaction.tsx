@@ -22,7 +22,6 @@ const Satisfaction = () => {
     <div className={Style.satisfactionPanel}>
       <Card
         title='采购商品满意度分布'
-        header
         actions={
           <div className={Style.operation}>
             {LastWeekDatePicker(onTimeChange)}

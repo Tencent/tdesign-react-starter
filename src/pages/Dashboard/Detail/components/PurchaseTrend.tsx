@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Col, Dropdown, Row, Tag, Card } from 'tdesign-react';
-import { Icon } from 'tdesign-icons-react';
+import { Col, Dropdown, Row, Tag, Card, Avatar } from 'tdesign-react';
+import { Icon, AddIcon } from 'tdesign-icons-react';
 import ReactEcharts from 'echarts-for-react';
 import LastWeekDatePicker from 'components/DatePicker';
 import useDynamicChart from 'hooks/useDynamicChart';
@@ -28,14 +28,10 @@ const ProductTrend = ({ type, isSetup, description, name, icon }: IProductTrendP
     <p className={Style.productName}>{name}</p>
     <p className={Style.productDesc}>{description}</p>
     <Row justify='space-between' align='middle'>
-      <div className={Style.iconWrap}>
-        <Button shape='circle' disabled={!isSetup}>
-          {type}
-        </Button>
-        <Button shape='circle' disabled={!isSetup} className={Style.lightBtn}>
-          <Icon name='add' />
-        </Button>
-      </div>
+      <Avatar.Group cascading='left-up' max={2}>
+        <Avatar>{type}</Avatar>
+        <Avatar icon={<AddIcon />}></Avatar>
+      </Avatar.Group>
       <Dropdown
         disabled={!isSetup}
         options={[
@@ -74,7 +70,7 @@ const PurchaseTrend = () => {
   return (
     <Row className={Style.purchaseTrendPanel} gutter={[16, 16]}>
       <Col xs={12} xl={9}>
-        <Card title='采购商品申请趋势' subtitle='(件)' actions={LastWeekDatePicker(onTimeChange)} header>
+        <Card title='采购商品申请趋势' subtitle='(件)' actions={LastWeekDatePicker(onTimeChange)}>
           <ReactEcharts
             option={dynamicChartOptions} // option：图表配置项
             notMerge={true}

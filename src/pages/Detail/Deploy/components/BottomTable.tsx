@@ -54,7 +54,7 @@ const BottomTable = () => {
 
   return (
     <>
-      <Card title='项目列表' header>
+      <Card title='项目列表'>
         <Table
           columns={getTableColumns(TABLE_COLUMNS)}
           rowKey='index'
