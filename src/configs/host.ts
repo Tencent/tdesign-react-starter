@@ -11,8 +11,12 @@ export default {
     // 测试环境接口地址
     API: 'https://service-exndqyuk-1257786608.gz.apigw.tencentcs.com',
   },
-  production: {
+  release: {
     // 正式环境接口地址
+    API: 'https://service-bv448zsw-1257786608.gz.apigw.tencentcs.com',
+  },
+  site: {
+    // TDesign部署特殊需要 与release功能一致
     API: 'https://service-bv448zsw-1257786608.gz.apigw.tencentcs.com',
   },
 };

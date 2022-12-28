@@ -48,6 +48,6 @@ declare module 'tvision-color';
 
 declare interface ImportMeta {
   env: {
-    MODE: 'development' | 'test' | 'production';
+    MODE: 'development' | 'test' | 'release' | 'mock' | 'site';
   };
 }
