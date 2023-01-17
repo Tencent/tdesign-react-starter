@@ -18,6 +18,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
   return (
     <Card
       className={Style.panel}
+      bordered={false}
       actions={
         disabled ? (
           <Tag theme='default' disabled={true}>

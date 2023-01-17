@@ -19,7 +19,7 @@ const TopChart = () => {
   return (
     <Row gutter={16} className={Style.panel}>
       <Col span={6}>
-        <Card title='部署趋势'>
+        <Card title='部署趋势' bordered={false}>
           <div className={Style.deployPanelLeft}>
             <DynamicLineChart />
           </div>
@@ -34,12 +34,13 @@ const TopChart = () => {
               <Radio.Button value='month'>本月</Radio.Button>
             </Radio.Group>
           }
+          bordered={false}
         >
           <ReactEcharts
             option={dynamicBarChartOptions} // option：图表配置项
             notMerge={true}
             lazyUpdate={true}
-            style={{ height: 265 }}
+            style={{ height: 255 }}
           />
         </Card>
       </Col>

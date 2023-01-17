@@ -28,6 +28,7 @@ const Satisfaction = () => {
             <Button className={Style.exportBtn}>导出数据</Button>
           </div>
         }
+        bordered={false}
       >
         <ReactEcharts
           option={dynamicChartOption} // option：图表配置项

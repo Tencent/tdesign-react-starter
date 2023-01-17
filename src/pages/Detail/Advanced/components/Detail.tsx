@@ -4,7 +4,7 @@ import { dataBuyList, total } from '../consts';
 import Style from '../index.module.less';
 
 const Detail = () => (
-  <Card title='产品采购明细' className={Style.cardBox}>
+  <Card title='产品采购明细' className={Style.cardBox} bordered={false}>
     <Table
       data={dataBuyList}
       columns={[
