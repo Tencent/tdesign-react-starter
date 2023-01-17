@@ -118,12 +118,12 @@ const PURCHASE_COLUMNS: TdPrimaryTableProps['columns'] = [
 const RankList = () => (
   <Row gutter={[16, 16]} className={Style.rankListPanel}>
     <Col xs={12} xl={6} span={12}>
-      <Card title='销售订单排名' actions={DateRadioGroup}>
+      <Card title='销售订单排名' actions={DateRadioGroup} bordered={false}>
         <Table columns={SALE_COLUMNS} rowKey='productName' size='medium' data={SALE_TREND_LIST} />
       </Card>
     </Col>
     <Col xs={12} xl={6} span={12}>
-      <Card title='采购订单排名' actions={DateRadioGroup}>
+      <Card title='采购订单排名' actions={DateRadioGroup} bordered={false}>
         <Table columns={PURCHASE_COLUMNS} rowKey='productName' size='medium' data={PURCHASE_TREND_LIST} />
       </Card>
     </Col>
