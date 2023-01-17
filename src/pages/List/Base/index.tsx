@@ -1,27 +1,18 @@
 import React, { useState, memo, useEffect } from 'react';
 import { Table, Tag, Row, Col, Button, Input } from 'tdesign-react';
-import { ChevronUpCircleIcon, SearchIcon, ChevronDownCircleIcon } from 'tdesign-icons-react';
+import { SearchIcon } from 'tdesign-icons-react';
 import classnames from 'classnames';
 import { useAppDispatch, useAppSelector } from 'modules/store';
 import { selectListBase, getList, clearPageState } from 'modules/list/base';
 import CommonStyle from 'styles/common.module.less';
 import style from './index.module.less';
+import { TrendIcon, ETrend } from 'components/Board';
 
 export const PaymentTypeMap: {
   [key: number]: React.ReactElement;
 } = {
-  0: (
-    <>
-      付款
-      <ChevronUpCircleIcon style={{ color: 'red', marginLeft: 4 }} />
-    </>
-  ),
-  1: (
-    <>
-      收款
-      <ChevronDownCircleIcon style={{ color: 'green', marginLeft: 4 }} />
-    </>
-  ),
+  0: <TrendIcon trend={ETrend.down} trendNum='付款' />,
+  1: <TrendIcon trend={ETrend.up} trendNum='收款' />,
 };
 
 export const StatusMap: {

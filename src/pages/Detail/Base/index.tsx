@@ -8,7 +8,7 @@ const { StepItem } = Steps;
 
 export default memo(() => (
   <div>
-    <Card title='基本信息'>
+    <Card title='基本信息' bordered={false}>
       <div className={classnames(Style.infoBox)}>
         {dataInfo.map((item) => (
           <div key={item.id} className={classnames(Style.infoBoxItem)}>
@@ -26,7 +26,7 @@ export default memo(() => (
         ))}
       </div>
     </Card>
-    <Card title='变更记录' className={Style.logBox}>
+    <Card title='变更记录' className={Style.logBox} bordered={false}>
       <div>
         <Steps layout='vertical' theme='dot' current={1}>
           {dataStep.map((item) => (

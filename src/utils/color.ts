@@ -40,9 +40,13 @@ export function getChartColor(theme: ETheme, themeColor: string) {
   return { ...chartColors, colorList };
 }
 
-export function generateColorMap(theme: string, colorPalette: Array<string>, mode: 'light' | 'dark') {
+export function generateColorMap(
+  theme: string,
+  colorPalette: Array<string>,
+  mode: 'light' | 'dark',
+  brandColorIdx: number,
+) {
   const isDarkMode = mode === 'dark';
-  let brandColorIdx = colorPalette.indexOf(theme);
 
   if (isDarkMode) {
     // eslint-disable-next-line no-use-before-define
@@ -50,7 +54,8 @@ export function generateColorMap(theme: string, colorPalette: Array<string>, mod
       const [h, s, l] = Color.colorTransform(color, 'hex', 'hsl');
       return Color.colorTransform([h, Number(s) - 4, l], 'hsl', 'hex');
     });
-    brandColorIdx = 5;
+    // eslint-disable-next-line no-param-reassign
+    brandColorIdx = 10 - brandColorIdx;
     colorPalette[0] = `${colorPalette[brandColorIdx]}20`;
   }
 

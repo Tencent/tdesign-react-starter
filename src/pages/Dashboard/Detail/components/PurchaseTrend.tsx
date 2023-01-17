@@ -70,7 +70,7 @@ const PurchaseTrend = () => {
   return (
     <Row className={Style.purchaseTrendPanel} gutter={[16, 16]}>
       <Col xs={12} xl={9}>
-        <Card title='采购商品申请趋势' subtitle='(件)' actions={LastWeekDatePicker(onTimeChange)}>
+        <Card title='采购商品申请趋势' subtitle='(件)' actions={LastWeekDatePicker(onTimeChange)} bordered={false}>
           <ReactEcharts
             option={dynamicChartOptions} // option：图表配置项
             notMerge={true}

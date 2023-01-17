@@ -23,7 +23,7 @@ const User: React.FC<BrowserRouterProps> = () => {
     <div>
       <Row gutter={[16, 16]}>
         <Col xs={12} lg={12} xl={9}>
-          <Card className={styles.welcome}>
+          <Card className={styles.welcome} bordered={false}>
             <Row justify='space-between'>
               <Col className={styles.name}>
                 Hi，Image <span className={styles.regular}>下午好，今天是你加入鹅厂的第 100 天～</span>
@@ -36,6 +36,7 @@ const User: React.FC<BrowserRouterProps> = () => {
           <Card
             className={styles.userinfo}
             title='个人信息'
+            bordered={false}
             actions={
               <Button shape='square' theme='default' variant='text'>
                 <IconFont name='edit' />
@@ -86,7 +87,7 @@ const User: React.FC<BrowserRouterProps> = () => {
               </Col>
             </Row>
           </Card>
-          <Card className={styles.statistics} title='主页访问数据' subtitle='（次）'>
+          <Card className={styles.statistics} title='主页访问数据' subtitle='（次）' bordered={false}>
             <ReactEcharts option={chartData} notMerge={true} lazyUpdate={true} style={{ height: 360, marginTop: 16 }} />
           </Card>
         </Col>
@@ -100,6 +101,7 @@ const User: React.FC<BrowserRouterProps> = () => {
           </Card>
           <Card
             className={styles.teams}
+            bordered={false}
             title='团队成员'
             actions={
               <Button shape='square' theme='default' variant='text'>
@@ -118,6 +120,7 @@ const User: React.FC<BrowserRouterProps> = () => {
           <Card
             title='服务产品'
             className={styles.product}
+            bordered={false}
             actions={
               <Button shape='square' theme='default' variant='text'>
                 <IconFont name='edit' />
