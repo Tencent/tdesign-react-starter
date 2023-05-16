@@ -11,11 +11,11 @@ export default memo(() => {
   useEffect(() => {
     const themeGenerator = document.querySelector('td-theme-generator');
     themeGenerator?.addEventListener('click-setting', () => {
-      dispatch(toggleSetting());
+      dispatch(toggleSetting(true));
     });
     themeGenerator?.addEventListener('panel-drawer-visible', (v) => {
       if ((v as CustomEvent)?.detail?.[0]) {
-        dispatch(toggleSetting());
+        dispatch(toggleSetting(false));
       }
     });
   }, []);
@@ -28,7 +28,7 @@ export default memo(() => {
         footer={false}
         header={false}
         closeBtn={false}
-        onClose={() => dispatch(toggleSetting())}
+        onClose={() => dispatch(toggleSetting(false))}
       >
         <PageConfig />
       </Drawer>
