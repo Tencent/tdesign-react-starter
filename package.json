@@ -59,6 +59,7 @@
     "react-router-dom": "^6.3.0",
     "tdesign-icons-react": "^0.2.0",
     "tdesign-react": "^1.0.1",
+    "tdesign-theme-generator": "^1.0.4",
     "tvision-color": "^1.5.0"
   },
   "browserslist": {

@@ -1,0 +1,30 @@
+.settingTitle {
+  margin: 32px 0 24px 0;
+  text-align: left;
+  font: var(--td-font-title-medium);
+  color: var(--td-text-color-primary);
+}
+
+.settingRowGroup {
+  background-color: var(--td-bg-color-secondarycontainer);
+  border-radius: var(--td-radius-large);
+  padding: var(--td-comp-paddingTB-xs) var(--td-comp-paddingLR-xs);
+
+  :global {
+    .t-row {
+      background-color: var(--td-bg-color-container);
+      margin-bottom: var(--td-comp-margin-xs);
+      padding: var(--td-comp-paddingTB-s) var(--td-comp-paddingLR-m);
+      height: 40px;
+      display: flex;
+    
+      justify-content: space-between;
+    }
+  }
+}
+
+.settingSubTitle {
+  font-size: 14px;
+  line-height: 21px;
+  margin-bottom: 24px;
+}

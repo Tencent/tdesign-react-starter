@@ -70,8 +70,8 @@ const globalSlice = createSlice({
         state.collapsed = !!action.payload;
       }
     },
-    toggleSetting: (state) => {
-      state.setting = !state.setting;
+    toggleSetting: (state, action: PayloadAction<boolean>) => {
+      state.setting = action.payload;
     },
     toggleShowHeader: (state) => {
       state.showHeader = !state.showHeader;

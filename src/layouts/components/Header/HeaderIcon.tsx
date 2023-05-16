@@ -1,17 +1,8 @@
 import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Popup, Badge, Dropdown, Space } from 'tdesign-react';
-import {
-  Icon,
-  LogoGithubIcon,
-  MailIcon,
-  HelpCircleIcon,
-  SettingIcon,
-  PoweroffIcon,
-  UserCircleIcon,
-} from 'tdesign-icons-react';
+import { Icon, LogoGithubIcon, MailIcon, HelpCircleIcon, PoweroffIcon, UserCircleIcon } from 'tdesign-icons-react';
 import { useAppDispatch } from 'modules/store';
-import { toggleSetting } from 'modules/global';
 import { logout } from 'modules/user';
 import Style from './HeaderIcon.module.less';
 
@@ -85,16 +76,6 @@ export default memo(() => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
-      <Popup content='页面设置' placement='bottom' showArrow destroyOnClose>
-        <Button
-          className={Style.menuIcon}
-          shape='square'
-          size='large'
-          variant='text'
-          onClick={() => dispatch(toggleSetting())}
-          icon={<SettingIcon />}
-        />
-      </Popup>
     </Space>
   );
 });

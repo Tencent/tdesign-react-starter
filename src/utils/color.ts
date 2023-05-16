@@ -7,7 +7,8 @@ import { ETheme } from 'types/index.d';
  * @param theme
  * @param themeColor
  */
-function getColorFromThemeColor(theme: string, themeColor: string): Array<string> {
+function getColorFromThemeColor(theme: string, themeColor?: string): Array<string> {
+  if (!themeColor) return [];
   let themeColorList = [];
   const isDarkMode = theme === ETheme.dark;
   const colorLowerCase = themeColor.toLocaleLowerCase();
@@ -33,7 +34,7 @@ function getColorFromThemeColor(theme: string, themeColor: string): Array<string
  * @param theme 当前主题
  * @param themeColor 当前主题色
  */
-export function getChartColor(theme: ETheme, themeColor: string) {
+export function getChartColor(theme: ETheme, themeColor?: string) {
   const colorList = getColorFromThemeColor(theme, themeColor);
   // 图表颜色
   const chartColors = CHART_COLORS[theme];

@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import { useAppSelector } from 'modules/store';
 import { selectGlobal } from 'modules/global';
 import { getChartColor } from 'utils/color';
@@ -7,7 +7,7 @@ import lodashSet from 'lodash/set';
 import lodashMap from 'lodash/map';
 import { ETheme } from '../types';
 
-export type TChartColorKey = keyof typeof CHART_COLORS[ETheme.light];
+export type TChartColorKey = keyof (typeof CHART_COLORS)[ETheme.light];
 /**
  * 根据当前主题色返回动态的图表颜色列表
  * @param options 图表的固定配置
@@ -18,7 +18,26 @@ export default function useDynamicChart(
   options: Record<string, any>,
   configs?: Partial<Record<TChartColorKey, Array<string>>>,
 ) {
-  const { theme, color } = useAppSelector(selectGlobal);
+  const { theme } = useAppSelector(selectGlobal);
+  const initColor = window.getComputedStyle(document.documentElement).getPropertyValue('--td-brand-color');
+  const [color, setColor] = useState(initColor);
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      const currentBrandColor = window.getComputedStyle(document.documentElement).getPropertyValue('--td-brand-color');
+      if (currentBrandColor !== color) setColor(currentBrandColor);
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      subtree: false,
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return useMemo(() => {
     const dynamicColor = getChartColor(theme, color);
     const newOptions = {
