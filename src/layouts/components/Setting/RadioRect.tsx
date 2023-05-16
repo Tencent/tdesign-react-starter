@@ -1,5 +1,4 @@
 import React, { memo, useState } from 'react';
-import classname from 'classnames';
 import Style from './RadioRect.module.less';
 import PickedIcon from 'assets/svg/assets-picked.svg?component';
 
