@@ -7,6 +7,8 @@ import App from 'layouts/index';
 
 import 'tdesign-react/es/style/index.css';
 
+import 'tdesign-theme-generator';
+
 import './styles/index.less';
 
 const env = import.meta.env.MODE || 'development';

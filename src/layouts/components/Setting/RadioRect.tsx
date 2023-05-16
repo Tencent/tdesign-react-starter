@@ -1,6 +1,7 @@
 import React, { memo, useState } from 'react';
 import classname from 'classnames';
 import Style from './RadioRect.module.less';
+import PickedIcon from 'assets/svg/assets-picked.svg?component';
 
 interface IOption {
   value?: any;
@@ -32,11 +33,9 @@ export default memo((props: IProps) => {
 
         return (
           <div key={index}>
-            <div
-              className={classname(Style.rectItem, { [Style.rectItemSelected]: selectValue === item.value })}
-              onClick={() => handleClick(item)}
-            >
+            <div className={Style.rectItem} onClick={() => handleClick(item)}>
               {ImageItem}
+              {selectValue === item.value ? <PickedIcon className={Style.pickedItem} /> : null}
             </div>
             {item.name && <div className={Style.rectText}>{item.name}</div>}
           </div>
