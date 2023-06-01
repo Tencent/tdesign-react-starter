@@ -22,7 +22,7 @@
     "@types/echarts": "^4.9.13",
     "@types/lodash": "^4.14.178",
     "@types/mockjs": "^1.0.6",
-    "@types/node": "^18.11.8",
+    "@types/node": "^20.2.5",
     "@types/qrcode.react": "^1.0.2",
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
