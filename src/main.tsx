@@ -7,6 +7,7 @@ import App from 'layouts/index';
 
 import 'tdesign-react/es/style/index.css';
 
+import 'tdesign-site-components';
 import 'tdesign-theme-generator';
 
 import './styles/index.less';
