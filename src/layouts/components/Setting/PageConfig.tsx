@@ -76,52 +76,57 @@ export default memo(() => {
   };
 
   return (
-    <div>
-      <div className={Style.settingTitle}>主题模式</div>
-      <RadioRect
-        defaultValue={globalState.systemTheme ? ESettingTheme.system : globalState.theme}
-        onChange={handleThemeSwitch}
-        options={themeList}
-      />
-      <div className={Style.settingTitle}>导航布局</div>
-      <RadioRect
-        defaultValue={globalState.layout}
-        onChange={(value) => dispatch(switchLayout(value))}
-        options={layoutList}
-      />
+    <div className={Style.settingContainer}>
+      <div className={Style.settingSubgroup}>
+        <div className={Style.settingTitle}>主题模式</div>
+        <RadioRect
+          defaultValue={globalState.systemTheme ? ESettingTheme.system : globalState.theme}
+          onChange={handleThemeSwitch}
+          options={themeList}
+        />
+      </div>
+      <div className={Style.settingSubgroup}>
+        <div className={Style.settingTitle}>导航布局</div>
+        <RadioRect
+          defaultValue={globalState.layout}
+          onChange={(value) => dispatch(switchLayout(value))}
+          options={layoutList}
+        />
+      </div>
+      <div className={Style.settingSubgroup}>
+        <div className={Style.settingTitle}>元素开关</div>
+        <div className={Style.settingRowGroup}>
+          <Row justify='space-between'>
+            <Col>
+              <div className={Style.settingSubTitle}>显示 Header</div>
+            </Col>
+            <Col>
+              <Switch size='large' value={globalState.showHeader} onChange={() => dispatch(toggleShowHeader())} />
+            </Col>
+          </Row>
 
-      <div className={Style.settingTitle}>元素开关</div>
-      <div className={Style.settingRowGroup}>
-        <Row justify='space-between'>
-          <Col>
-            <div className={Style.settingSubTitle}>显示 Header</div>
-          </Col>
-          <Col>
-            <Switch size='large' value={globalState.showHeader} onChange={() => dispatch(toggleShowHeader())} />
-          </Col>
-        </Row>
+          <Row justify='space-between'>
+            <Col>
+              <div className={Style.settingSubTitle}>显示 Breadcrumbs</div>
+            </Col>
+            <Col>
+              <Switch
+                size='large'
+                value={globalState.showBreadcrumbs}
+                onChange={() => dispatch(toggleShowBreadcrumbs())}
+              />
+            </Col>
+          </Row>
 
-        <Row justify='space-between'>
-          <Col>
-            <div className={Style.settingSubTitle}>显示 Breadcrumbs</div>
-          </Col>
-          <Col>
-            <Switch
-              size='large'
-              value={globalState.showBreadcrumbs}
-              onChange={() => dispatch(toggleShowBreadcrumbs())}
-            />
-          </Col>
-        </Row>
-
-        <Row justify='space-between'>
-          <Col>
-            <div className={Style.settingSubTitle}>显示 Footer</div>
-          </Col>
-          <Col>
-            <Switch size='large' value={globalState.showFooter} onChange={() => dispatch(toggleShowFooter())} />
-          </Col>
-        </Row>
+          <Row justify='space-between'>
+            <Col>
+              <div className={Style.settingSubTitle}>显示 Footer</div>
+            </Col>
+            <Col>
+              <Switch size='large' value={globalState.showFooter} onChange={() => dispatch(toggleShowFooter())} />
+            </Col>
+          </Row>
+        </div>
       </div>
     </div>
   );
