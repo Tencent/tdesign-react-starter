@@ -57,7 +57,7 @@
     "react-dom": "^18.2.0",
     "react-redux": "^7.2.4",
     "react-router-dom": "^6.3.0",
-    "tdesign-icons-react": "^0.2.0",
+    "tdesign-icons-react": "^0.3.2",
     "tdesign-react": "^1.1.10",
     "tvision-color": "^1.5.0"
   },
