@@ -87,9 +87,9 @@ const Detail = () => (
       verticalAlign='top'
       hover
       pagination={{
-        pageSize: 10,
+        defaultPageSize: 10,
         total,
-        current: 1,
+        defaultCurrent: 1,
         showJumper: true,
         onChange(pageInfo) {
           console.log(pageInfo, 'onChange pageInfo');
