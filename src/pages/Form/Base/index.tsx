@@ -119,20 +119,35 @@ export default memo(() => {
               </FormItem>
             </Col>
 
-            <Col span={6} className={Style.dateCol} rules={[{ required: true }]}>
-              <FormItem label='合同签订日期' name='signDate' initialData={INITIAL_DATA.signDate}>
+            <Col span={6} className={Style.dateCol}>
+              <FormItem
+                label='合同签订日期'
+                name='signDate'
+                initialData={INITIAL_DATA.signDate}
+                rules={[{ required: true }]}
+              >
                 <DatePicker mode='date' />
               </FormItem>
             </Col>
 
-            <Col span={6} className={Style.dateCol} rules={[{ required: true }]}>
-              <FormItem label='合同生效日期' name='effectiveDate' initialData={INITIAL_DATA.effectiveDate}>
+            <Col span={6} className={Style.dateCol}>
+              <FormItem
+                label='合同生效日期'
+                name='effectiveDate'
+                initialData={INITIAL_DATA.effectiveDate}
+                rules={[{ required: true }]}
+              >
                 <DatePicker mode='date' />
               </FormItem>
             </Col>
 
-            <Col span={6} className={Style.dateCol} rules={[{ required: true }]}>
-              <FormItem label='合同结束日期' name='endDate' initialData={INITIAL_DATA.endDate}>
+            <Col span={6} className={Style.dateCol}>
+              <FormItem
+                label='合同结束日期'
+                name='endDate'
+                initialData={INITIAL_DATA.endDate}
+                rules={[{ required: true }]}
+              >
                 <DatePicker mode='date' />
               </FormItem>
             </Col>
