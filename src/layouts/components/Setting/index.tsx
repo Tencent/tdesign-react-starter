@@ -4,6 +4,8 @@ import { useAppSelector, useAppDispatch } from 'modules/store';
 import { selectGlobal, toggleSetting } from 'modules/global';
 import PageConfig from './PageConfig';
 
+import Style from './index.module.less';
+
 export default memo(() => {
   const globalState = useAppSelector(selectGlobal);
   const dispatch = useAppDispatch();
@@ -19,16 +21,23 @@ export default memo(() => {
       }
     });
   }, []);
+
+  const handleOverlayClick = () => {
+    console.log(11);
+  };
+
   return (
     <>
       <Drawer
         destroyOnClose
         visible={globalState.setting}
+        onOverlayClick={handleOverlayClick}
         size='348px'
         footer={false}
         header={false}
         closeBtn={false}
         onClose={() => dispatch(toggleSetting(false))}
+        className={Style.settingDrawer}
       >
         <PageConfig />
       </Drawer>

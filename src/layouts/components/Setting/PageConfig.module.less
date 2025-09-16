@@ -1,10 +1,18 @@
+.settingContainer {
+  background-color: var(--td-bg-color-container);
+  padding: var(--td-comp-paddingTB-l) var(--td-comp-paddingLR-l);
+  border-radius: var(--td-radius-extraLarge);
+  height: 100%;
+}
 .settingTitle {
-  margin: 32px 0 24px 0;
   text-align: left;
+  margin-bottom: var(--td-comp-margin-m);
   font: var(--td-font-title-medium);
   color: var(--td-text-color-primary);
 }
-
+.settingSubgroup {
+  margin: var(--td-comp-margin-m) 0;
+}
 .settingRowGroup {
   background-color: var(--td-bg-color-secondarycontainer);
   border-radius: var(--td-radius-large);
@@ -17,8 +25,8 @@
       padding: var(--td-comp-paddingTB-s) var(--td-comp-paddingLR-m);
       height: 40px;
       display: flex;
-    
       justify-content: space-between;
+      border-radius: var(--td-radius-medium);
     }
   }
 }
