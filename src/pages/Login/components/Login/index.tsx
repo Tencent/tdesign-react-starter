@@ -1,9 +1,17 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, MessagePlugin, Input, Checkbox, Button, FormInstanceFunctions, SubmitContext } from 'tdesign-react';
-import { LockOnIcon, UserIcon, BrowseOffIcon, BrowseIcon, RefreshIcon } from 'tdesign-icons-react';
+import {
+  Button,
+  Checkbox,
+  Form,
+  type FormInstanceFunctions,
+  Input,
+  MessagePlugin,
+  QRCode,
+  type SubmitContext,
+} from 'tdesign-react';
+import { BrowseIcon, BrowseOffIcon, LockOnIcon, RefreshIcon, UserIcon } from 'tdesign-icons-react';
 import classnames from 'classnames';
-import QRCode from 'qrcode.react';
 import { useAppDispatch } from 'modules/store';
 import { login } from 'modules/user';
 import useCountdown from '../../hooks/useCountDown';
@@ -88,7 +96,7 @@ export default function Login() {
                 刷新 <RefreshIcon />
               </span>
             </div>
-            <QRCode value='' size={200} />
+            <QRCode value='https://tdesign.tencent.com/' size={200} />
           </>
         )}
         {/* // 手机号登陆 */}
