@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <a href="https://nodejs.org/en/about/releases/"><img src="https://img.shields.io/node/v/vite.svg" alt="node compatility"></a>
+  <a href="https://nodejs.org/en/about/releases/"><img src="https://img.shields.io/node/v/vite.svg" alt="node compatibility"></a>
   <a href="https://github.com/Tencent/tdesign-react-starter/blob/develop/LICENSE">
     <img src="https://img.shields.io/npm/l/tdesign-react.svg?sanitize=true" alt="License">
   </a>
